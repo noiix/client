@@ -16,6 +16,7 @@ function App() {
       <Route path='/upload' element={<Upload/>}/>
     </Routes>
     {/* make it visible only for logged in users */}
+    <Navbar/>
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import react from 'react';
+const SuccessAlert = ({title, type}) => {
 
-const Alert = () => {
     return (
-        <div className='alert'>
-            
+        <div className={`alert ${type}`}>
+            <p>{title}</p>
         </div>
     )
 }
+
+export default SuccessAlert

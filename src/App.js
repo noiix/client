@@ -1,3 +1,4 @@
+
 import './style/App.scss';
 import { useContext, useEffect } from 'react';
 import {Route, Routes} from 'react-router-dom';
@@ -9,6 +10,8 @@ import Upload from './components/upload/Upload';
 import AlertContainer from './components/UI/alerts/AlertContainer';
 import UserContext from './contexts/UserContext';
 import axios from 'axios';
+import Register from "./components/authentication/Register";
+import Login from "./components/authentication/Login";
 
 
 function App() {
@@ -20,6 +23,7 @@ function App() {
   }, [])
   return (
     <div className="App">
+
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/profile' element={<Profile/>}/>
@@ -30,6 +34,18 @@ function App() {
     <Navbar/>
     
     {notification && <AlertContainer type={notification.type} title={notification.title}/>}
+
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/upload" element={<Upload />} />
+      </Routes>
+      {/* make it visible only for logged in users */}
+
     </div>
   );
 }

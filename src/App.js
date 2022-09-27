@@ -6,6 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Chat from "./components/chat/Chat";
 import Upload from "./components/upload/Upload";
 import Register from "./components/authentication/Register";
+import Login from "./components/authentication/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/upload" element={<Upload />} />

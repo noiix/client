@@ -1,21 +1,14 @@
+import React from "react";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
-import React from "react";
 
-const Register = () => {
-  const { inputHandler, createAccount } = useContext(UserContext);
+const Login = () => {
+  const { inputHandler, login } = useContext(UserContext);
 
   return (
     <div>
-      Register
-      <div className="signupForm">
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          onChange={inputHandler}
-        />{" "}
-        <br />
+      login
+      <div className="loginForm">
         <input
           type="email"
           name="email"
@@ -31,14 +24,13 @@ const Register = () => {
         />{" "}
         <br />
         <div>
-          <button type="button" onClick={createAccount}>
-            send
+          <button type="button" onClick={login}>
+            login
           </button>
         </div>
       </div>
-      {/* <div>{message}</div> */}
     </div>
   );
 };
 
-export default Register;
+export default Login;

@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -8,10 +9,17 @@ export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
 
+
+    //alert notifications
+    const [notification, setNotification] = useState(null)
+
+    const value= {notification, setNotification}
+
   const createAccount = () => {
     setMessage(`
         verification email sent!
     `);
+
 
     axios
       .post("http://localhost:5001/user/create", formData)

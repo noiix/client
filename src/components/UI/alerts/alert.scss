@@ -1,0 +1,42 @@
+@use '../../../style/variables.scss' as *;
+
+//main styling  
+.alert-container {
+    position: absolute;
+    height: 100%;
+    width: calc(250px + 2.5rem);
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.alert {
+    position: sticky;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0 .5rem;
+    width: 250px;
+}
+
+
+//type styling
+//error
+.error {
+    background-color: $pink;
+}
+
+//success
+.success {
+    background-color: $turquoise;
+}
+
+//info
+.info {
+    background-color: $blue;
+}
+
+//warning
+.warning {
+    background-color: $yellow;
+}

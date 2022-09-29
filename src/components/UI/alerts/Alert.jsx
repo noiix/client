@@ -14,20 +14,29 @@ const SuccessAlert = () => {
             setDisplayNote(true)
             setBlendIn(true)
         }
+        const timerFadeOut = setTimeout(() => {
+            setBlendIn(false)
+        }, 9000)
         const timer = setTimeout(() => {
             setDisplayNote(false)
             notification.shift()
         }, 11000)
-        return () => { clearTimeout(timer) }
+        return () => { clearTimeout(timer); clearTimeout(timerFadeOut) }
     }, [notification])
 
-
+    const closeNotification = () => {
+        setBlendIn(false)
+        const timerCloseNote = (() => {setDisplayNote(false)
+        notification.shift()}, 200)
+        return () => { clearTimeout(timerCloseNote)}
+    }
+    
     return (
         (displayNote && 
         notification.map((note, i) => 
             <div className={`alert ${note.type} ${blendIn ? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
                 <p>{note.title} </p>
-                <a><IoIosCloseCircleOutline/></a>
+                <a onClick={closeNotification}><IoIosCloseCircleOutline/></a>
             </div>)
         )
     )

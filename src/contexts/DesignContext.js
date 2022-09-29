@@ -6,6 +6,7 @@ export const DesignProvider = ({children}) => {
     //alert notifications
     const [notification, setNotification] = useState([])
 
+ 
 
     //light and dark mode
     const [darkMode, setDarkMode] = useState(false)

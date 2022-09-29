@@ -7,23 +7,25 @@ import DesignContext from "../../contexts/DesignContext";
 
 function Navbar() {
   const {currentUser, logout} = useContext(UserContext)
-  const {darkMode} = useContext(DesignContext)
+  const {darkMode, toggleMode} = useContext(DesignContext)
   return (
     <nav>
+      <ul>
       {Object.keys(currentUser).length !== 0 ? 
       <>      
-      <NavLink to={"/profile"}>profile</NavLink>
-      <NavLink to={"/chat"}>chat</NavLink>
-      <NavLink to={"/upload"}>upload</NavLink>
-      <NavLink to={"/"} onClick={logout}>logout</NavLink>
+      <li><NavLink to={"/profile"}>profile</NavLink></li>
+      <li><NavLink to={"/chat"}>chat</NavLink></li>
+      <li><NavLink to={"/upload"}>upload</NavLink></li>
+      <li><NavLink to={"/"} onClick={logout}>logout</NavLink></li>
       </>
       :
       <>
-      <NavLink to={"/register"}>sign up</NavLink>
-      <NavLink to={"/login"}>login</NavLink>
+      <li><NavLink to={"/register"}>sign up</NavLink></li>
+      <li><NavLink to={"/"}>login</NavLink></li>  
       </>
       }
-      {darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}
+      <NavLink onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
+      </ul>
     </nav>
   );
 }

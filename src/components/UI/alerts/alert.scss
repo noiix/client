@@ -9,6 +9,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    background: none!important;
+    pointer-events: none;
 }
 
 .alert {
@@ -19,6 +21,8 @@
     width: 300px;
     z-index: 3;
     display: flex;
+    overflow: hidden;
+    transform: translateX(-5%);
 }
 
 .fade-in {
@@ -35,11 +39,11 @@
 @keyframes blendIn {
     from {
         opacity: 0;
-        transform: translateX(5%);
+        transform: translateX(0);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(-5%);
     }
 
 }
@@ -47,11 +51,11 @@
 @keyframes blendOut {
     from {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(-5%);
     }
     to {
         opacity: 0;
-        transform: translateX(5%);
+        transform: translateX(0);
     }
 
 }

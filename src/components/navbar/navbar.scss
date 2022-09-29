@@ -1,6 +1,18 @@
+@use "../../style/variables.scss" as *;
+
 nav {
-    display: flex;
-    a {
+    position: absolute;
+    right: 0;
+    border-left: dashed $dark-gray 2px;
+    height: 100vh;
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100vh;
+        align-items: center;
+    }
+    ul > li {
         transform: rotate(90deg)
     }
 }    

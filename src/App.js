@@ -14,7 +14,7 @@ import Login from "./components/authentication/Login";
 import DesignContext from './contexts/DesignContext';
 
 function App() {
-
+  const {currentUser} = useContext(UserContext)
   const {notification, setNotification} = useContext(DesignContext);
 
   useEffect(()=>{
@@ -27,19 +27,26 @@ function App() {
 
   return (
    <div className="App">
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path='/profile' element={<Profile/>}/>
-      <Route path='/chat' element={<Chat/>}/>
-      <Route path='/upload' element={<Upload/>}/>
-    </Routes>
-    {/* make it visible only for logged in users */}
+    <div className="main">
+      <Routes>
+        {Object.keys(currentUser).length === 0 ?
+          <>
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Login />} />
+          </>
+          :
+          <>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/chat' element={<Chat/>}/>
+          <Route path='/upload' element={<Upload/>}/>
+          </>
+        }
+      </Routes>
+      {/* make it visible only for logged in users */}
+    </div>
     <Navbar/>
-    
     {notification && <AlertContainer/>}
-
     </div>
   );
 }

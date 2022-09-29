@@ -1,26 +1,16 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 
-
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [message, setMessage] = useState();
   const [formData, setFormData] = useState({});
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
 
-
-    //alert notifications
-    const [notification, setNotification] = useState(null)
-
-    const value= {notification, setNotification}
+  //alert notifications
+  const [notification, setNotification] = useState(null);
 
   const createAccount = () => {
-    setMessage(`
-        verification email sent!
-    `);
-
-
     axios
       .post("http://localhost:5001/user/create", formData)
       .then((response) => console.log(response));
@@ -29,7 +19,7 @@ export const UserProvider = ({ children }) => {
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log(formData);
+  console.log("form data: " + formData);
 
   const login = () => {
     axios
@@ -38,14 +28,22 @@ export const UserProvider = ({ children }) => {
         if (response.data.result) {
           setCurrentUser(response.data.result);
           localStorage.setItem("token", response.data.token);
-          console.log(localStorage.getItem("token"));
+          console.log("localstorage: " + localStorage.getItem("token"));
         }
-        setMessage();
+        setNotification(response.data.message);
       })
       .catch();
   };
-  console.log(currentUser);
-  const value = { inputHandler, createAccount, login };
+  console.log("current user " + JSON.stringify(currentUser));
+  const value = {
+    inputHandler,
+    createAccount,
+    login,
+    notification,
+    setNotification,
+    currentUser,
+    setCurrentUser,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

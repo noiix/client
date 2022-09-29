@@ -1,25 +1,29 @@
 import { useContext, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
-import jwt_decode from "jwt-decode";
 
 const Register = () => {
-  const { inputHandler, createAccount, setCurrentUser, currentUser } =
-    useContext(UserContext);
+  const {
+    inputHandler,
+    createAccount,
+    setCurrentUser,
+    currentUser,
+    handleCallbackResponse,
+    handleSignOut,
+  } = useContext(UserContext);
 
-  function handleCallbackResponse(response) {
-    // console.log("Encoded JWT ID token" + response.credential);
-    const userObject = jwt_decode(response.credential);
+  // function handleCallbackResponse(response) {
+  //   console.log("Encoded JWT ID token" + response.credential);
+  //   const userObject = jwt_decode(response.credential);
 
-    setCurrentUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  }
-  console.log(currentUser);
+  //   setCurrentUser(userObject);
+  //   document.getElementById("signInDiv").hidden = true;
+  // }
 
-  function handleSignOut() {
-    setCurrentUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
+  // function handleSignOut() {
+  //   setCurrentUser({});
+  //   document.getElementById("signInDiv").hidden = false;
+  // }
 
   useEffect(() => {
     /* global google */
@@ -74,9 +78,9 @@ const Register = () => {
       {Object.keys(currentUser).length !== 0 && (
         <button onClick={(e) => handleSignOut(e)}>sign out</button>
       )}
-      {currentUser && (
+      {Object.keys(currentUser).length !== 0 && (
         <div>
-          <img src={currentUser.picture} />
+          <img src={currentUser.picture} alt="img" />
           <h3>{currentUser.name}</h3>
         </div>
       )}

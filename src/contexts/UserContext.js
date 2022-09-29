@@ -1,19 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
+import DesignContext from "./DesignContext";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
-  const [currentUser, setCurrentUser] = useState({});
 
-  //alert notifications
-  const [notification, setNotification] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const {notification, setNotification} = useContext(DesignContext)
+
+
+
 
   const createAccount = () => {
     axios
       .post("http://localhost:5001/user/create", formData)
-      .then((response) => console.log(response));
+      .then((response) => {setNotification([...notification, response.data.notification])});
   };
 
   const inputHandler = (e) => {
@@ -30,11 +33,14 @@ export const UserProvider = ({ children }) => {
           localStorage.setItem("token", response.data.token);
           console.log("localstorage: " + localStorage.getItem("token"));
         }
-        setNotification(response.data.message);
+
+        setNotification([...notification, response.data.notification]); 
       })
       .catch();
   };
+  
   console.log("current user " + JSON.stringify(currentUser));
+  
   const value = {
     inputHandler,
     createAccount,
@@ -44,6 +50,9 @@ export const UserProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
   };
+
+ 
+
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

@@ -3,8 +3,7 @@ import Upload from '../upload/Upload'
 
 function Home() {
   return (
-    <div>Home
-      <Upload/>
+    <div>
     </div>
   )
 }

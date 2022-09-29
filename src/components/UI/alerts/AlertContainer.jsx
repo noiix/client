@@ -1,9 +1,9 @@
 import Alert from './Alert'
 
-const AlertContainer = ({type, title}) => {
+const AlertContainer = () => {
     return (
         <div className='alert-container'>
-            <Alert type={type} title={title}/>    
+            <Alert/>    
         </div>
     )
 }

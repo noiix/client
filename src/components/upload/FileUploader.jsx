@@ -1,7 +1,11 @@
-import react, {useRef} from 'react';
+import react, {useRef, useContext} from 'react';
+import {FaFileAudio} from 'react-icons/fa';
+import {FaRegFileAudio} from 'react-icons/fa'
+import DesignContext from '../../contexts/DesignContext';
 
 const FileUploader = ({onFileSelectSuccess, onFileSelectError}) => {
     const fileInput = useRef(null)
+    const {darkMode} = useContext(DesignContext)
    
 
     const handleFileInput = (e) => {
@@ -14,8 +18,10 @@ const FileUploader = ({onFileSelectSuccess, onFileSelectError}) => {
 
   return (
     <div className='file-uploader'>
-      <input type="file" onChange={handleFileInput}/>
-      <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary"/>
+      <input type="file" onChange={handleFileInput} ref={fileInput} />
+      <button onClick={e => fileInput.current && fileInput.current.click()} className="btn">
+        {darkMode ? FaRegFileAudio : FaFileAudio}
+      </button>
     </div>
   )
   

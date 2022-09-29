@@ -21,15 +21,15 @@ const SuccessAlert = () => {
         return () => { clearTimeout(timer) }
     }, [notification])
 
-    console.log(notification)
 
     return (
         (displayNote && 
-            notification.map((note, i) => 
-                <div className={`alert ${note.type} ${'note-'+i} ${blendIn ? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
-                    <p>{note.title} {IoIosCloseCircleOutline}</p>
-                </div>)
-            )
+        notification.map((note, i) => 
+            <div className={`alert ${note.type} ${blendIn ? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
+                <p>{note.title} </p>
+                <a><IoIosCloseCircleOutline/></a>
+            </div>)
+        )
     )
 }
 

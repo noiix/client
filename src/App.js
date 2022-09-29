@@ -1,4 +1,3 @@
-
 import './style/App.scss';
 import { useContext, useEffect } from 'react';
 import {Route, Routes} from 'react-router-dom';
@@ -8,7 +7,6 @@ import Navbar from './components/navbar/Navbar'
 import Chat from './components/chat/Chat'
 import Upload from './components/upload/Upload';
 import AlertContainer from './components/UI/alerts/AlertContainer';
-import UserContext from './contexts/UserContext';
 import axios from 'axios';
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";

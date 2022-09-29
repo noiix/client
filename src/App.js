@@ -26,6 +26,8 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/chat' element={<Chat/>}/>
       <Route path='/upload' element={<Upload/>}/>
@@ -35,16 +37,6 @@ function App() {
     
     {notification && <AlertContainer type={notification.type} title={notification.title}/>}
 
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/upload" element={<Upload />} />
-      </Routes>
-      {/* make it visible only for logged in users */}
 
     </div>
   );

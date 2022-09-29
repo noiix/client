@@ -5,22 +5,13 @@ import axios from "axios";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [message, setMessage] = useState();
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
+  //alert notifications
+  const [notification, setNotification] = useState(null);
 
-
-    //alert notifications
-    const [notification, setNotification] = useState(null)
-
-    const value= {notification, setNotification}
 
   const createAccount = () => {
-    setMessage(`
-        verification email sent!
-    `);
-
-
     axios
       .post("http://localhost:5001/user/create", formData)
       .then((response) => console.log(response));
@@ -40,12 +31,12 @@ export const UserProvider = ({ children }) => {
           localStorage.setItem("token", response.data.token);
           console.log(localStorage.getItem("token"));
         }
-        setMessage();
+        setNotification(response.data.message);
       })
       .catch();
   };
   console.log(currentUser);
-  const value = { inputHandler, createAccount, login };
+  const value = { inputHandler, createAccount, login, notification, setNotification };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

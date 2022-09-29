@@ -12,15 +12,19 @@ import UserContext from './contexts/UserContext';
 import axios from 'axios';
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
+import DesignContext from './contexts/DesignContext';
 
 
 function App() {
-  const {notification, setNotification} = useContext(UserContext);
+  const {notification, setNotification} = useContext(DesignContext);
 
   useEffect(()=>{
     axios.get('http://localhost:5001/')
-    .then(response => setNotification(response.data.notification))
+    .then(response => setNotification([...notification, response.data.notification]))
   }, [])
+
+  console.log(notification)
+
   return (
     <div className="App">
 
@@ -35,9 +39,7 @@ function App() {
     {/* make it visible only for logged in users */}
     <Navbar/>
     
-    {notification && <AlertContainer type={notification.type} title={notification.title}/>}
-
-
+    {notification && <AlertContainer/>}
     </div>
   );
 }

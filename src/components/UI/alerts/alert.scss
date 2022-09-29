@@ -16,9 +16,48 @@
     bottom: 2rem;
     right: 2rem;
     padding: 0 .5rem;
-    width: 250px;
+    // width: 250px;
+    z-index: 3;
 }
 
+.fade-in {
+    animation: blendIn 2s ease-in;
+}
+
+.fade-out {
+    animation: blendOut 2s ease-out;
+    animation-delay: 8s;
+}
+
+.note-1 {
+    bottom: calc(2rem + 3rem)
+}
+
+//animation
+
+@keyframes blendIn {
+    from {
+        opacity: 0;
+        transform: translateX(5%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+@keyframes blendOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(5%);
+    }
+
+}
 
 //type styling
 //error

@@ -12,20 +12,26 @@ import UserContext from './contexts/UserContext';
 import axios from 'axios';
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
+import DesignContext from './contexts/DesignContext';
 
 
 function App() {
-  const {notification, setNotification} = useContext(UserContext);
+  const {notification, setNotification} = useContext(DesignContext);
 
   useEffect(()=>{
     axios.get('http://localhost:5001/')
-    .then(response => setNotification(response.data.notification))
+    .then(response => setNotification([...notification, response.data.notification]))
   }, [])
+
+  console.log(notification)
+
   return (
     <div className="App">
 
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/chat' element={<Chat/>}/>
       <Route path='/upload' element={<Upload/>}/>
@@ -33,19 +39,7 @@ function App() {
     {/* make it visible only for logged in users */}
     <Navbar/>
     
-    {notification && <AlertContainer type={notification.type} title={notification.title}/>}
-
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/upload" element={<Upload />} />
-      </Routes>
-      {/* make it visible only for logged in users */}
-
+    {notification && <AlertContainer/>}
     </div>
   );
 }

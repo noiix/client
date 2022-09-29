@@ -1,19 +1,20 @@
-import './style/App.scss';
-import { useContext, useEffect } from 'react';
-import {Route, Routes} from 'react-router-dom';
-import Home from './components/home/Home'
-import Profile from './components/profile/Profile'
-import Navbar from './components/navbar/Navbar'
-import Chat from './components/chat/Chat'
-import Upload from './components/upload/Upload';
-import AlertContainer from './components/UI/alerts/AlertContainer';
-import axios from 'axios';
+import "./style/App.scss";
+import { useContext, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/home/Home";
+import Profile from "./components/profile/Profile";
+import Navbar from "./components/navbar/Navbar";
+import Chat from "./components/chat/Chat";
+import Upload from "./components/upload/Upload";
+import AlertContainer from "./components/UI/alerts/AlertContainer";
+import UserContext from "./contexts/UserContext";
+import axios from "axios";
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
 import DesignContext from './contexts/DesignContext';
 
-
 function App() {
+
   const {notification, setNotification} = useContext(DesignContext);
 
   useEffect(()=>{
@@ -23,9 +24,9 @@ function App() {
 
   console.log(notification)
 
-  return (
-    <div className="App">
 
+  return (
+   <div className="App">
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path="/register" element={<Register />} />
@@ -38,6 +39,7 @@ function App() {
     <Navbar/>
     
     {notification && <AlertContainer/>}
+
     </div>
   );
 }

@@ -2,20 +2,20 @@ import React from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import { IoInvertMode, IoInvertModeOutline} from 'react-icons/io'
+import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
 import DesignContext from "../../contexts/DesignContext";
 
 function Navbar() {
-  const {currentUser} = useContext(UserContext)
+  const {currentUser, logout} = useContext(UserContext)
   const {darkMode} = useContext(DesignContext)
   return (
-    <div>
-      {ObjectcurrentUser ? 
+    <nav>
+      {Object.keys(currentUser).length !== 0 ? 
       <>      
       <NavLink to={"/profile"}>profile</NavLink>
       <NavLink to={"/chat"}>chat</NavLink>
       <NavLink to={"/upload"}>upload</NavLink>
-      {/* <NavLink to={"/"}>logout</NavLink> */}
+      <NavLink to={"/"} onClick={logout}>logout</NavLink>
       </>
       :
       <>
@@ -23,8 +23,8 @@ function Navbar() {
       <NavLink to={"/login"}>login</NavLink>
       </>
       }
-      {darkMode ? <IoInvertMode/> : <IoInvertModeOutline/>}
-    </div>
+      {darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}
+    </nav>
   );
 }
 

@@ -36,9 +36,10 @@ export const UserProvider = ({ children }) => {
 
         setNotification([...notification, response.data.notification]);
       })
-      .catch();
+      .catch(err => console.log(err));
   };
 
+<<<<<<< HEAD
   function handleCallbackResponse(response) {
     let jwToken = response.credential;
     console.log(jwToken);
@@ -70,12 +71,25 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = false;
   }
 
+=======
+  const logout = () => {
+    axios.get("http://localhost:5001/user/logout")
+    .then((response) => {
+      localStorage.removeItem("token");
+      setCurrentUser({})
+      setNotification([...notification, response.data.notification]); 
+    }
+    ).catch(err => console.log(err))
+  }
+  
+>>>>>>> b2a1f0c1a722a3a1f1fb9e0a69d64b593fa722af
   console.log("current user " + JSON.stringify(currentUser));
 
   const value = {
     inputHandler,
     createAccount,
     login,
+    logout,
     notification,
     setNotification,
     currentUser,

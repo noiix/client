@@ -38,6 +38,16 @@ export const UserProvider = ({ children }) => {
       })
       .catch(err => console.log(err));
   };
+
+  const logout = () => {
+    axios.get("http://localhost:5001/user/logout")
+    .then((response) => {
+      localStorage.removeItem("token");
+      setCurrentUser({})
+      setNotification([...notification, response.data.notification]); 
+    }
+    ).catch(err => console.log(err))
+  }
   
   console.log("current user " + JSON.stringify(currentUser));
   
@@ -45,6 +55,7 @@ export const UserProvider = ({ children }) => {
     inputHandler,
     createAccount,
     login,
+    logout,
     notification,
     setNotification,
     currentUser,

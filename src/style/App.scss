@@ -1,5 +1,6 @@
 @use './variables.scss' as *;
 @use '../components/UI/alerts/alert.scss';
+@use '../components/navbar/navbar.scss';
 
 body {
     margin: 0;
@@ -19,5 +20,20 @@ body {
       color: $dark-gray;
     }
   
-  }
-  
+    .App {display: flex;}
+
+    .main {
+      width: calc(100vw - 4rem);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+}
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}

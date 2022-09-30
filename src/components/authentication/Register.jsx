@@ -6,24 +6,10 @@ const Register = () => {
   const {
     inputHandler,
     createAccount,
-    setCurrentUser,
     currentUser,
     handleCallbackResponse,
     handleSignOut,
   } = useContext(UserContext);
-
-  // function handleCallbackResponse(response) {
-  //   console.log("Encoded JWT ID token" + response.credential);
-  //   const userObject = jwt_decode(response.credential);
-
-  //   setCurrentUser(userObject);
-  //   document.getElementById("signInDiv").hidden = true;
-  // }
-
-  // function handleSignOut() {
-  //   setCurrentUser({});
-  //   document.getElementById("signInDiv").hidden = false;
-  // }
 
   useEffect(() => {
     /* global google */
@@ -42,6 +28,8 @@ const Register = () => {
     // google.accounts.id.prompt();
     // eslint-disable-next-line
   }, []);
+
+  console.log(currentUser);
 
   return (
     <div>
@@ -77,12 +65,6 @@ const Register = () => {
       <div id="signInDiv"></div>
       {Object.keys(currentUser).length !== 0 && (
         <button onClick={(e) => handleSignOut(e)}>sign out</button>
-      )}
-      {Object.keys(currentUser).length !== 0 && (
-        <div>
-          <img src={currentUser.picture} alt="img" />
-          <h3>{currentUser.name}</h3>
-        </div>
       )}
     </div>
   );

@@ -7,39 +7,40 @@ import Navbar from "./components/navbar/Navbar";
 import Chat from "./components/chat/Chat";
 import Upload from "./components/upload/Upload";
 import AlertContainer from "./components/UI/alerts/AlertContainer";
-import UserContext from "./contexts/UserContext";
+// import UserContext from "./contexts/UserContext";
 import axios from "axios";
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
-import DesignContext from './contexts/DesignContext';
+import DesignContext from "./contexts/DesignContext";
 
 function App() {
+  const { notification, setNotification } = useContext(DesignContext);
 
-  const {notification, setNotification} = useContext(DesignContext);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5001/")
+      .then((response) =>
+        setNotification([...notification, response.data.notification])
+      );
+    // eslint-disable-next-line
+  }, []);
 
-  useEffect(()=>{
-    axios.get('http://localhost:5001/')
-    .then(response => setNotification([...notification, response.data.notification]))
-  }, [])
-
-  console.log(notification)
-
+  console.log(notification);
 
   return (
-   
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path='/profile' element={<Profile/>}/>
-      <Route path='/chat' element={<Chat/>}/>
-      <Route path='/upload' element={<Upload/>}/>
-    </Routes>
-    {/* make it visible only for logged in users */}
-    <Navbar/>
-    
-    {notification && <AlertContainer/>}
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/upload" element={<Upload />} />
+      </Routes>
+      {/* make it visible only for logged in users */}
 
+      {notification && <AlertContainer />}
     </div>
   );
 }

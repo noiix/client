@@ -1,31 +1,22 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import jwt_decode from "jwt-decode";
-=======
 import DesignContext from "./DesignContext";
->>>>>>> b8800af0e34aa6b5b351c9195def012856acd4f6
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
-<<<<<<< HEAD
-  // eslint-disable-next-line
-  const [currentUser, setCurrentUser] = useState({});
-=======
->>>>>>> b8800af0e34aa6b5b351c9195def012856acd4f6
 
   const [currentUser, setCurrentUser] = useState({});
-  const {notification, setNotification} = useContext(DesignContext)
-
-
-
+  const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = () => {
     axios
       .post("http://localhost:5001/user/create", formData)
-      .then((response) => {setNotification([...notification, response.data.notification])});
+      .then((response) => {
+        setNotification([...notification, response.data.notification]);
+      });
   };
 
   const inputHandler = (e) => {
@@ -43,11 +34,10 @@ export const UserProvider = ({ children }) => {
           console.log("localstorage: " + localStorage.getItem("token"));
         }
 
-        setNotification([...notification, response.data.notification]); 
+        setNotification([...notification, response.data.notification]);
       })
       .catch();
   };
-<<<<<<< HEAD
 
   function handleCallbackResponse(response) {
     let jwToken = response.credential;
@@ -80,11 +70,8 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = false;
   }
 
-=======
-  
->>>>>>> b8800af0e34aa6b5b351c9195def012856acd4f6
   console.log("current user " + JSON.stringify(currentUser));
-  
+
   const value = {
     inputHandler,
     createAccount,
@@ -96,9 +83,6 @@ export const UserProvider = ({ children }) => {
     handleCallbackResponse,
     handleSignOut,
   };
-
- 
-
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

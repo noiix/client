@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
 import DesignContext from "../../contexts/DesignContext";
@@ -10,6 +10,11 @@ function Navbar() {
   const {darkMode, toggleMode} = useContext(DesignContext)
   return (
     <nav>
+      <Link to={"/"}>
+        <div className="logo">
+          <h1>nöix</h1>
+        </div>
+      </Link>
       <ul>
       {Object.keys(currentUser).length !== 0 ? 
       <>      
@@ -20,8 +25,6 @@ function Navbar() {
       </>
       :
       <>
-      <li><NavLink to={"/register"}>sign up</NavLink></li>
-      <li><NavLink to={"/"}>login</NavLink></li>  
       </>
       }
       <NavLink onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>

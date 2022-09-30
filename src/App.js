@@ -9,9 +9,8 @@ import Upload from "./components/upload/Upload";
 import AlertContainer from "./components/UI/alerts/AlertContainer";
 import UserContext from "./contexts/UserContext";
 import axios from "axios";
-import Register from "./components/authentication/Register";
-import Login from "./components/authentication/Login";
 import DesignContext from "./contexts/DesignContext";
+import Authentication from "./components/authentication/Authentication";
 
 function App() {
   const {currentUser} = useContext(UserContext)
@@ -24,17 +23,13 @@ function App() {
 
   console.log(notification)
 
-  console.log(notification);
 
   return (
    <div className="App">
     <div className="main">
       <Routes>
         {Object.keys(currentUser).length === 0 ?
-          <>
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Login />} />
-          </>
+          <Route path="/" element={<Authentication />} />
           :
           <>
           <Route path='/' element={<Home/>}/>

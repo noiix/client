@@ -21,10 +21,15 @@
     width: 300px;
     z-index: 3;
     display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
     overflow: hidden;
     transform: translateX(-5%);
     pointer-events: stroke;
     cursor: pointer;
+    a {
+        font-size: 1.2rem;
+    }
 }
 
 .fade-in {
@@ -33,7 +38,7 @@
 
 .fade-out {
     animation: blendOut 2s ease-out;
-    animation-delay: 8s;
+    // animation-delay: 8s;
 }
 
 //animation

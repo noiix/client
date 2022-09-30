@@ -34,7 +34,7 @@ const Register = () => {
   return (
     <div>
       Register
-      <div className="signupForm">
+      <form className="signupForm" onSubmit={createAccount}>
         <input
           type="text"
           name="username"
@@ -56,12 +56,8 @@ const Register = () => {
           onChange={inputHandler}
         />{" "}
         <br />
-        <div>
-          <button type="button" onClick={createAccount}>
-            send
-          </button>
-        </div>
-      </div>
+          <input type="submit" value="submit"/>
+      </form>
       <div id="signInDiv"></div>
       {Object.keys(currentUser).length !== 0 && (
         <button onClick={(e) => handleSignOut(e)}>sign out</button>

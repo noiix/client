@@ -11,7 +11,7 @@ import UserContext from "./contexts/UserContext";
 import axios from "axios";
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
-import DesignContext from './contexts/DesignContext';
+import DesignContext from "./contexts/DesignContext";
 
 function App() {
   const {currentUser} = useContext(UserContext)

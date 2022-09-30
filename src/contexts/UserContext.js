@@ -9,14 +9,14 @@ export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
 
   const [currentUser, setCurrentUser] = useState({});
-  const { notification, setNotification } = useContext(DesignContext);
+  const {notification, setNotification} = useContext(DesignContext);
 
-  const createAccount = () => {
+  const createAccount = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:5001/user/create", formData)
-      .then((response) => {
-        setNotification([...notification, response.data.notification]);
-      });
+      .then((response) => {setNotification([...notification, response.data.notification])})
+      .catch(err => console.log(err))
   };
 
   const inputHandler = (e) => {
@@ -24,7 +24,8 @@ export const UserProvider = ({ children }) => {
   };
   console.log("form data: " + formData);
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:5001/user/login", formData)
       .then((response) => {
@@ -39,7 +40,6 @@ export const UserProvider = ({ children }) => {
       .catch(err => console.log(err));
   };
 
-<<<<<<< HEAD
   function handleCallbackResponse(response) {
     let jwToken = response.credential;
     console.log(jwToken);
@@ -66,12 +66,7 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = true;
   }
 
-  function handleSignOut() {
-    setCurrentUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
-
-=======
+ 
   const logout = () => {
     axios.get("http://localhost:5001/user/logout")
     .then((response) => {
@@ -82,7 +77,6 @@ export const UserProvider = ({ children }) => {
     ).catch(err => console.log(err))
   }
   
->>>>>>> b2a1f0c1a722a3a1f1fb9e0a69d64b593fa722af
   console.log("current user " + JSON.stringify(currentUser));
 
   const value = {
@@ -94,8 +88,7 @@ export const UserProvider = ({ children }) => {
     setNotification,
     currentUser,
     setCurrentUser,
-    handleCallbackResponse,
-    handleSignOut,
+    handleCallbackResponse
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

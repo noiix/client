@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log("form data: " + formData);
+  // console.log("form data: " + formData);
 
   const login = (e) => {
     e.preventDefault();

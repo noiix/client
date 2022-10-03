@@ -7,7 +7,7 @@ const Register = () => {
     inputHandler,
     createAccount,
     currentUser,
-    handleCallbackResponse,
+    googleAuthentication,
     handleSignOut,
   } = useContext(UserContext);
 
@@ -17,7 +17,7 @@ const Register = () => {
       client_id:
         "459142459445-14n3r2veq9lsd6o1shsmkkiaqf72ifhh.apps.googleusercontent.com",
 
-      callback: handleCallbackResponse,
+      callback: googleAuthentication,
     });
 
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
@@ -56,7 +56,7 @@ const Register = () => {
           onChange={inputHandler}
         />{" "}
         <br />
-          <input type="submit" value="submit"/>
+        <input type="submit" value="submit" />
       </form>
       <div id="signInDiv"></div>
       {Object.keys(currentUser).length !== 0 && (

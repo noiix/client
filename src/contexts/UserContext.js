@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  function handleCallbackResponse(response) {
+  function googleAuthentication(response) {
     let jwToken = response.credential;
     console.log(jwToken);
     const userObject = jwt_decode(jwToken);
@@ -90,7 +90,7 @@ export const UserProvider = ({ children }) => {
     setNotification,
     currentUser,
     setCurrentUser,
-    handleCallbackResponse,
+    googleAuthentication,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

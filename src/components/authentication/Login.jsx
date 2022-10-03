@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div>
       login
-      <div className="loginForm">
+      <form className="loginForm" onSubmit={login}>
         <input
           type="email"
           name="email"
@@ -23,12 +23,8 @@ const Login = () => {
           onChange={inputHandler}
         />{" "}
         <br />
-        <div>
-          <button type="button" onClick={login}>
-            login
-          </button>
-        </div>
-      </div>
+          <input type="submit" name="login" value="login"/>
+      </form>
     </div>
   );
 };

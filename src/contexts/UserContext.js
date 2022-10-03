@@ -11,12 +11,14 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({});
   const { notification, setNotification } = useContext(DesignContext);
 
-  const createAccount = () => {
+  const createAccount = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:5001/user/create", formData)
       .then((response) => {
         setNotification([...notification, response.data.notification]);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const inputHandler = (e) => {
@@ -24,7 +26,8 @@ export const UserProvider = ({ children }) => {
   };
   console.log("form data: " + formData);
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:5001/user/login", formData)
       .then((response) => {
@@ -65,11 +68,6 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = true;
   }
 
-  function handleSignOut() {
-    setCurrentUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
-
   const logout = () => {
     axios
       .get("http://localhost:5001/user/logout")
@@ -93,7 +91,6 @@ export const UserProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
     handleCallbackResponse,
-    handleSignOut,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -27,8 +27,6 @@ function App() {
 
   console.log(notification);
 
-  console.log(notification);
-
   return (
     <div className="App">
       <div className="main">

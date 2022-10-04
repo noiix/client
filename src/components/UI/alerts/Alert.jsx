@@ -6,38 +6,42 @@ import { Link } from "react-router-dom"
 import DesignContext from "../../../contexts/DesignContext"
 
 const SuccessAlert = () => {
-    const {notification} = useContext(DesignContext)
+    const {notification, setNotification} = useContext(DesignContext)
     const [blendIn, setBlendIn] = useState(true)
-    const [displayNote, setDisplayNote] = useState(false)
+    const [closeBtn, setCloseBtn] = useState(false)
+    
+    const timer = () => setTimeout(() => {
+        notification.shift()
+    }, 11000)
 
     useEffect(()=> {
-        if(notification){
-            setDisplayNote(true)
-            setBlendIn(true)
+        if(notification.length > 0){
+            setBlendIn(!blendIn)
         }
         const timerFadeOut = setTimeout(() => {
             setBlendIn(false)
+            setNotification(notification.filter((note, index) => index !== 0))
         }, 9000)
-        const timer = setTimeout(() => {
-            setDisplayNote(false)
-            notification.shift()
-        }, 11000)
         return () => { clearTimeout(timer); clearTimeout(timerFadeOut) }
     }, [notification])
 
-    const closeNotification = () => {
+    const closeNotification = (i) => {
+        setCloseBtn(true)
         setBlendIn(false)
-        const timerCloseNote = (() => {setDisplayNote(false)
-        notification.shift()}, 200)
-        return () => { clearTimeout(timerCloseNote)}
+        const timerCloseNote = setTimeout(() => {
+            setCloseBtn(false)
+            setNotification(notification.filter((note, index) => index !== i))
+        }, 800)
     }
+
+    console.log('notifications', notification)
     
     return (
-        (displayNote && 
+        (notification.length > 0 && 
         notification.map((note, i) => 
-            <div className={`alert ${note.type} ${blendIn ? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
+            <div className={`alert ${note.type} ${blendIn && (note[0] || closeBtn)? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
                 <p>{note.title} </p>
-                <Link onClick={closeNotification}><IoIosCloseCircleOutline/></Link>
+                <Link onClick={e => closeNotification(i)}><IoIosCloseCircleOutline/></Link>
             </div>)
         )
     )

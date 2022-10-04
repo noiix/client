@@ -14,7 +14,7 @@ function Profile() {
           <h3>{currentUser.username}</h3>
         </div>
       )}
-      <NavLink to={"/profileupdate"}>edit profile</NavLink>
+      <NavLink to={"/profile"}>edit profile</NavLink>
     </div>
   );
 }

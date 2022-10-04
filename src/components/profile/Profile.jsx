@@ -9,7 +9,7 @@ function Profile() {
       Profile
       {Object.keys(currentUser).length !== 0 && (
         <div>
-          <img src={currentUser.image} alt="img" />
+          <img src={currentUser?.image} alt="img" />
           <h3>{currentUser.username}</h3>
         </div>
       )}

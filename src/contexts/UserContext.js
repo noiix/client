@@ -90,7 +90,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = () => {
-    axios
+    API
       .get(`${baseUrl}/user/logout`)
       .then((response) => {
         // localStorage.clear();

@@ -26,7 +26,7 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  console.log(notification);
+
 
   return (
    <div className="App">

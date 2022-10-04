@@ -32,7 +32,7 @@ function App() {
    <div className="App">
     <div className="main">
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        {/* <Route path='/' element={<Home/>}/> */}
         {Object.keys(currentUser).length === 0 ?
           <Route path="/" element={<Authentication />} />
           :

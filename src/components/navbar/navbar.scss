@@ -9,6 +9,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem 0;
 
     .logo {
         transform: rotate(90deg);
@@ -22,11 +23,21 @@ nav {
         height: 90vh;
         align-items: center;
     }
+
+    .start-nav {
+        justify-content: flex-end;
+    }
+
     ul > li {
         transform: rotate(90deg)
     }
 
     ul > li a:active{
         background-color: $yellow;
+    }
+
+    .mode {
+        font-size: 1.2rem;
+        text-align: center;
     }
 }    

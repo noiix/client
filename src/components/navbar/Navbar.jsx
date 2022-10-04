@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <nav>
       <Link to={"/"}>
-        <div className="logo">
+        <div className={`logo ${darkMode && "dark"}`}>
           <h1>nöiX</h1>
         </div>
       </Link>
@@ -20,15 +20,15 @@ function Navbar() {
       <>      
       <li><NavLink to={"/profile"}>profile</NavLink></li>
       <li><NavLink to={"/chat"}>chat</NavLink></li>
-      <li><NavLink to={"/"} onClick={logout}>logout</NavLink></li>
       <li><NavLink to={"/upload"}>upload</NavLink></li>
+      <li><NavLink to={"/"} onClick={logout}>logout</NavLink></li>
       </>
       :
       <>
       </>
       }
-      <NavLink onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </ul>
+      <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
     </nav>
   );
 }

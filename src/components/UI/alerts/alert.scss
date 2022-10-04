@@ -17,18 +17,22 @@
     position: sticky;
     margin-bottom: 1rem;
     right: 2rem;
-    padding: .5rem;
+    padding: .5rem 1.5rem ;
     width: 300px;
     z-index: 3;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-evenly;
     overflow: hidden;
     transform: translateX(-5%);
     pointer-events: stroke;
     cursor: pointer;
     a {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        color: $dark-gray;
+    }
+    a:hover {
+        color: $light-gray;
     }
 }
 
@@ -38,7 +42,6 @@
 
 .fade-out {
     animation: blendOut 2s ease-out;
-    // animation-delay: 8s;
 }
 
 //animation

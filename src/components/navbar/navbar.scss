@@ -3,16 +3,23 @@
 nav {
     position: absolute;
     right: 0;
-    border-left: dashed $dark-gray 2px;
+    border-left: dashed $dark-gray 1.7px;
     height: 100vh;
-    width: 4rem;
+    width: 4.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem 0;
 
-    .logo {
+    #logo {
         transform: rotate(90deg);
         margin-top: 2rem;
+        font-family: $logo-font;
+        // Judith
+        font-size: 2.8rem;
+        font-weight: 100;
+        color: $dark-gray;
+        // Judith
     }
 
     ul {
@@ -22,11 +29,93 @@ nav {
         height: 90vh;
         align-items: center;
     }
-    ul > li {
-        transform: rotate(90deg)
+
+    .start-nav {
+        justify-content: flex-end;
     }
 
-    ul > li a:active{
-        background-color: $yellow;
+    ul > li {
+        transform: rotate(90deg);
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+        background-position: 0 1em;
+        background-size: 0 50%;
+        background-repeat: no-repeat;
+        transition: background-size .5s;
+        &:hover {
+          background-size: 100% 50%;
+        }
+        &:visited {
+            color: $dark-gray;
+        }
+        .active {
+            background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+            background-position: 0 1em;
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+        }
     }
-}    
+
+    .mode {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}  
+
+// @media screen and (max-width: 768px) {
+//     nav {
+//         position: absolute;
+//         right: 0;
+//         border-left: dashed $dark-gray 2px;
+//         border-bottom: dashed $dark-gray 2px;
+//         height: 8rem;
+//         width: 4.5rem;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         padding: 1rem 0;
+    
+//         #logo {
+//             transform: rotate(90deg);
+//             margin-top: 2rem;
+//             font-family: $logo-font;
+//         }
+    
+//         ul {
+//             display: hidden;
+//             flex-direction: column;
+//             justify-content: space-evenly;
+//             height: 90vh;
+//             align-items: center;
+//         }
+    
+//         .start-nav {
+//             justify-content: flex-end;
+//         }
+    
+//         ul > li {
+//             transform: rotate(90deg);
+//             text-transform: uppercase;
+//             background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+//             background-position: 0 1em;
+//             background-size: 0 50%;
+//             background-repeat: no-repeat;
+//             transition: background-size .5s;
+//             &:hover {
+//               background-size: 100% 50%;
+//             }
+//             a:visited {
+//                 color: $dark-gray;
+//             }
+         
+//         }
+    
+        
+    
+//         .mode {
+//             font-size: 1.2rem;
+//             text-align: center;
+//         }
+//     }  
+// }

@@ -10,9 +10,10 @@ nav {
     flex-direction: column;
     justify-content: space-between;
 
-    .logo {
+    #logo {
         transform: rotate(90deg);
         margin-top: 2rem;
+        font-family: $logo-font;
     }
 
     ul {

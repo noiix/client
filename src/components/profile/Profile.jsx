@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
 // import { NavLink } from "react-router-dom";
-import ProfileUpdate from "./ProfileUpdate";
+import ProfileUpdate from './ProfileUpdate'
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)

@@ -11,8 +11,8 @@ function Navbar() {
   return (
     <nav>
       <Link to={"/"}>
-        <div className="logo">
-          <h1>nöix</h1>
+        <div>
+          <h1 id="logo">nöiX</h1>
         </div>
       </Link>
       <ul>

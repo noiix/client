@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { useEffect } from "react"
 import { useState } from "react"
 import {IoIosCloseCircleOutline} from 'react-icons/io'
+import { Link } from "react-router-dom"
 import DesignContext from "../../../contexts/DesignContext"
 
 const SuccessAlert = () => {
@@ -36,7 +37,7 @@ const SuccessAlert = () => {
         notification.map((note, i) => 
             <div className={`alert ${note.type} ${blendIn ? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
                 <p>{note.title} </p>
-                <a onClick={closeNotification}><IoIosCloseCircleOutline/></a>
+                <Link onClick={closeNotification}><IoIosCloseCircleOutline/></Link>
             </div>)
         )
     )

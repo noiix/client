@@ -1,33 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
+import GoogleAuth from "./GoogleAuth";
+
 
 const Register = () => {
   const {
     inputHandler,
     createAccount,
     currentUser,
-    handleCallbackResponse,
-    handleSignOut,
+    // googleAuthentication,
+    // handleSignOut,
   } = useContext(UserContext);
-
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "459142459445-14n3r2veq9lsd6o1shsmkkiaqf72ifhh.apps.googleusercontent.com",
-
-      callback: handleCallbackResponse,
-    });
-
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "medium",
-    });
-
-    // google.accounts.id.prompt();
-    // eslint-disable-next-line
-  }, []);
 
   console.log(currentUser);
 
@@ -56,12 +40,10 @@ const Register = () => {
           onChange={inputHandler}
         />{" "}
         <br />
-          <input type="submit" value="submit"/>
+        <input type="submit" value="submit" />
       </form>
-      <div id="signInDiv"></div>
-      {Object.keys(currentUser).length !== 0 && (
-        <button onClick={(e) => handleSignOut(e)}>sign out</button>
-      )}
+      <h3>OR</h3>
+      <GoogleAuth/>
     </div>
   );
 };

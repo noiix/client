@@ -9,20 +9,22 @@ export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
 
   const [currentUser, setCurrentUser] = useState({});
-  const {notification, setNotification} = useContext(DesignContext);
+  const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
     axios
       .post("http://localhost:5001/user/create", formData)
-      .then((response) => {setNotification([...notification, response.data.notification])})
-      .catch(err => console.log(err))
+      .then((response) => {
+        setNotification([...notification, response.data.notification]);
+      })
+      .catch((err) => console.log(err));
   };
 
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log("form data: " + formData);
+  // console.log("form data: " + formData);
 
   const login = (e) => {
     e.preventDefault();
@@ -37,10 +39,10 @@ export const UserProvider = ({ children }) => {
 
         setNotification([...notification, response.data.notification]);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  function handleCallbackResponse(response) {
+  function googleAuthentication(response) {
     let jwToken = response.credential;
     console.log(jwToken);
     const userObject = jwt_decode(jwToken);
@@ -66,17 +68,29 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = true;
   }
 
- 
+  const profileUpdate = () => {
+
+    const updateData = [currentUser, formData]
+
+    axios
+      .post("http://localhost:5001/user/profileupdate", updateData)
+      .then((response) => {
+        console.log(response)
+      }).catch((err) => console.log(err));
+
+  };
+
   const logout = () => {
-    axios.get("http://localhost:5001/user/logout")
-    .then((response) => {
-      localStorage.removeItem("token");
-      setCurrentUser({})
-      setNotification([...notification, response.data.notification]); 
-    }
-    ).catch(err => console.log(err))
-  }
-  
+    axios
+      .get("http://localhost:5001/user/logout")
+      .then((response) => {
+        localStorage.removeItem("token");
+        setCurrentUser({});
+        setNotification([...notification, response.data.notification]);
+      })
+      .catch((err) => console.log(err));
+  };
+
   console.log("current user " + JSON.stringify(currentUser));
 
   const value = {
@@ -88,7 +102,8 @@ export const UserProvider = ({ children }) => {
     setNotification,
     currentUser,
     setCurrentUser,
-    handleCallbackResponse
+    googleAuthentication,
+    profileUpdate,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

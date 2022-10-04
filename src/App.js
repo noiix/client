@@ -38,8 +38,8 @@ function App() {
           :
           <>
           <Route path='/profile' element={<Profile/>}/>
-          <Route path="/profile" element={<ProfileUpdate />} />
-          <Route path='/chat' element={<Chat/>}/>
+          {/* <Route path="/profile" element={<ProfileUpdate />} /> */}
+          {/* <Route path='/chat' element={<Chat/>}/> */}
           <Route path='/upload' element={<Upload/>}/>
           </>
         }

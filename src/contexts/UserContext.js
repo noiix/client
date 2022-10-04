@@ -7,6 +7,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
+  console.log(formData)
 
   const [currentUser, setCurrentUser] = useState({});
   const { notification, setNotification } = useContext(DesignContext);
@@ -68,14 +69,15 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = true;
   }
 
-  const profileUpdate = () => {
+  const profileUpdate = (e) => {
+    e.preventDefault();
 
     const updateData = [currentUser, formData]
 
     axios
       .post("http://localhost:5001/user/profile/edit", updateData)
       .then((response) => {
-        console.log(response)
+        console.log('response',  response)
       }).catch((err) => console.log(err));
 
   };
@@ -90,6 +92,11 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+
+  const checkGenreByUser = () => {
+    axios
+    .get('http://localhost:5001/user/checkgenre')
+  }
 
   console.log("current user " + JSON.stringify(currentUser));
 

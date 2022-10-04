@@ -1,10 +1,12 @@
 import React from 'react'
-import Upload from '../upload/Upload'
+import Authentication from '../authentication/Authentication'
+// import Upload from '../upload/Upload'
 
 function Home() {
   return (
     <div>
       Home Page
+      <Authentication />
     </div>
   )
 }

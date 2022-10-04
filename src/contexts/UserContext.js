@@ -73,7 +73,7 @@ export const UserProvider = ({ children }) => {
     const updateData = [currentUser, formData]
 
     axios
-      .post("http://localhost:5001/user/profileupdate", updateData)
+      .post("http://localhost:5001/user/profile/edit", updateData)
       .then((response) => {
         console.log(response)
       }).catch((err) => console.log(err));

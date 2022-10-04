@@ -43,6 +43,12 @@ nav {
         &:visited {
             color: $dark-gray;
         }
+        .active {
+            background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+            background-position: 0 1em;
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+        }
     }
 
     
@@ -95,9 +101,10 @@ nav {
             &:hover {
               background-size: 100% 50%;
             }
-            &:visited {
+            a:visited {
                 color: $dark-gray;
             }
+         
         }
     
         

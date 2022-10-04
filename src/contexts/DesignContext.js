@@ -1,8 +1,21 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const DesignContext = createContext();
 
 export const DesignProvider = ({children}) => {
+      // media query
+    const [isDesktop, setIsDesktop] = useState(false);
+    
+    useEffect(() => {
+        const media = window.matchMedia('(min-width: 960px)');
+        const listener = () => setIsDesktop(media.matches);
+        listener();
+        window.addEventListener('resize', listener);
+
+        return () => window.removeEventListener('resize', listener);
+    }, [isDesktop]);
+
+
     //alert notifications
     const [notification, setNotification] = useState([])
 
@@ -14,12 +27,12 @@ export const DesignProvider = ({children}) => {
     }
 
     // nav toggle
-    const [visibilityNav, setVisibilityNav] = useState(false)
+    const [displayNav, setdisplayNav] = useState(false)
     const toggleNav = () => {
-        setVisibilityNav(!visibilityNav)
+        setdisplayNav(!displayNav)
     }
 
-    const value = {notification, setNotification, darkMode, toggleMode, visibilityNav, setVisibilityNav, toggleNav}
+    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

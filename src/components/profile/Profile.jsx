@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Profile() {
   const { currentUser } = useContext(UserContext);
@@ -13,6 +14,7 @@ function Profile() {
           <h3>{currentUser.username}</h3>
         </div>
       )}
+      <NavLink to={"/profileupdate"}>edit profile</NavLink>
     </div>
   );
 }

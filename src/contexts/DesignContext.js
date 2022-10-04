@@ -6,7 +6,6 @@ export const DesignProvider = ({children}) => {
     //alert notifications
     const [notification, setNotification] = useState([])
 
- 
 
     //light and dark mode
     const [darkMode, setDarkMode] = useState(false)
@@ -14,8 +13,13 @@ export const DesignProvider = ({children}) => {
         setDarkMode(!darkMode)
     }
 
+    // nav toggle
+    const [visibilityNav, setVisibilityNav] = useState(false)
+    const toggleNav = () => {
+        setVisibilityNav(!visibilityNav)
+    }
 
-    const value = {notification, setNotification, darkMode, toggleMode}
+    const value = {notification, setNotification, darkMode, toggleMode, visibilityNav, setVisibilityNav, toggleNav}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

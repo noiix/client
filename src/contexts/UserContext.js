@@ -68,6 +68,18 @@ export const UserProvider = ({ children }) => {
     document.getElementById("signInDiv").hidden = true;
   }
 
+  const profileUpdate = () => {
+
+    const updateData = [currentUser, formData]
+
+    axios
+      .post("http://localhost:5001/user/profileupdate", updateData)
+      .then((response) => {
+        console.log(response)
+      }).catch((err) => console.log(err));
+
+  };
+
   const logout = () => {
     axios
       .get("http://localhost:5001/user/logout")
@@ -91,6 +103,7 @@ export const UserProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
     googleAuthentication,
+    profileUpdate,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -12,6 +12,7 @@ import axios from "axios";
 import Register from "./components/authentication/Register";
 import Login from "./components/authentication/Login";
 import DesignContext from "./contexts/DesignContext";
+import ProfileUpdate from "./components/profile/ProfileUpdate";
 
 function App() {
   const { currentUser } = useContext(UserContext);
@@ -23,6 +24,7 @@ function App() {
       .then((response) =>
         setNotification([...notification, response.data.notification])
       );
+    // eslint-disable-next-line
   }, []);
 
   console.log(notification);
@@ -40,6 +42,7 @@ function App() {
             <>
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profileupdate" element={<ProfileUpdate />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/upload" element={<Upload />} />
             </>

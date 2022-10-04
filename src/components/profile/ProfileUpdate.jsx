@@ -1,17 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 const ProfileUpdate = () => {
+  const { profileUpdate, inputHandler } = useContext(UserContext);
+
   return (
     <div>
       ProfileUpdate
-      <div>
+      <form className="updateForm" onSubmit={profileUpdate}>
         <input
           type="text"
           name="username"
-          placeholder="username"
-          // onChange={}
+          placeholder="new username"
+          onChange={inputHandler}
         />
-      </div>
+        <input type="submit" value="submit" />
+      </form>
     </div>
   );
 };

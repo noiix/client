@@ -11,17 +11,17 @@ function Navbar() {
   return (
     <nav>
       <Link to={"/"}>
-        <div className={`logo ${darkMode && "dark"}`}>
-          <h1>nöiX</h1>
+        <div>
+          <h1 id="logo">nöiX</h1>
         </div>
       </Link>
       <ul>
       {Object.keys(currentUser).length !== 0 ? 
       <>      
-      <li><NavLink to={"/profile"}>profile</NavLink></li>
-      <li><NavLink to={"/chat"}>chat</NavLink></li>
-      <li><NavLink to={"/upload"}>upload</NavLink></li>
-      <li><NavLink to={"/"} onClick={logout}>logout</NavLink></li>
+      <li><NavLink to={"/profile"}><span></span>profile</NavLink></li>
+      <li><NavLink to={"/chat"}><span></span>chat</NavLink></li>
+      <li><NavLink to={"/upload"}><span></span>upload</NavLink></li>
+      <li><NavLink to={"/"} onClick={logout}><span></span>logout</NavLink></li>
       </>
       :
       <>

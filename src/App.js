@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import Profile from "./components/profile/Profile";
 import Navbar from "./components/navbar/Navbar";
-import Chat from "./components/chat/Chat";
+// import Chat from "./components/chat/Chat";
 import Upload from "./components/upload/Upload";
 import AlertContainer from "./components/UI/alerts/AlertContainer";
 import UserContext from "./contexts/UserContext";
@@ -27,19 +27,20 @@ function App() {
   }, []);
 
   console.log(notification);
+  console.log('object user', Object.values(currentUser))
 
   return (
    <div className="App">
     <div className="main">
       <Routes>
-        <Route path='/' element={<Home/>}/>
+    {/*<Route path='/' element={<Home/>}/>*/}
         {Object.keys(currentUser).length === 0 ?
           <Route path="/" element={<Authentication />} />
           :
           <>
           <Route path='/profile' element={<Profile/>}/>
           <Route path="/profile" element={<ProfileUpdate />} />
-          <Route path='/chat' element={<Chat/>}/>
+          {/* <Route path='/chat' element={<Chat/>}/> */}
           <Route path='/upload' element={<Upload/>}/>
           </>
         }

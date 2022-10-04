@@ -12,7 +12,7 @@ function Navbar() {
     <nav>
       <Link to={"/"}>
         <div className="logo">
-          <h1>nöix</h1>
+          <h1>nöiX</h1>
         </div>
       </Link>
       <ul>

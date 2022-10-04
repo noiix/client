@@ -7,11 +7,15 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   
-    h1, h2, h3, h4, p, span {
+    h1, h2, h3, h4, p, span, a {
       font-family: $main-font;
     }
-  
+    
     a {
+      color: $dark-gray;
+    }
+
+    .details {
       font-family: $extra-font;
     }
   

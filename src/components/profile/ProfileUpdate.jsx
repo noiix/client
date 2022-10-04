@@ -3,14 +3,32 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 const ProfileUpdate = () => {
-  const { profileUpdate, inputHandler } = useContext(UserContext);
+  const { profileUpdate, inputHandler, genre } = useContext(UserContext);
 
   const [toggleBtn, setToggleBtn] = useState(false)
   function togglebutton() {
     setToggleBtn(!toggleBtn)
   }
 
-
+  const genres = ["pop",
+    "rock",
+    "hip hop",
+    "latin",
+    "edm",
+    "r&b",
+    "country",
+    "folk",
+    "classical",
+    "jazz",
+    "metal",
+    "easy listening",
+    "new age",
+    "blues",
+    "world",
+    "electronic",
+    "techno",
+    "house",
+  ]
 
   return (
     <div>
@@ -29,7 +47,13 @@ const ProfileUpdate = () => {
         { toggleBtn ? <>
           <fieldset>
 
-            <input type="checkbox" defaultChecked={ true } name="genre" value='pop' />
+            { genres.map(genreItem => <>
+              <input type='checkbox' name='genre' value={ genreItem } />
+              <label htmlFor={ genreItem }>{ genreItem }</label> <br />
+            </>
+
+            ) }
+            {/* <input type="checkbox" defaultChecked={ true } name="genre" value='pop' />
             <label htmlFor="pop">pop</label><br />
             <input type="checkbox" name="genre[]" value='rock' />
             <label htmlFor="rock">rock</label><br />
@@ -62,7 +86,7 @@ const ProfileUpdate = () => {
             <input type="checkbox" name="genre[]" value='techno' />
             <label htmlFor="techno">techno</label><br />
             <input type="checkbox" name="genre[]" value='house' />
-            <label htmlFor="house">house</label>
+            <label htmlFor="house">house</label> */}
           </fieldset>
         </> : <></> }
 

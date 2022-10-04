@@ -1,6 +1,7 @@
 @use './variables.scss' as *;
 @use '../components/UI/alerts/alert.scss';
 @use '../components/navbar/navbar.scss';
+@use '../components/home/home.scss';
 
 body {
     margin: 0;

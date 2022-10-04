@@ -1,4 +1,5 @@
 import React from "react";
+import bgImage from "../../img/bg-light-home.png"
 // import { useContext } from "react";
 // import { NavLink, Link } from "react-router-dom";
 // import UserContext from "../../contexts/UserContext";
@@ -6,10 +7,13 @@ import React from "react";
 // import DesignContext from "../../contexts/DesignContext";
 
 function Home() {
+
   return (
-    <div class="home">
-      <h1>NÖIX CONNECTS MUSICIANS</h1>
-      <h4>explore music, find band members, chat</h4>
+    <div className="home">
+      <div className="home-container">
+        <h1>NÖIX CONNECTS <br />MUSICIANS</h1>
+        <h4>explore music, find band members, chat</h4>
+      </div>
     </div>
   )
 }

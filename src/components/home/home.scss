@@ -1,0 +1,24 @@
+@use "../../style/variables.scss" as *;
+
+.home {
+    // background-image: url('../../img/bg-light-home.png');
+    background-image: url('../../img/bg-home-pink.png');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+
+    .home-container {
+        padding: 13rem 13rem 0 29rem;
+    }
+
+    h1 {
+        font-weight: 500;
+        font-size: 5rem;
+        line-height: 6rem;
+    }
+
+    h4 {
+        font-weight: 200;
+        font-size: 4rem;
+    }
+}

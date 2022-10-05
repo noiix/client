@@ -2,21 +2,28 @@ import React from "react";
 import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
+import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import DesignContext from "../../contexts/DesignContext";
+import {IoMdClose} from 'react-icons/io';
+import {HiOutlineMenuAlt3} from 'react-icons/hi';
 
 function Navbar() {
-  const {currentUser, logout} = useContext(UserContext)
-  const {darkMode, toggleMode, displayNav, isDesktop} = useContext(DesignContext)
+  const { currentUser, logout } = useContext(UserContext)
+  const { darkMode, toggleMode, displayNav, isDesktop } = useContext(DesignContext)
 
 
   return (
     <nav>
-      <Link to={"/"}>
+      <Link to={ "/" }>
         <div>
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
+      {(!isDesktop && !displayNav) ?
+        <HiOutlineMenuAlt3/> :
+        <IoMdClose/>
+      }
+
       {(isDesktop || displayNav) && 
       <>
       <ul>

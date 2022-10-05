@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
-import GoogleAuth from "./GoogleAuth";
 
 
 const Register = () => {
@@ -17,33 +16,34 @@ const Register = () => {
 
   return (
     <div>
-      Register
-      <form className="signupForm" onSubmit={createAccount}>
+
+      <form className="signupForm" onSubmit={ createAccount }>
         <input
           type="text"
           name="username"
           placeholder="username"
-          onChange={inputHandler}
-        />{" "}
+          onChange={ inputHandler }
+          required
+        />{ " " }
         <br />
         <input
           type="email"
           name="email"
           placeholder="email"
-          onChange={inputHandler}
-        />{" "}
+          onChange={ inputHandler }
+          required
+        />{ " " }
         <br />
         <input
           type="password"
           name="password"
           placeholder="password"
-          onChange={inputHandler}
-        />{" "}
+          onChange={ inputHandler }
+          required
+        />{ " " }
         <br />
         <input type="submit" value="submit" />
       </form>
-      <h3>OR</h3>
-      <GoogleAuth/>
     </div>
   );
 };

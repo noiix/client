@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import useLocalStorage from "use-local-storage";
 import jwt_decode from "jwt-decode";
@@ -14,6 +14,9 @@ export const UserProvider = ({ children }) => {
 
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+
+  const [genre, setGenre] = useState([])
+
   const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {
@@ -95,6 +98,19 @@ export const UserProvider = ({ children }) => {
 
   };
 
+  const checkGenre = () => {
+    API
+    .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
+    .then((response) => {
+      setGenre(response.data)
+    })
+  }
+  useEffect(() => {
+
+    checkGenre()
+    
+  }, [])
+
   const logout = () => {
     API
       .get(`${baseUrl}/user/logout`)
@@ -130,6 +146,7 @@ export const UserProvider = ({ children }) => {
     setCurrentUser,
     googleAuthentication,
     profileUpdate,
+    genre
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

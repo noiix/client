@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import useLocalStorage from "use-local-storage";
 import jwt_decode from "jwt-decode";
@@ -14,6 +14,9 @@ export const UserProvider = ({ children }) => {
 
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+
+  const [genre, setGenre] = useState([])
+
   const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {
@@ -67,7 +70,7 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log(response);
         // localStorage.setItem('token', jwToken)
-        setCurrentUser(response.data);
+        setCurrentUser(response.data.result);
       });
 
     // document.getElementById("signInDiv").hidden = true;
@@ -78,12 +81,25 @@ export const UserProvider = ({ children }) => {
     const updateData = [currentUser, formData]
 
     API
-      .post(`${baseUrl}/user/profile/edit`, updateData, {withCredentials: true})
+      .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {
         console.log('edit profile', response);
       }).catch((err) => console.log(err));
 
   };
+
+  const checkGenre = () => {
+    API
+    .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
+    .then((response) => {
+      setGenre(response.data)
+    })
+  }
+  useEffect(() => {
+
+    checkGenre()
+    
+  }, [])
 
   const logout = () => {
     API
@@ -108,6 +124,7 @@ export const UserProvider = ({ children }) => {
     setCurrentUser,
     googleAuthentication,
     profileUpdate,
+    genre
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

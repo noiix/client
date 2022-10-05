@@ -5,12 +5,12 @@ import DataContext from '../../contexts/DataContext'
 
 function Upload() {
  
-  const {fileName, setFileName, setSelectedFile, submitForm} = useContext(DataContext)
+  const {fileName, setFileName, submitForm} = useContext(DataContext)
 
   return (
     <>
       <form>
-        <input type='text' value={fileName} onChange={(e) => {setFileName(e.target.value)}}/>  
+        <input type='text' value={fileName} name={fileName} onChange={(e) => {setFileName(e.target.value)}}/>  
         <FileUploader
           // onFileSelectSuccess={(file) => setSelectedFile(file)}
           // onFileSelectError={({error}) => alert(error)}

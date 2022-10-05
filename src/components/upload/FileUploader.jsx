@@ -7,12 +7,12 @@ import DataContext from '../../contexts/DataContext';
 const FileUploader = ({onFileSelectSuccess, onFileSelectError}) => {
     const fileInput = useRef(null)
     const {darkMode} = useContext(DesignContext)
-    const {handleFileInput} = useContext(DataContext)
+    const {handleFileInput, selectedFile} = useContext(DataContext)
    
 
   return (
     <div className='file-uploader'>
-      <input type="file" onChange={handleFileInput} ref={fileInput} name='file' />
+      <input type="file" onChange={handleFileInput} ref={fileInput} name='file'/>
       <button onClick={e => fileInput.current && fileInput.current.click()} className="btn">
         {darkMode ? FaRegFileAudio : FaFileAudio}
       </button>

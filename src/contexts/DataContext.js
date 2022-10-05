@@ -14,13 +14,15 @@ export const DataProvider = ({children}) => {
     const [fileName, setFileName] = useState('');
     const [selectedFile, setSelectedFile] = useState(null)
   
-    const [formData, setFormData] = useState({})
+    // const [formData, setFormData] = useState({})
   
     const submitForm = (e) => {
       e.preventDefault();
       const formData = new FormData()
-      formData.title =  fileName;
-      formData.file = selectedFile;
+      // formData.title =  fileName;
+      // formData.file = selectedFile;
+      formData.append('title', fileName);
+      formData.append('file', selectedFile);
 
 
       // setFormData({...formData, title: fileName, file: selectedFile})

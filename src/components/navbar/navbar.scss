@@ -55,6 +55,9 @@ nav {
             background-size: 100% 50%;
             background-repeat: no-repeat;
         }
+        &:last-child .active{
+            background-image: none;
+        }
     }
 
     .mode {

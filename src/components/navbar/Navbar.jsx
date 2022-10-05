@@ -20,24 +20,16 @@ function Navbar() {
       {(isDesktop || displayNav) && 
       <>
       <ul>
-<<<<<<< HEAD
         {Object.keys(currentUser).length !== 0 &&
-=======
-        {Object.keys(currentUser).length !== 0 && 
->>>>>>> c6d69b64cac428fd0ff44112f7f88bdb8d1f4bce
         <>      
         <li><NavLink to={"/profile"}>profile</NavLink></li>
         <li><NavLink to={"/chat"}>chat</NavLink></li>
         <li><NavLink to={"/upload"}>upload</NavLink></li>
-<<<<<<< HEAD
-        <li><NavLink to={"/"} onClick={() => logout} aria-hidden="true" >logout</NavLink></li>
-=======
-        <li><NavLink to={"/"} onClick={logout}>logout</NavLink></li>
->>>>>>> c6d69b64cac428fd0ff44112f7f88bdb8d1f4bce
+        <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
         </>
         }
       </ul>
-      <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>>
+      <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </>
       }
     </nav>

@@ -19,14 +19,16 @@ function Navbar() {
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
-      <Link onClick={toggleNav} className="nav-toggle">
-        {(!isDesktop && !displayNav) &&
-          <HiOutlineMenuAlt3/>
-        }
-        {(!isDesktop && displayNav) &&
-          <IoMdClose/>
-        }
-      </Link>
+      {Object.kex(currentUser).length !== 0 && 
+        <Link onClick={toggleNav} className="nav-toggle">
+          {(!isDesktop && !displayNav) &&
+            <HiOutlineMenuAlt3/>
+          }
+          {(!isDesktop && displayNav) &&
+            <IoMdClose/>
+          }
+        </Link>
+      }
       {(isDesktop || displayNav) && 
       <>
       <ul>

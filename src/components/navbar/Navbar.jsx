@@ -9,7 +9,7 @@ import {HiOutlineMenuAlt3} from 'react-icons/hi';
 
 function Navbar() {
   const { currentUser, logout } = useContext(UserContext)
-  const { darkMode, toggleMode, displayNav, isDesktop } = useContext(DesignContext)
+  const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
 
 
   return (
@@ -19,13 +19,14 @@ function Navbar() {
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
-      {(!isDesktop && !displayNav) &&
-        <HiOutlineMenuAlt3/>
-      }
-      {(!isDesktop && displayNav) &&
-        <IoMdClose/>
-      }
-
+      <Link onClick={toggleNav} className="nav-toggle">
+        {(!isDesktop && !displayNav) &&
+          <HiOutlineMenuAlt3/>
+        }
+        {(!isDesktop && displayNav) &&
+          <IoMdClose/>
+        }
+      </Link>
       {(isDesktop || displayNav) && 
       <>
       <ul>

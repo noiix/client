@@ -34,20 +34,26 @@
     }
 
     h4 {
+        font-weight: 200;
         font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width: 768px) {
     .home .home-container {
-        padding: .5rem;
 
         h1 {
             font-size: 3rem;
+            line-height: 4rem;
         }
     
-        h4 {
+        h2 {
             font-size: 2rem;
+            line-height: 2.5rem;
+            padding-top: 1.5rem;
+        }
+        h4 {
+            font-size: 1.2rem;
         }
     }
   }

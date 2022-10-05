@@ -34,7 +34,7 @@ const SuccessAlert = () => {
         }, 800)
     }
 
-    console.log('notifications', notification)
+    // console.log('notifications', notification)
     
     return (
         (notification.length > 0 && 

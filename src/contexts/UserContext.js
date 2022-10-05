@@ -36,7 +36,6 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/login`, formData, {withCredentials: true})
       .then((response) => {
-        console.log('response from ',response.data)
         if (response.data.result) {
           // localStorage.setItem('token', response.data.token);
           setCurrentUser(response.data.result);
@@ -52,10 +51,7 @@ export const UserProvider = ({ children }) => {
 
   function googleAuthentication(response) {
     let jwToken = response.credential;
-    console.log('what is this', jwToken);
     const userObject = jwt_decode(jwToken);
-
-    console.log(userObject);
 
     const userObjectMod = {
       username: userObject.name,
@@ -74,7 +70,7 @@ export const UserProvider = ({ children }) => {
         setCurrentUser(response.data);
       });
 
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const profileUpdate = (e) => {
@@ -100,7 +96,6 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  console.log("current user ", currentUser);
 
   const value = {
     inputHandler,

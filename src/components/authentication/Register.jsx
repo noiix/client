@@ -42,7 +42,7 @@ const Register = () => {
           required
         />{ " " }
         <br />
-        <input type="submit" value="submit" />
+        <input className="btn" type="submit" value="submit" />
       </form>
     </div>
   );

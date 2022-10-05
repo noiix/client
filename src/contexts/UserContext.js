@@ -14,7 +14,9 @@ export const UserProvider = ({ children }) => {
 
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+
   const [genre, setGenre] = useState([])
+
   const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {

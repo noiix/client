@@ -2,6 +2,9 @@
 @use '../components/UI/alerts/alert.scss';
 @use '../components/navbar/navbar.scss';
 @use '../components/home/home.scss';
+@use '../components/upload/upload.scss';
+@use '../components/upload/fileUploader.scss';
+@use '../components/UI/forms/form.scss';
 
 body {
     margin: 0;

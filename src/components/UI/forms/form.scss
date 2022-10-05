@@ -1,0 +1,17 @@
+@use '../../../style/variables.scss' as *;
+
+form {
+    outline: none;
+    input {
+        border: solid 2px $dark-gray;
+        padding: .2rem .5rem;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+    input[type=text]{
+
+    }
+    input[type=password]{
+
+    }
+}

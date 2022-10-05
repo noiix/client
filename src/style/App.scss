@@ -1,23 +1,23 @@
 @use './variables.scss' as *;
 @use '../components/UI/alerts/alert.scss';
 @use '../components/navbar/navbar.scss';
+@use '../components/home/home.scss';
 
 body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   
-    h1, h2, h3, h4 {
-      font-family: $header-font;
+    h1, h2, h3, h4, p, span, a {
+      font-family: $main-font;
     }
-  
+    
     a {
-      font-family: $extra-font;
-    }
-  
-    p, span {
-      font-family: $text-font;
       color: $dark-gray;
+    }
+
+    .details {
+      font-family: $extra-font;
     }
   
     .App {display: flex;}

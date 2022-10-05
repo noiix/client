@@ -2,21 +2,22 @@ import React from "react";
 import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
+import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
 import DesignContext from "../../contexts/DesignContext";
 
 function Navbar() {
-  const {currentUser, logout} = useContext(UserContext)
-  const {darkMode, toggleMode, displayNav, isDesktop} = useContext(DesignContext)
+  const { currentUser, logout } = useContext(UserContext)
+  const { darkMode, toggleMode, displayNav, isDesktop } = useContext(DesignContext)
 
 
   return (
     <nav>
-      <Link to={"/"}>
+      <Link to={ "/" }>
         <div>
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
+
       {(isDesktop || displayNav) && 
       <ul>
         {Object.keys(currentUser).length !== 0 && 
@@ -29,7 +30,7 @@ function Navbar() {
         }
       </ul>
       }
-      <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
+      <NavLink className="mode" onClick={ toggleMode }>{ darkMode ? <MdOutlineDarkMode /> : <MdDarkMode /> }</NavLink>
     </nav>
   );
 }

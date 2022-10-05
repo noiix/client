@@ -2,10 +2,12 @@
 @use '../components/UI/alerts/alert.scss';
 @use '../components/navbar/navbar.scss';
 @use '../components/home/home.scss';
+@use '../components/upload/upload.scss';
+@use '../components/upload/fileUploader.scss';
 @use '../components/UI/forms/form.scss';
 @use '../components/authentication/authentication.scss';
-@use '../components/authentication/login.scss';
-@use '../components/authentication/register.scss';
+@use '../components/authentication/authentication-forms.scss';
+@use '../components/UI/button/button.scss';
 
 
 body {
@@ -43,11 +45,10 @@ body {
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
-  .main {
-    width: calc(100vw - 4rem);
-    min-height: 100vh;
-    display: flex;
+@media screen and (max-width: $max-screen) {
+  .App {
+    width: 100vw;
+    flex-direction: column;
     justify-content: center;
   }
 }

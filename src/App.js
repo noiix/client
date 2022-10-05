@@ -15,7 +15,7 @@ import Authentication from "./components/authentication/Authentication";
 
 function App() {
   const { currentUser } = useContext(UserContext);
-  const { notification, setNotification } = useContext(DesignContext);
+  const { notification, setNotification, isDesktop } = useContext(DesignContext);
 
   useEffect(() => {
     axios
@@ -28,6 +28,7 @@ function App() {
 
   return (
    <div className="App">
+      {!isDesktop && <Navbar/>}
     <div className="main">
       <Routes>
       <Route path='/' element={<Home/>}/>
@@ -43,7 +44,7 @@ function App() {
       </Routes>
       {/* make it visible only for logged in users */}
     </div>
-    <Navbar/>
+    {isDesktop && <Navbar/>}
     {notification && <AlertContainer/>}
     </div>
   );

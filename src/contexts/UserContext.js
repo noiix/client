@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
   const [checked, setChecked] = useState(false)
   const [checkedGenre, setCheckedGenre] = useState([])
 
-  const { notification, setNotification } = useContext(DesignContext);
+  const { notification, setNotification, setDisplayNav } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -164,6 +164,7 @@ export const UserProvider = ({ children }) => {
         if(checkNotification(response.data.notification))
         {
           setNotification([...notification, response.data.notification])
+          setDisplayNav(false);
         };
       })
       .catch((err) => console.log(err));

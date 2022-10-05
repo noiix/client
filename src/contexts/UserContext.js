@@ -12,11 +12,13 @@ export const UserProvider = ({ children }) => {
 
   const API = axios.create({baseUrl: baseUrl});
 
-  const [formData, setFormData] = useState({});
+  let [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+
   const [genre, setGenre] = useState([])
   const [checked, setChecked] = useState(false)
   const [checkedGenre, setCheckedGenre] = useState([])
+
   const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {
@@ -24,7 +26,10 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/create`, formData, {withCredentials: true})
       .then((response) => {
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -46,7 +51,10 @@ export const UserProvider = ({ children }) => {
           // console.log("localstorage: " + localStorage.getItem("token"));
         }
 
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -78,34 +86,34 @@ export const UserProvider = ({ children }) => {
         console.log('response data: ', response.data)
       });
 
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const handleCheck = (e) => {
 
     console.log( 'e.target;' , e.target)
     setChecked(!checked)
-
-    if(e.target.checked === true){
-      setCheckedGenre([...checkedGenre, e.target.value])
+    
+    if(e.target.checked === true && !genre.includes(e.target.value)){
+      console.log('handleCheck value', e.target.value)
+      setGenre([...genre, e.target.value])
+    } else if(e.target.checked !== true && genre.includes(e.target.value)) {
+      const updatedGenre = genre.filter(item => item !== e.target.value)
+      setGenre(updatedGenre)
     }
 
   }
 
-  console.log('checked genre:',  checkedGenre)
+  console.log('checked genre:',  genre)
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    const updateData = [checkedGenre, formData]
-    
+    // const updateData = [checkedGenre, formData]
 
-    // e.target.filter(item => {
-    //   item.
-    // })
-
+    formData = {...formData, genre: genre}
     
     API
-      .patch(`${baseUrl}/user/profile/edit`, updateData, {withCredentials: true})
+      .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {
         console.log('edit profile', response);
       }).catch((err) => console.log(err));
@@ -130,14 +138,25 @@ export const UserProvider = ({ children }) => {
     API
       .get(`${baseUrl}/user/logout`)
       .then((response) => {
-        // localStorage.clear();
+        localStorage.clear();
         setCurrentUser({});
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
 
       console.log('checked genre: ',  checkedGenre)
+
+  const checkNotification = (note) => {
+    if(notification.filter(n => n !== note).length > 0) {
+      return true
+    } else {
+      return false
+    } 
+  }
 
   const value = {
     inputHandler,

@@ -27,9 +27,9 @@ export const DesignProvider = ({children}) => {
     }
 
     // nav toggle
-    const [displayNav, setdisplayNav] = useState(false)
+    const [displayNav, setDisplayNav] = useState(false)
     const toggleNav = () => {
-        setdisplayNav(!displayNav)
+        setDisplayNav(!displayNav)
     }
 
     const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop}

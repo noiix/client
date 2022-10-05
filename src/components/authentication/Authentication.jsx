@@ -19,8 +19,7 @@ const Authentication = () => {
 
     return (
 
-        <>
-            <br />
+        <div className='authentication'>
             { Object.keys(currentUser).length !== 0 ? <></> : <>
                 <button onClick={ toggleLogin }>login</button>
                 { toggleBtn ?
@@ -40,7 +39,7 @@ const Authentication = () => {
                 }
             </> }
 
-        </>
+        </div>
     )
 }
 

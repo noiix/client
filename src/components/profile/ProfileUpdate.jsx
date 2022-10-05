@@ -44,7 +44,7 @@ const ProfileUpdate = () => {
 
         <br />
         <div onClick={ togglebutton }>genre:</div><br />
-        { toggleBtn ? <>
+        { toggleBtn && <>
           <fieldset>
 
             { genres.map(genreItem => <>
@@ -61,7 +61,7 @@ const ProfileUpdate = () => {
             ) }
 
           </fieldset>
-        </> : <></> }
+        </> }
 
 
 

@@ -2,13 +2,22 @@
 
 .home {
     // background-image: url('../../img/bg-light-home.png');
-    background-image: url('../../img/bg-home-pink.png');
+    // background-image: url('../../img/bg-home-pink.png');
+    background-image: url('../../img/bg-light-home-lighter.png');
     background-size: cover;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .home-container {
-        padding: 13rem 13rem 0 29rem;
+        width: 80%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        flex-direction: column;
     }
 
     h1 {
@@ -17,8 +26,34 @@
         line-height: 6rem;
     }
 
-    h4 {
+    h2 {
         font-weight: 200;
         font-size: 4rem;
+        line-height: 4.7rem;
+        padding-top: 2rem;
+    }
+
+    h4 {
+        font-weight: 200;
+        font-size: 1.5rem;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .home .home-container {
+
+        h1 {
+            font-size: 3rem;
+            line-height: 4rem;
+        }
+    
+        h2 {
+            font-size: 2rem;
+            line-height: 2.5rem;
+            padding-top: 1.5rem;
+        }
+        h4 {
+            font-size: 1.2rem;
+        }
+    }
+  }

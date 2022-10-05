@@ -4,14 +4,26 @@ form {
     outline: none;
     input {
         border: solid 2px $dark-gray;
-        padding: .2rem .5rem;
-        font-size: 1.2rem;
+        padding: 0.5em;
+        margin: 0.2rem 0;
+        font-size: 1rem;
+        font-family: $main-font;
+        font-weight: 600;
         width: 100%;
-    }
-    input[type=text]{
-
-    }
-    input[type=password]{
-
+        outline:none;
+        &[type=text]:focus, &[type=email]:focus, &[type=password]:focus {
+            border: 2px solid $pink;
+        }
+        &[type=submit] {
+            text-transform: uppercase;
+            &:hover {
+                background-color: $pink;
+            }
+        }
+        &::placeholder {
+            color: $dark-gray;
+            font-weight: 200;
+            letter-spacing: 2px;
+        }
     }
 }

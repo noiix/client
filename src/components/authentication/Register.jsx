@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
+import Button from '../UI/button/Button';
 
 
 const Register = () => {
@@ -42,7 +43,7 @@ const Register = () => {
           required
         />{ " " }
         <br />
-        <input type="submit" value="submit" />
+        <Button className="btn" type="submit" value="submit" name="sign up"/>
       </form>
     </div>
   );

@@ -5,6 +5,10 @@
 @use '../components/upload/upload.scss';
 @use '../components/upload/fileUploader.scss';
 @use '../components/UI/forms/form.scss';
+@use '../components/authentication/authentication.scss';
+@use '../components/authentication/authentication-forms.scss';
+@use '../components/UI/button/button.scss';
+
 
 body {
     margin: 0;
@@ -41,3 +45,8 @@ body {
   text-decoration: none;
 }
 
+@media screen and (max-width: $max-screen) {
+  .main {
+    width: 100vw;
+  }
+}

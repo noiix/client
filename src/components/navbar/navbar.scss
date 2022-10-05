@@ -65,9 +65,9 @@ nav {
     }
 }  
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $max-screen) {
     nav {
-        position: absolute;
+        position: relative;
         border-left: none;
         border-bottom: dashed $dark-gray 2px;
         height: 4.5rem;

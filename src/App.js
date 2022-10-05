@@ -11,11 +11,11 @@ import UserContext from "./contexts/UserContext";
 import axios from "axios";
 import DesignContext from "./contexts/DesignContext";
 import Authentication from "./components/authentication/Authentication";
-import ProfileUpdate from "./components/profile/ProfileUpdate";
+// import ProfileUpdate from "./components/profile/ProfileUpdate";
 
 function App() {
   const { currentUser } = useContext(UserContext);
-  const { notification, setNotification } = useContext(DesignContext);
+  const { notification, setNotification, isDesktop } = useContext(DesignContext);
 
   useEffect(() => {
     axios
@@ -29,6 +29,7 @@ function App() {
   return (
    <div className="App">
     <div className="main">
+      {!isDesktop && <Navbar/>}
       <Routes>
       <Route path='/' element={<Home/>}/>
         {Object.keys(currentUser).length === 0 ?
@@ -43,7 +44,7 @@ function App() {
       </Routes>
       {/* make it visible only for logged in users */}
     </div>
-    <Navbar/>
+    {isDesktop && <Navbar/>}
     {notification && <AlertContainer/>}
     </div>
   );

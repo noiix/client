@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import bgImage from "../../img/bg-light-home.png"
 import Authentication from "../authentication/Authentication";
 // import { NavLink, Link } from "react-router-dom";
 // import UserContext from "../../contexts/UserContext";

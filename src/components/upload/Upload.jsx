@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import FileUploader from './FileUploader'
 import axios from "axios";
+import Button from '../UI/button/Button';
 
 function Upload() {
   const [fileName, setFileName] = useState('');
@@ -25,7 +26,7 @@ function Upload() {
           onFileSelectSuccess={(file) => setSelectedFile(file)}
           onFileSelectError={({error}) => alert(error)}
         />
-        <button onClick={submitForm}>upload</button>
+        <Button onClick={submitForm} name="upload"/>
       </form>
     </>  
     )

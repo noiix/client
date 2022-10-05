@@ -27,7 +27,7 @@ const Login = () => {
           required
         />{ " " }
         <br />
-        <Button className="btn" type="submit" name="login" value="login" />
+        <Button className="btn" type="submit" name="login" value="login" onClick={login}/>
       </form>
     </div>
   );

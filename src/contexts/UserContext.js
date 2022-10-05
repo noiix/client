@@ -118,7 +118,7 @@ export const UserProvider = ({ children }) => {
     // const updateData = [checkedGenre, formData]
 
     formData = {...formData, genre: genre, instrument: instrument}
-    
+    console.log('form data', formData)
     API
       .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {

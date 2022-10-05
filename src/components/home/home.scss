@@ -2,13 +2,14 @@
 
 .home {
     // background-image: url('../../img/bg-light-home.png');
-    background-image: url('../../img/bg-home-pink.png');
+    // background-image: url('../../img/bg-home-pink.png');
+    background-image: url('../../img/bg-light-home-lighter.png');
     background-size: cover;
     width: 100%;
     height: 100%;
 
     .home-container {
-        padding: 13rem 13rem 0 29rem;
+        padding: 14.5rem 13rem 0 29rem;
     }
 
     h1 {
@@ -20,5 +21,7 @@
     h4 {
         font-weight: 200;
         font-size: 4rem;
+        line-height: 4.7rem;
+        padding-top: 2rem;
     }
 }

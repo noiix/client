@@ -26,8 +26,8 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  console.log(notification);
-  console.log('object user', Object.values(currentUser))
+  // console.log(notification);
+  // console.log('object user', Object.values(currentUser))
 
   return (
    <div className="App">

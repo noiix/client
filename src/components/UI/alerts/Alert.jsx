@@ -1,21 +1,21 @@
 import { useContext } from "react"
 import { useEffect } from "react"
 import { useState } from "react"
-import {IoIosCloseCircleOutline} from 'react-icons/io'
+import { IoIosCloseCircleOutline } from 'react-icons/io'
 import { Link } from "react-router-dom"
 import DesignContext from "../../../contexts/DesignContext"
 
 const SuccessAlert = () => {
-    const {notification, setNotification} = useContext(DesignContext)
+    const { notification, setNotification } = useContext(DesignContext)
     const [blendIn, setBlendIn] = useState(true)
     const [closeBtn, setCloseBtn] = useState(false)
-    
+
     const timer = () => setTimeout(() => {
         notification.shift()
     }, 11000)
 
-    useEffect(()=> {
-        if(notification.length > 0){
+    useEffect(() => {
+        if (notification.length > 0) {
             setBlendIn(!blendIn)
         }
         const timerFadeOut = setTimeout(() => {
@@ -34,15 +34,15 @@ const SuccessAlert = () => {
         }, 800)
     }
 
-    console.log('notifications', notification)
-    
+    // console.log('notifications', notification)
+
     return (
-        (notification.length > 0 && 
-        notification.map((note, i) => 
-            <div className={`alert ${note.type} ${blendIn && (note[0] || closeBtn)? "fade-in" : "fade-out"}`} onAnimationEnd={() => {setBlendIn(false)}}>
-                <p>{note.title} </p>
-                <Link onClick={e => closeNotification(i)}><IoIosCloseCircleOutline/></Link>
-            </div>)
+        (notification.length > 0 &&
+            notification.map((note, i) =>
+                <div className={ `alert ${note.type} ${blendIn && (note[0] || closeBtn) ? "fade-in" : "fade-out"}` } onAnimationEnd={ () => { setBlendIn(false) } }>
+                    <p>{ note.title } </p>
+                    <Link onClick={ e => closeNotification(i) }><IoIosCloseCircleOutline /></Link>
+                </div>)
         )
     )
 }

@@ -15,6 +15,8 @@ export const UserProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
   const [genre, setGenre] = useState([])
+  const [checked, setChecked] = useState(false)
+  const [checkedGenre, setCheckedGenre] = useState([])
   const { notification, setNotification } = useContext(DesignContext);
 
   const createAccount = (e) => {
@@ -72,24 +74,43 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log(response);
         // localStorage.setItem('token', jwToken)
-        setCurrentUser(response.data);
+        setCurrentUser(response.data.result);
+        console.log('response data: ', response.data)
       });
 
     document.getElementById("signInDiv").hidden = true;
   }
 
+  const handleCheck = (e) => {
+
+    console.log( 'e.target;' , e.target)
+    setChecked(!checked)
+
+    if(e.target.checked === true){
+      setCheckedGenre([...checkedGenre, e.target.value])
+    }
+
+  }
+
+  console.log('checked genre:',  checkedGenre)
+
   const profileUpdate = (e) => {
     e.preventDefault();
-    const updateData = [currentUser, formData]
+    const updateData = [checkedGenre, formData]
+    
 
+    // e.target.filter(item => {
+    //   item.
+    // })
+
+    
     API
-      .post(`${baseUrl}/user/profile/edit`, updateData, {withCredentials: true})
+      .patch(`${baseUrl}/user/profile/edit`, updateData, {withCredentials: true})
       .then((response) => {
         console.log('edit profile', response);
       }).catch((err) => console.log(err));
-
   };
-
+  console.log('from form: ', formData)
   const checkGenre = () => {
     API
     .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
@@ -98,10 +119,12 @@ export const UserProvider = ({ children }) => {
     })
   }
   useEffect(() => {
-
-    checkGenre()
+    if(currentUser){
+      checkGenre()
+    }
     
-  }, [])
+  }, [currentUser])
+  console.log('genre DB: ',  genre)
 
   const logout = () => {
     API
@@ -114,7 +137,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  console.log("current user ", currentUser);
+      console.log('checked genre: ',  checkedGenre)
 
   const value = {
     inputHandler,
@@ -127,7 +150,8 @@ export const UserProvider = ({ children }) => {
     setCurrentUser,
     googleAuthentication,
     profileUpdate,
-    genre
+    genre,
+    handleCheck
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

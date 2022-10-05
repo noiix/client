@@ -13,16 +13,15 @@ nav {
 
     #logo {
         transform: rotate(90deg);
-        margin-top: 2rem;
+        margin-top: 1rem;
         font-family: $logo-font;
-        // Judith
         font-size: 2.8rem;
         font-weight: 100;
         color: $dark-gray;
-        // Judith
     }
 
     ul {
+        margin-top: 2rem;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -69,53 +68,68 @@ nav {
 @media screen and (max-width: 768px) {
     nav {
         position: absolute;
-        right: 0;
-        border-left: dashed $dark-gray 2px;
+        border-left: none;
         border-bottom: dashed $dark-gray 2px;
-        height: 12rem;
-        width: 4.5rem;
+        height: 4.5rem;
+        width: 100vw;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        // padding: 0 .5rem 0 .5rem;
     
         #logo {
-            margin-top: .5rem;
+            transform: rotate(0deg);
+            margin: 0 0 0 1rem;
+        }
+        
+        .nav-toggle {
+            font-size: 2rem;
+            position: absolute;
+            right: 1rem;
         }
     
-//         ul {
-//             display: hidden;
-//             flex-direction: column;
-//             justify-content: space-evenly;
-//             height: 90vh;
-//             align-items: center;
-//         }
+        ul {
+            margin: 0;
+            position: absolute;
+            width: 100vw;
+            top: 4.5rem;
+            height: 40vh;
+            display: flex;
+            border-bottom: dashed $dark-gray 2px;
+            z-index: 3;
+            background-color: $light-gray;
+        }
     
-//         .start-nav {
-//             justify-content: flex-end;
-//         }
+        .start-nav {
+            justify-content: flex-end;
+        }
     
-//         ul > li {
-//             transform: rotate(90deg);
-//             text-transform: uppercase;
-//             background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
-//             background-position: 0 1em;
-//             background-size: 0 50%;
-//             background-repeat: no-repeat;
-//             transition: background-size .5s;
-//             &:hover {
-//               background-size: 100% 50%;
-//             }
-//             a:visited {
-//                 color: $dark-gray;
-//             }
+        ul > li {
+            transform: rotate(0deg);
+            text-transform: uppercase;
+            background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+            background-position: 0 1em;
+            background-size: 0 50%;
+            background-repeat: no-repeat;
+            transition: background-size .5s;
+            &:hover {
+              background-size: 100% 50%;
+            }
+            a:visited {
+                color: $dark-gray;
+            }
          
-//         }
+        }
     
         
     
-//         .mode {
-//             font-size: 1.2rem;
-//             text-align: center;
-//         }
+        .mode {
+            position: absolute;
+            top: 5.2rem;
+            right: 1.2rem;
+            font-size: 1.5rem;
+            z-index: 5;
+        }
     }  
 }

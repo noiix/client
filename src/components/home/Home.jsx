@@ -1,18 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import bgImage from "../../img/bg-light-home.png"
 import Authentication from "../authentication/Authentication";
-// import { useContext } from "react";
 // import { NavLink, Link } from "react-router-dom";
 // import UserContext from "../../contexts/UserContext";
 // import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
 // import DesignContext from "../../contexts/DesignContext";
+import DesignContext from "../../contexts/DesignContext";
+
 
 function Home() {
+  const {isDesktop} = useContext(DesignContext)
 
   return (
     <div className="home">
       <div className="home-container">
-        <h1>NÖIX CONNECTS MUSICIANS</h1>
+        {isDesktop &&
+          <h1>NÖIX CONNECTS MUSICIANS</h1>
+        }
         <h2>explore music, find band members, chat</h2>
         <Authentication />
       </div>

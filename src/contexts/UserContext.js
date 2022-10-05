@@ -12,10 +12,14 @@ export const UserProvider = ({ children }) => {
 
   const API = axios.create({baseUrl: baseUrl});
 
-  const [formData, setFormData] = useState({});
+  let [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+  const [users, setUsers] = useState([]);
 
   const [genre, setGenre] = useState([])
+  const [instrument, setInstrument] = useState([])
+  const [checked, setChecked] = useState(false)
+  const [checkedGenre, setCheckedGenre] = useState([])
 
   const { notification, setNotification, setDisplayNav } = useContext(DesignContext);
 
@@ -42,7 +46,6 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/login`, formData, {withCredentials: true})
       .then((response) => {
-        console.log('response from ',response.data)
         if (response.data.result) {
           // localStorage.setItem('token', response.data.token);
           setCurrentUser(response.data.result);
@@ -61,10 +64,7 @@ export const UserProvider = ({ children }) => {
 
   function googleAuthentication(response) {
     let jwToken = response.credential;
-    console.log('what is this', jwToken);
     const userObject = jwt_decode(jwToken);
-
-    console.log(userObject);
 
     const userObjectMod = {
       username: userObject.name,
@@ -80,24 +80,52 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log(response);
         // localStorage.setItem('token', jwToken)
-        setCurrentUser(response.data);
+        setCurrentUser(response.data.result);
+        console.log('response data: ', response.data)
       });
 
     // document.getElementById("signInDiv").hidden = true;
   }
 
+  const handleCheck = (e) => {
+
+    console.log( 'e.target;' , e.target)
+    setChecked(!checked)
+    
+    if(e.target.checked === true && !genre.includes(e.target.value) && e.target.name === 'genre'){
+      console.log('handleCheck value', e.target.value)
+      setGenre([...genre, e.target.value])
+    }
+    else if(e.target.checked === true && !instrument.includes(e.target.value) && e.target.name === 'instruments') {
+      setInstrument([...instrument, e.target.value])
+    }
+    else if(e.target.checked !== true && genre.includes(e.target.value)  && e.target.name === 'genre') {
+      const updatedGenre = genre.filter(item => item !== e.target.value)
+      setGenre(updatedGenre)
+    } else if(e.target.checked !== true && instrument.includes(e.target.value)  && e.target.name === 'instruments') {
+      const updatedInstrument = instrument.filter(item => item !== e.target.value)
+      setInstrument(updatedInstrument)
+    }
+
+  }
+        // const updatedInstrument = instrument.filter(item => item !== e.target.value)
+              // setInstrument(updatedInstrument)
+
+  console.log('checked genre:',  genre, instrument)
+
   const profileUpdate = (e) => {
     e.preventDefault();
-    const updateData = [currentUser, formData]
+    // const updateData = [checkedGenre, formData]
 
+    formData = {...formData, genre: genre, instrument: instrument}
+    
     API
-      .post(`${baseUrl}/user/profile/edit`, updateData, {withCredentials: true})
+      .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {
         console.log('edit profile', response);
       }).catch((err) => console.log(err));
-
   };
-
+  console.log('from form: ', formData)
   const checkGenre = () => {
     API
     .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
@@ -106,10 +134,26 @@ export const UserProvider = ({ children }) => {
     })
   }
   useEffect(() => {
-
-    checkGenre()
+    if(currentUser){
+      checkGenre()
+    }
     
-  }, [])
+  }, [currentUser])
+  console.log('genre DB: ',  genre)
+
+  const getNearbyUsers = () => {
+    API.get(`${baseUrl}/all, {withCredentials: true}`)
+    .then(response => {
+      setUsers(response.data.result)
+    })
+  }
+
+  useEffect(() => {
+    if(currentUser) {
+      getNearbyUsers()
+    }
+  }, [currentUser])
+
 
   const logout = () => {
     API
@@ -126,7 +170,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  console.log("current user ", currentUser);
+      console.log('checked genre: ',  checkedGenre)
 
   const checkNotification = (note) => {
     if(notification.filter(n => n !== note).length > 0) {
@@ -147,7 +191,9 @@ export const UserProvider = ({ children }) => {
     setCurrentUser,
     googleAuthentication,
     profileUpdate,
-    genre
+    genre,
+    instrument,
+    handleCheck
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -11,10 +11,10 @@ function Home() {
 
   return (
     <div className="home">
-      <Authentication />
       <div className="home-container">
-        <h1>NÖIX CONNECTS <br />MUSICIANS</h1>
-        <h4>explore music, find band members, chat</h4>
+        <h1>NÖIX CONNECTS MUSICIANS</h1>
+        <h2>explore music, find band members, chat</h2>
+        <Authentication />
       </div>
     </div>
   )

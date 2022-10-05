@@ -11,7 +11,7 @@ import UserContext from "./contexts/UserContext";
 import axios from "axios";
 import DesignContext from "./contexts/DesignContext";
 import Authentication from "./components/authentication/Authentication";
-import ProfileUpdate from "./components/profile/ProfileUpdate";
+// import ProfileUpdate from "./components/profile/ProfileUpdate";
 
 function App() {
   const { currentUser } = useContext(UserContext);

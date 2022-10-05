@@ -2,6 +2,11 @@
 @use '../components/UI/alerts/alert.scss';
 @use '../components/navbar/navbar.scss';
 @use '../components/home/home.scss';
+@use '../components/UI/forms/form.scss';
+@use '../components/authentication/authentication.scss';
+@use '../components/authentication/login.scss';
+@use '../components/authentication/register.scss';
+
 
 body {
     margin: 0;

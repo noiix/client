@@ -3,11 +3,16 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 const ProfileUpdate = () => {
-  const { profileUpdate, inputHandler, genre, handleCheck } = useContext(UserContext);
+  const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
 
-  const [toggleBtn, setToggleBtn] = useState(false)
-  function togglebutton() {
-    setToggleBtn(!toggleBtn)
+  const [toggleGenre, setToggleGenre] = useState(false)
+  const [toggleInstruments, setToggleInstruments] = useState(false)
+
+  function toggleGenreButton() {
+    setToggleGenre(!toggleGenre)
+  }
+  function toggleInstrumentsButton() {
+    setToggleInstruments(!toggleInstruments)
   }
 
   const genres = ["pop",
@@ -30,6 +35,24 @@ const ProfileUpdate = () => {
     "house",
   ]
 
+  const instruments = [
+    "guitar",
+    "piano",
+    "drums",
+    "percussion",
+    "bass",
+    "synths",
+    "vocals",
+    "violin",
+    "saxophone",
+    "cello",
+    "double bass",
+    "clarinet",
+    "trumpet",
+    "flute",
+    "harp",
+  ]
+
   return (
     <div>
 
@@ -43,8 +66,8 @@ const ProfileUpdate = () => {
         <br />
 
         <br />
-        <div onClick={ togglebutton }>genre:</div><br />
-        { toggleBtn && <>
+        <div onClick={ toggleGenreButton }>genre:</div><br />
+        { toggleGenre && <>
           <fieldset>
 
             { genres.map(genreItem => <>
@@ -63,13 +86,33 @@ const ProfileUpdate = () => {
           </fieldset>
         </> }
 
+        <div onClick={ toggleInstrumentsButton }>instruments:</div><br />
+        { toggleInstruments && <>
+          <fieldset>
+
+            { instruments.map(instrumentsItem => <>
+              {
+                genre.includes(instrumentsItem) ?
+                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' defaultChecked={ true } onChange={ handleCheck } />
+                  :
+                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' onChange={ handleCheck } />
+
+              }
+              <label htmlFor={ instrumentsItem }>{ instrumentsItem }</label> <br />
+            </>
+
+            ) }
+
+          </fieldset>
+        </>
+        }
 
 
         <br />
         <input type="submit" value="submit" />
       </form>
 
-    </div>
+    </div >
   );
 };
 

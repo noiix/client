@@ -17,6 +17,7 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
   const [genre, setGenre] = useState([])
+  const [instrument, setInstrument] = useState([])
   const [checked, setChecked] = useState(false)
   const [checkedGenre, setCheckedGenre] = useState([])
 
@@ -91,23 +92,32 @@ export const UserProvider = ({ children }) => {
     console.log( 'e.target;' , e.target)
     setChecked(!checked)
     
-    if(e.target.checked === true && !genre.includes(e.target.value)){
+    if(e.target.checked === true && !genre.includes(e.target.value) && e.target.name === 'genre'){
       console.log('handleCheck value', e.target.value)
       setGenre([...genre, e.target.value])
-    } else if(e.target.checked !== true && genre.includes(e.target.value)) {
+    }
+    else if(e.target.checked === true && !instrument.includes(e.target.value) && e.target.name === 'instruments') {
+      setInstrument([...instrument, e.target.value])
+    }
+    else if(e.target.checked !== true && genre.includes(e.target.value)  && e.target.name === 'genre') {
       const updatedGenre = genre.filter(item => item !== e.target.value)
       setGenre(updatedGenre)
+    } else if(e.target.checked !== true && instrument.includes(e.target.value)  && e.target.name === 'instruments') {
+      const updatedInstrument = instrument.filter(item => item !== e.target.value)
+      setInstrument(updatedInstrument)
     }
 
   }
+        // const updatedInstrument = instrument.filter(item => item !== e.target.value)
+              // setInstrument(updatedInstrument)
 
-  console.log('checked genre:',  genre)
+  console.log('checked genre:',  genre, instrument)
 
   const profileUpdate = (e) => {
     e.preventDefault();
     // const updateData = [checkedGenre, formData]
 
-    formData = {...formData, genre: genre}
+    formData = {...formData, genre: genre, instrument: instrument}
     
     API
       .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
@@ -181,6 +191,7 @@ export const UserProvider = ({ children }) => {
     googleAuthentication,
     profileUpdate,
     genre,
+    instrument,
     handleCheck
   };
 

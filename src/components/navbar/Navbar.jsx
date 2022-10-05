@@ -19,7 +19,7 @@ function Navbar() {
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
-      {Object.kex(currentUser).length !== 0 && 
+      {Object.keys(currentUser).length !== 0 && 
         <Link onClick={toggleNav} className="nav-toggle">
           {(!isDesktop && !displayNav) &&
             <HiOutlineMenuAlt3/>

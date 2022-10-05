@@ -31,16 +31,14 @@ function Navbar() {
       }
       {(isDesktop || displayNav) && 
       <>
-      <ul>
-        {Object.keys(currentUser).length !== 0 &&
-        <>      
-        <li><NavLink to={"/profile"}>profile</NavLink></li>
-        <li><NavLink to={"/chat"}>chat</NavLink></li>
-        <li><NavLink to={"/upload"}>upload</NavLink></li>
-        <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
-        </>
-        }
-      </ul>
+      {Object.keys(currentUser).length !== 0 &&
+        <ul>
+          <li><NavLink to={"/profile"}>profile</NavLink></li>
+          <li><NavLink to={"/chat"}>chat</NavLink></li>
+          <li><NavLink to={"/upload"}>upload</NavLink></li>
+          <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
+        </ul>
+      }
       <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </>
       }

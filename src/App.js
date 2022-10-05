@@ -24,13 +24,13 @@ function App() {
         setNotification([...notification, response.data.notification])
       );
     // eslint-disable-next-line
-  }, []); 
+  }, []);
 
   return (
    <div className="App">
     <div className="main">
       <Routes>
-    <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Home/>}/>
         {Object.keys(currentUser).length === 0 ?
           <Route path="/" element={<Authentication />} />
           :

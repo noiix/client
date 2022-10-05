@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
 
   const [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage('currentUser', {});
+  const [users, setUsers] = useState([]);
 
   const [genre, setGenre] = useState([])
 
@@ -24,7 +25,10 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/create`, formData, {withCredentials: true})
       .then((response) => {
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -45,7 +49,10 @@ export const UserProvider = ({ children }) => {
           // console.log("localstorage: " + localStorage.getItem("token"));
         }
 
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -101,17 +108,42 @@ export const UserProvider = ({ children }) => {
     
   }, [])
 
+  const getNearbyUsers = () => {
+    API.get(`${baseUrl}/all, {withCredentials: true}`)
+    .then(response => {
+      setUsers(response.data.result)
+    })
+  }
+
+  useEffect(() => {
+    if(currentUser) {
+      getNearbyUsers()
+    }
+  }, [currentUser])
+
+
   const logout = () => {
     API
       .get(`${baseUrl}/user/logout`)
       .then((response) => {
-        // localStorage.clear();
+        localStorage.clear();
         setCurrentUser({});
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
 
+
+  const checkNotification = (note) => {
+    if(notification.filter(n => n !== note).length > 0) {
+      return true
+    } else {
+      return false
+    } 
+  }
 
   const value = {
     inputHandler,

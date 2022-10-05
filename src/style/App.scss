@@ -37,3 +37,12 @@ body {
   list-style: none;
   text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+  .main {
+    width: calc(100vw - 4rem);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -46,7 +46,9 @@ body {
 }
 
 @media screen and (max-width: $max-screen) {
-  .main {
+  .App {
     width: 100vw;
+    flex-direction: column;
+    justify-content: center;
   }
 }

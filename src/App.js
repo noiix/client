@@ -28,8 +28,8 @@ function App() {
 
   return (
    <div className="App">
-    <div className="main">
       {!isDesktop && <Navbar/>}
+    <div className="main">
       <Routes>
       <Route path='/' element={<Home/>}/>
         {Object.keys(currentUser).length === 0 ?

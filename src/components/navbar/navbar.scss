@@ -55,6 +55,9 @@ nav {
             background-size: 100% 50%;
             background-repeat: no-repeat;
         }
+        &:last-child .active{
+            background-image: none;
+        }
     }
 
     .mode {
@@ -63,24 +66,22 @@ nav {
     }
 }  
 
-// @media screen and (max-width: 768px) {
-//     nav {
-//         position: absolute;
-//         right: 0;
-//         border-left: dashed $dark-gray 2px;
-//         border-bottom: dashed $dark-gray 2px;
-//         height: 8rem;
-//         width: 4.5rem;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: space-between;
-//         padding: 1rem 0;
+@media screen and (max-width: 768px) {
+    nav {
+        position: absolute;
+        right: 0;
+        border-left: dashed $dark-gray 2px;
+        border-bottom: dashed $dark-gray 2px;
+        height: 12rem;
+        width: 4.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
     
-//         #logo {
-//             transform: rotate(90deg);
-//             margin-top: 2rem;
-//             font-family: $logo-font;
-//         }
+        #logo {
+            margin-top: .5rem;
+        }
     
 //         ul {
 //             display: hidden;
@@ -117,5 +118,5 @@ nav {
 //             font-size: 1.2rem;
 //             text-align: center;
 //         }
-//     }  
-// }
+    }  
+}

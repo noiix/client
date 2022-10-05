@@ -26,14 +26,15 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  console.log(notification);
-  console.log('object user', Object.values(currentUser))
-
   return (
    <div className="App">
     <div className="main">
       <Routes>
+<<<<<<< HEAD
+      <Route path='/' element={<Home/>}/>
+=======
     <Route path='/' element={<Home/>}/>
+>>>>>>> eb34dff85de1b4763292397be08e37d8548c15c3
         {Object.keys(currentUser).length === 0 ?
           <Route path="/" element={<Authentication />} />
           :

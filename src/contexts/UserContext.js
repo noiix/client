@@ -24,7 +24,10 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/create`, formData, {withCredentials: true})
       .then((response) => {
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -46,7 +49,10 @@ export const UserProvider = ({ children }) => {
           // console.log("localstorage: " + localStorage.getItem("token"));
         }
 
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
@@ -77,7 +83,7 @@ export const UserProvider = ({ children }) => {
         setCurrentUser(response.data);
       });
 
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const profileUpdate = (e) => {
@@ -109,14 +115,25 @@ export const UserProvider = ({ children }) => {
     API
       .get(`${baseUrl}/user/logout`)
       .then((response) => {
-        // localStorage.clear();
+        localStorage.clear();
         setCurrentUser({});
-        setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };
 
   console.log("current user ", currentUser);
+
+  const checkNotification = (note) => {
+    if(notification.filter(n => n !== note).length > 0) {
+      return true
+    } else {
+      return false
+    } 
+  }
 
   const value = {
     inputHandler,

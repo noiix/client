@@ -12,16 +12,12 @@
     align-items: center;
 
     .home-container {
-<<<<<<< HEAD
         width: 80%;
         height: 80%;
         display: flex;
         justify-content: center;
         // align-items: center;
         flex-direction: column;
-=======
-        padding: 14.5rem 13rem 0 29rem;
->>>>>>> eb34dff85de1b4763292397be08e37d8548c15c3
     }
 
     h1 {
@@ -30,11 +26,15 @@
         line-height: 6rem;
     }
 
-    h4 {
+    h2 {
         font-weight: 200;
         font-size: 4rem;
         line-height: 4.7rem;
         padding-top: 2rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
     }
 }
 

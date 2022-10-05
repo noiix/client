@@ -19,8 +19,10 @@ function Navbar() {
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
-      {(!isDesktop && !displayNav) ?
-        <HiOutlineMenuAlt3/> :
+      {(!isDesktop && !displayNav) &&
+        <HiOutlineMenuAlt3/>
+      }
+      {(!isDesktop && displayNav) &&
         <IoMdClose/>
       }
 

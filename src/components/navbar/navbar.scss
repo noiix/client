@@ -1,7 +1,7 @@
 @use "../../style/variables.scss" as *;
 
 nav {
-    position: absolute;
+    position: fixed;
     right: 0;
     border-left: dashed $dark-gray 1.7px;
     height: 100vh;
@@ -77,7 +77,6 @@ nav {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
     
         #logo {
             margin-top: .5rem;

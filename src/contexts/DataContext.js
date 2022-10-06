@@ -2,18 +2,19 @@ import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 import baseUrl from "../config";
 import DesignContext from "../contexts/DesignContext";
+import UserContext from "../contexts/UserContext";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
+  const { currentUser, setCurrentUser} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [profilePicture, setProfilePicture] = useState(null);
-
+  
   // const [formData, setFormData] = useState({})
 
   const submitForm = (e) => {
@@ -37,18 +38,21 @@ export const DataProvider = ({ children }) => {
     });
   };
 
-  const submitPicture = () => {
+  const submitPicture = (e) => {
+    e.preventDefault();
     const formData = new FormData();
-
     formData.append("file", selectedFile);
-    console.log(formData);
-    API.patch(`${baseUrl}/user/profile/profilepicture`, formData, {
+    formData.append('title', e.target.value)
+    console.log('onsubmit',formData);
+    API.post(`${baseUrl}/user/profile/profilepicture`, formData, {
       withCredentials: true,
     }).then((response) => {
       setNotification([...notification, response.data.notification]);
-      setProfilePicture(response.data.result);
+      setCurrentUser(response.data.result);
     });
   };
+
+  console.log('new user', currentUser)
 
   const handleFileInput = (e) => {
     // console.log('file', e.target.name)

@@ -4,6 +4,7 @@ import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
 import ProfilePic from "./ProfilePic";
+import './profile.styles.scss'
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
@@ -21,7 +22,7 @@ function Profile() {
       Profile
       { Object.keys(currentUser).length !== 0 && (
         <div>
-          <img src={ currentUser?.image } alt="img" />
+          <img src={ currentUser?.image } alt="img" className="profile-img"/>
           <button onClick={ togglePic }>update pic</button>
           { togglePicBtn && <>
             <ProfilePic />

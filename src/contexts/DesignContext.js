@@ -31,6 +31,7 @@ export const DesignProvider = ({children}) => {
     const toggleNav = () => {
         setDisplayNav(!displayNav)
     }
+    console.log('notifications', notification)
 
     const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop}
 

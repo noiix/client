@@ -1,26 +1,26 @@
-import React from 'react'
-// const cloudinary = require('cloudinary').v2
+import { useRef, useContext } from 'react';
+import { FaFileAudio, FaImage, FaRegFileAudio } from 'react-icons/fa';
+import DataContext from '../../contexts/DataContext';
+import DesignContext from '../../contexts/DesignContext';
+import Button from '../UI/button/Button';
+
+
 
 const ProfilePic = () => {
-
-  var myWidget = cloudinary.createUploadWidget({
-    cloudName: 'deyn8puf8',
-    uploadPreset: 'noix_profile'
-  }, (error, result) => {
-    if (!error && result && result.event === "success") {
-      console.log('Done! Here is the image info: ', result.info);
-    }
-  }
-  )
+  const fileInput = useRef(null)
+  const { handleFileInput, selectedFile, submitPicture } = useContext(DataContext)
+  const { darkMode } = useContext(DesignContext)
 
 
   return (
     <div>
-      <button
-        id='upload_widget'
-        className='cloudinary_button'
-      //  onClick={ myWidget.open() }
-      >change profile picture</button>
+      <form>
+        <input type="file" name='image' onChange={ handleFileInput } ref={ fileInput } className="file-input" />
+        <div onClick={ e => fileInput.current && fileInput.current.click() } className="drag-and-drop">
+          { darkMode ? <FaImage className='drop-icon' /> : <FaImage className='drop-icon' /> }
+        </div>
+        <Button onClick={ submitPicture } name='upload' value="submit" />
+      </form>
     </div>
   )
 }

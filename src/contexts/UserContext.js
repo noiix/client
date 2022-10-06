@@ -130,29 +130,28 @@ export const UserProvider = ({ children }) => {
     API
     .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
     .then((response) => {
-      setGenre(response.data)
+      setGenre(response.data.genre)
+      setInstrument(response.data.instrument)
     })
   }
+
   useEffect(() => {
     if(currentUser){
       checkGenre()
+      getNearbyUsers()
     }
     
   }, [currentUser])
   console.log('genre DB: ',  genre)
 
   const getNearbyUsers = () => {
-    API.get(`${baseUrl}/all, {withCredentials: true}`)
+    API.get(`${baseUrl}/user/all`, {withCredentials: true})
     .then(response => {
+      console.log('nearby users', response)
       setUsers(response.data.result)
     })
   }
 
-  useEffect(() => {
-    if(currentUser) {
-      getNearbyUsers()
-    }
-  }, [currentUser])
 
 
   const logout = () => {

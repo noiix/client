@@ -92,7 +92,7 @@ const ProfileUpdate = () => {
 
             { instruments.map(instrumentsItem => <>
               {
-                genre.includes(instrumentsItem) ?
+                instrument.includes(instrumentsItem) ?
                   <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' defaultChecked={ true } onChange={ handleCheck } />
                   :
                   <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' onChange={ handleCheck } />

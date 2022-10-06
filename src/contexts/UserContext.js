@@ -118,7 +118,7 @@ export const UserProvider = ({ children }) => {
     // const updateData = [checkedGenre, formData]
 
     formData = {...formData, genre: genre, instrument: instrument}
-    
+    console.log('form data', formData)
     API
       .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {
@@ -135,9 +135,12 @@ export const UserProvider = ({ children }) => {
       setInstrument(response.data.instrument)
     })
   }
+
   useEffect(() => {
     if(currentUser){
       checkIfChecked()
+      // checkGenre()
+      getNearbyUsers()
     }
     
   }, [currentUser])
@@ -145,17 +148,13 @@ export const UserProvider = ({ children }) => {
   console.log('instrument DB: ',  instrument)
 
   const getNearbyUsers = () => {
-    API.get(`${baseUrl}/all, {withCredentials: true}`)
+    API.get(`${baseUrl}/user/all`, {withCredentials: true})
     .then(response => {
+      console.log('nearby users', response)
       setUsers(response.data.result)
     })
   }
 
-  useEffect(() => {
-    if(currentUser) {
-      getNearbyUsers()
-    }
-  }, [currentUser])
 
 
   const logout = () => {

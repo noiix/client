@@ -111,7 +111,7 @@ export const UserProvider = ({ children }) => {
         // const updatedInstrument = instrument.filter(item => item !== e.target.value)
               // setInstrument(updatedInstrument)
 
-  console.log('checked genre:',  genre, instrument)
+  // console.log('checked genre:',  genre, instrument)
 
   const profileUpdate = (e) => {
     e.preventDefault();
@@ -126,20 +126,23 @@ export const UserProvider = ({ children }) => {
       }).catch((err) => console.log(err));
   };
   console.log('from form: ', formData)
-  const checkGenre = () => {
+
+  const checkIfChecked = () => {
     API
-    .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
+    .get(`${baseUrl}/user/checkifchecked`, {withCredentials: true})
     .then((response) => {
-      setGenre(response.data)
+      setGenre(response.data.genre)
+      setInstrument(response.data.instrument)
     })
   }
   useEffect(() => {
     if(currentUser){
-      checkGenre()
+      checkIfChecked()
     }
     
   }, [currentUser])
   console.log('genre DB: ',  genre)
+  console.log('instrument DB: ',  instrument)
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/all, {withCredentials: true}`)

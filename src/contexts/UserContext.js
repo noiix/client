@@ -28,9 +28,19 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/create`, formData, {withCredentials: true})
       .then((response) => {
-        if(checkNotification(response.data.notification))
-        {
-          setNotification([...notification, response.data.notification])
+        console.log('reponse notification', response)
+        if(Array.isArray(response.data)) {
+          response.data.map(note => {
+            console.log('single note', note)
+            if(checkNotification(note))
+            {
+              setNotification([...notification, note])
+            }})
+        }else {
+          if(checkNotification(response.data.notification))
+          {
+            setNotification([...notification, response.data.notification])
+          }
         };
       })
       .catch((err) => console.log(err));
@@ -78,10 +88,8 @@ export const UserProvider = ({ children }) => {
     API
       .post(`${baseUrl}/user/googleauth`, userObjectMod, {withCredentials: true})
       .then((response) => {
-        console.log(response);
         // localStorage.setItem('token', jwToken)
         setCurrentUser(response.data.result);
-        console.log('response data: ', response.data)
       });
 
     // document.getElementById("signInDiv").hidden = true;
@@ -93,7 +101,6 @@ export const UserProvider = ({ children }) => {
     setChecked(!checked)
     
     if(e.target.checked === true && !genre.includes(e.target.value) && e.target.name === 'genre'){
-      console.log('handleCheck value', e.target.value)
       setGenre([...genre, e.target.value])
     }
     else if(e.target.checked === true && !instrument.includes(e.target.value) && e.target.name === 'instruments') {
@@ -118,17 +125,15 @@ export const UserProvider = ({ children }) => {
     // const updateData = [checkedGenre, formData]
 
     formData = {...formData, genre: genre, instrument: instrument}
-    console.log('form data', formData)
     API
       .patch(`${baseUrl}/user/profile/edit`, formData, {withCredentials: true})
       .then((response) => {
-        console.log('edit profile', response);
       }).catch((err) => console.log(err));
   };
   console.log('from form: ', formData)
-  const checkGenre = () => {
+  const checkIfChecked = () => {
     API
-    .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
+    .get(`${baseUrl}/user/checkifchecked`, {withCredentials: true})
     .then((response) => {
       setGenre(response.data.genre)
       setInstrument(response.data.instrument)
@@ -137,22 +142,20 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if(currentUser){
-      checkGenre()
+      checkIfChecked()
       getNearbyUsers()
     }
     
   }, [currentUser])
-  console.log('genre DB: ',  genre)
+
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, {withCredentials: true})
     .then(response => {
-      console.log('nearby users', response)
-      setUsers(response.data.result)
+      console.log('response all users', response)
+      setUsers(response.data)
     })
   }
-
-
 
   const logout = () => {
     API
@@ -168,8 +171,6 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
-
-      console.log('checked genre: ',  checkedGenre)
 
   const checkNotification = (note) => {
     if(notification.filter(n => n !== note).length > 0) {
@@ -192,7 +193,8 @@ export const UserProvider = ({ children }) => {
     profileUpdate,
     genre,
     instrument,
-    handleCheck
+    handleCheck,
+    users
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

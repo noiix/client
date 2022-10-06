@@ -3,11 +3,16 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 const ProfileUpdate = () => {
-  const { profileUpdate, inputHandler, genre } = useContext(UserContext);
+  const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
 
-  const [toggleBtn, setToggleBtn] = useState(false)
-  function togglebutton() {
-    setToggleBtn(!toggleBtn)
+  const [toggleGenre, setToggleGenre] = useState(false)
+  const [toggleInstruments, setToggleInstruments] = useState(false)
+
+  function toggleGenreButton() {
+    setToggleGenre(!toggleGenre)
+  }
+  function toggleInstrumentsButton() {
+    setToggleInstruments(!toggleInstruments)
   }
 
   const genres = ["pop",
@@ -30,6 +35,24 @@ const ProfileUpdate = () => {
     "house",
   ]
 
+  const instruments = [
+    "guitar",
+    "piano",
+    "drums",
+    "percussion",
+    "bass",
+    "synths",
+    "vocals",
+    "violin",
+    "saxophone",
+    "cello",
+    "double bass",
+    "clarinet",
+    "trumpet",
+    "flute",
+    "harp",
+  ]
+
   return (
     <div>
 
@@ -43,60 +66,53 @@ const ProfileUpdate = () => {
         <br />
 
         <br />
-        <div onClick={ togglebutton }>genre:</div><br />
-        { toggleBtn ? <>
+        <div onClick={ toggleGenreButton }>genre:</div><br />
+        { toggleGenre && <>
           <fieldset>
 
             { genres.map(genreItem => <>
-              <input type='checkbox' name='genre' value={ genreItem } />
+              {
+                genre.includes(genreItem) ?
+                  <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ true } onChange={ handleCheck } />
+                  :
+                  <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' onChange={ handleCheck } />
+
+              }
               <label htmlFor={ genreItem }>{ genreItem }</label> <br />
             </>
 
             ) }
-            {/* <input type="checkbox" defaultChecked={ true } name="genre" value='pop' />
-            <label htmlFor="pop">pop</label><br />
-            <input type="checkbox" name="genre[]" value='rock' />
-            <label htmlFor="rock">rock</label><br />
-            <input type="checkbox" name="genre[]" value='hip hop' />
-            <label htmlFor="hip hop">hip hop</label><br />
-            <input type="checkbox" name="genre[]" value='latin' />
-            <label htmlFor="latin">latin</label><br />
-            <input type="checkbox" name="genre[]" value='edm' />
-            <label htmlFor="edm">edm</label><br />
-            <input type="checkbox" name="genre[]" value='country' />
-            <label htmlFor="country">country</label><br />
-            <input type="checkbox" name="genre[]" value='folk' />
-            <label htmlFor="folk">folk</label><br />
-            <input type="checkbox" name="genre[]" value='classical' />
-            <label htmlFor="classical">classical</label><br />
-            <input type="checkbox" name="genre[]" value='jazz' />
-            <label htmlFor="jazz">jazz</label><br />
-            <input type="checkbox" name="genre[]" value='metal' />
-            <label htmlFor="metal">metal</label><br />
-            <input type="checkbox" name="genre[]" value='easy listening' />
-            <label htmlFor="easy listening">easy listening</label><br />
-            <input type="checkbox" name="genre[]" value='new age' />
-            <label htmlFor="new age">new age</label><br />
-            <input type="checkbox" name="genre[]" value='blues' />
-            <label htmlFor="blues">blues</label><br />
-            <input type="checkbox" name="genre[]" value='world' />
-            <label htmlFor="world">world</label><br />
-            <input type="checkbox" name="genre[]" value='electronic' />
-            <label htmlFor="electronic">electronic</label><br />
-            <input type="checkbox" name="genre[]" value='techno' />
-            <label htmlFor="techno">techno</label><br />
-            <input type="checkbox" name="genre[]" value='house' />
-            <label htmlFor="house">house</label> */}
-          </fieldset>
-        </> : <></> }
 
+          </fieldset>
+        </> }
+
+        <div onClick={ toggleInstrumentsButton }>instruments:</div><br />
+        { toggleInstruments && <>
+          <fieldset>
+
+            { instruments.map(instrumentsItem => <>
+              {
+                instrument.includes(instrumentsItem) ?
+                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' defaultChecked={ true } onChange={ handleCheck } />
+                  :
+                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' onChange={ handleCheck } />
+
+              }
+              <label htmlFor={ instrumentsItem }>{ instrumentsItem }</label> <br />
+            </>
+
+            ) }
+
+          </fieldset>
+        </>
+        }
 
 
         <br />
         <input type="submit" value="submit" />
       </form>
 
-    </div>
+    </div >
   );
 };
 

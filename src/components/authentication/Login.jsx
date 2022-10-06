@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import DesignContext from "../../contexts/DesignContext";
+import Button from '../UI/button/Button';
 
 const Login = () => {
   const { inputHandler, login } = useContext(UserContext);
@@ -26,7 +27,7 @@ const Login = () => {
           required
         />{ " " }
         <br />
-        <input className="btn" type="submit" name="login" value="login" />
+        <Button className="btn" type="submit" name="login" value="login" onClick={login}/>
       </form>
     </div>
   );

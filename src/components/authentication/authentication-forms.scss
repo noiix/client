@@ -1,0 +1,12 @@
+@use "../../style/variables.scss" as *;
+
+.loginForm, .signupForm {
+    width: 60%;
+    height: 200px;
+}
+
+@media screen and (max-width: $max-screen) {
+    .loginForm, .signupForm {
+        width: 100%;
+    }
+}

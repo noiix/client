@@ -1,22 +1,8 @@
 @use "../../style/variables.scss" as *;
 
 .authentication {
-
-    button {
-        background-color: white;
-        border: 2px solid $dark-gray;
-        font-size: 1rem;
-        font-family: $main-font;
-        font-weight: 600;
-        text-transform: uppercase;
-        padding: 0.5em;
-        margin: 1rem 0;
-        &:hover {
-            background-color: $pink;
-        }
-    }
-
-
+    height: 400px;
+   
     p {
         padding: 0.5rem 0;
         font-size: 1.2rem;

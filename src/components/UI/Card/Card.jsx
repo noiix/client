@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { GrPlay } from "react-icons/gr";
+import UserContext from "../../../contexts/UserContext";
+import DataContext from '../../../contexts/DataContext';
+
 
 function Card() {
+
+  const { currentUser } = useContext(UserContext);
+  const { selectedFile, fileName } = useContext(DataContext);
+    console.log(currentUser);
+    console.log(selectedFile);
+    console.log(fileName);
+
   return (
-    <div className="grid">
     <div className="card">
 
       <div className='left-column'>
         <div className="artist-name">
-          <div>Artist Name</div>
+          <div>{currentUser.username}</div>
         </div>
       </div>
 
@@ -22,8 +31,7 @@ function Card() {
       </div>
 
     </div>
-    </div>
   )
 }
 
-export default Card
+export default Card;

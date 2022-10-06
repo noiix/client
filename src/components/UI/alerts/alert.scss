@@ -32,7 +32,7 @@
         color: $dark-gray;
     }
     a:hover {
-        color: $light-gray;
+        color: $yellow;
     }
 }
 
@@ -89,4 +89,7 @@
 //warning
 .warning {
     background-color: $yellow;
+    a:hover {
+        color: $blue;
+    }
 }

@@ -1,33 +1,49 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useContext} from 'react';
 import axios from 'axios'
 import baseUrl from '../config'
-
+import DesignContext from '../contexts/DesignContext'
 
 const DataContext = createContext();
 
 export const DataProvider = ({children}) => {
 
+  const {notification, setNotification} = useContext(DesignContext)
+
     const API = axios.create({baseUrl: baseUrl});
 
-  API.interceptors.request.use(
-    req => {
-      req.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-      return req;
-    },
-    error => {
-      return Promise.reject(error);
+    const [fileName, setFileName] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null)
+  
+    // const [formData, setFormData] = useState({})
+  
+    const submitForm = (e) => {
+      e.preventDefault();
+      const formData = new FormData()
+      // formData.title =  fileName;
+      // formData.file = selectedFile;
+      formData.append('title', fileName);
+      formData.append('file', selectedFile);
+
+
+      // setFormData({...formData, title: fileName, file: selectedFile})
+
+      console.log('onsubmit', formData);
+  
+      API.post(`${baseUrl}/music/upload`, formData, {withCredentials: true, 'Content-Type': 'multipart/form-data'})
+      .then((response) => {
+        setNotification([...notification, response.data.notification])
+        console.log('response', response)
+      })
     }
-  )
 
-  const [file, setFile] = useState({})
+    const handleFileInput = (e) => {
+      // console.log('file', e.target.name)
+      const file = e.target.files[0];
+      console.log('file', file)
+      setSelectedFile(file);
+    }
 
-  const uploadMusic = (e) => {
-    e.preventDefault();
-    API.post(`${baseUrl}/music/upload`)
-    
-  }
-
-    const value = {}
+    const value = {setFileName, setSelectedFile, submitForm, fileName, selectedFile, handleFileInput}
 
     return <DataContext.Provider value={value}>{children}</DataContext.Provider>
 }

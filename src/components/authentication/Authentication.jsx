@@ -4,6 +4,7 @@ import Register from './Register'
 import { useState, useContext } from 'react';
 import UserContext from "../../contexts/UserContext";
 import DesignContext from "../../contexts/DesignContext";
+import Button from '../UI/button/Button';
 
 
 const Authentication = () => {
@@ -33,7 +34,7 @@ const Authentication = () => {
                             <>
                                 <Register />
                             </> }
-                        <button onClick={ toggleLoginOrRegister }>{ logReg ? 'or sign up' : 'back to log in' }</button>
+                        <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'or sign up' : 'back to log in' }/>
                         <p>or keep it simple and:</p>
                         <GoogleAuth />
                     </> : <></>

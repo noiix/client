@@ -19,26 +19,26 @@ function Navbar() {
           <h1 id="logo">nöiX</h1>
         </div>
       </Link>
-      <Link onClick={toggleNav} className="nav-toggle">
-        {(!isDesktop && !displayNav) &&
-          <HiOutlineMenuAlt3/>
-        }
-        {(!isDesktop && displayNav) &&
-          <IoMdClose/>
-        }
-      </Link>
+      {Object.keys(currentUser).length !== 0 && 
+        <Link onClick={toggleNav} className="nav-toggle">
+          {(!isDesktop && !displayNav) &&
+            <HiOutlineMenuAlt3/>
+          }
+          {(!isDesktop && displayNav) &&
+            <IoMdClose/>
+          }
+        </Link>
+      }
       {(isDesktop || displayNav) && 
       <>
-      <ul>
-        {Object.keys(currentUser).length !== 0 &&
-        <>      
-        <li><NavLink to={"/profile"}>profile</NavLink></li>
-        <li><NavLink to={"/chat"}>chat</NavLink></li>
-        <li><NavLink to={"/upload"}>upload</NavLink></li>
-        <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
-        </>
-        }
-      </ul>
+      {Object.keys(currentUser).length !== 0 &&
+        <ul>
+          <li><NavLink to={"/profile"}>profile</NavLink></li>
+          <li><NavLink to={"/chat"}>chat</NavLink></li>
+          <li><NavLink to={"/upload"}>upload</NavLink></li>
+          <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
+        </ul>
+      }
       <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </>
       }

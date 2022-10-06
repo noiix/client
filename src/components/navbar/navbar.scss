@@ -65,9 +65,9 @@ nav {
     }
 }  
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $max-screen) {
     nav {
-        position: absolute;
+        position: relative;
         border-left: none;
         border-bottom: dashed $dark-gray 2px;
         height: 4.5rem;
@@ -126,8 +126,8 @@ nav {
     
         .mode {
             position: absolute;
-            top: 5.2rem;
-            right: 1.2rem;
+            top: 6.25rem;
+            right: 1.25rem;
             font-size: 1.5rem;
             z-index: 5;
         }

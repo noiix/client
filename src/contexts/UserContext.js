@@ -157,8 +157,8 @@ export const UserProvider = ({ children }) => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
       (response) => {
         console.log("response all users", response);
-        if(response.data) {
-          setUsers(response.data);
+        if(response.data.result) {
+          setUsers(response.data.result);
         }
         else {
           setNotification([...notification, response.data.notification]);

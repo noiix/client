@@ -2,11 +2,16 @@
 
 .authentication {
     height: 400px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
    
     p {
         padding: 0.5rem 0;
         font-size: 1.2rem;
     }
 
-
+    form {
+        height: 150px;
+    }
 }

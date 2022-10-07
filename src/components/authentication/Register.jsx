@@ -16,8 +16,7 @@ const Register = () => {
   console.log(currentUser);
 
   return (
-    <div>
-
+    <>
       <form className="signupForm">
         <input
           type="text"
@@ -25,27 +24,27 @@ const Register = () => {
           placeholder="username"
           onChange={ inputHandler }
           required
-        />{ " " }
-        <br />
+        />
+
         <input
           type="email"
           name="email"
           placeholder="email"
           onChange={ inputHandler }
           required
-        />{ " " }
-        <br />
+        />
         <input
           type="password"
           name="password"
           placeholder="password"
           onChange={ inputHandler }
           required
-        />{ " " }
-        <br />
-        <Button className="btn" type="submit" value="submit" onClick={createAccount} name="sign up"/>
+        />
       </form>
-    </div>
+      <div>
+        <Button className="btn" type="submit" value="submit" name="sign up" onSubmit={ createAccount }/>
+      </div>
+    </>
   );
 };
 

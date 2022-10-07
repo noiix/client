@@ -5,6 +5,9 @@ import React from "react";
 import ProfileUpdate from './ProfileUpdate'
 import ProfilePic from "./ProfilePic";
 import './profile.styles.scss'
+import Modal from "../UI/modal/Modal";
+import DesignContext from "../../contexts/DesignContext";
+import Upload from "../upload/Upload";
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)

@@ -11,6 +11,7 @@
 @use '../components/UI/CardList/cardList.scss';
 @use '../components/UI/Card/card.scss';
 @use '../components/profile/profile.scss';
+@use '../components/UI/modal/modal.scss';
 
 
 body {
@@ -34,7 +35,7 @@ body {
 
     .main {
       width: calc(100vw - 4rem);
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
       // dark-mode-test

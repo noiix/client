@@ -19,8 +19,7 @@ export const UserProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
   const [checkedGenre, setCheckedGenre] = useState([]);
 
-  const { notification, setNotification, setDisplayNav } =
-    useContext(DesignContext);
+  const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -172,10 +171,12 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         setCurrentUser({});
-        if (checkNotification(response.data.notification)) {
-          setNotification([...notification, response.data.notification]);
+        if(checkNotification(response.data.notification))
+        {
           setDisplayNav(false);
-        }
+          setDisplayModal(false)
+          setNotification([...notification, response.data.notification])
+        };
       })
       .catch((err) => console.log(err));
   };

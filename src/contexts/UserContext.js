@@ -136,7 +136,6 @@ export const UserProvider = ({ children }) => {
   console.log("from form: ", formData);
 
   console.log('new currentUser', currentUser)
-
   const checkIfChecked = () => {
     API.get(`${baseUrl}/user/checkifchecked`, { withCredentials: true }).then(
       (response) => {

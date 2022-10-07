@@ -5,8 +5,8 @@
     width: 256px;
     height: 256px;
     display: flex;
-    margin: 0;
-    padding: 0;
+    margin: 1rem;
+    // padding: 0;
 }
 
 .left-column {
@@ -20,7 +20,7 @@
     background-color: cadetblue;
     transform: rotate(180deg);
     writing-mode: vertical-rl;
-    padding: 1.3rem 0.6rem 0rem 0.6rem;
+    padding: 1.35rem 0.6rem 0rem 0.6rem;
     font-family: $main-font;
     font-size: 1.2rem;
     font-weight: 600;

@@ -1,0 +1,13 @@
+@use '../../../style/variables.scss' as *;
+
+
+.card-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+}
+.card-list-card {
+    margin: 1rem;
+    padding: 1rem;
+}

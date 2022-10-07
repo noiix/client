@@ -6,9 +6,11 @@
 @use '../components/upload/fileUploader.scss';
 @use '../components/UI/forms/form.scss';
 @use '../components/authentication/authentication.scss';
-@use '../components/UI/Card/card.scss';
 @use '../components/authentication/authentication-forms.scss';
 @use '../components/UI/button/button.scss';
+@use '../components/UI/CardList/cardList.scss';
+@use '../components/UI/Card/card.scss';
+@use '../components/profile/profile.scss';
 
 
 body {

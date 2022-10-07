@@ -49,7 +49,6 @@ function Profile() {
         </div>
 
       )}
-      <ProfileUpdate/>
 
       
     </div>

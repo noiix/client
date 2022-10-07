@@ -98,7 +98,7 @@ nav {
             display: flex;
             border-bottom: dashed $dark-gray 2px;
             z-index: 3;
-            background-color: $light-gray;
+            background-color: lighten($lavender, 25%);
         }
     
         .start-nav {
@@ -108,7 +108,7 @@ nav {
         ul > li {
             transform: rotate(0deg);
             text-transform: uppercase;
-            background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+            background: linear-gradient(90deg, rgba(164,121,216,1) 15%, rgba(164,121,216,0.29735644257703087) 96%);
             background-position: 0 1em;
             background-size: 0 50%;
             background-repeat: no-repeat;

@@ -8,6 +8,7 @@
 @use '../components/authentication/authentication.scss';
 @use '../components/authentication/authentication-forms.scss';
 @use '../components/UI/button/button.scss';
+@use '../components/UI/modal/modal.scss';
 
 
 body {
@@ -31,7 +32,7 @@ body {
 
     .main {
       width: calc(100vw - 4rem);
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       justify-content: center;
     }

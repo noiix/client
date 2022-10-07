@@ -1,0 +1,24 @@
+@use '../../../style/variables.scss' as *; 
+
+.modal-background {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba($dark-gray, .25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    height: 550px;
+    width: 450px;
+    background-color: lighten($lavender, 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}

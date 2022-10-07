@@ -16,36 +16,47 @@ const Register = () => {
   console.log(currentUser);
 
   return (
+<<<<<<< HEAD
+    <>
+      <form className="signupForm" onSubmit={ createAccount }>
+=======
     <div>
 
       <form className="signupForm">
+>>>>>>> 7b46b66e85d5a76e4ff143798acda87ae842c68c
         <input
           type="text"
           name="username"
           placeholder="username"
           onChange={ inputHandler }
           required
-        />{ " " }
-        <br />
+        />
+
         <input
           type="email"
           name="email"
           placeholder="email"
           onChange={ inputHandler }
           required
-        />{ " " }
-        <br />
+        />
         <input
           type="password"
           name="password"
           placeholder="password"
           onChange={ inputHandler }
           required
+<<<<<<< HEAD
+        />
+=======
         />{ " " }
         <br />
         <Button className="btn" type="submit" value="submit" onClick={createAccount} name="sign up"/>
+>>>>>>> 7b46b66e85d5a76e4ff143798acda87ae842c68c
       </form>
-    </div>
+      <div>
+        <Button className="btn" type="submit" value="submit" name="sign up"/>
+      </div>
+    </>
   );
 };
 

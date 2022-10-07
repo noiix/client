@@ -19,12 +19,7 @@ export const UserProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
   const [checkedGenre, setCheckedGenre] = useState([]);
 
-<<<<<<< HEAD
   const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
-=======
-  const { notification, setNotification, setDisplayNav } =
-    useContext(DesignContext);
->>>>>>> bc66b63edb608cc461fe6dc5745294217be2d501
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -138,10 +133,6 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
-<<<<<<< HEAD
-  console.log('from form: ', formData)
-  
-=======
   console.log("from form: ", formData);
 
   console.log('new currentUser', currentUser)
@@ -181,19 +172,12 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         localStorage.clear();
         setCurrentUser({});
-<<<<<<< HEAD
         if(checkNotification(response.data.notification))
         {
           setDisplayNav(false);
           setDisplayModal(false)
           setNotification([...notification, response.data.notification])
         };
-=======
-        if (checkNotification(response.data.notification)) {
-          setNotification([...notification, response.data.notification]);
-          setDisplayNav(false);
-        }
->>>>>>> bc66b63edb608cc461fe6dc5745294217be2d501
       })
       .catch((err) => console.log(err));
   };

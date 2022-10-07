@@ -136,7 +136,6 @@ export const UserProvider = ({ children }) => {
   console.log("from form: ", formData);
 
   console.log('new currentUser', currentUser)
->>>>>>> bc66b63edb608cc461fe6dc5745294217be2d501
   const checkIfChecked = () => {
     API.get(`${baseUrl}/user/checkifchecked`, { withCredentials: true }).then(
       (response) => {
@@ -157,8 +156,8 @@ export const UserProvider = ({ children }) => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
       (response) => {
         console.log("response all users", response);
-        if(response.data) {
-          setUsers(response.data);
+        if(response.data.result) {
+          setUsers(response.data.result);
         }
         else {
           setNotification([...notification, response.data.notification]);

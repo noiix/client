@@ -40,6 +40,8 @@ export const DesignProvider = ({children}) => {
     }
     const closeModal = () => {
         setDisplayModal(false)
+        setDisplayModalAdd(false)
+        setDisplayModalUpdate(false)
     }
 
     const [displayModalUpdate, setDisplayModalUpdate] = useState(false)

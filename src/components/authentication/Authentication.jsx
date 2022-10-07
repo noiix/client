@@ -9,37 +9,24 @@ import Button from '../UI/button/Button';
 
 const Authentication = () => {
     const { currentUser } = useContext(UserContext)
+    const { toggleLoginOrRegister, toggleBtn, toggleLogin, logReg } = useContext(DesignContext)
 
-    const [toggleBtn, setToggleBtn] = useState(false)
-    function toggleLogin() {
-        setToggleBtn(!toggleBtn)
-    }
-    const [logReg, setLogReg] = useState(true)
-    function toggleLoginOrRegister() {
-        setLogReg(!logReg)
-    }
 
     return (
 
         <div className='authentication'>
-            { Object.keys(currentUser).length !== 0 ? <></> : <>
-                { !toggleBtn && <button onClick={ toggleLogin }>login</button> }
-                { toggleBtn ?
-                    <>
-                        { logReg ?
-                            <>
-                                <Login />
-                            </>
-                            :
-                            <>
-                                <Register />
-                            </> }
-                        <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'or sign up' : 'back to log in' }/>
-                        <p>or keep it simple and:</p>
-                        <GoogleAuth />
-                    </> : <></>
-                }
-            </> }
+
+        { logReg ?
+        <Login />
+        :
+        <Register />
+        }
+        <div>
+            <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'or sign up' : 'back to log in' }/>
+        </div>
+        <p>or keep it simple and:</p>
+        <GoogleAuth />
+    
 
         </div>
     )

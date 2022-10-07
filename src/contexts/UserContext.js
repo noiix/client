@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
   const [checked, setChecked] = useState(false)
   const [checkedGenre, setCheckedGenre] = useState([])
 
-  const { notification, setNotification, setDisplayNav } = useContext(DesignContext);
+  const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -126,9 +126,10 @@ export const UserProvider = ({ children }) => {
       }).catch((err) => console.log(err));
   };
   console.log('from form: ', formData)
-  const checkGenre = () => {
+
+  const checkIfChecked = () => {
     API
-    .get(`${baseUrl}/user/checkgenre`, {withCredentials: true})
+    .get(`${baseUrl}/user/checkifchecked`, {withCredentials: true})
     .then((response) => {
       setGenre(response.data.genre)
       setInstrument(response.data.instrument)
@@ -137,7 +138,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if(currentUser){
-      checkGenre()
+      checkIfChecked()
       getNearbyUsers()
     }
     
@@ -162,8 +163,9 @@ export const UserProvider = ({ children }) => {
         setCurrentUser({});
         if(checkNotification(response.data.notification))
         {
-          setNotification([...notification, response.data.notification])
           setDisplayNav(false);
+          setDisplayModal(false)
+          setNotification([...notification, response.data.notification])
         };
       })
       .catch((err) => console.log(err));

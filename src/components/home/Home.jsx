@@ -1,14 +1,14 @@
 import React, {useContext} from "react";
 import Authentication from "../authentication/Authentication";
-// import { NavLink, Link } from "react-router-dom";
-// import UserContext from "../../contexts/UserContext";
-// import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
-// import DesignContext from "../../contexts/DesignContext";
 import DesignContext from "../../contexts/DesignContext";
+import UserContext from "../../contexts/UserContext";
+import Modal from "../UI/modal/Modal";
+import Button from "../UI/button/Button";
 
 
 function Home() {
-  const {isDesktop} = useContext(DesignContext)
+  const {isDesktop, toggleModal, toggleBtn, displayModal} = useContext(DesignContext)
+  const {currentUser} = useContext(UserContext)
 
   return (
     <div className="home">
@@ -17,7 +17,16 @@ function Home() {
           <h1>NÖIX CONNECTS MUSICIANS</h1>
         }
         <h2>explore music, find band members, chat</h2>
-        <Authentication />
+        {(Object.keys(currentUser).length === 0 && !toggleBtn) && 
+        <div className="login-btn-container">
+          <Button onClick={ toggleModal } type="submit" name="Login"/>
+        </div> 
+        }
+        {(Object.keys(currentUser).length === 0 && displayModal) && 
+          <Modal>
+            <Authentication/>
+          </Modal>
+        }
       </div>
     </div>
   )

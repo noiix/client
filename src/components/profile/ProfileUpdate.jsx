@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import Button from "../UI/button/Button";
 
 const ProfileUpdate = () => {
   const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
@@ -56,17 +57,16 @@ const ProfileUpdate = () => {
   return (
     <div>
 
-      <form className="updateForm" onSubmit={ profileUpdate }>
+      <form className="updateForm">
+        <p>new username</p>
         <input
           type="text"
           name="username"
           placeholder="new username"
           onChange={ inputHandler }
         />
-        <br />
-
-        <br />
-        <div onClick={ toggleGenreButton }>genre:</div><br />
+        <p>set your genres</p>
+        <Button onClick={ toggleGenreButton } name="genre"/>
         { toggleGenre && <>
           <fieldset>
 
@@ -78,15 +78,15 @@ const ProfileUpdate = () => {
                   <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' onChange={ handleCheck } />
 
               }
-              <label htmlFor={ genreItem }>{ genreItem }</label> <br />
+              <label htmlFor={ genreItem }>{ genreItem }</label> 
             </>
 
             ) }
 
           </fieldset>
         </> }
-
-        <div onClick={ toggleInstrumentsButton }>instruments:</div><br />
+        <p>set your instruments</p>
+        <Button onClick={ toggleInstrumentsButton } name="instruments"/>
         { toggleInstruments && <>
           <fieldset>
 
@@ -98,7 +98,7 @@ const ProfileUpdate = () => {
                   <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' onChange={ handleCheck } />
 
               }
-              <label htmlFor={ instrumentsItem }>{ instrumentsItem }</label> <br />
+              <label htmlFor={ instrumentsItem }>{ instrumentsItem }</label> 
             </>
 
             ) }
@@ -106,10 +106,7 @@ const ProfileUpdate = () => {
           </fieldset>
         </>
         }
-
-
-        <br />
-        <input type="submit" value="submit" />
+        <Button type="submit" value="submit" name="submit" onClick={ profileUpdate }/>
       </form>
 
     </div >

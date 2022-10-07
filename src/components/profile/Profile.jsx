@@ -3,12 +3,13 @@ import UserContext from "../../contexts/UserContext";
 import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
+import Modal from "../UI/modal/Modal";
+import DesignContext from "../../contexts/DesignContext";
+import Upload from "../upload/Upload";
 
 function Profile() {
-  const [toggleBtn, setToggleBtn] = useState(false)
-  function toggleUpdate() {
-    setToggleBtn(!toggleBtn)
-  }
+  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
+ 
   const { currentUser } = useContext(UserContext);
   return (
     <div>
@@ -17,13 +18,19 @@ function Profile() {
         <div>
           <img src={ currentUser?.image } alt="img" />
           <h3>{ currentUser.username }</h3>
-          <button onClick={ toggleUpdate }>update profile</button>
-          { toggleBtn ? <>
-            <ProfileUpdate />
+          <button onClick={ toggleModalUpdate }>update profile</button>
+          { displayModalUpdate &&
+            <Modal>
+              <ProfileUpdate />
+            </Modal>
+          }
 
-          </> :
-            <>
-            </> }
+          <button onClick={ toggleModalAdd }>add track</button>
+          {displayModalAdd &&
+            <Modal>
+              <Upload/>
+            </Modal>
+          }
         </div>
 
       ) }

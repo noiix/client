@@ -22,7 +22,7 @@ function Profile() {
   }
   const { currentUser } = useContext(UserContext);
   return (
-    <div>
+    <div className="profile-container">
       Profile
       { Object.keys(currentUser).length !== 0 && (
         <div>
@@ -48,7 +48,10 @@ function Profile() {
           }
         </div>
 
-      ) }
+      )}
+      <ProfileUpdate/>
+
+      
     </div>
   );
 }

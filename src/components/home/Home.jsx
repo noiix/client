@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import Authentication from "../authentication/Authentication";
 import DesignContext from "../../contexts/DesignContext";
 import UserContext from "../../contexts/UserContext";
+import CardList from "../UI/CardList/CardList";
 import Modal from "../UI/modal/Modal";
 import Button from "../UI/button/Button";
 
@@ -17,6 +18,10 @@ function Home() {
           <h1>NÖIX CONNECTS MUSICIANS</h1>
         }
         <h2>explore music, find band members, chat</h2>
+
+        <Authentication />
+        { currentUser && <CardList /> }
+
         {(Object.keys(currentUser).length === 0 && !toggleBtn) && 
         <div className="login-btn-container">
           <Button onClick={ toggleModal } type="submit" name="Login"/>
@@ -27,6 +32,7 @@ function Home() {
             <Authentication/>
           </Modal>
         }
+
       </div>
     </div>
   )

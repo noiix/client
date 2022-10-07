@@ -153,7 +153,7 @@ export const UserProvider = ({ children }) => {
     API.get(`${baseUrl}/user/all`, {withCredentials: true})
     .then(response => {
       console.log('response all users', response)
-      setUsers(response.data)
+      setUsers(response.data.result)
     })
   }
 

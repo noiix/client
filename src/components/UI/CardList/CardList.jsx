@@ -9,9 +9,7 @@ function CardList() {
 
   return (
     <div className='card-list'>
-        <div className="card-list-card">
             { users && users.map(user => <Card user={user} />)}
-        </div>
     </div>
   )
 }

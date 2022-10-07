@@ -5,10 +5,14 @@ import Authentication from "../authentication/Authentication";
 // import { MdOutlineDarkMode, MdDarkMode} from 'react-icons/md'
 // import DesignContext from "../../contexts/DesignContext";
 import DesignContext from "../../contexts/DesignContext";
+import UserContext from "../../contexts/UserContext";
+import CardList from "../UI/CardList/CardList";
 
 
 function Home() {
+  
   const {isDesktop} = useContext(DesignContext)
+  const {currentUser} = useContext(UserContext)
 
   return (
     <div className="home">
@@ -18,6 +22,7 @@ function Home() {
         }
         <h2>explore music, find band members, chat</h2>
         <Authentication />
+        { currentUser && <CardList /> }
       </div>
     </div>
   )

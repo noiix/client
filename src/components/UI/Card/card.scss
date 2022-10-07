@@ -1,6 +1,7 @@
 @use '../../../style/variables.scss' as *;
 
 .card {
+    background-color: white;
     border: 2px solid $dark-gray;
     width: 256px;
     height: 256px;
@@ -10,14 +11,14 @@
 }
 
 .left-column {
+    // background-color: aqua;
     width: 20%;
     height: 100%;
-    background-color: aqua;
     display: flex;
 }
 
 .artist-name {
-    background-color: cadetblue;
+    // background-color: cadetblue;
     transform: rotate(180deg);
     writing-mode: vertical-rl;
     padding: 1.35rem 0.6rem 0rem 0.6rem;
@@ -31,38 +32,38 @@
 }
 
 .right-column {
+    // background-color: lightsalmon;
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
-    background-color: lightsalmon;
-
 }
 
 .track-pic {
+    background-color: $light-gray;
     width: 150px;
     height: 150px;
     margin-top: 15%;
     margin-bottom: 3%;
-    background-color: $light-gray;
 }
 
 .bottom-column {
+    // background-color: bisque;
     width: 100%;
     height: 28%;
-    background-color: bisque;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .play-btn {
+    // background-color: cornflowerblue;
     font-size: 2rem;
-    background-color: cornflowerblue;
+
 }
 
 .track-title {
-    background-color: chartreuse;
+    // background-color: chartreuse;
 }

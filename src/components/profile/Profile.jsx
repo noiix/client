@@ -3,12 +3,8 @@ import UserContext from "../../contexts/UserContext";
 import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
-<<<<<<< HEAD
-import CardList from '../UI/CardList/CardList'
-=======
 import ProfilePic from "./ProfilePic";
 import './profile.styles.scss'
->>>>>>> bc66b63edb608cc461fe6dc5745294217be2d501
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
@@ -42,9 +38,7 @@ function Profile() {
 
       )}
       <ProfileUpdate/>
-      <br />
-      {/* Judith's Card: just for testing the Layout */}
-      <CardList />
+
       
     </div>
   );

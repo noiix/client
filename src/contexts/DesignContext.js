@@ -31,6 +31,7 @@ export const DesignProvider = ({children}) => {
     const toggleNav = () => {
         setDisplayNav(!displayNav)
     }
+    console.log('notifications', notification)
 
     //Modals
     const [displayModal, setDisplayModal] = useState(false)

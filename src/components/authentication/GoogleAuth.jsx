@@ -18,7 +18,7 @@ const GoogleAuth = () => {
 
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
       theme: "outline",
-      size: "large",
+      size: "small",
     });
 
     // google.accounts.id.prompt();

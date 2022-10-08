@@ -147,6 +147,7 @@ export const UserProvider = ({ children }) => {
     );
   };
 
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();

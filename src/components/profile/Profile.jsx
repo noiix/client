@@ -51,8 +51,6 @@ function Profile() {
 
 
       )}
-
-      
     </div>
   );
 }

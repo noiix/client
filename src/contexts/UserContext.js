@@ -53,7 +53,9 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/login`, formData, { withCredentials: true })
       .then((response) => {
         if (response.data.result) {
+          // localStorage.setItem('token', response.data.token);
           setCurrentUser(response.data.result);
+          // console.log("localstorage: " + localStorage.getItem("token"));
         }
 
         if (checkNotification(response.data.notification)) {
@@ -81,8 +83,11 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {
       withCredentials: true,
     }).then((response) => {
+      // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
     });
+
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const handleCheck = (e) => {
@@ -119,24 +124,23 @@ export const UserProvider = ({ children }) => {
       setInstrument(updatedInstrument);
     }
   };
-  
+  // const updatedInstrument = instrument.filter(item => item !== e.target.value)
+  // setInstrument(updatedInstrument)
+
+  // console.log('checked genre:',  genre, instrument)
 
   const profileUpdate = (e) => {
     e.preventDefault();
+    // const updateData = [checkedGenre, formData]
 
     formData = { ...formData, genre: genre, instrument: instrument };
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
-      .then((response) => {
-        console.log('profile update', response.data)
-        setCurrentUser(response.data)
-      })
+      .then((response) => {})
       .catch((err) => console.log(err));
   };
-  console.log("from form: ", formData);
-
-  console.log('new currentUser', currentUser)
+  
   const checkIfChecked = () => {
     API.get(`${baseUrl}/user/checkifchecked`, { withCredentials: true }).then(
       (response) => {
@@ -151,18 +155,13 @@ export const UserProvider = ({ children }) => {
       checkIfChecked();
       getNearbyUsers();
     }
-  }, [currentUser, currentUser.genre]);
+  }, [currentUser]);
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
       (response) => {
         console.log("response all users", response);
-        if(response.data) {
-          setUsers(response.data);
-        }
-        else {
-          setNotification([...notification, response.data.notification]);
-        }
+        setUsers(response.data);
       }
     );
   };

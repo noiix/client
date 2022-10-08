@@ -13,26 +13,26 @@ function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
+  const {profile, currentUser} = useContext(UserContext)
 
-  function toggleUpdate() {
-    setToggleBtn(!toggleBtn)
-  }
+
   function togglePic() {
     setTogglePicBtn(!togglePicBtn)
   }
-  const { currentUser } = useContext(UserContext);
+  console.log('profile', profile)
+
   return (
     <div className="profile-container">
       Profile
       { Object.keys(currentUser).length !== 0 && (
         <div>
-          <img src={ currentUser?.image } alt="img" className="profile-img"/>
+          <img src={ profile?.image } alt="img" className="profile-img"/>
           <button onClick={ togglePic }>update pic</button>
           { togglePicBtn && <>
             <ProfilePic />
 
           </> }
-          <h3>{ currentUser.username }</h3>
+          <h3>{ profile.username }</h3>
           <button onClick={ toggleModalUpdate }>update profile</button>
           { displayModalUpdate &&
             <Modal>
@@ -47,6 +47,8 @@ function Profile() {
             </Modal>
           }
         </div>
+
+
 
       )}
 

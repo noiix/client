@@ -14,6 +14,8 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
   const [users, setUsers] = useState([]);
 
+  const [profile, setProfile] = useLocalStorage("profile", null)
+
   const [genre, setGenre] = useState([]);
   const [instrument, setInstrument] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -152,6 +154,7 @@ export const UserProvider = ({ children }) => {
     }
   }, [currentUser, currentUser.genre]);
 
+
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
       (response) => {
@@ -189,6 +192,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  
   const value = {
     inputHandler,
     createAccount,
@@ -204,6 +208,8 @@ export const UserProvider = ({ children }) => {
     instrument,
     handleCheck,
     users,
+    profile,
+    setProfile
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

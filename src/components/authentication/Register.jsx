@@ -17,7 +17,7 @@ const Register = () => {
 
   return (
     <>
-      <form className="signupForm" onSubmit={ createAccount }>
+      <form className="signupForm">
         <input
           type="text"
           name="username"
@@ -42,7 +42,7 @@ const Register = () => {
         />
       </form>
       <div>
-        <Button className="btn" type="submit" value="submit" name="sign up"/>
+        <Button className="btn" type="submit" value="submit" name="sign up" onSubmit={ createAccount }/>
       </div>
     </>
   );

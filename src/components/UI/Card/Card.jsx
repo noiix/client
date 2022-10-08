@@ -6,7 +6,7 @@ import DataContext from '../../../contexts/DataContext';
 
 function Card({ user }) {
 
-  const { currentUser, users } = useContext(UserContext);
+  const { currentUser, users, setProfile, profile } = useContext(UserContext);
   const { selectedFile, fileName } = useContext(DataContext);
     console.log(currentUser);
     console.log(selectedFile);
@@ -18,9 +18,9 @@ function Card({ user }) {
     return "play song"
   }
 
-  
+  console.log("Who is the user", user)
   return (
-    <div className="card">
+    <div className="card" onClick={() => setProfile(user)}>
 
       <div className='left-column'>
         <div className="artist-name">

@@ -6,7 +6,7 @@ import DataContext from '../../../contexts/DataContext';
 
 function Card({ user }) {
 
-  const { currentUser, users } = useContext(UserContext);
+  const { currentUser, users, setProfile, profile } = useContext(UserContext);
   const { selectedFile, fileName } = useContext(DataContext);
   const [playing, setPlaying] = useState(false);
     // console.log(currentUser);
@@ -35,18 +35,9 @@ function Card({ user }) {
     setPlaying(false);
     audioRef.current.pause();
   }
-  
-  
-
-  // const toggleAudio = () => {
-  //   const audio = new Audio(user.music[0].path)
-  //     audio.play()
-  // }
-  
-
 
   return (
-    <div className="card">
+    <div className="card" onClick={() => setProfile(user)}>
 
       <div className='left-column'>
         <div className="artist-name">
@@ -56,13 +47,15 @@ function Card({ user }) {
 
       <div className='right-column'>
         <div className="track-pic"><img src={user.image}/></div>
-        
-        <div className='bottom-column'>
+        {user.music.length > 0 ? (
+          <div className='bottom-column' onClick={e => e.preventDefault()}>
          <div className="play-btn" onClick={playing ? pause : play}> {playing ? <GrPause/> : <GrPlay/> } </div>
           <div className="track-title">
           {user.music.length > 0 && user.music[0].title}
           </div>
-        </div>
+        </div>) : (
+          <div className='bottom-column'></div>)
+      }
       </div>
 
     </div>

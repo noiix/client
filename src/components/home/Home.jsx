@@ -19,8 +19,8 @@ function Home() {
         }
         <h2>explore music, find band members, chat</h2>
 
-        { Object.keys(currentUser).length > 0 && <CardList /> }
-
+        { (Object.keys(currentUser).length > 0) && <CardList /> }
+        
         {(Object.keys(currentUser).length === 0 && !toggleBtn) && 
         <div className="login-btn-container">
           <Button onClick={ toggleModal } type="submit" name="Login"/>

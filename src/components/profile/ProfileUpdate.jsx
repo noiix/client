@@ -10,11 +10,11 @@ const ProfileUpdate = () => {
   const [toggleInstruments, setToggleInstruments] = useState(false)
 
   function toggleGenreButton(e) {
-    e.preventDefault();
+  e.preventDefault()
     setToggleGenre(!toggleGenre)
   }
   function toggleInstrumentsButton(e) {
-    e.preventDefault();
+    e.preventDefault()
     setToggleInstruments(!toggleInstruments)
   }
 
@@ -71,7 +71,6 @@ const ProfileUpdate = () => {
         <Button onClick={ toggleGenreButton } name="genre"/>
         { toggleGenre && <>
           <fieldset>
-
             { genres.map(genreItem => <>
               {
                 genre.includes(genreItem) ?

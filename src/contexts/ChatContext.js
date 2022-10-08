@@ -1,9 +1,12 @@
-import React, {createContext} from 'react';
+import React, {createContext, useContext, useState} from 'react';
+import UserContext from './UserContext';
 
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({children}) => {
+    const [currentChats, setCurrentChats] = useState([])
+    const {currentUser} = useContext(UserContext)
 
     const value = {}
 

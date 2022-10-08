@@ -9,10 +9,12 @@ const ProfileUpdate = () => {
   const [toggleGenre, setToggleGenre] = useState(false)
   const [toggleInstruments, setToggleInstruments] = useState(false)
 
-  function toggleGenreButton() {
+  function toggleGenreButton(e) {
+    e.preventDefault();
     setToggleGenre(!toggleGenre)
   }
-  function toggleInstrumentsButton() {
+  function toggleInstrumentsButton(e) {
+    e.preventDefault();
     setToggleInstruments(!toggleInstruments)
   }
 

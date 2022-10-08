@@ -145,6 +145,7 @@ export const UserProvider = ({ children }) => {
     );
   };
 
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
@@ -203,7 +204,7 @@ export const UserProvider = ({ children }) => {
     genre,
     instrument,
     handleCheck,
-    users,
+    users
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -37,10 +37,19 @@ function Profile() {
     url_2 = null;
   }
 
+  if(profile.music.length > 2) {
+    url_3 = profile.music[2].path;
+  }
+  else {
+    url_3 = null;
+  }
+
+
   console.log('music profile', profile)
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
+  let audioRef3 = useRef(new Audio(url_3))
 
 
   const play = (index) => {
@@ -51,6 +60,10 @@ function Profile() {
     else if(index === 1){
       setPlaying(true);
       audioRef2.current.play();
+    }
+    else if(index === 2){
+      setPlaying(true);
+      audioRef3.current.play();
     }
     
   }
@@ -63,6 +76,10 @@ function Profile() {
     else if(index === 1){
       setPlaying(false)
       audioRef2.current.pause();
+    }
+    else if(index === 2){
+      setPlaying(false)
+      audioRef3.current.pause();
     }
   }
 

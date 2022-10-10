@@ -36,6 +36,7 @@ function Navbar() {
         <ul>
           <li><NavLink to={`/profile`} onClick={() => setProfile(currentUser)}>profile</NavLink></li>
           <li><NavLink to={"/chat"}>chat</NavLink></li>
+          <li><NavLink to={"/favorites"}>favourites</NavLink></li>
           <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
         </ul>
       }

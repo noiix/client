@@ -8,7 +8,7 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile, profile} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
@@ -20,14 +20,6 @@ export const DataProvider = ({ children }) => {
   // const [formData, setFormData] = useState({})
 
   
-
-
-  // useEffect(() => {
-  //   if(currentUser){
-  //     getAllMyTracks()
-  //   }
-  // }, [currentUser])
-
   const submitForm = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -44,9 +36,12 @@ export const DataProvider = ({ children }) => {
       withCredentials: true,
       "Content-Type": "multipart/form-data",
     }).then((response) => {
+      if(response.data.result){
+        setCurrentUser(response.data.result)
+        setProfile(response.data.result)
+      }
       setNotification([...notification, response.data.notification]);
-      setCurrentUser(response.data)
-      setProfile(response.data.result)
+     
     });
   };
 
@@ -74,6 +69,18 @@ export const DataProvider = ({ children }) => {
     setSelectedFile(file);
   };
 
+  const deleteTrack = (index) => {
+    const songToDelete = profile.music[index]
+    console.log('song to delete', songToDelete)
+    const updatedTracks = profile.music.filter((song, idx) => idx !== index)
+    const songObj = {newSongList: updatedTracks, deleteSong: songToDelete}
+    API.patch(`${baseUrl}/music/delete`, songObj, { withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.result);
+      setProfile(response.data.result);
+      setNotification([...notification, response.data.notification]);
+    }).catch()
+  }
  
 
   const value = {
@@ -84,6 +91,7 @@ export const DataProvider = ({ children }) => {
     selectedFile,
     handleFileInput,
     submitPicture,
+    deleteTrack
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

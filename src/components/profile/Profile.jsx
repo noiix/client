@@ -50,19 +50,25 @@ function Profile() {
 
   const play = (index) => {
     if(index === 0){
-      setCurrentItem(0)
       setPlaying(true);
+      setCurrentItem(0)
       audioRef1.current.play();
+      audioRef2.current.pause();
+      audioRef3.current.pause();
     }
     else if(index === 1){
-      setCurrentItem(1)
       setPlaying(true);
+      setCurrentItem(1)
       audioRef2.current.play();
+      audioRef1.current.pause();
+      audioRef3.current.pause();
     }
     else if(index === 2){
-      setCurrentItem(2)
       setPlaying(true);
+      setCurrentItem(2)
       audioRef3.current.play();
+      audioRef1.current.pause();
+      audioRef2.current.pause();
     }
   }
 
@@ -104,7 +110,7 @@ function Profile() {
           <div>
           {profile.music.length > 0 ? profile.music.map((track, idx) => (
             <div className='bottom-column'>
-              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{playing && currentItem === idx ? <GrPause/> : <GrPlay/> }</div>
+              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
               <div className="track-title">
               {track.title}
               </div>

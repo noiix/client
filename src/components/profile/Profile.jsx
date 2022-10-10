@@ -38,54 +38,38 @@ function Profile() {
   }
 
   if(profile.music.length > 2) {
-<<<<<<< HEAD
-    url_3 = profile.music[2].path;
-  }
-  else {
-    url_3 = null;
-  }
-
-
-  console.log('music profile', profile)
-=======
     url_3 = profile.music[2].path
   }
   else {
     url_3 = null
   }
->>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
   let audioRef3 = useRef(new Audio(url_3))
-<<<<<<< HEAD
-
-=======
->>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
 
   const play = (index) => {
     if(index === 0){
-      setCurrentItem(0)
       setPlaying(true);
+      setCurrentItem(0)
       audioRef1.current.play();
+      audioRef2.current.pause();
+      audioRef3.current.pause();
     }
     else if(index === 1){
-      setCurrentItem(1)
       setPlaying(true);
+      setCurrentItem(1)
       audioRef2.current.play();
+      audioRef1.current.pause();
+      audioRef3.current.pause();
     }
     else if(index === 2){
-<<<<<<< HEAD
       setPlaying(true);
-      audioRef3.current.play();
-    }
-    
-=======
       setCurrentItem(2)
-      setPlaying(true);
       audioRef3.current.play();
+      audioRef1.current.pause();
+      audioRef2.current.pause();
     }
->>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
   }
 
   const pause = (index) => {
@@ -100,10 +84,7 @@ function Profile() {
       audioRef2.current.pause();
     }
     else if(index === 2){
-<<<<<<< HEAD
-=======
       setCurrentItem(2)
->>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
       setPlaying(false)
       audioRef3.current.pause();
     }

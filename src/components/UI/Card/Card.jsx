@@ -15,7 +15,6 @@ function Card({ user }) {
     // console.log(users);
 
   let url;
-
   if(user.music.length !== 0) {
     url = user.music[0].path
   }

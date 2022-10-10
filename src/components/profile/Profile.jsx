@@ -17,8 +17,8 @@ function Profile() {
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
   const {profile, currentUser} = useContext(UserContext)
   const [playing, setPlaying] = useState(false);
+  const [currentItem, setCurrentItem] = useState(0);
  
-
   let url_1;
   let url_2;
   let url_3;
@@ -38,6 +38,7 @@ function Profile() {
   }
 
   if(profile.music.length > 2) {
+<<<<<<< HEAD
     url_3 = profile.music[2].path;
   }
   else {
@@ -46,38 +47,63 @@ function Profile() {
 
 
   console.log('music profile', profile)
+=======
+    url_3 = profile.music[2].path
+  }
+  else {
+    url_3 = null
+  }
+>>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
   let audioRef3 = useRef(new Audio(url_3))
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
 
   const play = (index) => {
     if(index === 0){
+      setCurrentItem(0)
       setPlaying(true);
       audioRef1.current.play();
     }
     else if(index === 1){
+      setCurrentItem(1)
       setPlaying(true);
       audioRef2.current.play();
     }
     else if(index === 2){
+<<<<<<< HEAD
       setPlaying(true);
       audioRef3.current.play();
     }
     
+=======
+      setCurrentItem(2)
+      setPlaying(true);
+      audioRef3.current.play();
+    }
+>>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
   }
 
   const pause = (index) => {
     if(index === 0){
+      setCurrentItem(0)
       setPlaying(false)
       audioRef1.current.pause();
     }
     else if(index === 1){
+      setCurrentItem(1)
       setPlaying(false)
       audioRef2.current.pause();
     }
     else if(index === 2){
+<<<<<<< HEAD
+=======
+      setCurrentItem(2)
+>>>>>>> 5925972cc8c41f68a0bd9ad5d298649ecb453166
       setPlaying(false)
       audioRef3.current.pause();
     }
@@ -103,7 +129,7 @@ function Profile() {
           <div>
           {profile.music.length > 0 ? profile.music.map((track, idx) => (
             <div className='bottom-column'>
-              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{playing && currentItem === idx ? <GrPause/> : <GrPlay/> }</div>
               <div className="track-title">
               {track.title}
               </div>

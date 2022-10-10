@@ -14,10 +14,13 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
   const [users, setUsers] = useState([]);
 
+  const [profile, setProfile] = useLocalStorage("profile", null)
+
   const [genre, setGenre] = useState([]);
   const [instrument, setInstrument] = useState([]);
   const [checked, setChecked] = useState(false);
   const [checkedGenre, setCheckedGenre] = useState([]);
+  const [mySongs, setMySongs] = useState([]);
 
   const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
@@ -130,16 +133,19 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    // const updateData = [checkedGenre, formData]
-
     formData = { ...formData, genre: genre, instrument: instrument };
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
-      .then((response) => {})
+      .then((response) => {
+        console.log('profile update', response.data)
+        setCurrentUser(response.data)
+        setProfile(response.data)
+      })
       .catch((err) => console.log(err));
   };
-  
+
+  console.log('new currentUser', currentUser)
   const checkIfChecked = () => {
     API.get(`${baseUrl}/user/checkifchecked`, { withCredentials: true }).then(
       (response) => {
@@ -149,10 +155,21 @@ export const UserProvider = ({ children }) => {
     );
   };
 
+  const getAllMyTracks = () => {
+    API.get(`${baseUrl}/music/mysongs`, { withCredentials: true})
+      .then(response => {
+        if(response.data) {
+          console.log('my songs', response.data)
+          setMySongs(response.data)
+        }
+      })
+  }
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
       getNearbyUsers();
+      getAllMyTracks();
     }
   }, [currentUser]);
 
@@ -161,7 +178,8 @@ export const UserProvider = ({ children }) => {
       (response) => {
         console.log("response all users", response);
         if(response.data.result) {
-          setUsers(response.data.result);
+          const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
+          setUsers(filteredUsers);
         }
         else {
           setNotification([...notification, response.data.notification]);
@@ -193,6 +211,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  
   const value = {
     inputHandler,
     createAccount,
@@ -208,6 +227,8 @@ export const UserProvider = ({ children }) => {
     instrument,
     handleCheck,
     users,
+    profile,
+    setProfile
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

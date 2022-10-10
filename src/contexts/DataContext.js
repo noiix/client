@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import baseUrl from "../config";
 import DesignContext from "../contexts/DesignContext";
@@ -8,14 +8,25 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+ 
+
   
   // const [formData, setFormData] = useState({})
+
+  
+
+
+  // useEffect(() => {
+  //   if(currentUser){
+  //     getAllMyTracks()
+  //   }
+  // }, [currentUser])
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -34,7 +45,8 @@ export const DataProvider = ({ children }) => {
       "Content-Type": "multipart/form-data",
     }).then((response) => {
       setNotification([...notification, response.data.notification]);
-      console.log("response", response);
+      setCurrentUser(response.data)
+      setProfile(response.data.result)
     });
   };
 
@@ -48,6 +60,7 @@ export const DataProvider = ({ children }) => {
       withCredentials: true,
     }).then((response) => {
       setNotification([...notification, response.data.notification]);
+      setProfile(response.data.result);
       setCurrentUser(response.data.result);
     });
   };
@@ -60,6 +73,8 @@ export const DataProvider = ({ children }) => {
     console.log("file", file);
     setSelectedFile(file);
   };
+
+ 
 
   const value = {
     setFileName,

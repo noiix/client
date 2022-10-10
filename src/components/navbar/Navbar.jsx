@@ -8,8 +8,9 @@ import {IoMdClose} from 'react-icons/io';
 import {HiOutlineMenuAlt3} from 'react-icons/hi';
 
 function Navbar() {
-  const { currentUser, logout } = useContext(UserContext)
+  const { currentUser, logout, setProfile, users} = useContext(UserContext)
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
+
 
 
   return (
@@ -33,9 +34,8 @@ function Navbar() {
       <>
       {Object.keys(currentUser).length !== 0 &&
         <ul>
-          <li><NavLink to={"/profile"}>profile</NavLink></li>
+          <li><NavLink to={`/profile`} onClick={() => setProfile(currentUser)}>profile</NavLink></li>
           <li><NavLink to={"/chat"}>chat</NavLink></li>
-          <li><NavLink to={"/upload"}>upload</NavLink></li>
           <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
         </ul>
       }

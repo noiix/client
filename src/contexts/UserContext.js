@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
   const [instrument, setInstrument] = useState([]);
   const [checked, setChecked] = useState(false);
   const [checkedGenre, setCheckedGenre] = useState([]);
+  const [mySongs, setMySongs] = useState([]);
 
   const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
@@ -124,7 +125,6 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-
     formData = { ...formData, genre: genre, instrument: instrument };
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
@@ -132,10 +132,10 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log('profile update', response.data)
         setCurrentUser(response.data)
+        setProfile(response.data)
       })
       .catch((err) => console.log(err));
   };
-  console.log("from form: ", formData);
 
   console.log('new currentUser', currentUser)
   const checkIfChecked = () => {
@@ -147,11 +147,21 @@ export const UserProvider = ({ children }) => {
     );
   };
 
+  const getAllMyTracks = () => {
+    API.get(`${baseUrl}/music/mysongs`, { withCredentials: true})
+      .then(response => {
+        if(response.data) {
+          console.log('my songs', response.data)
+          setMySongs(response.data)
+        }
+      })
+  }
 
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
       getNearbyUsers();
+      getAllMyTracks();
     }
   }, [currentUser]);
 

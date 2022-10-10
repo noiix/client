@@ -11,7 +11,7 @@ form {
         font-weight: 600;
         width: 100%;
         outline:none;
-        &[type=text]:focus, &[type=email]:focus, &[type=password]:focus {
+        &[type=text]:focus, &[type=email]:focus, &[type=password]:focus,  &[type=fieldset] {
             border: 2px solid $pink;
         }
         &[type=submit] {
@@ -20,10 +20,18 @@ form {
                 background-color: $pink;
             }
         }
+        &[type=fieldset]{
+            height: 50%;
+            overflow-y: scroll;
+        }
         &::placeholder {
             color: $dark-gray;
             font-weight: 200;
             letter-spacing: 2px;
+        }
+
+        .submit {
+            display: block;
         }
     }
 }

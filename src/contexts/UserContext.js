@@ -153,7 +153,7 @@ export const UserProvider = ({ children }) => {
       checkIfChecked();
       getNearbyUsers();
     }
-  }, [currentUser, currentUser.genre]);
+  }, [currentUser]);
 
 
   const getNearbyUsers = () => {

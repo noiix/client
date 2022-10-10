@@ -8,8 +8,9 @@ import {IoMdClose} from 'react-icons/io';
 import {HiOutlineMenuAlt3} from 'react-icons/hi';
 
 function Navbar() {
-  const { currentUser, logout, setProfile} = useContext(UserContext)
+  const { currentUser, logout, setProfile, users} = useContext(UserContext)
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
+
 
 
   return (

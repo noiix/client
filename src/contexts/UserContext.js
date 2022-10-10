@@ -161,7 +161,8 @@ export const UserProvider = ({ children }) => {
       (response) => {
         console.log("response all users", response);
         if(response.data.result) {
-          setUsers(response.data.result);
+          const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
+          setUsers(filteredUsers);
         }
         else {
           setNotification([...notification, response.data.notification]);

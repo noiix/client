@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
   const [users, setUsers] = useState([]);
 
-  const [profile, setProfile] = useLocalStorage("profile", null)
+  const [profile, setProfile] = useLocalStorage("profile", {})
 
   const [genre, setGenre] = useState([]);
   const [instrument, setInstrument] = useState([]);

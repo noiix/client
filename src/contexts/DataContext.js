@@ -8,31 +8,25 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [mySongs, setMySongs] = useState([]);
+ 
 
   
   // const [formData, setFormData] = useState({})
 
-   const getAllMyTracks = () => {
-    API.get(`${baseUrl}/music/mysongs`, { withCredentials: true})
-      .then(response => {
-        console.log('my songs', response.data)
-        setMySongs(response.data)
-      })
-  }
+  
 
 
-  useEffect(() => {
-    if(currentUser){
-      getAllMyTracks()
-    }
-  }, [currentUser])
+  // useEffect(() => {
+  //   if(currentUser){
+  //     getAllMyTracks()
+  //   }
+  // }, [currentUser])
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -51,7 +45,8 @@ export const DataProvider = ({ children }) => {
       "Content-Type": "multipart/form-data",
     }).then((response) => {
       setNotification([...notification, response.data.notification]);
-      setCurrentUser(response.data.result)
+      setCurrentUser(response.data)
+      setProfile(response.data.result)
     });
   };
 
@@ -65,6 +60,7 @@ export const DataProvider = ({ children }) => {
       withCredentials: true,
     }).then((response) => {
       setNotification([...notification, response.data.notification]);
+      setProfile(response.data.result);
       setCurrentUser(response.data.result);
     });
   };

@@ -110,7 +110,7 @@ function Profile() {
           <div>
           {profile.music.length > 0 ? profile.music.map((track, idx) => (
             <div className='bottom-column'>
-              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{playing && currentItem === idx ? <GrPause/> : <GrPlay/> }</div>
+              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
               <div className="track-title">
               {track.title}
               </div>

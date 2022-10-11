@@ -8,7 +8,7 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile, profile} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
@@ -39,9 +39,9 @@ export const DataProvider = ({ children }) => {
       if(response.data.result){
         setCurrentUser(response.data.result)
         setProfile(response.data.result)
+        setMySongs(response.data.result.music)
       }
       setNotification([...notification, response.data.notification]);
-     
     });
   };
 

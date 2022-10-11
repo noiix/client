@@ -7,6 +7,7 @@ import ProfilePic from "./ProfilePic";
 import './profile.styles.scss'
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
+import DataContext from '../../contexts/DataContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
@@ -16,33 +17,24 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
   const {profile, currentUser} = useContext(UserContext)
+  const {deleteTrack} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
  
-  let url_1;
-  let url_2;
-  let url_3;
+  let url_1 = null
+  let url_2 = null
+  let url_3 = null
 
   if(profile.music.length !== 0) {
     url_1 = profile.music[0].path;
   }
-  else {
-    url_1 = null;
-  }
-
   if(profile.music.length > 1) {
     url_2 = profile.music[1].path;
   }
-  else {
-    url_2 = null;
-  }
-
   if(profile.music.length > 2) {
     url_3 = profile.music[2].path
   }
-  else {
-    url_3 = null
-  }
+ 
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
@@ -101,7 +93,7 @@ function Profile() {
       { Object.keys(currentUser).length !== 0 && (
         <div>
           <img src={ profile?.image } alt="img" className="profile-img"/>
-          <button onClick={ togglePic }>update pic</button>
+          {profile._id === currentUser._id && <button onClick={ togglePic }>update pic</button>}
           { togglePicBtn && <>
             <ProfilePic />
 
@@ -114,18 +106,19 @@ function Profile() {
               <div className="track-title">
               {track.title}
               </div>
+              {profile._id === currentUser._id && <div className="delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
           </div>)) : (
             <div className='bottom-column'></div>)
         }
           </div>
-          <button onClick={ toggleModalUpdate }>update profile</button>
+          {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>update profile</button>}
           { displayModalUpdate &&
             <Modal>
               <ProfileUpdate />
             </Modal>
           }
 
-          <button onClick={ toggleModalAdd }>add track</button>
+          {profile._id === currentUser._id && <button onClick={ toggleModalAdd }>add track</button>}
           {displayModalAdd &&
             <Modal>
               <Upload/>

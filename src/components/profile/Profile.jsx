@@ -1,4 +1,4 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
 // import { NavLink } from "react-router-dom";
@@ -20,25 +20,57 @@ function Profile() {
   const {deleteTrack} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
+  // const [url, setUrl] = useState({url1: '', url2: '', url3: ''});
  
   let url_1 = null
   let url_2 = null
   let url_3 = null
 
-  if(profile.music.length !== 0) {
-    url_1 = profile.music[0].path;
-  }
-  if(profile.music.length > 1) {
-    url_2 = profile.music[1].path;
-  }
-  if(profile.music.length > 2) {
-    url_3 = profile.music[2].path
-  }
- 
+  // if(profile.music.length !== 0) {
+  //   url_1 = profile.music[0].path
+  //   // setUrl({...url, url1: profile.music[0].path});
+  // }
+  // if(profile.music.length > 1) {
+  //   url_2 = profile.music[1].path
+  //   //  setUrl({...url, url2: profile.music[1].path});
+  // }
+  // if(profile.music.length > 2) {
+  //   url_3 = profile.music[2].path
+  //   // setUrl({...url, url3: profile.music[2].path});
+  // }
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
   let audioRef3 = useRef(new Audio(url_3))
+
+  console.log(profile.music.length)
+
+  useEffect(() => {
+    console.log('useeffect', profile)
+    if(profile) {
+      if(profile.music.length !== 0) {
+        url_1 = profile.music[0].path
+        audioRef1.current = new Audio(url_1)
+        // setUrl({...url, url1: profile.music[0].path});
+      }
+      if(profile.music.length > 1) {
+        url_2 = profile.music[1].path
+        audioRef2.current = new Audio(url_2)
+        //  setUrl({...url, url2: profile.music[1].path});
+      }
+      if(profile.music.length > 2) {
+        url_3 = profile.music[2].path
+        audioRef3.current = new Audio(url_3)
+        // setUrl({...url, url3: profile.music[2].path});
+      }
+    }
+  }, [profile, currentUser])
+
+  
+
+  
+
+  console.log('audioref3', audioRef3.current)
 
   const play = (index) => {
     if(index === 0){
@@ -85,7 +117,6 @@ function Profile() {
   function togglePic() {
     setTogglePicBtn(!togglePicBtn)
   }
-  console.log('profile', profile)
 
   return (
     <div className="profile-container">

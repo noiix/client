@@ -221,7 +221,9 @@ export const UserProvider = ({ children }) => {
     handleCheck,
     users,
     profile,
-    setProfile
+    setProfile, 
+    mySongs, 
+    setMySongs
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

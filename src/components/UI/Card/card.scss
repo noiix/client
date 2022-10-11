@@ -10,14 +10,14 @@
     // padding: 0;
 }
 
-.left-column {
+.card-left-column {
     // background-color: aqua;
     width: 20%;
     height: 100%;
     display: flex;
 }
 
-.artist-name {
+.card-artist-name {
     // background-color: cadetblue;
     transform: rotate(180deg);
     writing-mode: vertical-rl;
@@ -31,7 +31,7 @@
     text-overflow: ellipsis;
 }
 
-.right-column {
+.card-right-column {
     // background-color: lightsalmon;
     width: 80%;
     height: 100%;
@@ -41,7 +41,7 @@
     align-items: center;
 }
 
-.track-pic {
+.card-track-pic {
     background-color: $light-gray;
     width: 150px;
     height: 150px;
@@ -53,7 +53,7 @@
     }
 }
 
-.bottom-column {
+.card-bottom-column {
     // background-color: bisque;
     width: 100%;
     height: 28%;
@@ -68,6 +68,6 @@
 
 }
 
-.track-title {
+.card-track-title {
     // background-color: chartreuse;
 }

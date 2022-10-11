@@ -38,22 +38,22 @@ function Card({ user }) {
   return (
     <div className="card" onClick={() => setProfile(user)}>
 
-      <div className='left-column'>
-        <div className="artist-name">
+      <div className='card-left-column'>
+        <div className="card-artist-name">
           <div>{user.username}</div>
         </div>
       </div>
 
-      <div className='right-column'>
-        <div className="track-pic"><img src={user.image}/></div>
+      <div className='card-right-column'>
+        <div className="card-track-pic"><img src={user.image}/></div>
         {user.music.length > 0 ? (
-          <div className='bottom-column' onClick={e => e.preventDefault()}>
+          <div className='card-bottom-column' onClick={e => e.preventDefault()}>
          <div className="play-btn" onClick={playing ? pause : play}> {playing ? <GrPause/> : <GrPlay/> } </div>
-          <div className="track-title">
+          <div className="card-track-title">
           {user.music.length > 0 && user.music[0].title}
           </div>
         </div>) : (
-          <div className='bottom-column'></div>)
+          <div className='card-bottom-column'></div>)
       }
       </div>
 

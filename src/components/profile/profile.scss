@@ -1,15 +1,142 @@
 @use '../../style/variables.scss' as *;
 
 .profile-container {
-    width: 100%;
-    padding: 5rem;
+    // background-color: rgb(175, 175, 175);
+    // border: 3px solid red;
+    margin: 5rem auto;
     display: flex;
-    flex-direction: column;
-    background-color: aqua;
-    border: 1px solid black;
 }
 
 .profile-left-column {
-    background-color: blue;
-    border: 5px solid red;
+    // background-color: aqua;
+    width: 40%;
+    border-right: 2px dotted $dark-gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.profile-picture-container {
+    // background-color: gold;
+    padding: 2rem;
+    display: flex;
+}
+
+.profile-img {
+    position: relative;
+    border-radius: 50%;
+    border: 2.5px solid $dark-gray;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-picture-update-btn {
+    font-size: 1.5rem;
+    color: $dark-gray;
+    position: relative;
+    top: 75px;
+    left: -5px;
+}
+
+h3 {
+    padding: 0 2rem;
+    letter-spacing: 2px;
+}
+
+.profile-info-container {
+    // background-color: rgb(127, 215, 127);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info {
+    // background-color: khaki;
+    width: 60%;
+    font-family: $extra-font;
+}
+
+.profile-info-update-btn {
+    margin-top: 1.5rem;
+}
+
+.profile-right-column {
+    // background-color: salmon;
+    width: 60%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // position: relative;
+}
+
+.profile-connect-btn-container {
+    margin-bottom: 2rem;
+    display: flex;
+    // position: absolute;
+    // top: 72px;
+}
+
+.profile-connect-btn {
+    border: 3px solid $dark-gray;
+    padding: 0.2em;
+    background-color: $pink;
+    display: flex;
+}
+
+.profile-track-list {
+    // background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+
+}
+
+.profile-track-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.profile-play-btn {
+    font-size: 2rem;
+    padding: 0 2rem;
+}
+
+.profile-track-title {
+    font-size: 1.2rem;
+    padding-right: 1rem;
+}
+
+.profile-track-edit-btn {
+    font-size: 1.5rem;
+}
+
+.profile-track-delete-btn {
+    font-size: 1.5rem;
+}
+
+.profile-track-add-btn {
+    padding: 0 2rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: $max-screen) {
+    .profile-container {
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 2rem;
+    }
+    .profile-left-column, .profile-right-column {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    .profile-info {
+        width: 100%;
+    }
+  }

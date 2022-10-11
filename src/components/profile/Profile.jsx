@@ -11,6 +11,10 @@ import DataContext from '../../contexts/DataContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
+// import {RiImageEditFill} from 'react-icons/ri';
+import {TbEdit} from 'react-icons/tb'
+import {BsPlusLg} from 'react-icons/bs'
+
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
@@ -89,46 +93,74 @@ function Profile() {
 
   return (
     <div className="profile-container">
-      Profile
       { Object.keys(currentUser).length !== 0 && (
-        <div>
-          <img src={ profile?.image } alt="img" className="profile-img"/>
-          {profile._id === currentUser._id && <button onClick={ togglePic }>update pic</button>}
-          { togglePicBtn && <>
-            <ProfilePic />
+      <>
+        <div className="profile-left-column">
 
-          </> }
+          <div className="profile-picture-container">
+            <img src={ profile?.image } alt="img" className="profile-img"/>
+            {profile._id === currentUser._id && <div className="profile-picture-update-btn" onClick={ togglePic }><TbEdit /></div>}
+            { togglePicBtn && <>
+              <ProfilePic />
+            </> }
+          </div>
+
           <h3>{ profile.username }</h3>
-          <div>
+          
+          <div className="profile-info-container">
+            <div className="profile-info">
+              Hi, I am a musician from Krakow and I am interested in the algo-rave scene.
+            </div>
+            <div className="profile-info-update-btn">
+            {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
+            { displayModalUpdate &&
+              <Modal>
+                <ProfileUpdate />
+              </Modal>
+            }
+            </div>
+          </div>
+
+        
+        </div>
+        <div className="profile-right-column">
+          <div className="profile-connect-btn-container">
+          {profile._id !== currentUser._id && <div className="profile-connect-btn">
+              CONNECT
+            </div>}
+          </div>
+          <div className="profile-track-list">
+      
+          <>
           {profile.music.length > 0 ? profile.music.map((track, idx) => (
-            <div className='bottom-column'>
-              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
-              <div className="track-title">
+            
+            <>
+            <div className="profile-track-line">
+              <div className="profile-play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="profile-track-title">
               {track.title}
               </div>
-              {profile._id === currentUser._id && <div className="delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
-          </div>)) : (
-            <div className='bottom-column'></div>)
+              {profile._id === currentUser._id && <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
+              </div>
+          </>)) : (
+            <div></div>)
         }
-          </div>
-          {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>update profile</button>}
-          { displayModalUpdate &&
-            <Modal>
-              <ProfileUpdate />
-            </Modal>
-          }
-
-          {profile._id === currentUser._id && <button onClick={ toggleModalAdd }>add track</button>}
+        {profile._id === currentUser._id && <div className="profile-track-add-btn" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&
             <Modal>
               <Upload/>
             </Modal>
           }
+        
+          </>
+          
+     
         </div>
-
-
-
-      )}
+        </div>
+    </>
+    
+      )} 
+      
     </div>
   );
 }

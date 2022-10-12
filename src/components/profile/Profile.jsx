@@ -70,10 +70,6 @@ function Profile() {
     }
   }, [profile, currentUser])
 
-  
-
-  
-
   console.log('audioref3', audioRef3.current)
 
   const play = (index) => {

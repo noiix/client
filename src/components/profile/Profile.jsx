@@ -11,6 +11,7 @@ import DataContext from '../../contexts/DataContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
+import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io'
 // import {RiImageEditFill} from 'react-icons/ri';
 import {TbEdit} from 'react-icons/tb'
 import {BsPlusLg} from 'react-icons/bs'
@@ -21,27 +22,17 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
   const {profile, currentUser} = useContext(UserContext)
-  const {deleteTrack} = useContext(DataContext)
+  const {deleteTrack, likeSongs, isLiked, currentSong, dislikeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   // const [url, setUrl] = useState({url1: '', url2: '', url3: ''});
  
-  let url_1 = null
-  let url_2 = null
-  let url_3 = null
+  let url_1;
+  let url_2;
+  let url_3;
 
-  // if(profile.music.length !== 0) {
-  //   url_1 = profile.music[0].path
-  //   // setUrl({...url, url1: profile.music[0].path});
-  // }
-  // if(profile.music.length > 1) {
-  //   url_2 = profile.music[1].path
-  //   //  setUrl({...url, url2: profile.music[1].path});
-  // }
-  // if(profile.music.length > 2) {
-  //   url_3 = profile.music[2].path
-  //   // setUrl({...url, url3: profile.music[2].path});
-  // }
+  console.log('liked songs current user', currentUser)
+
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
@@ -167,7 +158,9 @@ function Profile() {
               <div className="profile-track-title">
               {track.title}
               </div>
-              {profile._id === currentUser._id && <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
+              {profile._id === currentUser._id ? 
+                <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
+                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
             <div></div>)

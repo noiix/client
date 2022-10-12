@@ -14,12 +14,22 @@ export const DataProvider = ({ children }) => {
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
+  const [currentSong, setCurrentSong] = useState(0);
  
 
   
   // const [formData, setFormData] = useState({})
 
-  
+  const likeSongs = (index) => {
+    const songToLike = profile.music[index]
+    console.log('songtolike', songToLike)
+    API.patch(`${baseUrl}/user/likesong`, songToLike, {withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.data)
+    })
+  }
+ 
   const submitForm = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -91,7 +101,10 @@ export const DataProvider = ({ children }) => {
     selectedFile,
     handleFileInput,
     submitPicture,
-    deleteTrack
+    deleteTrack,
+    likeSongs,
+    isLiked,
+    currentSong
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

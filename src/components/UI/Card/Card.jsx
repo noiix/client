@@ -9,10 +9,6 @@ function Card({ user }) {
   const { currentUser, users, setProfile, profile } = useContext(UserContext);
   const { selectedFile, fileName } = useContext(DataContext);
   const [playing, setPlaying] = useState(false);
-    // console.log(currentUser);
-    // console.log(selectedFile);
-    // console.log(fileName);
-    // console.log(users);
 
   let url;
   if(user.music.length !== 0) {

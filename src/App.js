@@ -11,6 +11,7 @@ import UserContext from "./contexts/UserContext";
 import axios from "axios";
 import DesignContext from "./contexts/DesignContext";
 import Authentication from "./components/authentication/Authentication";
+import Favorite from './components/favoriteSongs/Favorite'
 // import ProfileUpdate from "./components/profile/ProfileUpdate";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           {/* <Route path='/chat' element={<Chat/>}/> */}
           <Route path='/upload' element={<Upload/>}/>
+          <Route path='/favorite' element={<Favorite/>}/>
           </>
         }
       </Routes>

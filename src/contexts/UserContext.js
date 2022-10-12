@@ -54,8 +54,8 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/login`, formData, { withCredentials: true })
       .then((response) => {
-        if (response.data.result) {
-          setCurrentUser(response.data.result);
+        if (response.data.info) {
+          setCurrentUser(response.data.info);
         }
 
         if (checkNotification(response.data.notification)) {

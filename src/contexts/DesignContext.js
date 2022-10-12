@@ -65,7 +65,7 @@ export const DesignProvider = ({children}) => {
         setLogReg(!logReg)
     }
 
-    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd}
+    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, closeModal}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

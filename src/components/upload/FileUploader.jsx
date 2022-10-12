@@ -12,7 +12,7 @@ const FileUploader = ({ onFileSelectSuccess, onFileSelectError }) => {
 
   return (
     <div className='file-uploader'>
-      <input type="file" onChange={ handleFileInput } ref={ fileInput } className="file-input" />
+      <input type="file" onChange={ handleFileInput } required ref={ fileInput } className="file-input" />
       <div onClick={ e => fileInput.current && fileInput.current.click() } className="drag-and-drop">
         { darkMode ? <FaRegFileAudio className='drop-icon' /> : <FaFileAudio className='drop-icon' /> }
       </div>

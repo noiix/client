@@ -42,7 +42,7 @@ const Register = () => {
         />
       </form>
       <div>
-        <Button className="btn" type="submit" value="submit" name="sign up" onSubmit={ createAccount }/>
+        <Button className="btn" type="submit" value="submit" name="sign up" onClick={ createAccount }/>
       </div>
     </>
   );

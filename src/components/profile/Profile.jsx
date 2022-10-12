@@ -4,7 +4,6 @@ import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
 import ProfilePic from "./ProfilePic";
-import './profile.styles.scss'
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
 import DataContext from '../../contexts/DataContext';
@@ -17,9 +16,8 @@ import {BsPlusLg} from 'react-icons/bs'
 
 
 function Profile() {
-  const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
+  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
   const {profile, currentUser} = useContext(UserContext)
   const {deleteTrack} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
@@ -126,10 +124,13 @@ function Profile() {
 
           <div className="profile-picture-container">
             <img src={ profile?.image } alt="img" className="profile-img"/>
-            {profile._id === currentUser._id && <div className="profile-picture-update-btn" onClick={ togglePic }><TbEdit /></div>}
-            { togglePicBtn && <>
+            {profile._id === currentUser._id && 
+            <div className="pic-upload-form-container">
+              <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
+            { displayForm && <>
               <ProfilePic />
             </> }
+            </div>}
           </div>
 
           <h3>{ profile.username }</h3>
@@ -163,16 +164,16 @@ function Profile() {
             
             <>
             <div className="profile-track-line">
-              <div className="profile-play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="profile-play-btn icon" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
               <div className="profile-track-title">
               {track.title}
               </div>
-              {profile._id === currentUser._id && <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
+              {profile._id === currentUser._id && <div className="profile-track-delete-btn icon" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
               </div>
           </>)) : (
             <div></div>)
         }
-        {profile._id === currentUser._id && <div className="profile-track-add-btn" onClick={ toggleModalAdd }><BsPlusLg /></div>}
+        {profile._id === currentUser._id && <div className="profile-track-add-btn icon" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&
             <Modal>
               <Upload/>

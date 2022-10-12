@@ -20,18 +20,26 @@ form {
                 background-color: $pink;
             }
         }
-        &[type=fieldset]{
-            height: 50%;
-            overflow-y: scroll;
-        }
         &::placeholder {
             color: $dark-gray;
             font-weight: 200;
             letter-spacing: 2px;
         }
-
-        .submit {
-            display: block;
-        }
     }
+    .drag-and-drop {
+        cursor: pointer;
+    }
+}
+
+.form-container {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

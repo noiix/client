@@ -1,0 +1,26 @@
+@use '../../style/variables.scss' as *;
+
+
+.pic-upload-form-container {
+    position: relative;
+    .profile-picture-update-btn {
+        position: static;
+    }
+    .pic-upload-form-bg {
+        position:absolute;
+    }
+    .pic-upload-form {
+        position: absolute;
+        top: 5rem;
+        left: 15rem;
+        border: 1px $dark-gray solid;
+        .drag-and-drop {
+            width: fit-content;
+            height: fit-content;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

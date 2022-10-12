@@ -2,6 +2,7 @@
 
 
 button {
+    cursor: pointer;
     color: $dark-gray;
     margin-top: 1rem;
     background-color: white;
@@ -70,3 +71,7 @@ button {
 &{
     @include btn-border-drawing($lavender, $lavender, 4px, bottom, right);
 }}
+
+.icon {
+    cursor: pointer;
+}

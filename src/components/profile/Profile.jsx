@@ -18,14 +18,9 @@ import Button from "../UI/button/Button";
 
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-<<<<<<< HEAD
-  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
-  const {profile, currentUser} = useContext(UserContext)
-=======
 
-  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
+  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
   const {profile, currentUser, introTextHandler, introTextUpdate, introText, setToggleTextBtn, toggleTextBtn} = useContext(UserContext)
->>>>>>> f017fcf03d6e204b2de8e4b4d4096b8fffb311a4
   const {deleteTrack} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
@@ -143,9 +138,9 @@ function Profile() {
           
           <div className="profile-info-container">
             <div className="profile-info">
-              {profile._id === currentUser._id && toggleTextBtn === true ? 
+              {profile._id === currentUser._id ? 
                 <form>
-                  <input type="text" name="intro_text" placeholder="Write a short info text about you." onChange={ introTextHandler }>
+                  <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> : profile._id === currentUser._id && <div>{profile.intro_text}<TbEdit onClick={ () => setToggleTextBtn(true) }/></div>}

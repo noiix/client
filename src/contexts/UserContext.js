@@ -149,7 +149,7 @@ export const UserProvider = ({ children }) => {
 
 
   const introTextUpdate = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const introTextStr = {intro_text: introText}
     API.patch(`${baseUrl}/user/profile/text`, introTextStr, {
       withCredentials: true

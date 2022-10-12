@@ -4,7 +4,6 @@ import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
 import ProfilePic from "./ProfilePic";
-import './profile.styles.scss'
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
 import DataContext from '../../contexts/DataContext';
@@ -15,14 +14,15 @@ import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io'
 // import {RiImageEditFill} from 'react-icons/ri';
 import {TbEdit} from 'react-icons/tb'
 import {BsPlusLg} from 'react-icons/bs'
+import Button from '../UI/button/Button'
 
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
-  const {profile, currentUser} = useContext(UserContext)
-  const {deleteTrack, likeSongs, isLiked, currentSong, dislikeSongs} = useContext(DataContext)
+  const {profile, currentUser, introTextUpdate, setToggleTextBtn, toggleTextBtn, introTextHandler} = useContext(UserContext)
+  const {deleteTrack, likeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   // const [url, setUrl] = useState({url1: '', url2: '', url3: ''});
@@ -127,7 +127,13 @@ function Profile() {
           
           <div className="profile-info-container">
             <div className="profile-info">
-              Hi, I am a musician from Krakow and I am interested in the algo-rave scene.
+              {profile._id === currentUser._id && toggleTextBtn === true ? 
+                <form>
+                  <input type="text" name="intro_text" placeholder="Write a short info text about you." onChange={ introTextHandler }>
+                  </input>
+                  <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
+                </form> : profile._id === currentUser._id && <div>{profile.intro_text}<TbEdit onClick={ () => setToggleTextBtn(true) }/></div>}
+
             </div>
             <div className="profile-info-update-btn">
             {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
@@ -160,7 +166,7 @@ function Profile() {
               </div>
               {profile._id === currentUser._id ? 
                 <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
-                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
+                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{profile.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
             <div></div>)

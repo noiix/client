@@ -21,6 +21,8 @@ export const UserProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
   const [checkedGenre, setCheckedGenre] = useState([]);
   const [mySongs, setMySongs] = useState([]);
+  const [introText, setIntroText] = useState('');
+  const [toggleTextBtn, setToggleTextBtn] = useState(false);
 
   const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
@@ -47,8 +49,16 @@ export const UserProvider = ({ children }) => {
 
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
   // console.log("form data: " + formData);
+
+  const introTextHandler = (e) => {
+    setIntroText(e.target.value);
+    console.log('introTextHandler check', e.target.value);
+  }
+
+
 
   const login = (e) => {
     e.preventDefault();
@@ -125,7 +135,7 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    formData = { ...formData, genre: genre, instrument: instrument };
+    formData = { ...formData, genre: genre, instrument: instrument};
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
@@ -136,6 +146,23 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+
+
+  const introTextUpdate = (e) => {
+    e.preventDefault();
+    const introTextStr = {intro_text: introText}
+    API.patch(`${baseUrl}/user/profile/text`, introTextStr, {
+      withCredentials: true
+    })
+    .then((response) => {
+      console.log('introText update', response.data)
+      setCurrentUser(response.data.result)
+      setProfile(response.data.result)
+      setToggleTextBtn(false);
+    })
+    .catch((err) => console.log(err));
+  }
+
 
   console.log('new currentUser', currentUser)
   const checkIfChecked = () => {
@@ -204,9 +231,12 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+
+
   
   const value = {
     inputHandler,
+    introTextHandler,
     createAccount,
     login,
     logout,
@@ -216,6 +246,7 @@ export const UserProvider = ({ children }) => {
     setCurrentUser,
     googleAuthentication,
     profileUpdate,
+    introTextUpdate,
     genre,
     instrument,
     handleCheck,
@@ -223,7 +254,10 @@ export const UserProvider = ({ children }) => {
     profile,
     setProfile, 
     mySongs, 
-    setMySongs
+    setMySongs,
+    introText,
+    setToggleTextBtn,
+    toggleTextBtn
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -177,10 +177,7 @@ function Profile() {
               <Upload/>
             </Modal>
           }
-        
           </>
-          
-     
         </div>
         </div>
     </>

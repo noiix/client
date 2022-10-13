@@ -49,10 +49,11 @@ function Navbar() {
           <li><NavLink to={`/profile`} onClick={() => setProfile(currentUser)}>profile</NavLink></li>
           <li><NavLink to={"/chat"}>chat</NavLink></li>
           <li><NavLink to={"/favorite"}>favorites</NavLink></li>
-          <li onClick={toggleSearch}><ImSearch /></li>
           <li><NavLink to={"/"} onClick={logout} >logout</NavLink></li>
+          
         </ul>
       }
+      {Object.keys(currentUser).length !== 0 && <span className="search-btn"onClick={toggleSearch}><ImSearch /></span>}
       <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </>
       }

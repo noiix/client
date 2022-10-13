@@ -6,6 +6,7 @@ import DesignContext from "../../contexts/DesignContext";
 
 function Search() {
 
+  const {closeModal} = useContext(DesignContext)
   const {inputSearchHandler} = useContext(DataContext);
   const {displaySearch, setDisplaySearch} = useContext(DataContext);
   

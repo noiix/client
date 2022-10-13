@@ -108,6 +108,8 @@ function Profile() {
     setTogglePicBtn(!togglePicBtn)
   }
 
+  console.log('profile liked songs', currentUser.liked_songs)
+
   return (
     <div className="profile-container">
       { Object.keys(currentUser).length !== 0 && (
@@ -167,8 +169,8 @@ function Profile() {
               {track.title}
               </div>
               {profile._id === currentUser._id ? 
-                <div className="profile-track-delete-btn icon-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
-                <div className="profile-like-track-btn icon-btn" onClick={() => likeSongs(idx)}>{profile.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
+                <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
+                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
             <div></div>)
@@ -179,10 +181,7 @@ function Profile() {
               <Upload/>
             </Modal>
           }
-        
           </>
-          
-     
         </div>
         </div>
     </>

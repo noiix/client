@@ -23,6 +23,8 @@ export const UserProvider = ({ children }) => {
   const [mySongs, setMySongs] = useState([]);
   const [introText, setIntroText] = useState('');
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
+  const [myFavorites, setMyFavorites] = useState([])
+  const [usersForSearch, setUsersForSearch] = useState([]);
 
   const { notification, setNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
 
@@ -93,8 +95,11 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {
       withCredentials: true,
     }).then((response) => {
+      // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
     });
+
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const handleCheck = (e) => {
@@ -131,7 +136,10 @@ export const UserProvider = ({ children }) => {
       setInstrument(updatedInstrument);
     }
   };
-  
+  // const updatedInstrument = instrument.filter(item => item !== e.target.value)
+  // setInstrument(updatedInstrument)
+
+  // console.log('checked genre:',  genre, instrument)
 
   const profileUpdate = (e) => {
     e.preventDefault();
@@ -186,14 +194,23 @@ export const UserProvider = ({ children }) => {
       })
   }
 
+  const getAllMyFavorites = () => {
+    API.get(`${baseUrl}/music/favorites`, { withCredentials: true})
+    .then(response => {
+      if(response.data) {
+        setMyFavorites(response.data.result)
+      }
+    })
+  }
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
       getNearbyUsers();
       getAllMyTracks();
+      getAllMyFavorites();
     }
   }, [currentUser]);
-
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
@@ -202,6 +219,7 @@ export const UserProvider = ({ children }) => {
         if(response.data.result) {
           const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
           setUsers(filteredUsers);
+          setUsersForSearch(filteredUsers)
         }
         else {
           setNotification([...notification, response.data.notification]);
@@ -234,7 +252,6 @@ export const UserProvider = ({ children }) => {
   };
 
 
-
   
   const value = {
     inputHandler,
@@ -253,13 +270,16 @@ export const UserProvider = ({ children }) => {
     instrument,
     handleCheck,
     users,
+    setUsers,
     profile,
     setProfile, 
     mySongs, 
     setMySongs,
     introText,
     setToggleTextBtn,
-    toggleTextBtn
+    toggleTextBtn,
+    getNearbyUsers,
+    usersForSearch
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

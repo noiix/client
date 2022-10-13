@@ -1,30 +1,42 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import baseUrl from "../config";
+import {useNavigate} from 'react-router-dom'
 import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const { notification, setNotification, closeModal, setWaitingAnimation } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs} = useContext(UserContext)
+  const { notification, setNotification, closeModal, setWaitingAnimation  } = useContext(DesignContext);
+  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, usersForSearch, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
+
+  let navigate = useNavigate();
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
- 
-
+  const [displaySearch, setDisplaySearch] = useState(false);
   
   // const [formData, setFormData] = useState({})
 
   const likeSongs = (index) => {
     const songToLike = profile.music[index]
+    
     console.log('songtolike', songToLike)
     API.patch(`${baseUrl}/user/likesong`, songToLike, {withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.data)
+    })
+  }
+
+  const dislikeSongs = (index) => {
+    const songToDislike = currentUser.liked_songs[index]
+
+    API.patch(`${baseUrl}/user/dislike`, songToDislike, {withCredentials: true})
     .then(response => {
       setCurrentUser(response.data.data)
     })
@@ -100,6 +112,25 @@ export const DataProvider = ({ children }) => {
       setNotification([...notification, response.data.notification]);
     }).catch()
   }
+
+  const inputSearchHandler = (e) => {
+    e.preventDefault();
+    let query = e.target.value.toLowerCase().toString();
+    console.log('query', query)
+    if (!query) {
+      const filteredUsers = usersForSearch.filter(user => user._id !== currentUser._id)
+      setUsers(filteredUsers);
+      getNearbyUsers()
+    } else {
+      const newSearchResult = usersForSearch.filter(user => user.instrument.includes(query) || user.genre.includes(query) || user.username.toLowerCase().includes(query))
+      setUsers(newSearchResult)
+      navigate('/');
+      console.log('newSearchResult', newSearchResult)
+    }
+
+  }
+
+  console.log('search', users)
  
 
   const value = {
@@ -113,7 +144,11 @@ export const DataProvider = ({ children }) => {
     deleteTrack,
     likeSongs,
     isLiked,
-    currentSong
+    currentSong,
+    dislikeSongs,
+    inputSearchHandler,
+    displaySearch, 
+    setDisplaySearch
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

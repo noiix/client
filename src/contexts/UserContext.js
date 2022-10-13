@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
   const [introText, setIntroText] = useState('');
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
   const [myFavorites, setMyFavorites] = useState([])
+  const [usersForSearch, setUsersForSearch] = useState([]);
 
   const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
 
@@ -216,6 +217,7 @@ export const UserProvider = ({ children }) => {
         if(response.data.result) {
           const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
           setUsers(filteredUsers);
+          setUsersForSearch(filteredUsers)
         }
         else {
           setNotification([...notification, response.data.notification]);
@@ -266,6 +268,7 @@ export const UserProvider = ({ children }) => {
     instrument,
     handleCheck,
     users,
+    setUsers,
     profile,
     setProfile, 
     mySongs, 
@@ -273,6 +276,8 @@ export const UserProvider = ({ children }) => {
     introText,
     setToggleTextBtn,
     toggleTextBtn,
+    getNearbyUsers,
+    usersForSearch
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

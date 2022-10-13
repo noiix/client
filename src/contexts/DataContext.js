@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import baseUrl from "../config";
+import {useNavigate} from 'react-router-dom'
 import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
 
@@ -8,16 +9,17 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, usersForSearch, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
+
+  let navigate = useNavigate();
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
- 
-
+  const [displaySearch, setDisplaySearch] = useState(false);
   
   // const [formData, setFormData] = useState({})
 
@@ -101,6 +103,25 @@ export const DataProvider = ({ children }) => {
       setNotification([...notification, response.data.notification]);
     }).catch()
   }
+
+  const inputSearchHandler = (e) => {
+    e.preventDefault();
+    let query = e.target.value.toLowerCase().toString();
+    console.log('query', query)
+    if (!query) {
+      const filteredUsers = usersForSearch.filter(user => user._id !== currentUser._id)
+      setUsers(filteredUsers);
+      getNearbyUsers()
+    } else {
+      const newSearchResult = usersForSearch.filter(user => user.instrument.includes(query) || user.genre.includes(query) || user.username.toLowerCase().includes(query))
+      setUsers(newSearchResult)
+      navigate('/');
+      console.log('newSearchResult', newSearchResult)
+    }
+
+  }
+
+  console.log('search', users)
  
 
   const value = {
@@ -115,7 +136,10 @@ export const DataProvider = ({ children }) => {
     likeSongs,
     isLiked,
     currentSong,
-    dislikeSongs
+    dislikeSongs,
+    inputSearchHandler,
+    displaySearch, 
+    setDisplaySearch
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

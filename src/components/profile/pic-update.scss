@@ -23,15 +23,20 @@
         border: 1px $dark-gray solid;
         padding-top: 1rem ;
         .drag-and-drop {
-            background-color: lighten($lavender, 25%);;
-            padding: 0.5rem;
-            img, svg {
+            border: lighten($lavender, 25%) 2px solid;
+            height: 130px;
+            width: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
                 width: 100px;
                 height: 100px;
                 object-fit: cover;
-            }
-            img {
                 border-radius: 50%;
+            }
+            svg {
+                font-size: 4rem;
             }
         }
         display: flex;

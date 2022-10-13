@@ -130,7 +130,7 @@ function Profile() {
           <div className="profile-info-container">
             <div className="profile-info">
               {profile._id === currentUser._id ? 
-                <form>
+                <form className="intro-text-form">
                   <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
@@ -162,13 +162,13 @@ function Profile() {
             
             <>
             <div className="profile-track-line">
-              <div className="profile-play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="profile-play-btn icon-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
               <div className="profile-track-title">
               {track.title}
               </div>
               {profile._id === currentUser._id ? 
-                <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
-                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{profile.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
+                <div className="profile-track-delete-btn icon-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
+                <div className="profile-like-track-btn icon-btn" onClick={() => likeSongs(idx)}>{profile.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
             <div></div>)

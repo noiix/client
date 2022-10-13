@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
   const [introText, setIntroText] = useState('');
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
 
-  const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
+  const { notification, setNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -135,7 +135,9 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
+    closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
+    setDisplayModal(false)
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
@@ -216,7 +218,7 @@ export const UserProvider = ({ children }) => {
         if(checkNotification(response.data.notification))
         {
           setDisplayNav(false);
-          setDisplayModal(false)
+          closeModal();
           setNotification([...notification, response.data.notification])
         };
       })

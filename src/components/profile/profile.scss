@@ -157,8 +157,14 @@ h3 {
     }
     .profile-info {
         width: 100%;
-    }
-
+        .intro-text-form {
+            width: max-content;
+            input[type=text] {
+                height: 3rem;
+            } 
+        } 
+    }       
+    
     .profile-track-line {
         width: 400px;
     }

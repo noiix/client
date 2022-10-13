@@ -15,6 +15,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    h3 {
+        word-wrap: break-word;
+        height: 3rem;
+    }
 }
 
 .profile-picture-container {

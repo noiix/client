@@ -10,7 +10,7 @@ import Button from '../UI/button/Button';
 
 const ProfilePic = () => {
   const fileInput = useRef(null)
-  const preview = useRef(null)
+  const [preview, setPreview] = useState(null)
   const { handleFileInput, selectedFile, submitPicture } = useContext(DataContext)
   const { darkMode, setDisplayForm } = useContext(DesignContext)
  
@@ -18,20 +18,17 @@ const ProfilePic = () => {
     setDisplayForm(false)
   }
 
-  useEffect(()=> {
-      const picPreview = preview.current
-      console.log(picPreview)
-    }, []) 
-
-  console.log('fileInput', fileInput.value)
+  const showPreview = (e) => {
+    setPreview({image: URL.createObjectURL(e.target.files[0])})
+  }
 
   return (
     <div className='pic-upload-form-bg' onClick={closeForm}>
       <form onClick={e => e.stopPropagation()} className="pic-upload-form">
-        <input type="file" name='image' onChange={ handleFileInput } ref={ fileInput } className="file-input" accept='image/*' id='profile-pic'/>
+        <input type="file" name='image' onChange={ e => {  showPreview(e); handleFileInput(e) }} ref={ fileInput } className="file-input" accept='image/*' id='profile-pic'/>
         <div onClick={ e => fileInput.current && fileInput.current.click() } className="drag-and-drop">
-          {fileInput !== null ? 
-            <img id='pic-preview' ref={preview} alt="preview of your profile img"></img> :
+          {preview ? 
+            <img id='pic-preview' src={preview.image} alt="preview of your profile img"/> :
            (darkMode ? <FaImage className='drop-icon' /> : <FaImage className='drop-icon' />) 
             }
         </div>

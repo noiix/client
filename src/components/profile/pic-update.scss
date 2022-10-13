@@ -2,14 +2,14 @@
 
 
 .pic-upload-form-container {
-    position: static;
+    position: relative;
     .profile-picture-update-btn {
         position: static;
     }
     .pic-upload-form-bg {
         position: absolute;
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         top: 0;
         left: 0;
         z-index: 3;
@@ -19,15 +19,19 @@
         background: white;
         top: -2rem;
         left: 2rem;
-        width: 200px;
+        width: 150px;
         border: 1px $dark-gray solid;
+        padding-top: 1rem ;
         .drag-and-drop {
-            padding: 2rem;
-            img {
-                border-radius: 50%;
+            background-color: lighten($lavender, 25%);;
+            padding: 0.5rem;
+            img, svg {
                 width: 100px;
                 height: 100px;
                 object-fit: cover;
+            }
+            img {
+                border-radius: 50%;
             }
         }
         display: flex;

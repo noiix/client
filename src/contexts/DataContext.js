@@ -122,7 +122,14 @@ export const DataProvider = ({ children }) => {
       setUsers(filteredUsers);
       getNearbyUsers()
     } else {
-      const newSearchResult = usersForSearch.filter(user => user.instrument.includes(query) || user.genre.includes(query) || user.username.toLowerCase().includes(query))
+      // let regex = `/[a-zA-Z]*${query}|${query}[a-zA-Z]*|[a-zA-Z]*${query}[a-zA-Z]*/`
+      let regex = new RegExp(query, 'g')
+      console.log(regex)
+      const newSearchResult = 
+      usersForSearch.filter(user => 
+      user.instrument.some(i => i.match(regex)) || 
+      user.genre.some(g => g.match(regex)) || 
+      user.username.toLowerCase().match(regex))
       setUsers(newSearchResult)
       navigate('/');
       console.log('newSearchResult', newSearchResult)

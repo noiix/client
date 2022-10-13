@@ -1,0 +1,25 @@
+@use "../../style/variables.scss" as *;
+
+.search-background {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.search-bar-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.search-bar{
+    width: 100%;
+    padding: 3rem 8rem;
+    background-color: rgba($pink, 0.5);
+    transition: background-size 1s;
+    background-size: 0 50%;
+    background-repeat: no-repeat;
+}

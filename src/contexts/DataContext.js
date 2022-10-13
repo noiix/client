@@ -25,8 +25,18 @@ export const DataProvider = ({ children }) => {
 
   const likeSongs = (index) => {
     const songToLike = profile.music[index]
+    
     console.log('songtolike', songToLike)
     API.patch(`${baseUrl}/user/likesong`, songToLike, {withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.data)
+    })
+  }
+
+  const dislikeSongs = (index) => {
+    const songToDislike = currentUser.liked_songs[index]
+
+    API.patch(`${baseUrl}/user/dislike`, songToDislike, {withCredentials: true})
     .then(response => {
       setCurrentUser(response.data.data)
     })
@@ -126,6 +136,7 @@ export const DataProvider = ({ children }) => {
     likeSongs,
     isLiked,
     currentSong,
+    dislikeSongs,
     inputSearchHandler,
     displaySearch, 
     setDisplaySearch

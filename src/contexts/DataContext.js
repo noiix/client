@@ -35,8 +35,13 @@ export const DataProvider = ({ children }) => {
     const formData = new FormData();
     // formData.title =  fileName;
     // formData.file = selectedFile;
-    formData.append("title", fileName);
-    formData.append("file", selectedFile);
+    if(formData !== {}){
+      formData.append("title", fileName);
+      formData.append("file", selectedFile);
+    } else {
+      console.log('form is empty')
+      setNotification([...notification, {title: 'Please, fill out the form', type: 'error'}])
+    }
 
     // setFormData({...formData, title: fileName, file: selectedFile})
     console.log("onsubmit", formData);
@@ -54,8 +59,8 @@ export const DataProvider = ({ children }) => {
       }
       setNotification([...notification, response.data.notification]);
     }).catch(err => {
-      console.log(err)
-      // setNotification([...notification, err[0])
+      setNotification([...notification, {title: 'Ups, something went wrong.', type: 'error'}])
+    
     });
   };
 

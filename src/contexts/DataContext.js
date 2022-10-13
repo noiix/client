@@ -8,18 +8,38 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile, profile} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
   const [fileName, setFileName] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
+  const [currentSong, setCurrentSong] = useState(0);
  
 
   
   // const [formData, setFormData] = useState({})
 
-  
+  const likeSongs = (index) => {
+    const songToLike = profile.music[index]
+    
+    console.log('songtolike', songToLike)
+    API.patch(`${baseUrl}/user/likesong`, songToLike, {withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.data)
+    })
+  }
+
+  const dislikeSongs = (index) => {
+    const songToDislike = currentUser.liked_songs[index]
+
+    API.patch(`${baseUrl}/user/dislike`, songToDislike, {withCredentials: true})
+    .then(response => {
+      setCurrentUser(response.data.data)
+    })
+  }
+ 
   const submitForm = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -39,9 +59,9 @@ export const DataProvider = ({ children }) => {
       if(response.data.result){
         setCurrentUser(response.data.result)
         setProfile(response.data.result)
+        setMySongs(response.data.result.music)
       }
       setNotification([...notification, response.data.notification]);
-     
     });
   };
 
@@ -91,7 +111,11 @@ export const DataProvider = ({ children }) => {
     selectedFile,
     handleFileInput,
     submitPicture,
-    deleteTrack
+    deleteTrack,
+    likeSongs,
+    isLiked,
+    currentSong,
+    dislikeSongs
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

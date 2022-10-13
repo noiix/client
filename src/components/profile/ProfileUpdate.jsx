@@ -3,19 +3,26 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import Button from "../UI/button/Button";
 
+
 const ProfileUpdate = () => {
   const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
 
-  const [toggleGenre, setToggleGenre] = useState(false)
-  const [toggleInstruments, setToggleInstruments] = useState(false)
+  const [genreDropdown, setGenreDropdown] = useState(false);
+  const [instrumentDropdown, setInstrumentDropdown] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
   function toggleGenreButton(e) {
   e.preventDefault()
-    setToggleGenre(!toggleGenre)
+  setGenreDropdown(!genreDropdown)
   }
   function toggleInstrumentsButton(e) {
     e.preventDefault()
-    setToggleInstruments(!toggleInstruments)
+    setInstrumentDropdown(!instrumentDropdown)
+  }
+
+  const closeDropdown = () => {
+    setGenreDropdown(false)
+    setInstrumentDropdown(false)
   }
 
   const genres = ["pop",
@@ -68,45 +75,42 @@ const ProfileUpdate = () => {
           onChange={ inputHandler }
         />
         <p>set your genres</p>
-        <Button onClick={ toggleGenreButton } name="genre"/>
-        { toggleGenre && <>
-          <fieldset>
-            { genres.map(genreItem => <>
-              {
-                genre.includes(genreItem) ?
-                  <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ true } onChange={ handleCheck } />
-                  :
-                  <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' onChange={ handleCheck } />
+        
+        <div className="dropdown-container">
+          <Button onClick={ toggleGenreButton } name="genre"/>
+          { genreDropdown && <div className="dropdown-background" onClick={closeDropdown}>
+            <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
 
-              }
-              <label htmlFor={ genreItem }>{ genreItem }</label> 
-            </>
+              { genres.map(genreItem => <div className={'genre-list-item'}>
+                    <label htmlFor={ genreItem }>{ genreItem }</label> 
+                    <div className={`styled-checkbox ${genre.includes(genreItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
+                      <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ genre.includes(genreItem) ? true : false } onClick={ handleCheck } />
+                    </div>
+              </div>
 
-            ) }
+              )}
 
-          </fieldset>
-        </> }
+            </div>
+          </div>}
+        </div> 
         <p>set your instruments</p>
+        <div className="dropdown-container">
         <Button onClick={ toggleInstrumentsButton } name="instruments"/>
-        { toggleInstruments && <>
-          <fieldset>
+        { instrumentDropdown && <div className="dropdown-background" onClick={closeDropdown}>
+          <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
 
-            { instruments.map(instrumentsItem => <>
-              {
-                instrument.includes(instrumentsItem) ?
-                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' defaultChecked={ true } onChange={ handleCheck } />
-                  :
-                  <input id={ instrumentsItem } value={ instrumentsItem } type='checkbox' name='instruments' onChange={ handleCheck } />
+            { instruments.map(instrumentItem => <div className={'genre-list-item'}>
+                  <label htmlFor={ instrumentItem }>{ instrumentItem }</label> 
+                  <div className={`styled-checkbox ${instrument.includes(instrumentItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
+                    <input id={ instrumentItem } value={ instrumentItem } type='checkbox' name='instruments' defaultChecked={ instrument.includes(instrumentItem) ? true : false } onClick={ handleCheck } />
+                  </div>
+            </div>
 
-              }
-              <label htmlFor={ instrumentsItem }>{ instrumentsItem }</label> 
-            </>
+            )}
 
-            ) }
-
-          </fieldset>
-        </>
-        }
+          </div>
+        </div>}
+      </div> 
         <Button type="submit" value="submit" name="submit" onClick={ profileUpdate }/>
       </form>
 

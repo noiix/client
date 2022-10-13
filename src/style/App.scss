@@ -12,7 +12,8 @@
 @use '../components/UI/Card/card.scss';
 @use '../components/profile/profile.scss';
 @use '../components/UI/modal/modal.scss';
-
+@use '../components/profile/profile_update.styles.scss';
+@use '../components/search/search.scss';
 
 body {
     margin: 0;
@@ -56,5 +57,8 @@ body {
     width: 100vw;
     flex-direction: column;
     justify-content: center;
+  }
+  .main {
+    width: 100%!important;
   }
 }

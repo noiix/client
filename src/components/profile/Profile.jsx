@@ -1,44 +1,67 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
 // import { NavLink } from "react-router-dom";
 import ProfileUpdate from './ProfileUpdate'
 import ProfilePic from "./ProfilePic";
-import './profile.styles.scss'
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
 import DataContext from '../../contexts/DataContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
+import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io'
+// import {RiImageEditFill} from 'react-icons/ri';
+import {TbEdit} from 'react-icons/tb'
+import {BsPlusLg} from 'react-icons/bs'
+import Button from '../UI/button/Button'
+
 
 function Profile() {
   const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
-  const {profile, currentUser} = useContext(UserContext)
-  const {deleteTrack} = useContext(DataContext)
+  const {profile, currentUser, introTextUpdate, setToggleTextBtn, toggleTextBtn, introTextHandler} = useContext(UserContext)
+  const {deleteTrack, likeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
+  // const [url, setUrl] = useState({url1: '', url2: '', url3: ''});
  
-  let url_1 = null
-  let url_2 = null
-  let url_3 = null
+  let url_1;
+  let url_2;
+  let url_3;
 
-  if(profile.music.length !== 0) {
-    url_1 = profile.music[0].path;
-  }
-  if(profile.music.length > 1) {
-    url_2 = profile.music[1].path;
-  }
-  if(profile.music.length > 2) {
-    url_3 = profile.music[2].path
-  }
- 
+  console.log('liked songs current user', currentUser)
+
 
   let audioRef1 = useRef(new Audio(url_1))
   let audioRef2 = useRef(new Audio(url_2))
   let audioRef3 = useRef(new Audio(url_3))
+
+  console.log(profile.music.length)
+
+  useEffect(() => {
+    console.log('useeffect', profile)
+    if(profile) {
+      if(profile.music.length !== 0) {
+        url_1 = profile.music[0].path
+        audioRef1.current = new Audio(url_1)
+        // setUrl({...url, url1: profile.music[0].path});
+      }
+      if(profile.music.length > 1) {
+        url_2 = profile.music[1].path
+        audioRef2.current = new Audio(url_2)
+        //  setUrl({...url, url2: profile.music[1].path});
+      }
+      if(profile.music.length > 2) {
+        url_3 = profile.music[2].path
+        audioRef3.current = new Audio(url_3)
+        // setUrl({...url, url3: profile.music[2].path});
+      }
+    }
+  }, [profile, currentUser])
+
+  console.log('audioref3', audioRef3.current)
 
   const play = (index) => {
     if(index === 0){
@@ -85,50 +108,85 @@ function Profile() {
   function togglePic() {
     setTogglePicBtn(!togglePicBtn)
   }
-  console.log('profile', profile)
 
   return (
     <div className="profile-container">
-      Profile
       { Object.keys(currentUser).length !== 0 && (
-        <div>
-          <img src={ profile?.image } alt="img" className="profile-img"/>
-          {profile._id === currentUser._id && <button onClick={ togglePic }>update pic</button>}
-          { togglePicBtn && <>
-            <ProfilePic />
+      <>
+        <div className="profile-left-column">
 
-          </> }
+          <div className="profile-picture-container">
+            <img src={ profile?.image } alt="img" className="profile-img"/>
+            {profile._id === currentUser._id && <div className="profile-picture-update-btn" onClick={ togglePic }><TbEdit /></div>}
+            { togglePicBtn && <>
+              <ProfilePic />
+            </> }
+          </div>
+
           <h3>{ profile.username }</h3>
-          <div>
+          
+          <div className="profile-info-container">
+            <div className="profile-info">
+              {profile._id === currentUser._id && toggleTextBtn === true ? 
+                <form>
+                  <input type="text" name="intro_text" placeholder="Write a short info text about you." onChange={ introTextHandler }>
+                  </input>
+                  <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
+                </form> : profile._id === currentUser._id && <div>{profile.intro_text}<TbEdit onClick={ () => setToggleTextBtn(true) }/></div>}
+
+            </div>
+            <div className="profile-info-update-btn">
+            {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
+            { displayModalUpdate &&
+              <Modal>
+                <ProfileUpdate />
+              </Modal>
+            }
+            </div>
+          </div>
+
+        
+        </div>
+        <div className="profile-right-column">
+          <div className="profile-connect-btn-container">
+          {profile._id !== currentUser._id && <div className="profile-connect-btn">
+              CONNECT
+            </div>}
+          </div>
+          <div className="profile-track-list">
+      
+          <>
           {profile.music.length > 0 ? profile.music.map((track, idx) => (
-            <div className='bottom-column'>
-              <div className="play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
-              <div className="track-title">
+            
+            <>
+            <div className="profile-track-line">
+              <div className="profile-play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="profile-track-title">
               {track.title}
               </div>
-              {profile._id === currentUser._id && <div className="delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div>}
-          </div>)) : (
-            <div className='bottom-column'></div>)
+              {profile._id === currentUser._id ? 
+                <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
+                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{profile.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
+              </div>
+          </>)) : (
+            <div></div>)
         }
-          </div>
-          {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>update profile</button>}
-          { displayModalUpdate &&
-            <Modal>
-              <ProfileUpdate />
-            </Modal>
-          }
-
-          {profile._id === currentUser._id && <button onClick={ toggleModalAdd }>add track</button>}
+        {profile._id === currentUser._id && <div className="profile-track-add-btn" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&
             <Modal>
               <Upload/>
             </Modal>
           }
+        
+          </>
+          
+     
         </div>
-
-
-
-      )}
+        </div>
+    </>
+    
+      )} 
+      
     </div>
   );
 }

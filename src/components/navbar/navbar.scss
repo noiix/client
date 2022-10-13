@@ -1,10 +1,10 @@
 @use "../../style/variables.scss" as *;
 
-.search-bar-container {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+// .search-bar-container {
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+// }
 // .search-bar{
 //     width: 100%;
 //     padding: 4rem 8rem;
@@ -65,9 +65,24 @@ nav {
             background-size: 100% 50%;
             background-repeat: no-repeat;
         }
+
         &:last-child .active{
             background-image: none;
         }
+    }
+
+    .search-btn {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 3.7rem;
+
+        &:hover {
+            background-image: none;
+        }
+        &.active {
+            color: blue;
+        }
+
     }
 
     .mode {

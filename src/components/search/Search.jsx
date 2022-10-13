@@ -2,9 +2,11 @@ import React from "react";
 import { useContext, useState } from 'react';
 import {FaLongArrowAltRight} from 'react-icons/fa'
 import DataContext from "../../contexts/DataContext";
+import DesignContext from '../../contexts/DesignContext';
 
 function Search({action}) {
 
+  const {closeModal} = useContext(DesignContext)
   const {inputSearchHandler} = useContext(DataContext);
 
 
@@ -13,7 +15,7 @@ function Search({action}) {
   }
 
   return (
-
+<div className="search-background" onClick={closeModal}>
     <div className="search-bar">
       <form>
         <label>
@@ -29,6 +31,7 @@ function Search({action}) {
         {/* <span type="submit"><FaLongArrowAltRight /></span> */}
     </form>
     </div>
+  </div>
   )
 }
 

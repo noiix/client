@@ -8,7 +8,7 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const { notification, setNotification } = useContext(DesignContext);
-  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs} = useContext(UserContext)
+  const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
 
@@ -91,6 +91,22 @@ export const DataProvider = ({ children }) => {
       setNotification([...notification, response.data.notification]);
     }).catch()
   }
+
+  const inputSearchHandler = (e) => {
+    e.preventDefault();
+    let query = e.target.value.toLowerCase();
+    if (!query) {
+      const filteredUsers = users.filter(user => user._id !== currentUser._id)
+      setUsers(filteredUsers);
+      getNearbyUsers()
+    } else {
+      const newSearchResult = users.filter(user => {
+        user.instrument.includes(query) || user.genre.includes(query) || user.username.includes(query);
+      })
+      setUsers(newSearchResult);
+    }
+
+  }
  
 
   const value = {
@@ -104,7 +120,8 @@ export const DataProvider = ({ children }) => {
     deleteTrack,
     likeSongs,
     isLiked,
-    currentSong
+    currentSong,
+    inputSearchHandler
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

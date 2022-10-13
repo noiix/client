@@ -1,9 +1,20 @@
 import React from "react";
+import { useContext, useState } from 'react';
+import {FaLongArrowAltRight} from 'react-icons/fa'
+import DataContext from "../../contexts/DataContext";
+
+function Search({action}) {
+
+  const {inputSearchHandler} = useContext(DataContext);
 
 
-function Search() {
+  const toggleSearch = () => {
+    action(false);
+  }
+
   return (
-    <div>
+
+    <div className="search-bar">
       <form>
         <label>
             SEARCH FOR ...
@@ -11,10 +22,11 @@ function Search() {
         <input
             type="text"
             id="search"
-            placeholder="Search for ..."
+            placeholder="anything"
             name="search" 
+            onChange={inputSearchHandler}
         />
-        <button type="submit">SEARCH</button>
+        {/* <span type="submit"><FaLongArrowAltRight /></span> */}
     </form>
     </div>
   )

@@ -1,5 +1,16 @@
 @use "../../style/variables.scss" as *;
 
+.search-bar-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+// .search-bar{
+//     width: 100%;
+//     padding: 4rem 8rem;
+//     background-color: rgba($pink, 0.5);
+// }
+
 nav {
     position: fixed;
     right: 0;

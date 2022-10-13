@@ -257,7 +257,8 @@ export const UserProvider = ({ children }) => {
     setMySongs,
     introText,
     setToggleTextBtn,
-    toggleTextBtn
+    toggleTextBtn,
+    getNearbyUsers
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

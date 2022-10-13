@@ -55,6 +55,8 @@ export const DesignProvider = ({children}) => {
         setDisplayModalAdd(!displayModalAdd)
     }
 
+    const [waitingAnimation, setWaitingAnimation] = useState(false)
+
     //authentication
     const [toggleBtn, setToggleBtn] = useState(false)
     function toggleLogin() {
@@ -65,7 +67,12 @@ export const DesignProvider = ({children}) => {
         setLogReg(!logReg)
     }
 
-    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd}
+    const [displayForm, setDisplayForm] = useState(false)
+    const toggleForm = () => {
+      setDisplayForm(!displayForm)
+    }
+
+    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, closeModal, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

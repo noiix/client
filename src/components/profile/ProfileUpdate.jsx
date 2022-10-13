@@ -81,7 +81,7 @@ const ProfileUpdate = () => {
           { genreDropdown && <div className="dropdown-background" onClick={closeDropdown}>
             <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
 
-              { genres.map(genreItem => <div className={'genre-list-item'}>
+              { genres.map(genreItem => <div className={'dropdown-list-item'}>
                     <label htmlFor={ genreItem }>{ genreItem }</label> 
                     <div className={`styled-checkbox ${genre.includes(genreItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
                       <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ genre.includes(genreItem) ? true : false } onClick={ handleCheck } />
@@ -99,7 +99,7 @@ const ProfileUpdate = () => {
         { instrumentDropdown && <div className="dropdown-background" onClick={closeDropdown}>
           <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
 
-            { instruments.map(instrumentItem => <div className={'genre-list-item'}>
+            { instruments.map(instrumentItem => <div className={'dropdown-list-item'}>
                   <label htmlFor={ instrumentItem }>{ instrumentItem }</label> 
                   <div className={`styled-checkbox ${instrument.includes(instrumentItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
                     <input id={ instrumentItem } value={ instrumentItem } type='checkbox' name='instruments' defaultChecked={ instrument.includes(instrumentItem) ? true : false } onClick={ handleCheck } />

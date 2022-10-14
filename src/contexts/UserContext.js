@@ -143,9 +143,8 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
-    setDisplayModal(false)
+    closeModal();
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })

@@ -100,7 +100,7 @@ function Profile() {
             <div className="profile-info">
               {profile._id === currentUser._id ? 
                 <form className="intro-text-form">
-                  <textarea className="intro-text-field" type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
+                  <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </textarea>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> :

@@ -38,6 +38,7 @@ body {
     .main {
       width: calc(100vw - 4rem);
       height: 100vh;
+      min-height: 1092px;
       display: flex;
       justify-content: center;
       // dark-mode-test

@@ -61,8 +61,19 @@ h3 {
 
 .profile-info {
     // background-color: khaki;
-    width: 60%;
+    width: 100%;
     font-family: $extra-font;
+    margin-top: 1rem;
+    .info-text-form {
+        width: 100%;
+    }
+    textarea {
+        border: $dark-gray 2px solid;
+        width: 100%;
+        height: 6rem;
+        font-size: 1rem;
+        padding: .5rem;
+    }
 }
 
 .profile-info-update-btn {

@@ -1,19 +1,23 @@
 @use "../../style/variables.scss" as *;
 
-.drag-and-drop {
-    text-align: center;
-    width: 300px;
-    height: 200px;
-    padding: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column nowrap;
-    font-size: 24px;
-    border: none;
-    background-color: $light-gray;
-    .drop-icon {
-        font-size: 4rem;
+.modal {
+    .drag-and-drop {
+        text-align: center;
+        height: 200px;
+        padding: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column nowrap;
+        font-size: 24px;
+        border: none;
+        background-color: $light-gray;
+        .drop-icon {
+            font-size: 4rem;
+        }
+        p {
+            font-size: 1rem;
+        }
     }
 }
 

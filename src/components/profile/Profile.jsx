@@ -18,9 +18,8 @@ import Button from '../UI/button/Button'
 
 
 function Profile() {
-  const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd } = useContext(DesignContext)
+  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, toggleTextBtn, introTextHandler } = useContext(UserContext)
   const { deleteTrack, likeSongs } = useContext(DataContext)
   const [playing, setPlaying] = useState(false);

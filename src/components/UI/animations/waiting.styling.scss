@@ -1,0 +1,18 @@
+.waiting-animation {
+    animation: spinning 2.5s infinite linear;
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@keyframes spinning {
+    0% {
+        transform: rotate(0deg);    
+    }
+
+    50% { transform: rotate(180deg);}
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

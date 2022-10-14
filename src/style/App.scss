@@ -13,6 +13,7 @@
 @use '../components/profile/profile.scss';
 @use '../components/UI/modal/modal.scss';
 @use '../components/profile/profile_update.styles.scss';
+@use '../components/profile/pic-update.scss';
 @use '../components/search/search.scss';
 
 body {
@@ -41,6 +42,18 @@ body {
       justify-content: center;
       // dark-mode-test
       // background-color: $dark-gray;
+    }
+    .font-size-s {
+      font-size: 1rem;
+   
+    }
+    .font-size-xs {
+      font-size: .8rem;
+      
+    }
+
+    .icon-btn {
+      cursor: pointer;
     }
 }
 

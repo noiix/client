@@ -31,11 +31,19 @@ function Card({ user }) {
     audioRef.current.pause();
   }
 
+  const checkUserNameLength = () => {
+    if(user.username.length > 14 && user.username.length < 17) {
+      return 'font-size-s'
+    } else if (user.username.length > 17) {
+      return 'font-size-xs'
+    }
+  }
+
   return (
     <div className="card" onClick={() => setProfile(user)}>
 
       <div className='card-left-column'>
-        <div className="card-artist-name">
+        <div className={ `${checkUserNameLength()} card-artist-name`}>
           <div>{user.username}</div>
         </div>
       </div>

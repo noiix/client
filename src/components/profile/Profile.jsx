@@ -136,10 +136,16 @@ function Profile() {
                   <textarea className="intro-text-field" type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </textarea>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
-                </form> : profile._id === currentUser._id && <div>{profile.intro_text}<TbEdit onClick={ () => setToggleTextBtn(true) }/></div>}
+                </form> :
+                <div>{profile.intro_text}</div>}
+                <>
+                {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */}
+                </>
 
             </div>
-            <div className="profile-info-update-btn">
+
+
+            <div className="profile-info-edit-btn">
             {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
             { displayModalUpdate &&
               <Modal>

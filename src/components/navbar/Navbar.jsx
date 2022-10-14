@@ -25,8 +25,6 @@ function Navbar() {
     {displaySearch && <Search className="search-bar"/>}
   </div>
     <nav>
-          
-
       <Link to={ "/" }>
         <div>
           <h1 id="logo">nöiX</h1>
@@ -53,7 +51,7 @@ function Navbar() {
           
         </ul>
       }
-      {Object.keys(currentUser).length !== 0 && <span className="search-btn"onClick={toggleSearch}><ImSearch /></span>}
+      {Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn"onClick={toggleSearch}><ImSearch /></span>}
       <NavLink className="mode" onClick={toggleMode}>{darkMode ? <MdOutlineDarkMode/> : <MdDarkMode/>}</NavLink>
       </>
       }

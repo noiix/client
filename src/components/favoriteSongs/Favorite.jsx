@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from 'react'
 import UserContext from '../../contexts/UserContext'
 import DataContext from '../../contexts/DataContext'
 import { GrPlay, GrPause } from "react-icons/gr";
-import { IoIosHeartDislike, IoMdHeartEmpty } from 'react-icons/io'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 function Favorite() {
 
@@ -115,24 +115,35 @@ function Favorite() {
 
   return (
     <>
-      <div>{ currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
+      <div className="favorite-main">
+        <div className="favorite-container">
+      <div className="favorite-page-headline">My favorite Songs</div>
+        { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
         <div>
           <>
-            <div className="profile-track-line">
-              <div className="profile-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }</div>
-              <div className="profile-track-title">
+
+            <div className="favorite-track-line">
+
+              <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }</div>
+              <div className="favorite-track-line-flex-container">
+              <div className="favorite-track-title">
                 { track.title }
               </div>
               { users.map(user =>
                 user._id === track.artist &&
-                <div className='profile-track-title' >
+                <div className='favorite-track-title' >
                   { user.username }
                 </div>
+
               ) }
-              <div className="profile-like-track-btn" onClick={ () => dislikeSongs(idx) }>{ currentUser.liked_songs.includes(track) && <IoIosHeartDislike /> }</div>
+              </div>
+              <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>{ currentUser.liked_songs.includes(track) && <FaHeart /> }</div>
+
             </div>
           </>
-        </div>) }</div>
+        </div>) }
+        </div>
+        </div>
     </>
   )
 }

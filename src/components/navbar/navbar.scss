@@ -65,7 +65,6 @@ nav {
             background-size: 100% 50%;
             background-repeat: no-repeat;
         }
-
         &:last-child .active{
             background-image: none;
         }
@@ -75,14 +74,9 @@ nav {
         font-size: 1.2rem;
         text-align: center;
         margin-bottom: 3.7rem;
-
         &:hover {
             background-image: none;
         }
-        &.active {
-            color: blue;
-        }
-
     }
 
     .mode {
@@ -95,7 +89,7 @@ nav {
     nav {
         position: relative;
         border-left: none;
-        border-bottom: dashed $dark-gray 2px;
+        border-bottom: dashed $dark-gray 1.7px;
         height: 4.5rem;
         width: 100vw;
         display: flex;
@@ -112,7 +106,8 @@ nav {
         .nav-toggle {
             font-size: 2rem;
             position: absolute;
-            right: 1rem;
+            right: 1.2rem;
+            top: 1rem;
         }
     
         ul {
@@ -122,7 +117,7 @@ nav {
             top: 4.5rem;
             height: 40vh;
             display: flex;
-            border-bottom: dashed $dark-gray 2px;
+            border-bottom: dashed $dark-gray 1.7px;
             z-index: 3;
             background-color: lighten($lavender, 25%);
         }
@@ -145,17 +140,22 @@ nav {
             a:visited {
                 color: $dark-gray;
             }
-         
         }
-    
-        
     
         .mode {
             position: absolute;
-            top: 6.25rem;
-            right: 1.25rem;
-            font-size: 1.5rem;
+            top: 1.19rem;
+            right: 10rem;
+            font-size: 1.7rem;
             z-index: 5;
         }
+
+        .search-btn {
+            position: absolute;
+            top: 1.45rem;
+            right: 15rem;
+            font-size: 1.5rem;
+        }
+
     }  
 }

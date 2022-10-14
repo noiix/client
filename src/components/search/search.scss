@@ -23,8 +23,18 @@
     background-color: rgba($pink, 0.5);
     animation: slide-up 1s ease-in-out;
 
+    label {
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
 
+    input {
+        width: 50%;
+    }
 }
+
+
 
 @keyframes slide-up {
     0% {transform: translateY(200px)}

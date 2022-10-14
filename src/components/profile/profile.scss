@@ -1,15 +1,12 @@
 @use '../../style/variables.scss' as *;
 
 .profile-container {
-    // background-color: rgb(175, 175, 175);
-    // border: 3px solid red;
     margin: 5rem auto;
     display: flex;
     width: 80%;
 }
 
 .profile-left-column {
-    // background-color: aqua;
     width: 40%;
     border-right: 2px dotted $dark-gray;
     display: flex;
@@ -18,7 +15,6 @@
 }
 
 .profile-picture-container {
-    // background-color: gold;
     padding: 2rem;
     display: flex;
 }
@@ -26,13 +22,10 @@
 .profile-img {
     position: relative;
     border-radius: 50%;
-    border: 3px solid $dark-gray;
+    // border: 3px solid $dark-gray;
     width: 150px;
     height: 150px;
     object-fit: cover;
-    // border: 1px solid;
-    // padding: 10px;
-    // box-shadow: 5px 20px 20px $lavender inset;
 }
 
 .profile-picture-update-btn {
@@ -49,52 +42,53 @@ h3 {
 }
 
 .profile-info-container {
-    // background-color: rgb(127, 215, 127);
     padding: 2rem;
     display: flex;
     flex-direction: column;
 }
 
 .profile-info {
-    // background-color: khaki;
     width: 60%;
     font-family: $extra-font;
+
 }
 
-.profile-info-update-btn {
+.profile-info-text-container {
+    display: flex;
+}
+
+.profile-info-update-icon {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.profile-info-edit-btn {
     margin-top: 1.5rem;
+
 }
 
 .profile-right-column {
-    // background-color: salmon;
     width: 60%;
     font-family: Arial, Helvetica, sans-serif;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // position: relative;
 }
 
 .profile-connect-btn-container {
     margin-bottom: 2rem;
     display: flex;
     padding: 0 2rem;
-
-    // position: absolute;
-    // top: 72px;
 }
 
 .profile-connect-btn {
     border: 3px solid $dark-gray;
     padding: 0.2em;
     background-color: $pink;
-    // display: flex;
-    // align-content: center;
 }
 
 .profile-track-list {
-    // background-color: antiquewhite;
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
@@ -153,6 +147,10 @@ h3 {
     }
     .profile-info {
         width: 100%;
+    }
+
+    .profile-info-text-container {
+        width: 80%;
     }
 
     .profile-track-line {

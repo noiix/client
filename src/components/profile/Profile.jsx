@@ -102,15 +102,19 @@ function Profile() {
                 <form className="intro-text-form">
                   <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
+
+
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> :
                 <div>{profile.intro_text}</div>}
                 <>
-                {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>}
+                {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */}
                 </>
 
             </div>
-            <div className="profile-info-update-btn">
+
+
+            <div className="profile-info-edit-btn">
             {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
             { displayModalUpdate &&
               <Modal>

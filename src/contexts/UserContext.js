@@ -145,7 +145,6 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
-    setDisplayModal(false)
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
@@ -159,7 +158,7 @@ export const UserProvider = ({ children }) => {
 
 
   const introTextUpdate = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const introTextStr = {intro_text: introText}
     API.patch(`${baseUrl}/user/profile/text`, introTextStr, {
       withCredentials: true

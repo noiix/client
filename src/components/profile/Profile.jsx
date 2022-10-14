@@ -20,88 +20,54 @@ import Button from '../UI/button/Button'
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
-  const {profile, currentUser, introTextUpdate, setToggleTextBtn, toggleTextBtn, introTextHandler, users} = useContext(UserContext)
+  const {profile, currentUser, introTextUpdate, setToggleTextBtn,introTextHandler} = useContext(UserContext)
   const {deleteTrack, likeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   
  
- 
-  let url_1;
-  let url_2;
-  let url_3;
+  let url;
 
-  console.log('liked songs current user', currentUser)
-
-
-  let audioRef1 = useRef(new Audio(url_1))
-  let audioRef2 = useRef(new Audio(url_2))
-  let audioRef3 = useRef(new Audio(url_3))
-
-  console.log(profile.music.length)
+  let audioRef = useRef(new Audio(url))
 
   useEffect(() => {
     console.log('useeffect', profile)
-    if(profile) {
-      if(profile.music.length !== 0) {
-        url_1 = profile.music[0].path
-        audioRef1.current = new Audio(url_1)
-        // setUrl({...url, url1: profile.music[0].path});
-      }
-      if(profile.music.length > 1) {
-        url_2 = profile.music[1].path
-        audioRef2.current = new Audio(url_2)
-        //  setUrl({...url, url2: profile.music[1].path});
-      }
-      if(profile.music.length > 2) {
-        url_3 = profile.music[2].path
-        audioRef3.current = new Audio(url_3)
-        // setUrl({...url, url3: profile.music[2].path});
+
+    if (profile) {
+
+      for (let i = 0; i < profile.music.length; i++) {
+        url = profile.music[i].path
+        console.log('url :', url)
+
+        audioRef.current = new Audio(url)
+        console.log('audioref', audioRef.current)
       }
     }
+
   }, [profile, currentUser])
 
-  console.log('audioref3', audioRef3.current)
 
   const play = (index) => {
-    if(index === 0){
-      setPlaying(true);
-      setCurrentItem(0)
-      audioRef1.current.play();
-      audioRef2.current.pause();
-      audioRef3.current.pause();
-    }
-    else if(index === 1){
-      setPlaying(true);
-      setCurrentItem(1)
-      audioRef2.current.play();
-      audioRef1.current.pause();
-      audioRef3.current.pause();
-    }
-    else if(index === 2){
-      setPlaying(true);
-      setCurrentItem(2)
-      audioRef3.current.play();
-      audioRef1.current.pause();
-      audioRef2.current.pause();
+    setPlaying(true)
+    for (let i = 0; i < profile.music.length; i++) {
+      if (i === index) {
+        setCurrentItem(index)
+        url = profile.music[i].path
+        audioRef.current = new Audio(url)
+        audioRef.current.play();
+      }
     }
   }
 
   const pause = (index) => {
-    if(index === 0){
-      setCurrentItem(0)
-      setPlaying(false)
-      audioRef1.current.pause();
-    }
-    else if(index === 1){
-      setCurrentItem(1)
-      setPlaying(false)
-      audioRef2.current.pause();
-    }
-    else if(index === 2){
-      setCurrentItem(2)
-      setPlaying(false)
-      audioRef3.current.pause();
+
+    setPlaying(false)
+
+    for (let i = 0; i < profile.music.length; i++) {
+      if (index === i) {
+        setCurrentItem(i)
+        audioRef.current.pause();
+      }
     }
   }
 
@@ -137,7 +103,11 @@ function Profile() {
                   <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
-                </form> : profile._id === currentUser._id && <div>{profile.intro_text}<TbEdit onClick={ () => setToggleTextBtn(true) }/></div>}
+                </form> :
+                <div>{profile.intro_text}</div>}
+                <>
+                {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>}
+                </>
 
             </div>
             <div className="profile-info-update-btn">

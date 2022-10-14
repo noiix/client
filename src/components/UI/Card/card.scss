@@ -17,18 +17,17 @@
     display: flex;
 }
 
+
 .card-artist-name {
     // background-color: cadetblue;
     transform: rotate(180deg);
     writing-mode: vertical-rl;
-    padding: 1.35rem 0.6rem 0rem 0.6rem;
+    padding: 1.35rem 0.6rem 1.35rem 0.6rem;
     font-family: $main-font;
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 
 .card-right-column {

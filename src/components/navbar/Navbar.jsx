@@ -25,8 +25,6 @@ function Navbar() {
     {displaySearch && <Search className="search-bar"/>}
   </div>
     <nav>
-          
-
       <Link to={ "/" }>
         <div>
           <h1 id="logo">nöiX</h1>

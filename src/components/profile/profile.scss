@@ -12,6 +12,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    h3 {
+        word-wrap: break-word;
+        height: 3rem;
+    }
 }
 
 .profile-picture-container {
@@ -153,7 +157,14 @@ h3 {
         width: 80%;
     }
 
-    .profile-track-line {
-        width: 400px;
-    }
-  }
+        .intro-text-form {
+            width: max-content;
+            input[type=text] {
+                height: 3rem;
+            } 
+        } 
+    }       
+    
+    // .profile-track-line {
+    //     width: 400px;
+    // }

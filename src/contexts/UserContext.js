@@ -23,9 +23,10 @@ export const UserProvider = ({ children }) => {
   const [mySongs, setMySongs] = useState([]);
   const [introText, setIntroText] = useState('');
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
+  const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
 
-  const { notification, setNotification, setDisplayNav, setDisplayModal } = useContext(DesignContext);
+  const { notification, setNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -94,8 +95,11 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {
       withCredentials: true,
     }).then((response) => {
+      // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
     });
+
+    // document.getElementById("signInDiv").hidden = true;
   }
 
   const handleCheck = (e) => {
@@ -132,10 +136,14 @@ export const UserProvider = ({ children }) => {
       setInstrument(updatedInstrument);
     }
   };
-  
+  // const updatedInstrument = instrument.filter(item => item !== e.target.value)
+  // setInstrument(updatedInstrument)
+
+  // console.log('checked genre:',  genre, instrument)
 
   const profileUpdate = (e) => {
     e.preventDefault();
+    closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
@@ -185,14 +193,23 @@ export const UserProvider = ({ children }) => {
       })
   }
 
+  const getAllMyFavorites = () => {
+    API.get(`${baseUrl}/music/favorites`, { withCredentials: true})
+    .then(response => {
+      if(response.data) {
+        setMyFavorites(response.data.result)
+      }
+    })
+  }
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
       getNearbyUsers();
       getAllMyTracks();
+      getAllMyFavorites();
     }
   }, [currentUser]);
-
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
@@ -218,7 +235,7 @@ export const UserProvider = ({ children }) => {
         if(checkNotification(response.data.notification))
         {
           setDisplayNav(false);
-          setDisplayModal(false)
+          closeModal();
           setNotification([...notification, response.data.notification])
         };
       })
@@ -232,7 +249,6 @@ export const UserProvider = ({ children }) => {
       return false;
     }
   };
-
 
 
   

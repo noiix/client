@@ -18,9 +18,8 @@ import Button from '../UI/button/Button'
 
 
 function Profile() {
-  const [toggleBtn, setToggleBtn] = useState(false)
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd} = useContext(DesignContext)
+  const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
   const {profile, currentUser, introTextUpdate, setToggleTextBtn, toggleTextBtn, introTextHandler} = useContext(UserContext)
   const {deleteTrack, likeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
@@ -119,28 +118,35 @@ function Profile() {
 
           <div className="profile-picture-container">
             <img src={ profile?.image } alt="img" className="profile-img"/>
-            {profile._id === currentUser._id && <div className="profile-picture-update-btn" onClick={ togglePic }><TbEdit /></div>}
-            { togglePicBtn && <>
+            {profile._id === currentUser._id && 
+            <div className="pic-upload-form-container">
+              <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
+            { displayForm && <>
               <ProfilePic />
             </> }
+            </div>}
           </div>
 
           <h3>{ profile.username }</h3>
           
           <div className="profile-info-container">
             <div className="profile-info">
-              {profile._id === currentUser._id && toggleTextBtn === true ? 
-                <form>
-                  <input type="text" name="intro_text" placeholder="Write a short info text about you." onChange={ introTextHandler }>
+              {profile._id === currentUser._id ? 
+                <form className="intro-text-form">
+                  <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
+
+
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
-                </form> : profile._id === currentUser._id && <div className="profile-info-text-container">{profile.intro_text}
-                <div className="profile-info-update-icon">
-                  <TbEdit onClick={ () => setToggleTextBtn(true) }/>
-                </div>
-                </div>}
+                </form> :
+                <div>{profile.intro_text}</div>}
+                <>
+                {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */}
+                </>
 
             </div>
+
+
             <div className="profile-info-edit-btn">
             {profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button>}
             { displayModalUpdate &&
@@ -166,7 +172,7 @@ function Profile() {
             
             <>
             <div className="profile-track-line">
-              <div className="profile-play-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
+              <div className="profile-play-btn icon-btn" onClick={playing ? () => pause(idx) : () => play(idx)}>{currentItem === idx &&  playing ? <GrPause/> : <GrPlay/> }</div>
               <div className="profile-track-title">
               {track.title}
               </div>
@@ -177,7 +183,7 @@ function Profile() {
           </>)) : (
             <div></div>)
         }
-        {profile._id === currentUser._id && <div className="profile-track-add-btn" onClick={ toggleModalAdd }><BsPlusLg /></div>}
+        {profile._id === currentUser._id && <div className="profile-track-add-btn icon" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&
             <Modal>
               <Upload/>

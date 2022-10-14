@@ -11,7 +11,7 @@ function CardList() {
 
   return (
     <div className='card-list'>
-            { users && users.map((user, i) => <Link to={"/profile"}><Card user={user}/></Link>)}
+            { users && users.map((user, i) => <Link to={"/profile"}><Card key={i} index={i} user={user}/></Link>)}
     </div>
   )
 }

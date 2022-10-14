@@ -8,7 +8,7 @@ import UserContext from "../contexts/UserContext";
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const { notification, setNotification } = useContext(DesignContext);
+  const { notification, setNotification, closeModal, setWaitingAnimation  } = useContext(DesignContext);
   const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, usersForSearch, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
@@ -48,23 +48,32 @@ export const DataProvider = ({ children }) => {
     const formData = new FormData();
     // formData.title =  fileName;
     // formData.file = selectedFile;
-    formData.append("title", fileName);
-    formData.append("file", selectedFile);
+    if(formData !== {}){
+      formData.append("title", fileName);
+      formData.append("file", selectedFile);
+    } else {
+      console.log('form is empty')
+      setNotification([...notification, {title: 'Please, fill out the form', type: 'error'}])
+    }
 
     // setFormData({...formData, title: fileName, file: selectedFile})
-
     console.log("onsubmit", formData);
-
+    setWaitingAnimation(true)
     API.post(`${baseUrl}/music/upload`, formData, {
       withCredentials: true,
       "Content-Type": "multipart/form-data",
     }).then((response) => {
+      closeModal();
+      setWaitingAnimation(false)
       if(response.data.result){
         setCurrentUser(response.data.result)
         setProfile(response.data.result)
         setMySongs(response.data.result.music)
       }
       setNotification([...notification, response.data.notification]);
+    }).catch(err => {
+      setNotification([...notification, {title: 'Ups, something went wrong.', type: 'error'}])
+    
     });
   };
 
@@ -114,7 +123,14 @@ export const DataProvider = ({ children }) => {
       setUsers(filteredUsers);
       getNearbyUsers()
     } else {
-      const newSearchResult = usersForSearch.filter(user => user.instrument.includes(query) || user.genre.includes(query) || user.username.toLowerCase().includes(query))
+      // let regex = `/[a-zA-Z]*${query}|${query}[a-zA-Z]*|[a-zA-Z]*${query}[a-zA-Z]*/`
+      let regex = new RegExp(query, 'g')
+      console.log(regex)
+      const newSearchResult = 
+      usersForSearch.filter(user => 
+      user.instrument.some(i => i.match(regex)) || 
+      user.genre.some(g => g.match(regex)) || 
+      user.username.toLowerCase().match(regex))
       setUsers(newSearchResult)
       navigate('/');
       console.log('newSearchResult', newSearchResult)

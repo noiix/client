@@ -20,18 +20,13 @@ form {
                 background-color: $pink;
             }
         }
-        &[type=fieldset]{
-            height: 50%;
-            overflow-y: scroll;
-        }
         &::placeholder {
             color: $dark-gray;
             font-weight: 200;
             letter-spacing: 2px;
         }
-
-        .submit {
-            display: block;
-        }
+    }
+    .drag-and-drop {
+        cursor: pointer;
     }
 }

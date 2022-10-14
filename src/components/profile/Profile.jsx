@@ -102,8 +102,6 @@ function Profile() {
                 <form className="intro-text-form">
                   <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
                   </input>
-
-
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> :
                 <div>{profile.intro_text}</div>}

@@ -20,7 +20,7 @@ function Search() {
     <div className="search-bar" onClick={e => e.stopPropagation()}>
       <form>
         <label>
-            SEARCH FOR ...
+            Search for ...
         </label>
         <input
             type="text"

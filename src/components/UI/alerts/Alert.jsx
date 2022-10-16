@@ -8,6 +8,7 @@ import DesignContext from "../../../contexts/DesignContext"
 const SuccessAlert = () => {
     const { notification, setNotification } = useContext(DesignContext)
     const [blendIn, setBlendIn] = useState(false)
+    const [blendOut, setBlendOut] = useState(false)
     const [closeBtn, setCloseBtn] = useState(false)
 
 
@@ -16,10 +17,14 @@ const SuccessAlert = () => {
             setBlendIn(true)
             const timerFadeOut = setTimeout(() => {
                 setBlendIn(false)
+                setBlendOut(true)
             }, 7000)
 
-            const timer = () => setTimeout(() => {
-                setNotification(notification.filter((note, index) => index !== 0))
+            const timer = setTimeout(() => {
+                let updatedNoteArr = notification.filter((note, index) => index !== 0)
+                console.log('updated Array', updatedNoteArr)
+                setBlendOut(false)
+                setNotification(updatedNoteArr)
             }, 9000)
             return () => { clearTimeout(timer); clearTimeout(timerFadeOut) }
         }
@@ -27,11 +32,13 @@ const SuccessAlert = () => {
 
     const closeNotification = (i) => {
         setCloseBtn(true)
-        setBlendIn(false)
+        setBlendOut(true)
         const timerCloseNote = setTimeout(() => {
             setCloseBtn(false)
+            setBlendOut(false)
             setNotification(notification.filter((note, index) => index !== i))
-        }, 800)
+        }, 2000)
+        return () => { clearTimeout(timerCloseNote) }
     }
 
     // console.log('notifications', notification)
@@ -39,7 +46,7 @@ const SuccessAlert = () => {
     return (
         (notification.length > 0 &&
             notification.map((note, i) =>
-                <div className={ `alert ${note.type} ${(!blendIn && i === 0) || (!blendIn && closeBtn && note[i]) ? "fade-out" : "fade-in"}` }>
+                <div className={ `alert ${note.type} ${(blendOut && i === 0) || (blendOut && closeBtn && note[i]) && "fade-out"} ${(blendIn && i === (notification.length -1) && "fade-in")}` }>
                     <p>{ note.title } </p>
                     <Link onClick={ e => closeNotification(i) }><IoIosCloseCircleOutline /></Link>
                 </div>)

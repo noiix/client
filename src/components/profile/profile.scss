@@ -65,6 +65,10 @@ h3 {
         height: 6rem;
         font-size: 1rem;
         padding: .5rem;
+        &:focus-visible {
+            outline: $pink 2px solid;
+            border: $pink 2px solid;
+        }
     }
 }
 

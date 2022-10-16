@@ -146,7 +146,15 @@ function Profile() {
                 <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
-            <div></div>)
+            <div>
+              {currentUser._id !== profile._id ?
+                <p><span>{profile.username}</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
+                :
+                <>
+                  <p>The community is curious about your art. Let's upload some track.</p>
+                </>
+              }
+            </div>)
         }
         {profile._id === currentUser._id && <div className="profile-track-add-btn icon" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&

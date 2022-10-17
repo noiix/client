@@ -15,6 +15,7 @@ import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io'
 import {TbEdit} from 'react-icons/tb'
 import {BsPlusLg} from 'react-icons/bs'
 import Button from '../UI/button/Button'
+import {Link} from 'react-router-dom'
 
 
 function Profile() {

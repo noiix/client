@@ -68,7 +68,7 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         if (response.data.info) {
           setCurrentUser(response.data.info);
-          setContacts(response.data.info.contacts)
+          // setContacts(response.data.info.contacts)
         }
 
         if (checkNotification(response.data.notification)) {
@@ -109,8 +109,11 @@ export const UserProvider = ({ children }) => {
     API.patch(`${baseUrl}/user/addcontact`, contactId, {withCredentials: true})
       .then(response => {
         setContacts(response.data.contacts)
+        setCurrentUser(response.data)
       })
   }
+
+  console.log('contacts after setting it', contacts)
 
 
   const handleCheck = (e) => {

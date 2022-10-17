@@ -1,6 +1,7 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import UserContext from './UserContext';
 import io from 'socket.io-client';
+import baseUrl from '../config'
 
 const socket = io();
 

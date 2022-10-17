@@ -147,7 +147,10 @@ h3 {
         flex-direction: column;
         width: 100%;
         margin: 0;
-        padding: 2rem;
+        padding: .5rem;
+    }
+    .profile-info-container {
+        padding: 0;
     }
     .profile-left-column, .profile-right-column {
         width: 100%;
@@ -160,13 +163,14 @@ h3 {
     }
 
     .profile-info-text-container {
-        width: 80%;
+        width: 100%;
     }
 
         .intro-text-form {
-            width: max-content;
+            width: 100%;
             input[type=text] {
                 height: 3rem;
+                width: 100%
             } 
         } 
     }       

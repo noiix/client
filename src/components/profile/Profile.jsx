@@ -151,7 +151,7 @@ function Profile() {
                 <p><span>{profile.username}</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                 :
                 <>
-                  <p>The community is curious about your art. Let's upload some track.</p>
+                  <p>The community is curious about your art. Let's upload some tracks.</p>
                 </>
               }
             </div>)

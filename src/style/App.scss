@@ -16,6 +16,7 @@
 @use '../components/profile/pic-update.scss';
 @use '../components/search/search.scss';
 @use '../components/favoriteSongs/favorite.scss';
+@use '../components/chat/chat.scss';
 
 body {
     margin: 0;
@@ -38,8 +39,8 @@ body {
 
     .main {
       width: calc(100vw - 4rem);
-      height: 100vh;
-      min-height: 1092px;
+      height: fit-content;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       // dark-mode-test

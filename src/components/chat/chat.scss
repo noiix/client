@@ -1,0 +1,138 @@
+@use "../../style/variables.scss" as *;
+
+.chat-main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.chat-header {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    padding-bottom: 3.5rem;
+}
+
+.chat-container {
+    // background-color: rgb(236, 236, 236);
+    width: 800px;
+    height: 500px;
+    display: flex;
+}
+
+.chat-list-left {
+    border: 3px solid red;
+    width: 300px;
+    padding: 0 0.5em;
+}
+
+.chat-partner-row {
+    // background-color: aqua;
+    border-bottom: 2px dotted $dark-gray;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 0.7rem;
+
+    .chat-profile-img {
+        background-color: $blue;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+    }
+
+    .chat-text-box {
+        margin-left: 0.7rem;
+        font-size: 0.8rem;
+    }
+
+    .chat-partner-name {
+        font-weight: 600;
+        margin: 0.3rem 0;
+    }
+
+    .chat-text-teaser {
+        background-color: aqua;
+        margin: 0.3rem 0;
+        height: 15px;
+        width: 190px;
+        overflow: hidden;
+    }
+}
+
+.chat-window-right {
+    border: 3px solid blue;
+    width: 500px;
+    position: relative;
+
+    .current-chat-message-own, .current-chat-message-partner {
+        border: 3px solid $dark-gray;
+        margin: 1em;
+        padding: 0.8em;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+    }
+
+    .current-chat-message-own {
+        border-radius: 13px 15px 0px 15px;
+        margin-left: 2rem;
+    }
+
+    .current-chat-message-partner {
+        border-radius: 13px 15px 15px 0px;
+        margin-right: 2rem;
+    }
+
+    .current-chat-input {
+        background-color: $pink;
+        border: 3px solid yellow;
+        height: 100px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 1em;
+        font-family: $extra-font;
+        font-size: 0.9rem;
+        overflow: scroll;
+    }
+}
+
+
+
+.back-to-chat-partners-btn {
+    display: none;
+    border: 3px solid black;
+    margin: 0.3em;
+    padding: 0.2em;
+}
+
+
+@media screen and (max-width: $max-screen) {
+    .chat-container {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        
+        .chat-list-left {
+            // display: none;
+            min-width: 500px;
+        }
+
+        .chat-window-right {
+            min-width: 500px;
+            height: 100%;
+        }
+
+        .back-to-chat-partners-btn {
+            display: inline-flex;
+        }
+    }
+
+}

@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   let [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
   const [users, setUsers] = useState([]);
-
+  const [contacts, setContacts] = useState([]);
   const [profile, setProfile] = useLocalStorage("profile", {})
 
   const [genre, setGenre] = useState([]);
@@ -68,6 +68,7 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         if (response.data.info) {
           setCurrentUser(response.data.info);
+          setContacts(response.data.info.contacts)
         }
 
         if (checkNotification(response.data.notification)) {
@@ -97,10 +98,20 @@ export const UserProvider = ({ children }) => {
     }).then((response) => {
       // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
+      setContacts(response.data.result.contacts);
     });
-
-    // document.getElementById("signInDiv").hidden = true;
   }
+
+  const addContact = () => {
+    const contactId = {contactId: profile._id}
+    console.log(contactId)
+    console.log('new contacts', contacts)
+    API.patch(`${baseUrl}/user/addcontact`, contactId, {withCredentials: true})
+      .then(response => {
+        setContacts(response.data.contacts)
+      })
+  }
+
 
   const handleCheck = (e) => {
     console.log("e.target;", e.target);
@@ -143,8 +154,8 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
+    closeModal();
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
@@ -202,12 +213,21 @@ export const UserProvider = ({ children }) => {
     })
   }
 
+  const getAllMyContacts = () => {
+    API.get(`${baseUrl}/user/contacts`, { withCredentials: true})
+    .then(response => {
+      console.log('contacts response', response)
+      setContacts(response.data.contacts)
+    })
+  }
+
   useEffect(() => {
     if (currentUser) {
       checkIfChecked();
       getNearbyUsers();
       getAllMyTracks();
       getAllMyFavorites();
+      getAllMyContacts();
     }
   }, [currentUser]);
 
@@ -278,7 +298,8 @@ export const UserProvider = ({ children }) => {
     setToggleTextBtn,
     toggleTextBtn,
     getNearbyUsers,
-    usersForSearch
+    usersForSearch,
+    addContact
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

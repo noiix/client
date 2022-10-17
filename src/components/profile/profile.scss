@@ -52,18 +52,20 @@ h3 {
 }
 
 .profile-info {
-    width: 60%;
+    // background-color: khaki;
+    width: 100%;
     font-family: $extra-font;
-
-}
-
-.profile-info-text-container {
-    display: flex;
-}
-
-.profile-info-update-icon {
-    font-size: 1.5rem;
-    margin-left: 1rem;
+    margin-top: 1rem;
+    .info-text-form {
+        width: 100%;
+    }
+    textarea {
+        border: $dark-gray 2px solid;
+        width: 100%;
+        height: 6rem;
+        font-size: 1rem;
+        padding: .5rem;
+    }
 }
 
 .profile-info-edit-btn {

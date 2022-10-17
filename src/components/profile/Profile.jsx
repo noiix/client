@@ -20,7 +20,7 @@ import Button from '../UI/button/Button'
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
-  const {profile, currentUser, introTextUpdate, setToggleTextBtn,introTextHandler} = useContext(UserContext)
+  const {profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact} = useContext(UserContext)
   const {deleteTrack, likeSongs} = useContext(DataContext)
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
@@ -100,8 +100,8 @@ function Profile() {
             <div className="profile-info">
               {profile._id === currentUser._id ? 
                 <form className="intro-text-form">
-                  <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
-                  </input>
+                  <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
+                  </textarea>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> :
                 <div>{profile.intro_text}</div>}
@@ -126,7 +126,7 @@ function Profile() {
         </div>
         <div className="profile-right-column">
           <div className="profile-connect-btn-container">
-          {profile._id !== currentUser._id && <div className="profile-connect-btn">
+          {profile._id !== currentUser._id && <div className="profile-connect-btn" onClick={addContact}>
               CONNECT
             </div>}
           </div>

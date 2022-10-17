@@ -20,6 +20,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.4.0",
     "sass": "^1.55.0",
+    "socket.io-client": "^4.5.3",
     "use-local-storage": "^2.3.6",
     "web-vitals": "^2.1.4"
   },

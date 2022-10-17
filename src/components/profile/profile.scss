@@ -15,6 +15,8 @@
     h3 {
         word-wrap: break-word;
         height: 3rem;
+        padding: 0 2rem;
+        letter-spacing: 2px;
     }
 }
 
@@ -38,11 +40,6 @@
     position: relative;
     top: 120px;
     left: -5px;
-}
-
-h3 {
-    padding: 0 2rem;
-    letter-spacing: 2px;
 }
 
 .profile-info-container {
@@ -147,16 +144,37 @@ h3 {
         flex-direction: column;
         width: 100%;
         margin: 0;
-        padding: .5rem;
+        padding: 1rem;
     }
+    .profile-picture-container {
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+    }
+
     .profile-info-container {
         padding: 0;
+        flex-direction: column-reverse;
+        align-items: flex-end;
     }
     .profile-left-column, .profile-right-column {
         width: 100%;
         margin: 0;
         padding: 0;
         border: none;
+    }
+    .profile-left-column{
+        h3 {
+            text-align: center;
+            font-size: 2rem;
+            padding: 0;
+        }
+        .profile-left-column-header {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-end;
+            justify-content: center;
+        }
     }
     .profile-info {
         width: 100%;
@@ -166,15 +184,20 @@ h3 {
         width: 100%;
     }
 
-        .intro-text-form {
-            width: 100%;
-            input[type=text] {
-                height: 3rem;
-                width: 100%
-            } 
+    .intro-text-form {
+        width: 100%;
+        text-align: center;
+        input[type=text] {
+            height: 3rem;
+            width: 100%
         } 
-    }       
-    
-    // .profile-track-line {
-    //     width: 400px;
-    // }
+        button {
+            display: inline-block;
+        }
+    } 
+    .profile-track-add-btn {
+        padding: .5rem;
+        text-align: right;
+    }
+}       
+ 

@@ -82,19 +82,20 @@ function Profile() {
       { Object.keys(currentUser).length !== 0 && (
       <>
         <div className="profile-left-column">
+          <div className="profile-left-column-header">
+            <div className="profile-picture-container">
+              <img src={ profile?.image } alt="img" className="profile-img"/>
+              {profile._id === currentUser._id && 
+              <div className="pic-upload-form-container">
+                <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
+              { displayForm && <>
+                <ProfilePic />
+              </> }
+              </div>}
+            </div>
 
-          <div className="profile-picture-container">
-            <img src={ profile?.image } alt="img" className="profile-img"/>
-            {profile._id === currentUser._id && 
-            <div className="pic-upload-form-container">
-              <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
-            { displayForm && <>
-              <ProfilePic />
-            </> }
-            </div>}
+            <h3>{ profile.username }</h3>
           </div>
-
-          <h3>{ profile.username }</h3>
           
           <div className="profile-info-container">
             <div className="profile-info">
@@ -146,7 +147,7 @@ function Profile() {
                 <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
               </div>
           </>)) : (
-            <div>
+            <div class>
               {currentUser._id !== profile._id ?
                 <p><span>{profile.username}</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                 :

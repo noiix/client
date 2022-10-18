@@ -17,12 +17,12 @@
     position: sticky;
     margin-bottom: 1rem;
     right: 2rem;
-    padding: .5rem 1.5rem ;
+    padding: .75rem 1.5rem ;
     width: 300px;
     z-index: 3;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     overflow: hidden;
     transform: translateX(-5%);
     pointer-events: stroke;
@@ -30,6 +30,8 @@
     a {
         font-size: 1.5rem;
         color: $dark-gray;
+        display: flex;
+        align-items: center;
     }
     a:hover {
         color: $yellow;
@@ -37,11 +39,11 @@
 }
 
 .fade-in {
-    animation: blendIn 2s ease-in;
+    animation: blendIn 2s ease-in-out;
 }
 
 .fade-out {
-    animation: blendOut 2s ease-out;
+    animation: blendOut 2s ease-in-out;
 }
 
 //animation

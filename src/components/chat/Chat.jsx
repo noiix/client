@@ -2,15 +2,13 @@ import React, {useContext} from 'react'
 import ChatContext from '../../contexts/ChatContext'
 import UserContext from '../../contexts/UserContext'
 import Button from '../UI/button/Button'
+import Chatfield from './Chatfield'
 
 function Chat() {
 
-    const {currentUser, contacts, users} = useContext(UserContext);
-    const {chats} = useContext(ChatContext);
+    const {currentUser} = useContext(UserContext);
+    const {chats, setSelectedChat, selectedChat, messages} = useContext(ChatContext);
 
-
-    console.log('user contacts', currentUser.contacts)
-    console.log('contacts', contacts)
 
     console.log('chats', chats)
 
@@ -34,11 +32,11 @@ function Chat() {
     <div className='chat-container'>
         
      <div className='chat-list-left'>
-        {users && users.map(user =>  <> {
-            currentUser.contacts.includes(user._id) &&
-                (<div className="chat-partner-row">
+        {chats && chats.map(chat =>  <> {
+            chat.users.map(user => user._id !== currentUser._id &&
+                (<div className="chat-partner-row" onClick={() => setSelectedChat(chat)}>
                 <div className="chat-profile-img">
-                    <div className="picture"><img src={user.image}/></div>
+                    <img src={user.image}/>
                 </div>
                 <div className="chat-text-box">
                     <div className="chat-partner-name">
@@ -48,26 +46,13 @@ function Chat() {
                        <span>something</span>
                     </div>
                 </div>
-            </div>)
-        
+            </div>)) 
             }</>)}
       </div>
         <div className="back-to-chat-partners-btn">
             Back
         </div>
-      <div className="chat-window-right">
-
-        <div className="current-chat-message-own">
-           
-        </div>
-        <div className="current-chat-message-partner">
-            
-        </div>
-        <div className="current-chat-input">
-            <input type='text' name='message' placeholder='write something'/>
-            <Button type='submit' name='SEND' onClick={() => {}}></Button>
-        </div>
-      </div>
+        <Chatfield/>
     </div>
     </div>
   )

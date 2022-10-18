@@ -7,6 +7,7 @@ import ProfilePic from "./ProfilePic";
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
 import DataContext from '../../contexts/DataContext';
+import ChatContext from '../../contexts/ChatContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import { AiOutlineDelete } from 'react-icons/ai'
@@ -16,13 +17,15 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { TbEdit } from 'react-icons/tb'
 import { BsPlusLg } from 'react-icons/bs'
 import Button from '../UI/button/Button'
+import { Link } from 'react-router-dom'
 
 
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm } = useContext(DesignContext)
-  const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler } = useContext(UserContext)
+  const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact } = useContext(UserContext)
   const { deleteTrack, likeSongs } = useContext(DataContext)
+  const { accessChat } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
 
@@ -129,7 +132,7 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
-              { profile._id !== currentUser._id && <div className="profile-connect-btn">
+              { profile._id !== currentUser._id && <div className="profile-connect-btn" onClick={ () => accessChat(profile._id) }>
                 CONNECT
               </div> }
             </div>

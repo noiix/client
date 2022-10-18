@@ -62,6 +62,7 @@ export const DataProvider = ({ children }) => {
     API.post(`${baseUrl}/music/upload`, formData, {
       withCredentials: true,
       "Content-Type": "multipart/form-data",
+      "image_metadata": true
     }).then((response) => {
       closeModal();
       setWaitingAnimation(false)

@@ -77,6 +77,7 @@ function Profile() {
 
   console.log('profile liked songs', currentUser.liked_songs)
 
+
   return (
     <div className="profile-container">
       { Object.keys(currentUser).length !== 0 && (

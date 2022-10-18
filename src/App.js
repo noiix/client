@@ -44,10 +44,10 @@ function App() {
           </>
         }
       </Routes>
+      {notification && <AlertContainer/>}
       {/* make it visible only for logged in users */}
     </div>
     {isDesktop && <Navbar/>}
-    {notification && <AlertContainer/>}
     </div>
   );
 }

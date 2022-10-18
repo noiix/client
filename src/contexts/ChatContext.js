@@ -99,47 +99,14 @@ export const ChatProvider = ({children}) => {
         fetchMessages();
     }, [selectedChat])
 
-    // const [isConnected, setIsConnected] = useState(socket.connected);
-    // const [lastPong, setLastPong] = useState(null);
-    // const [currentChat, setCurrentChat] = useState([]);
-  
 
+    const isSenderCurrentUser = (message) => {
+        return (
+          message.sender._id === currentUser._id
+        )
+      }
 
-
-    // useEffect(() => {
-    //     socket.on('connect', () => {
-    //       setIsConnected(true);
-    //       console.log("it's connected")
-    //     });
-    
-    //     socket.on('disconnect', () => {
-    //       setIsConnected(false);
-    //     });
-    
-    //     socket.on('pong', () => {
-    //       setLastPong(new Date().toISOString());
-    //     });
-    
-    //     return () => {
-    //       socket.off('connect');
-    //       socket.off('disconnect');
-    //       socket.off('pong');
-    //     };
-    //   }, []);
-
-    //   const sendPing = () => {
-    //     socket.emit('ping');
-    //   }
-
-    //   const addMessageToConversation = ({recipient, content, sender}) => {
-        
-    //   }
-
-    //   const sendMessage = (recipientId, content) => {
-    //     addMessageToConversation({recipientId, content, sender: currentUser._id})
-    //   }
-
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

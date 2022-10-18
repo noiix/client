@@ -3,7 +3,7 @@ import UserContext from './UserContext';
 import io from 'socket.io-client';
 import baseUrl from '../config'
 
-const socket = io();
+const socket = io("http://localhost:5001", { transports: ["websocket", "polling"] });
 
 const ChatContext = createContext();
 
@@ -34,7 +34,7 @@ export const ChatProvider = ({children}) => {
           socket.off('disconnect');
           socket.off('pong');
         };
-      }, [currentUser]);
+      }, []);
 
       const sendPing = () => {
         socket.emit('ping');

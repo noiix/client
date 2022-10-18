@@ -6,24 +6,26 @@ import Button from '../UI/button/Button'
 function Chat() {
 
     const {currentUser, contacts, users} = useContext(UserContext);
-    const {currentChat, setCurrentChat} = useContext(ChatContext);
+    const {chats} = useContext(ChatContext);
 
 
     console.log('user contacts', currentUser.contacts)
     console.log('contacts', contacts)
 
-    console.log('users', users)
+    console.log('chats', chats)
+
+    // console.log('users', users)
 
 
-  const send = (e) => {
-    e.preventDefault();
-    if(e.key === "Enter"){
-      console.log(e.target.value)
-      const content = e.target.value
-      const recipientId = currentChat.filter(id =>  id !== currentUser._id);
-    //   sendMessage(recipientId, content)
-    }
-  }
+//   const send = (e) => {
+//     e.preventDefault();
+//     if(e.key === "Enter"){
+//       console.log(e.target.value)
+//       const content = e.target.value
+//       const recipientId = currentChat.filter(id =>  id !== currentUser._id);
+//     //   sendMessage(recipientId, content)
+//     }
+//   }
 
 
   return (

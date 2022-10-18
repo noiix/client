@@ -7,6 +7,7 @@ import ProfilePic from "./ProfilePic";
 import Modal from "../UI/modal/Modal";
 import DesignContext from "../../contexts/DesignContext";
 import DataContext from '../../contexts/DataContext';
+import ChatContext from '../../contexts/ChatContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
@@ -24,6 +25,7 @@ function Profile() {
   const {toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm} = useContext(DesignContext)
   const {profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact} = useContext(UserContext)
   const {deleteTrack, likeSongs} = useContext(DataContext)
+  const {accessChat } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   
@@ -128,7 +130,7 @@ function Profile() {
         </div>
         <div className="profile-right-column">
           <div className="profile-connect-btn-container">
-          {profile._id !== currentUser._id && <div className="profile-connect-btn" onClick={addContact}>
+          {profile._id !== currentUser._id && <div className="profile-connect-btn" onClick={() => accessChat(profile._id)}>
               CONNECT
             </div>}
           </div>

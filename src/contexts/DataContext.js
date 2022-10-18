@@ -29,7 +29,7 @@ export const DataProvider = ({ children }) => {
     console.log('songtolike', songToLike)
     API.patch(`${baseUrl}/user/likesong`, songToLike, {withCredentials: true})
     .then(response => {
-      setCurrentUser(response.data.data)
+      setCurrentUser(response.data.data);
     })
   }
 
@@ -39,6 +39,7 @@ export const DataProvider = ({ children }) => {
     API.patch(`${baseUrl}/user/dislike`, songToDislike, {withCredentials: true})
     .then(response => {
       setCurrentUser(response.data.data)
+      setProfile(response.data.data)
     })
   }
  

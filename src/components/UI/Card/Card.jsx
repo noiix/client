@@ -1,34 +1,39 @@
-import React, { useContext, useState, useRef } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import { GrPlay, GrPause } from "react-icons/gr";
 import UserContext from "../../../contexts/UserContext";
 import DataContext from '../../../contexts/DataContext';
 
 
-function Card({ user }) {
+function Card({ user, i }) {
 
-  const { currentUser, users, setProfile, profile } = useContext(UserContext);
-  const { selectedFile, fileName } = useContext(DataContext);
+  const {setProfile} = useContext(UserContext);
   const [playing, setPlaying] = useState(false);
+  const [count, setCount] = useState(0);
+
+
 
   let url;
   if(user.music.length !== 0) {
     url = user.music[0].path
   }
-  else {
-    url = null
-  }
 
-  let audioRef = useRef(new Audio(url))
-
+  let audioRef = useRef(new Audio(url));
 
   const play = () => {
-    setPlaying(true);
+    if(count % 2 === 0) {
+      audioRef.current.pause();  
+    }
+    setPlaying(true)
     audioRef.current.play();
+      
+          
   }
 
+
   const pause = () => {
-    setPlaying(false);
-    audioRef.current.pause();
+      setPlaying(false);
+      audioRef.current.pause();
+    
   }
 
   const checkUserNameLength = () => {

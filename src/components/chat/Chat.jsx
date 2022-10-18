@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import ChatContext from '../../contexts/ChatContext';
 import UserContext from '../../contexts/UserContext';
 
 function Chat() {
+
+  const [newMessage, setNewMessage] = useState([]);
+
+  const { currentUser} = useContext(UserContext)
+  const { selectedChat, setSelectedChat } = useContext(ChatContext);
 
   const send = (e) => {
     if(e.key === "Enter"){

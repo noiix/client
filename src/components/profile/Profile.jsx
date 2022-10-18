@@ -10,7 +10,8 @@ import DataContext from '../../contexts/DataContext';
 import Upload from "../upload/Upload";
 import { GrPlay, GrPause } from "react-icons/gr";
 import {AiOutlineDelete} from 'react-icons/ai'
-import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io'
+// import {IoIosHeartDislike, IoMdHeartEmpty} from 'react-icons/io';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 // import {RiImageEditFill} from 'react-icons/ri';
 import {TbEdit} from 'react-icons/tb'
 import {BsPlusLg} from 'react-icons/bs'
@@ -143,7 +144,7 @@ function Profile() {
               </div>
               {profile._id === currentUser._id ? 
                 <div className="profile-track-delete-btn" onClick={() => deleteTrack(idx)}><AiOutlineDelete/></div> :
-                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <IoIosHeartDislike/> : <IoMdHeartEmpty/>}</div>}
+                <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <FaRegHeart/> : <FaHeart/>}</div>}
               </div>
           </>)) : (
             <div></div>)

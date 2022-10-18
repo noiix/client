@@ -8,7 +8,7 @@ import UserContext from "../contexts/UserContext";
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const { notification, setNotification, closeModal, setWaitingAnimation  } = useContext(DesignContext);
+  const { notification, addNewNotification, closeModal, setWaitingAnimation  } = useContext(DesignContext);
   const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, usersForSearch, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
@@ -53,7 +53,7 @@ export const DataProvider = ({ children }) => {
       formData.append("file", selectedFile);
     } else {
       console.log('form is empty')
-      setNotification([...notification, {title: 'Please, fill out the form', type: 'error'}])
+      addNewNotification({title: 'Please, fill out the form', type: 'error'})
     }
 
     // setFormData({...formData, title: fileName, file: selectedFile})
@@ -71,9 +71,9 @@ export const DataProvider = ({ children }) => {
         setProfile(response.data.result)
         setMySongs(response.data.result.music)
       }
-      setNotification([...notification, response.data.notification]);
+      addNewNotification(response.data.notification);
     }).catch(err => {
-      setNotification([...notification, {title: 'Ups, something went wrong.', type: 'error'}])
+      addNewNotification({title: 'Ups, something went wrong.', type: 'error'})
     
     });
   };
@@ -87,7 +87,7 @@ export const DataProvider = ({ children }) => {
     API.post(`${baseUrl}/user/profile/profilepicture`, formData, {
       withCredentials: true,
     }).then((response) => {
-      setNotification([...notification, response.data.notification]);
+      addNewNotification(response.data.notification);
       setProfile(response.data.result);
       setCurrentUser(response.data.result);
     });
@@ -111,7 +111,7 @@ export const DataProvider = ({ children }) => {
     .then(response => {
       setCurrentUser(response.data.result);
       setProfile(response.data.result);
-      setNotification([...notification, response.data.notification]);
+      addNewNotification( response.data.notification);
     }).catch()
   }
 

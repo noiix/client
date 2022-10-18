@@ -19,6 +19,14 @@ export const DesignProvider = ({children}) => {
     //alert notifications
     const [notification, setNotification] = useState([])
 
+    const addNewNotification = (note) => {
+        // const includes = notification.some(({title}) => title === note.title)
+        // console.log('includes:', includes)
+        if(!notification.some(({title}) => title === note.title)){
+            setNotification([...notification, note])
+        }
+    }
+
 
     //light and dark mode
     const [darkMode, setDarkMode] = useState(false)
@@ -72,7 +80,7 @@ export const DesignProvider = ({children}) => {
       setDisplayForm(!displayForm)
     }
 
-    const value = {notification, setNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, closeModal, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
+    const value = {notification, setNotification, addNewNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, closeModal, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

@@ -41,10 +41,12 @@
     padding-left: 0.7rem;
 
     .chat-profile-img {
-        background-color: $blue;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
+        img {
+            background-color: $blue;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+        }
     }
 
     .chat-text-box {

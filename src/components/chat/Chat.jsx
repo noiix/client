@@ -15,10 +15,13 @@ function Chat() {
 //   }
 
   return (
-    <div className="chat-main">
-        <div className='chat-header'>Chat</div>
+
+  <div className="chat-main">
+    <div className='chat-header'>
+      Chat
+    </div>
+
     <div className='chat-container'>
-        
       <div className='chat-list-left'>
         <div className="chat-partner-row">
             <div className="chat-profile-img">
@@ -50,7 +53,9 @@ function Chat() {
         </div>
       </div>
     </div>
-    </div>
+    
+  </div>
+
   )
 }
 

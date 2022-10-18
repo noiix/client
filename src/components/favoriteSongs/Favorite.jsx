@@ -71,7 +71,8 @@ function Favorite() {
             <>
               <div className="favorite-track-line">
                 <div className="save-play" onClick={e => e.preventDefault()}>
-                  <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause/> : <GrPlay/> }
+                  <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>
+                    { currentSong === idx && isPlaying ? <GrPause/> : <GrPlay/> }
                   </div>
                 </div>
                 { users.map(user => user._id === track.artist && 

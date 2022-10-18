@@ -47,7 +47,7 @@ function Favorite() {
 
 
         url = currentUser.liked_songs[i].path
-        console.log('url :', url)
+        // console.log('url :', url)
 
         audioRef.current = new Audio(url)
         audioRef.current.play();
@@ -112,6 +112,17 @@ function Favorite() {
     // }
   }
 
+  const duration = () => {
+    for (let i = 0; i < currentUser.liked_songs.length; i++) {
+
+      let url = currentUser.liked_songs[i].path
+      console.log('url :', url)
+
+
+
+    }
+  }
+
 
   return (
     <>
@@ -122,6 +133,7 @@ function Favorite() {
               <div className="profile-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }</div>
               <div className="profile-track-title">
                 { track.title }
+                { console.log(track) }
               </div>
               { users.map(user =>
                 user._id === track.artist &&
@@ -129,6 +141,7 @@ function Favorite() {
                   { user.username }
                 </div>
               ) }
+              <div>{ duration() }</div>
               <div className="profile-like-track-btn" onClick={ () => dislikeSongs(idx) }>{ currentUser.liked_songs.includes(track) && <IoIosHeartDislike /> }</div>
             </div>
           </>

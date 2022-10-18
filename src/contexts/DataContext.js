@@ -137,6 +137,8 @@ export const DataProvider = ({ children }) => {
 
   }
 
+  
+
   console.log('search', users)
  
 
@@ -155,7 +157,7 @@ export const DataProvider = ({ children }) => {
     dislikeSongs,
     inputSearchHandler,
     displaySearch, 
-    setDisplaySearch
+    setDisplaySearch,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

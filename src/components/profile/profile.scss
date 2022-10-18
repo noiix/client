@@ -15,6 +15,8 @@
     h3 {
         word-wrap: break-word;
         height: 3rem;
+        padding: 0 2rem;
+        letter-spacing: 2px;
     }
 }
 
@@ -40,11 +42,6 @@
     left: -5px;
 }
 
-h3 {
-    padding: 0 2rem;
-    letter-spacing: 2px;
-}
-
 .profile-info-container {
     padding: 2rem;
     display: flex;
@@ -52,18 +49,24 @@ h3 {
 }
 
 .profile-info {
-    width: 60%;
+    // background-color: khaki;
+    width: 100%;
     font-family: $extra-font;
-
-}
-
-.profile-info-text-container {
-    display: flex;
-}
-
-.profile-info-update-icon {
-    font-size: 1.5rem;
-    margin-left: 1rem;
+    margin-top: 1rem;
+    .info-text-form {
+        width: 100%;
+    }
+    textarea {
+        border: $dark-gray 2px solid;
+        width: 100%;
+        height: 6rem;
+        font-size: 1rem;
+        padding: .5rem;
+        &:focus-visible {
+            outline: $pink 2px solid;
+            border: $pink 2px solid;
+        }
+    }
 }
 
 .profile-info-edit-btn {
@@ -141,7 +144,18 @@ h3 {
         flex-direction: column;
         width: 100%;
         margin: 0;
-        padding: 2rem;
+        padding: 1rem;
+    }
+    .profile-picture-container {
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .profile-info-container {
+        padding: 0;
+        flex-direction: column-reverse;
+        align-items: flex-end;
     }
     .profile-left-column, .profile-right-column {
         width: 100%;
@@ -149,22 +163,41 @@ h3 {
         padding: 0;
         border: none;
     }
+    .profile-left-column{
+        h3 {
+            text-align: center;
+            font-size: 2rem;
+            padding: 0;
+        }
+        .profile-left-column-header {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-end;
+            justify-content: center;
+        }
+    }
     .profile-info {
         width: 100%;
     }
 
     .profile-info-text-container {
-        width: 80%;
+        width: 100%;
     }
 
-        .intro-text-form {
-            width: max-content;
-            input[type=text] {
-                height: 3rem;
-            } 
+    .intro-text-form {
+        width: 100%;
+        text-align: center;
+        input[type=text] {
+            height: 3rem;
+            width: 100%
         } 
-    }       
-    
-    // .profile-track-line {
-    //     width: 400px;
-    // }
+        button {
+            display: inline-block;
+        }
+    } 
+    .profile-track-add-btn {
+        padding: .5rem;
+        text-align: right;
+    }
+}       
+ 

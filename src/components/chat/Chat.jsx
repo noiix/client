@@ -4,15 +4,12 @@ import UserContext from '../../contexts/UserContext';
 
 function Chat() {
 
-//   const send = (e) => {
-//     if(e.key === "Enter"){
-//       if() {
+  const send = (e) => {
+    if(e.key === "Enter"){
+      console.log(e.target.value)
+    }
+  }
 
-//       } else {
-
-//       }
-//     }
-//   }
 
   return (
 

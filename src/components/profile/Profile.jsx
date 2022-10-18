@@ -83,28 +83,27 @@ function Profile() {
       { Object.keys(currentUser).length !== 0 && (
       <>
         <div className="profile-left-column">
+          <div className="profile-left-column-header">
+            <div className="profile-picture-container">
+              <img src={ profile?.image } alt="img" className="profile-img"/>
+              {profile._id === currentUser._id && 
+              <div className="pic-upload-form-container">
+                <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
+              { displayForm && <>
+                <ProfilePic />
+              </> }
+              </div>}
+            </div>
 
-          <div className="profile-picture-container">
-            <img src={ profile?.image } alt="img" className="profile-img"/>
-            {profile._id === currentUser._id && 
-            <div className="pic-upload-form-container">
-              <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>
-            { displayForm && <>
-              <ProfilePic />
-            </> }
-            </div>}
+            <h3>{ profile.username }</h3>
           </div>
-
-          <h3>{ profile.username }</h3>
           
           <div className="profile-info-container">
             <div className="profile-info">
               {profile._id === currentUser._id ? 
                 <form className="intro-text-form">
-                  <input type="text" name="intro_text" placeholder={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
-                  </input>
-
-
+                  <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={currentUser.intro_text || "Write a short info text about you."} onChange={ introTextHandler }>
+                  </textarea>
                   <Button type="submit" name="SUBMIT" onClick={ introTextUpdate }/>
                 </form> :
                 <div>{profile.intro_text}</div>}
@@ -149,7 +148,15 @@ function Profile() {
                 <div className="profile-like-track-btn" onClick={() => likeSongs(idx)}>{currentUser.liked_songs.includes(track) ? <FaRegHeart/> : <FaHeart/>}</div>}
               </div>
           </>)) : (
-            <div></div>)
+            <div class>
+              {currentUser._id !== profile._id ?
+                <p><span>{profile.username}</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
+                :
+                <>
+                  <p>The community is curious about your art. Let's upload some tracks.</p>
+                </>
+              }
+            </div>)
         }
         {profile._id === currentUser._id && <div className="profile-track-add-btn icon" onClick={ toggleModalAdd }><BsPlusLg /></div>}
           {displayModalAdd &&

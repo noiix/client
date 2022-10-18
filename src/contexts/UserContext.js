@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
   const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
 
-  const { notification, setNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
+  const { notification, addNewNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -37,12 +37,12 @@ export const UserProvider = ({ children }) => {
           response.data.map((note) => {
             console.log("single note", note);
             if (checkNotification(note)) {
-              setNotification([...notification, note]);
+              addNewNotification(note);
             }
           });
         } else {
           if (checkNotification(response.data.notification)) {
-            setNotification([...notification, response.data.notification]);
+            addNewNotification(response.data.notification);
           }
         }
       })
@@ -71,7 +71,7 @@ export const UserProvider = ({ children }) => {
         }
 
         if (checkNotification(response.data.notification)) {
-          setNotification([...notification, response.data.notification]);
+          addNewNotification(response.data.notification);
         }
       })
       .catch((err) => console.log(err));
@@ -143,8 +143,8 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    closeModal();
     formData = { ...formData, genre: genre, instrument: instrument};
+    closeModal();
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
     })
@@ -160,16 +160,21 @@ export const UserProvider = ({ children }) => {
   const introTextUpdate = (e) => {
     e.preventDefault();
     const introTextStr = {intro_text: introText}
-    API.patch(`${baseUrl}/user/profile/text`, introTextStr, {
-      withCredentials: true
-    })
-    .then((response) => {
-      console.log('introText update', response.data)
-      setCurrentUser(response.data.result)
-      setProfile(response.data.result)
-      setToggleTextBtn(false);
-    })
-    .catch((err) => console.log(err));
+    if(introTextStr.intro_text.length >= 50){
+      API.patch(`${baseUrl}/user/profile/text`, introTextStr, {
+        withCredentials: true
+      })
+      .then((response) => {
+        console.log('introText update', response.data)
+        setCurrentUser(response.data.result)
+        setProfile(response.data.result)
+        setToggleTextBtn(false);
+      })
+      .catch((err) => console.log(err));
+    } else {
+      console.log('intro text too short.')
+      addNewNotification({type: 'info', title: 'Please, provide at least 50 characters.'})
+    }
   }
 
 
@@ -221,7 +226,7 @@ export const UserProvider = ({ children }) => {
           setUsersForSearch(filteredUsers)
         }
         else {
-          setNotification([...notification, response.data.notification]);
+          addNewNotification(response.data.notification);
         }
       }
     );
@@ -236,7 +241,7 @@ export const UserProvider = ({ children }) => {
         {
           setDisplayNav(false);
           closeModal();
-          setNotification([...notification, response.data.notification])
+          addNewNotification(response.data.notification)
         };
       })
       .catch((err) => console.log(err));
@@ -258,8 +263,6 @@ export const UserProvider = ({ children }) => {
     createAccount,
     login,
     logout,
-    notification,
-    setNotification,
     currentUser,
     setCurrentUser,
     googleAuthentication,

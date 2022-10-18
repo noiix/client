@@ -16,6 +16,7 @@ nav {
     right: 0;
     border-left: dashed $dark-gray 1.7px;
     height: 100vh;
+    min-height: 850px;
     width: 4.5rem;
     display: flex;
     flex-direction: column;
@@ -37,6 +38,7 @@ nav {
         flex-direction: column;
         justify-content: space-evenly;
         height: 90vh;
+        min-height: 700px;
         align-items: center;
     }
 
@@ -91,6 +93,7 @@ nav {
         border-left: none;
         border-bottom: dashed $dark-gray 1.7px;
         height: 4.5rem;
+        min-height: 4rem;
         width: 100vw;
         display: flex;
         flex-direction: row;
@@ -116,6 +119,7 @@ nav {
             width: 100vw;
             top: 4.5rem;
             height: 40vh;
+            min-height: 40vh;
             display: flex;
             border-bottom: dashed $dark-gray 1.7px;
             z-index: 3;
@@ -129,13 +133,14 @@ nav {
         ul > li {
             transform: rotate(0deg);
             text-transform: uppercase;
-            background: linear-gradient(90deg, rgba(164,121,216,1) 15%, rgba(164,121,216,0.29735644257703087) 96%);
-            background-position: 0 1em;
-            background-size: 0 50%;
-            background-repeat: no-repeat;
-            transition: background-size .5s;
-            &:hover {
-              background-size: 100% 50%;
+            background: none;
+           
+            &:active {
+                background-size: 100% 50%;
+                background-image: linear-gradient(90deg, rgba(164,121,216,1) 15%, rgba(164,121,216,0.29735644257703087) 96%);
+                background-position: 0 1em;
+                background-size: 0 50%;
+                background-repeat: no-repeat;
             }
             a:visited {
                 color: $dark-gray;

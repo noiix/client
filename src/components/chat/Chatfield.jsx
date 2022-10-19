@@ -26,7 +26,7 @@ function Chatfield() {
       
       <form className="current-chat-input">
           <input type='text' name='message' placeholder='write something' onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
-          <Button type='submit' name='SEND' onClick={sendMessage}/>
+          <Button type='send' name='SEND' onClick={sendMessage}/>
       </form>
     </div>
   )

@@ -8,11 +8,11 @@ function Chatfield() {
 
     const {currentUser} = useContext(UserContext);
     const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser} = useContext(ChatContext);
-
+    
   return (
     <div className="chat-window-right">
     {selectedChat && 
-        <>
+        <div className='chat-scroll'>
         {messages &&
           messages.map((msg, index) => 
             <>
@@ -21,7 +21,7 @@ function Chatfield() {
             </div>
           </>)
           }
-        </>
+        </div>
         }
       
       <form className="current-chat-input">

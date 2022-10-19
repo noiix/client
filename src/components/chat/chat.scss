@@ -72,6 +72,13 @@
     border: 3px solid blue;
     width: 500px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .chat-scroll {
+        overflow-y: scroll;
+        height: 80%;
+    }
 
     .current-chat-message-own, .current-chat-message-partner {
         border: 3px solid $dark-gray;
@@ -101,7 +108,11 @@
         padding: 1em;
         font-family: $extra-font;
         font-size: 0.9rem;
-        overflow: scroll;
+        display: flex;
+        input {
+            height: 90%;
+            overflow-y: scroll;
+        }
     }
 }
 

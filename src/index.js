@@ -11,7 +11,6 @@ import {ChatProvider} from './contexts/ChatContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <DesignProvider>
         <UserProvider>
@@ -23,7 +22,6 @@ root.render(
         </UserProvider>
       </DesignProvider>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

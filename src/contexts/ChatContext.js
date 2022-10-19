@@ -92,7 +92,7 @@ export const ChatProvider = ({children}) => {
         if(currentUser) {
             fetchChats()
         }
-    }, [fetchAgain])
+    }, [fetchAgain, currentUser])
 
 
     useEffect(() => {

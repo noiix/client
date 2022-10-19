@@ -89,7 +89,6 @@ export const UserProvider = ({ children }) => {
       email: userObject.email,
       password: userObject.sub,
       verified: userObject.email_verified,
-      image: userObject.picture,
       createdAt: Date(),
     };
 

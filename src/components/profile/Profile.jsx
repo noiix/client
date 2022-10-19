@@ -24,7 +24,7 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact } = useContext(UserContext)
-  const { deleteTrack, likeSongs } = useContext(DataContext)
+  const { deleteTrack, likeSongs, duration } = useContext(DataContext)
   const { accessChat } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
@@ -146,6 +146,9 @@ function Profile() {
                       <div className="profile-play-btn icon-btn" onClick={ playing ? () => pause(idx) : () => play(idx) }>{ currentItem === idx && playing ? <GrPause /> : <GrPlay /> }</div>
                       <div className="profile-track-title">
                         { track.title }
+                      </div>
+                      <div className="profile-track-duration">
+                        { duration(track.duration) }
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :

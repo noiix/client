@@ -139,7 +139,11 @@ export const DataProvider = ({ children }) => {
 
   }
 
-  
+  const duration = (s) => {
+    let min = Math.floor(s / 60);
+    let sec = (s % 60).toFixed(0);
+    return min + ":" + (sec < 10 ? "0" : "") + sec;
+  };
 
   console.log('search', users)
  
@@ -160,6 +164,7 @@ export const DataProvider = ({ children }) => {
     inputSearchHandler,
     displaySearch, 
     setDisplaySearch,
+    duration
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

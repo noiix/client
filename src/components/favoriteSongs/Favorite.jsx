@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 function Favorite() {
 
   const { currentUser, profile, users, setProfile } = useContext(UserContext)
-  const { dislikeSongs } = useContext(DataContext);
+  const { dislikeSongs, duration } = useContext(DataContext);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
 
@@ -112,12 +112,6 @@ function Favorite() {
     // }
   }
 
-  const duration = () => {
-
-
-  }
-
-
   return (
     <>
       <div className="favorite-main">
@@ -152,6 +146,9 @@ function Favorite() {
                             { user.username }
                           </div>
                         </Link>
+                      </div>
+                      <div className="favorite-track-duration">
+                        { duration(track.duration) }
                       </div>
                       <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
                         { currentUser.liked_songs.includes(track) && <FaHeart /> }

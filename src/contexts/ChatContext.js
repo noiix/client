@@ -40,9 +40,11 @@ export const ChatProvider = ({children}) => {
      }, [])
 
      useEffect(() => {
-        socket.current.on('message received', (newMessageReceived) => {
+        console.log('it is running')
+        socket.current.on('message', (newMessageReceived) => {
+            console.log(newMessageReceived)
             if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
-                //set notification
+               console.log('here should be the notification')
             }else {
                 setMessages([...messages, newMessageReceived])
             }
@@ -60,6 +62,7 @@ export const ChatProvider = ({children}) => {
         })
     }
 
+    // join chat room 
     const accessChat = (userId) => {
         API.post(`${baseUrl}/chat`, {userId}, {withCredentials: true})
         .then(response => {
@@ -82,7 +85,6 @@ export const ChatProvider = ({children}) => {
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
                 setNewMessage('');
-                console.log('sendMessage', response.data)
                 socket.current.emit('newMessage', response.data)
                 setMessages([...messages, response.data])
 
@@ -107,9 +109,7 @@ export const ChatProvider = ({children}) => {
         .catch(err => console.log(err)) 
     }
 
-    // const getSender = (currentUser, users) => {
-    //     return users[0]._id === currentUser._id ? users[1].username : users[0].username
-    // };
+    
 
     console.log('selected Chat', selectedChat);
     console.log('chats', chats)

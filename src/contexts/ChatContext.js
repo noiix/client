@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import baseUrl from "../config";
 import {useNavigate} from 'react-router-dom'
@@ -13,7 +13,6 @@ import io from 'socket.io-client';
 const ChatContext = createContext();
 
 export const ChatProvider = ({children}) => {
-
     const API = axios.create({ baseUrl: baseUrl });
 
     const {currentUser} = useContext(UserContext);
@@ -24,6 +23,42 @@ export const ChatProvider = ({children}) => {
     const [fetchAgain, setFetchAgain] = useState(false)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState();
+
+     // socket.io
+     const [socketConnected, setSocketConnected] = useState(false)
+
+     const ENDPOINT = `${baseUrl}`;
+     let socket = useRef();
+     let selectedChatCompare = useRef();
+ 
+     useEffect(() => {
+         socket.current = io(ENDPOINT);
+         socket.current.emit('setup', currentUser)
+         socket.current.on('connection', () => {
+             setSocketConnected(true)
+         })
+     }, [])
+
+     useEffect(() => {
+        fetchMessages();
+        selectedChatCompare.current = selectedChat;
+    }, [selectedChat])
+
+     useEffect(() => {
+        console.log('please work')
+        console.log('socket', socket.current)
+        socket.current.on('message received', (newMessageReceived) => {
+            console.log(newMessageReceived)
+            if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
+                //set notification
+                console.log('not the right place')
+            }else {
+                console.log('this is new message')
+                setMessages([...messages, newMessageReceived])
+            }
+        })
+    }, [socket.current, messages])
+
 
     const fetchChats = () => {
         API.get(`${baseUrl}/chat`, { withCredentials: true})
@@ -40,8 +75,8 @@ export const ChatProvider = ({children}) => {
         API.post(`${baseUrl}/chat`, {userId}, {withCredentials: true})
         .then(response => {
             if(!chats.find((chat) => chat._id === response.data._id)) {
-                setChats([response.data, ...chats])
                 setSelectedChat(response.data);
+                setChats([response.data, ...chats])
             }
         })
     }
@@ -57,8 +92,9 @@ export const ChatProvider = ({children}) => {
         if(newMessage) {
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
-                setNewMessage('');
+                // setNewMessage('');
                 console.log('sendMessage', response.data)
+                socket.current.emit('new message', response.data)
                 setMessages([...messages, response.data])
 
             })
@@ -77,6 +113,7 @@ export const ChatProvider = ({children}) => {
         .then(response => {
             console.log('my messages', messages)
             setMessages(response.data);
+            socket.current.emit('join chat', selectedChat._id);
         })
         .catch(err => console.log(err)) 
     }
@@ -92,19 +129,15 @@ export const ChatProvider = ({children}) => {
         if(currentUser) {
             fetchChats()
         }
-    }, [fetchAgain, currentUser])
-
-
-    useEffect(() => {
-        fetchMessages();
-    }, [selectedChat])
-
+    }, [currentUser])
 
     const isSenderCurrentUser = (message) => {
         return (
           message.sender._id === currentUser._id
         )
-      }
+    }
+
+   
 
     const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser}
 

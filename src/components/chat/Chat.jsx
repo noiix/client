@@ -7,7 +7,7 @@ import Chatfield from './Chatfield'
 function Chat() {
 
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, accessChat} = useContext(ChatContext);
 
 
     console.log('chats', chats)
@@ -34,7 +34,7 @@ function Chat() {
      <div className='chat-list-left'>
         {chats && chats.map(chat =>  <> {
             chat.users.map(user => user._id !== currentUser._id &&
-                (<div className="chat-partner-row" onClick={() => setSelectedChat(chat)}>
+                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id)}}>
                 <div className="chat-profile-img">
                     <img src={user.image}/>
                 </div>

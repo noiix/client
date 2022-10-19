@@ -29,7 +29,7 @@ export const ChatProvider = ({children}) => {
 
      const ENDPOINT = `${baseUrl}`;
      let socket = useRef();
-     let selectedChatCompare;
+     let selectedChatCompare = useRef();
  
      useEffect(() => {
          socket.current = io(ENDPOINT);
@@ -40,16 +40,33 @@ export const ChatProvider = ({children}) => {
      }, [])
 
      useEffect(() => {
+<<<<<<< HEAD
         console.log('it is running')
         socket.current.on('message', (newMessageReceived) => {
             console.log(newMessageReceived)
             if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id){
                console.log('here should be the notification')
+=======
+        fetchMessages();
+        selectedChatCompare.current = selectedChat;
+    }, [selectedChat])
+
+     useEffect(() => {
+        console.log('please work')
+        console.log('socket', socket.current)
+        socket.current.on('message received', (newMessageReceived) => {
+            console.log(newMessageReceived)
+            if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
+                //set notification
+                console.log('not the right place')
+>>>>>>> 4b106264e16caa65bdcd59f65b36d15362a395f9
             }else {
+                console.log('this is new message')
                 setMessages([...messages, newMessageReceived])
             }
         })
-    })
+    }, [socket.current, messages])
+
 
     const fetchChats = () => {
         API.get(`${baseUrl}/chat`, { withCredentials: true})
@@ -67,8 +84,8 @@ export const ChatProvider = ({children}) => {
         API.post(`${baseUrl}/chat`, {userId}, {withCredentials: true})
         .then(response => {
             if(!chats.find((chat) => chat._id === response.data._id)) {
-                setChats([response.data, ...chats])
                 setSelectedChat(response.data);
+                setChats([response.data, ...chats])
             }
         })
     }
@@ -84,8 +101,14 @@ export const ChatProvider = ({children}) => {
         if(newMessage) {
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
+<<<<<<< HEAD
                 setNewMessage('');
                 socket.current.emit('newMessage', response.data)
+=======
+                // setNewMessage('');
+                console.log('sendMessage', response.data)
+                socket.current.emit('new message', response.data)
+>>>>>>> 4b106264e16caa65bdcd59f65b36d15362a395f9
                 setMessages([...messages, response.data])
 
             })
@@ -119,14 +142,6 @@ export const ChatProvider = ({children}) => {
             fetchChats()
         }
     }, [currentUser])
-
-
-    useEffect(() => {
-        fetchMessages();
-        selectedChatCompare = selectedChat;
-    }, [selectedChat])
-
-  
 
     const isSenderCurrentUser = (message) => {
         return (

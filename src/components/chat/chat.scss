@@ -19,15 +19,18 @@
 
 .chat-container {
     // background-color: rgb(236, 236, 236);
+    // width: 812px;
     width: 800px;
     height: 500px;
     display: flex;
 }
 
 .chat-list-left {
-    border: 3px solid red;
+    box-shadow: 10px 10px 55px $lavender;
+    background-color: white;
     width: 300px;
     padding: 0 0.5em;
+    // margin-right: 12px;
 }
 
 .chat-partner-row {
@@ -57,7 +60,7 @@
     }
 
     .chat-text-teaser {
-        background-color: aqua;
+        // background-color: aqua;
         margin: 0.3rem 0;
         height: 15px;
         width: 190px;
@@ -66,14 +69,15 @@
 }
 
 .chat-window-right {
-    border: 3px solid blue;
+    box-shadow: 10px 10px 55px $lavender;
+    background-color: white;
     width: 500px;
     position: relative;
 
     .current-chat-message-own, .current-chat-message-partner {
         border: 1px solid $dark-gray;
-        margin: 1em;
-        padding: 0.8em;
+        margin: 1.2em;
+        padding: 1em;
         font-size: 0.9rem;
         line-height: 1.2rem;
     }
@@ -89,9 +93,9 @@
     }
 
     .current-chat-input {
-        background-color: $pink;
-        border: 3px solid yellow;
-        height: 100px;
+        // background-color: $pink;
+        border: 8px dashed yellow;
+        height: 110px;
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -99,10 +103,8 @@
         font-family: $extra-font;
         font-size: 0.9rem;
         overflow: scroll;
-    }
+    }  
 }
-
-
 
 .back-to-chat-partners-btn {
     display: none;
@@ -123,16 +125,23 @@
         .chat-list-left {
             // display: none;
             min-width: 500px;
+            box-shadow: none;
         }
 
         .chat-window-right {
             min-width: 500px;
             height: 100%;
+            box-shadow: none;
+            border: 3px solid $lavender;
         }
 
         .back-to-chat-partners-btn {
             display: inline-flex;
         }
-    }
 
+        .current-chat-input {
+            border: none;
+            border-top: 3px solid $lavender;
+        }
+    }
 }

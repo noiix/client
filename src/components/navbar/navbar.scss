@@ -14,14 +14,15 @@
 nav {
     position: fixed;
     right: 0;
-    border-left: dashed $dark-gray 1.7px;
+    border-left: dashed $dark-gray 2px;
     height: 100vh;
-    min-height: 850px;
+    min-height: 600px;
     width: 4.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem 0;
+    // padding: 1rem 0;
+    // gap: .5rem;
 
     #logo {
         transform: rotate(90deg);
@@ -38,7 +39,7 @@ nav {
         flex-direction: column;
         justify-content: space-evenly;
         height: 90vh;
-        min-height: 700px;
+        // min-height: 500px;
         align-items: center;
     }
 
@@ -75,15 +76,17 @@ nav {
     .search-btn {
         font-size: 1.2rem;
         text-align: center;
-        margin-bottom: 3.7rem;
+        margin-bottom: 2rem;
         &:hover {
             background-image: none;
         }
     }
 
     .mode {
+        position: static;
         font-size: 1.2rem;
         text-align: center;
+        margin-bottom: 2rem;
     }
 }  
 

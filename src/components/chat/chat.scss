@@ -1,6 +1,10 @@
 @use "../../style/variables.scss" as *;
 
 .chat-main {
+<<<<<<< HEAD
+=======
+    // background-color: lighten($dark-gray, 20%);
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
     width: 100%;
     height: 100vh;
     display: flex;
@@ -18,19 +22,30 @@
 }
 
 .chat-container {
+<<<<<<< HEAD
     // background-color: rgb(236, 236, 236);
     // width: 812px;
+=======
+    box-shadow: 10px 10px 55px $pink;
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
     width: 800px;
     height: 500px;
     display: flex;
 }
 
 .chat-list-left {
+<<<<<<< HEAD
     box-shadow: 10px 10px 55px $lavender;
     background-color: white;
     width: 300px;
     padding: 0 0.5em;
     // margin-right: 12px;
+=======
+    background-color: white;
+    width: 300px;
+    padding: 0 0.5em;
+    border-right: dashed $dark-gray 2px;
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
 }
 
 .chat-partner-row {
@@ -43,10 +58,12 @@
     padding-left: 0.7rem;
 
     .chat-profile-img {
-        background-color: $blue;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
+        img {
+            background-color: $blue;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+        }
     }
 
     .chat-text-box {
@@ -69,10 +86,20 @@
 }
 
 .chat-window-right {
+<<<<<<< HEAD
     box-shadow: 10px 10px 55px $lavender;
+=======
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
     background-color: white;
     width: 500px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .chat-scroll {
+        overflow-y: scroll;
+        height: 80%;
+    }
 
     .current-chat-message-own, .current-chat-message-partner {
         border: 1px solid $dark-gray;
@@ -93,22 +120,51 @@
     }
 
     .current-chat-input {
+<<<<<<< HEAD
         // background-color: $pink;
         border: 8px dashed yellow;
         height: 110px;
+=======
+        height: 100px;
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
         width: 100%;
         position: absolute;
         bottom: 0;
         padding: 1em;
         font-family: $extra-font;
         font-size: 0.9rem;
+<<<<<<< HEAD
         overflow: scroll;
     }  
+=======
+        line-height: 0.9rem;
+        text-align: start;
+        display: flex;
+        align-items: center;
+        input {
+            height: 100%;
+            width: 95%;
+            overflow-y: scroll;
+        }
+        .send {
+            height: 100%;
+            background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
+            background-size: 350% 300%;
+            color: white;
+            box-shadow: none;
+            transition: all 1s ease;
+            &:hover {
+                background-position: right bottom;
+            }
+        }
+
+    }
+>>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
 }
 
 .back-to-chat-partners-btn {
     display: none;
-    border: 3px solid black;
+    border: 3px solid $dark-gray;
     margin: 0.3em;
     padding: 0.2em;
 }

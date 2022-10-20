@@ -7,24 +7,10 @@ import Chatfield from './Chatfield'
 function Chat() {
 
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages, accessChat} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification} = useContext(ChatContext);
 
 
     console.log('chats', chats)
-
-    // console.log('users', users)
-
-
-//   const send = (e) => {
-//     e.preventDefault();
-//     if(e.key === "Enter"){
-//       console.log(e.target.value)
-//       const content = e.target.value
-//       const recipientId = currentChat.filter(id =>  id !== currentUser._id);
-//     //   sendMessage(recipientId, content)
-//     }
-//   }
-
 
   return (
     <div className="chat-main">

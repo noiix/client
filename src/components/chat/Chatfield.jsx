@@ -7,7 +7,7 @@ import Button from '../UI/button/Button'
 function Chatfield() {
 
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
     
   return (
     <div className="chat-window-right">
@@ -25,6 +25,7 @@ function Chatfield() {
         }
       
       <form className="current-chat-input">
+            {isTyping && <div>Typing...</div>}
           <input type='text' name='message' placeholder='write something' onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
           <Button type='send' name='SEND' onClick={sendMessage}/>
       </form>

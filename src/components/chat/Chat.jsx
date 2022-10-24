@@ -28,7 +28,6 @@ function Chat() {
 
   return (
     <div className="chat-main">
-        <div className='chat-header'>Chat</div>
     <div className='chat-container'>
         
      <div className='chat-list-left'>

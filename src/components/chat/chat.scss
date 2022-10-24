@@ -29,12 +29,13 @@
     background-color: white;
     width: 300px;
     padding: 0 0.5em;
-    border-right: dashed $dark-gray 2px;
+    // border-right: dashed $dark-gray 2px;
 }
 
 .chat-partner-row {
     // background-color: aqua;
-    border-bottom: 2px dotted $dark-gray;
+    border-bottom: 2px dashed $dark-gray;
+    width: 100%;
     height: 80px;
     display: flex;
     justify-content: flex-start;

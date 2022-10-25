@@ -119,6 +119,7 @@ function Favorite() {
           Favorite Songs
         </div>
 
+        { currentUser.liked_songs.length > 0 &&
         <div className="favorite-container">
           { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
             <div>
@@ -134,22 +135,31 @@ function Favorite() {
                         <img src={ user.image }></img>
                       </div>
                       <div className="favorite-track-line-flex-container">
-                        <div className="favorite-track-title">
-                          { track.title }
-                        </div>
-                        <div className="favorite-track-dash">
-                          <BsDash />
-                        </div>
-
+                        
                         <Link onClick={ () => setProfile(user) } to={ "/profile" }>
                           <div className='favorite-track-artist-name' >
                             { user.username }
                           </div>
                         </Link>
+
+                        <div className="favorite-track-dash">
+                          <BsDash />
+                        </div>
+
+                        <div className="favorite-track-title">
+                          { track.title }
+                        </div>
+
+                        <div className="favorite-track-dash">
+                          <BsDash />
+                        </div>
+
+                        <div className="favorite-track-duration">
+                          { duration(track.duration) }
+                        </div>
+
                       </div>
-                      <div className="favorite-track-duration">
-                        { duration(track.duration) }
-                      </div>
+                      
                       <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
                         { currentUser.liked_songs.includes(track) && <FaHeart /> }
                       </div>
@@ -158,7 +168,7 @@ function Favorite() {
                 </div>
               </>
             </div>) }
-        </div>
+        </div> }
       </div>
     </>
   )

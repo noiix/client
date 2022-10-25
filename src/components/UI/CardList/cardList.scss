@@ -9,3 +9,10 @@
     padding: 1rem;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: $max-screen) {
+    .card-list {
+        margin: 0;
+        padding: 0;
+    }
+  }

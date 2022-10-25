@@ -4,6 +4,7 @@ import baseUrl from "../config";
 import {useNavigate} from 'react-router-dom'
 import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
+import useLocalStorage from "use-local-storage";
 import io from 'socket.io-client';
 
 // const socket = io();
@@ -26,7 +27,7 @@ export const ChatProvider = ({children}) => {
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
-    const [counter, setCounter] = useState(0);
+    const [unreadCounter, setCounter] = useState(0);
 
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
@@ -48,16 +49,25 @@ export const ChatProvider = ({children}) => {
      useEffect(() => {
         fetchMessages();
         selectedChatCompare.current = selectedChat;
-    }, [selectedChat])
+    }, [selectedChat]);
+
+    // useEffect(() => {
+    //     const sortedChats = chats.sort((a, b) => a.updatedAt - b.updatedAt);
+    //     console.log('chats from sort chats', chats)
+    //     console.log('sortedChats', sortedChats);
+    //     setSelectedChat(sortedChats[0]);
+    // }, []);
+
+    console.log('selectdChat', selectedChat)
 
      useEffect(() => {
         socket.current.on('message received', (newMessageReceived) => {
+            messages.forEach((msg) => msg.read === false ? setCounter(unreadCounter +1) : msg)
             if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
                 if(!chatNotification.includes(newMessageReceived)) {
                     setChatNotification([newMessageReceived, ...chatNotification])
                     setFetchAgain(!fetchAgain);
                 }
-               
             }else {
                 setMessages([...messages, newMessageReceived])
             }
@@ -65,7 +75,8 @@ export const ChatProvider = ({children}) => {
     }, [socket.current, messages])
 
     console.log('chat notifications', chatNotification)
-    console.log('counter', counter)
+    console.log('counter', unreadCounter)
+    console.log('messages', messages);
 
 
     const fetchChats = () => {
@@ -90,12 +101,6 @@ export const ChatProvider = ({children}) => {
         })
     }
 
-    const sendMessageOnKeyDown = (e) => {
-        if(e.key === "Enter") {
-          sendMessage(e)
-        }
-    }
-
     const sendMessage = (e) => {
         e.preventDefault()
         if(newMessage) {
@@ -109,6 +114,12 @@ export const ChatProvider = ({children}) => {
 
             })
             .catch(err => console.log(err))
+        }
+    }
+
+    const sendMessageOnKeyDown = (e) => {
+        if(e.key === "Enter") {
+          sendMessage(e)
         }
     }
 
@@ -148,8 +159,11 @@ export const ChatProvider = ({children}) => {
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+            const sortedChats = chats.sort((a, b) => a.updatedAt - b.updatedAt);
+            // setSelectedChat(sortedChats[0]);
+            setChats(sortedChats);
         }
-    }, [currentUser])
+    }, [currentUser, fetchAgain])
 
     const isSenderCurrentUser = (message) => {
         return (
@@ -157,12 +171,21 @@ export const ChatProvider = ({children}) => {
         )
     }
 
+    const setMessageToRead = () => {
+        const chatId = {chatId: selectedChat._id}
+        API.patch(`${baseUrl}/messages/read`, chatId, { withCredentials: true})
+        .then(response => {
+            console.log('response from update read', response)
+            setMessages(response.data.result)
+        })
+    }
+
     const getSender = (loggedUser, users) => {
         return users[0]._id === loggedUser._id ? users[1].username : users[0].username;
       };
    
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, unreadCounter, setMessageToRead}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

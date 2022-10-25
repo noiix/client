@@ -7,24 +7,10 @@ import Chatfield from './Chatfield'
 function Chat() {
 
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages, accessChat} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification} = useContext(ChatContext);
 
 
     console.log('chats', chats)
-
-    // console.log('users', users)
-
-
-//   const send = (e) => {
-//     e.preventDefault();
-//     if(e.key === "Enter"){
-//       console.log(e.target.value)
-//       const content = e.target.value
-//       const recipientId = currentChat.filter(id =>  id !== currentUser._id);
-//     //   sendMessage(recipientId, content)
-//     }
-//   }
-
 
   return (
     <div className="chat-main">
@@ -33,7 +19,7 @@ function Chat() {
      <div className='chat-list-left'>
         {chats && chats.map(chat =>  <> {
             chat.users.map(user => user._id !== currentUser._id &&
-                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id)}}>
+                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id); setChatNotification(chatNotification.filter((n, i) => n.chat === chat))}}>
                 <div className="chat-profile-img">
                     <img src={user.image}/>
                 </div>
@@ -48,7 +34,7 @@ function Chat() {
             </div>)) 
             }</>)}
       </div>
-        <div className="back-to-chat-partners-btn">
+        <div className="back-to-chat-partners-btn" onClick={() => setSelectedChat("")}>
             Back
         </div>
         <Chatfield/>

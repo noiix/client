@@ -27,23 +27,9 @@ function Chat() {
 
 
   return (
-
-  <div className="chat-main">
-    <div className='chat-header'>
-      Chat
-    </div>
-
+    <div className="chat-main">
+        <div className='chat-header'>Chat</div>
     <div className='chat-container'>
-<<<<<<< HEAD
-      <div className='chat-list-left'>
-        <div className="chat-partner-row">
-            <div className="chat-profile-img">
-                <div className="picture"></div>
-            </div>
-            <div className="chat-text-box">
-                <div className="chat-partner-name">
-                    Name
-=======
         
      <div className='chat-list-left'>
         {chats && chats.map(chat =>  <> {
@@ -51,7 +37,6 @@ function Chat() {
                 (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id)}}>
                 <div className="chat-profile-img">
                     <img src={user.image}/>
->>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
                 </div>
                 <div className="chat-text-box">
                     <div className="chat-partner-name">
@@ -69,9 +54,7 @@ function Chat() {
         </div>
         <Chatfield/>
     </div>
-    
-  </div>
-
+    </div>
   )
 } 
 

@@ -70,3 +70,10 @@
 .card-track-title {
     // background-color: chartreuse;
 }
+
+@media screen and (max-width: $max-screen) {
+    .card {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+  }

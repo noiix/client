@@ -119,39 +119,8 @@ function Favorite() {
           Favorite Songs
         </div>
 
+        { currentUser.liked_songs.length > 0 &&
         <div className="favorite-container">
-<<<<<<< HEAD
-        { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
-          <div>
-            <>
-              <div className="favorite-track-line">
-                <div className="save-play" onClick={e => e.preventDefault()}>
-                  <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>
-                    { currentSong === idx && isPlaying ? <GrPause/> : <GrPlay/> }
-                  </div>
-                </div>
-                { users.map(user => user._id === track.artist && 
-                <>
-                  <div className="favorite-profile-pic">
-                    <img src={ user.image }></img>
-                  </div>
-                  <div className="favorite-track-line-flex-container">
-                    
-                    <Link onClick={()=> setProfile(user)} to={"/profile"}>
-                      <div className='favorite-track-artist-name' >
-                        { user.username }
-                      </div>
-                    </Link>
-
-                    <div className="favorite-track-dash">
-                      <BsDash />
-                    </div>
-
-                    <div className="favorite-track-title">
-                      { track.title }
-                    </div>
-
-=======
           { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
             <div>
               <>
@@ -159,7 +128,6 @@ function Favorite() {
                   <div className="save-play" onClick={ e => e.preventDefault() }>
                     <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }
                     </div>
->>>>>>> 124ff873f891dc96dfa7802b08f6d83adfb0a3dd
                   </div>
                   { users.map(user => user._id === track.artist &&
                     <>
@@ -167,22 +135,31 @@ function Favorite() {
                         <img src={ user.image }></img>
                       </div>
                       <div className="favorite-track-line-flex-container">
-                        <div className="favorite-track-title">
-                          { track.title }
-                        </div>
-                        <div className="favorite-track-dash">
-                          <BsDash />
-                        </div>
-
+                        
                         <Link onClick={ () => setProfile(user) } to={ "/profile" }>
                           <div className='favorite-track-artist-name' >
                             { user.username }
                           </div>
                         </Link>
+
+                        <div className="favorite-track-dash">
+                          <BsDash />
+                        </div>
+
+                        <div className="favorite-track-title">
+                          { track.title }
+                        </div>
+
+                        <div className="favorite-track-dash">
+                          <BsDash />
+                        </div>
+
+                        <div className="favorite-track-duration">
+                          { duration(track.duration) }
+                        </div>
+
                       </div>
-                      <div className="favorite-track-duration">
-                        { duration(track.duration) }
-                      </div>
+                      
                       <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
                         { currentUser.liked_songs.includes(track) && <FaHeart /> }
                       </div>
@@ -191,7 +168,7 @@ function Favorite() {
                 </div>
               </>
             </div>) }
-        </div>
+        </div> }
       </div>
     </>
   )

@@ -6,8 +6,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    // justify-content: center;
+    padding-top: 5rem;
 }
 
 .favorite-page-headline {
@@ -29,7 +29,7 @@
     background-color: white;
     border: 3px solid $dark-gray;
     height: 100px;
-    width: 600px;
+    width: 680px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +42,6 @@
 .favorite-track-line-flex-container {
     display: flex;
     align-items: center;
-    min-width: 30%;
     padding-left: 1.5rem;
 }
 
@@ -66,9 +65,9 @@
 }
 
 .favorite-track-title {
-    font-size: 1.2rem;
     padding-right: 1rem;
-    color: $dark-gray;
+    // color: $dark-gray;
+    text-align: center;
 }
 
 .favorite-track-dash {
@@ -78,7 +77,12 @@
 }
 
 .favorite-track-artist-name {
-    font-size: 1.1rem;
+    padding-right: 1rem;
+    text-align: center;
+}
+
+.favorite-track-duration {
+    // color: $dark-gray;
     padding-right: 1rem;
 }
 
@@ -86,28 +90,38 @@
     font-size: 1.2rem;
     margin-top: 0.3em;
     padding-right: 2.5rem;
-    &:hover {
-        color: rgb(196, 196, 196);
-    }
+    // &:hover {
+    //     color: rgb(196, 196, 196);
+    // }
 }
 
 @media screen and (max-width: $max-screen) {
 
     .favorite-container {
-        width: 100%;
+        width: 100vw;
         margin: 0 auto;
-        display: flex;
-        flex-direction: column;
+    }
+
+    .favorite-track-line {
+        min-width: 320px;
+        max-width: 100vw;
     }
 
     .favorite-track-line-flex-container {
         display: flex;
         flex-direction: column;
-        // width: 55%;
     }
 
     .favorite-track-dash {
         visibility: hidden;
         margin: -0.4rem;
     }
+
+    .favorite-track-like-btn {
+        padding-right: 2rem;
+    }
+
+    // .favorite-track-duration {
+    //     display: none;
+    // }
 }

@@ -18,6 +18,7 @@ import { TbEdit } from 'react-icons/tb'
 import { BsPlusLg } from 'react-icons/bs'
 import Button from '../UI/button/Button'
 import { Link } from 'react-router-dom'
+import { BsDash } from 'react-icons/bs';
 
 
 function Profile() {
@@ -28,7 +29,7 @@ function Profile() {
   const { accessChat } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
-
+  const [likedSongs, setLikedSongs] = useState([]);
 
   let url;
 
@@ -36,6 +37,8 @@ function Profile() {
 
   useEffect(() => {
     console.log('useeffect', profile)
+    const likedSongsId = currentUser.liked_songs.map(item => item._id);
+    setLikedSongs(likedSongsId);
 
     if (profile) {
 
@@ -80,6 +83,11 @@ function Profile() {
   }
 
   console.log('profile liked songs', currentUser.liked_songs)
+  console.log('profile music', profile.music.map((item) => {
+    console.log(item)
+    console.log('check', likedSongs.includes(item._id))
+  }))
+
 
 
   return (
@@ -144,15 +152,17 @@ function Profile() {
                   <>
                     <div className="profile-track-line">
                       <div className="profile-play-btn icon-btn" onClick={ playing ? () => pause(idx) : () => play(idx) }>{ currentItem === idx && playing ? <GrPause /> : <GrPlay /> }</div>
-                      <div className="profile-track-title">
-                        { track.title }
-                      </div>
-                      <div className="profile-track-duration">
-                        { duration(track.duration) }
+                      <div className="profile-align-container">
+                        <div className="profile-track-title">
+                          { track.title }
+                        </div>
+                        <div className="profile-track-duration">
+                          { duration(track.duration) }
+                        </div>
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :
-                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ currentUser.liked_songs.includes(track) ? <FaRegHeart /> : <FaHeart /> }</div> }
+                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart />}</div> }
                     </div>
                   </>)) : (
                   <div class>

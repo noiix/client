@@ -14,7 +14,7 @@
 nav {
     position: fixed;
     right: 0;
-    border-left: dashed $dark-gray 2px;
+    border-left: dashed $dark-gray 1.7px;
     height: 100vh;
     min-height: 600px;
     width: 4.5rem;
@@ -84,7 +84,7 @@ nav {
 
     .mode {
         position: static;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -105,18 +105,19 @@ nav {
         // padding: 0 .5rem 0 .5rem;
 
         // this should just be there, when mobile nav is visible:
-        margin-bottom: 40vh;
+        // margin-bottom: 40vh;
 
         #logo {
             transform: rotate(0deg);
             margin: 0 0 0 1rem;
+            font-size: 2rem;
         }
         
         .nav-toggle {
             font-size: 2rem;
             position: absolute;
-            right: 1.2rem;
-            top: 1rem;
+            right: 1.05rem;
+            top: 1.05rem;
         }
     
         ul {
@@ -159,17 +160,17 @@ nav {
     
         .mode {
             position: absolute;
-            top: 1.19rem;
-            right: 10rem;
-            font-size: 1.7rem;
+            top: 1.4rem;
+            right: 6rem;
+            font-size: 1.4rem;
             z-index: 5;
         }
 
         .search-btn {
             position: absolute;
-            top: 1.45rem;
-            right: 15rem;
-            font-size: 1.5rem;
+            top: 1.55rem;
+            right: 9rem;
+            font-size: 1.2rem;
         }
 
     }  

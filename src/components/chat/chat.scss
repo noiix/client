@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    // justify-content: center;
+    padding-top: 12rem;
 }
 
 .chat-header {
@@ -151,6 +151,10 @@
 
 
 @media screen and (max-width: $max-screen) {
+    .chat-main {
+        padding-top: 5rem;
+    }
+    
     .chat-container {
         width: 100%;
         flex-direction: column;
@@ -160,11 +164,14 @@
         
         .chat-list-left {
             // display: none;
-            min-width: 500px;
+            width: 100%;
+            max-width: 500px;
+            border: none;
         }
 
         .chat-window-right {
-            min-width: 500px;
+            width: 100%;
+            max-width: 500px;
             height: 100%;
         }
 

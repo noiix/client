@@ -41,7 +41,7 @@ export const ChatProvider = ({children}) => {
          socket.current.on('connected', () => {
              setSocketConnected(true)
          })
-         socket.current.on('typing', () => setIsTyping(true))
+         socket.current.on('typing', (chatId) => setIsTyping(chatId))
          socket.current.on('stop typing', () => setIsTyping(false))
      }, [])
 

@@ -27,7 +27,7 @@ function Chatfield() {
         }
       
       <form className="current-chat-input">
-            {isTyping && <div>Typing...</div>}
+            {selectedChat && (isTyping === selectedChat._id && <div>Typing...</div>)}
           <input type='text' name='message' placeholder='write something' onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
           <Button type='send' name='SEND' onClick={sendMessage}/>
       </form>

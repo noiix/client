@@ -8,7 +8,7 @@ function Chat() {
 
     const {currentUser} = useContext(UserContext);
     const [read, setRead] = useState([])
-    const {chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setMessageToRead} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setMessageToRead, setChatNotification} = useContext(ChatContext);
 
     // useEffect(() => {
     //     const unreadMessages = messages.filter(msg => msg.read === false);
@@ -30,16 +30,16 @@ function Chat() {
         return counter
     }
 
+ 
 
   return (
     <div className="chat-main">
-        <div className='chat-header'>Chat</div>
     <div className='chat-container'>
         
      <div className='chat-list-left'>
         {chats && chats.map(chat =>  <> {
             chat.users.map(user => user._id !== currentUser._id &&
-                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id); setMessageToRead();}}>
+                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id); setChatNotification(chatNotification.filter((n, i) => n.chat === chat)); setMessageToRead()}}>
                 <div className="chat-profile-img">
                     <img src={user.image}/>
                 </div>
@@ -55,7 +55,7 @@ function Chat() {
             </div>)) 
             }</>)}
       </div>
-        <div className="back-to-chat-partners-btn">
+        <div className="back-to-chat-partners-btn" onClick={() => setSelectedChat("")}>
             Back
         </div>
         <Chatfield/>

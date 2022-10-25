@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useRef} from 'react'
 import ChatContext from '../../contexts/ChatContext'
 import UserContext from '../../contexts/UserContext'
 import Button from '../UI/button/Button'
@@ -6,13 +6,15 @@ import Button from '../UI/button/Button'
 
 function Chatfield() {
 
+    const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
     const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
     
   return (
     <div className="chat-window-right">
     {selectedChat && 
-        <div className='chat-scroll'>
+        <div className='chat-scroll'  ref={scrollViewRef}
+        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
         {messages &&
           messages.map((msg, index) => 
             <>
@@ -25,7 +27,7 @@ function Chatfield() {
         }
       
       <form className="current-chat-input">
-            {isTyping && <div>Typing...</div>}
+            {selectedChat && (isTyping === selectedChat._id && <div>Typing...</div>)}
           <input type='text' name='message' placeholder='write something' onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
           <Button type='send' name='SEND' onClick={sendMessage}/>
       </form>

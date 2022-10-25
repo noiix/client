@@ -20,14 +20,14 @@ export const ChatProvider = ({children}) => {
     const { addNewNotification } = useContext(DesignContext);
 
     const [chats, setChats] = useState([])
-    const [selectedChat, setSelectedChat] = useState({})
+    const [selectedChat, setSelectedChat] = useState();
     const [fetchAgain, setFetchAgain] = useState(false)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState();
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
-    const [unreadCounter, setCounter] = useState(0);
+    const [unreadCounter, setCounter] = useState([]);
 
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
@@ -42,14 +42,17 @@ export const ChatProvider = ({children}) => {
          socket.current.on('connected', () => {
              setSocketConnected(true)
          })
-         socket.current.on('typing', () => setIsTyping(true))
+         socket.current.on('typing', (chatId) => setIsTyping(chatId))
          socket.current.on('stop typing', () => setIsTyping(false))
      }, [])
 
      useEffect(() => {
         fetchMessages();
         selectedChatCompare.current = selectedChat;
+        
     }, [selectedChat]);
+
+    
 
     // useEffect(() => {
     //     const sortedChats = chats.sort((a, b) => a.updatedAt - b.updatedAt);
@@ -65,7 +68,7 @@ export const ChatProvider = ({children}) => {
             messages.forEach((msg) => msg.read === false ? setCounter(unreadCounter +1) : msg)
             if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
                 if(!chatNotification.includes(newMessageReceived)) {
-                    setChatNotification([newMessageReceived, ...chatNotification])
+                    setChatNotification([...chatNotification, newMessageReceived])
                     setFetchAgain(!fetchAgain);
                 }
             }else {
@@ -80,7 +83,7 @@ export const ChatProvider = ({children}) => {
 
 
     const fetchChats = () => {
-        API.get(`${baseUrl}/chat`, { withCredentials: true})
+        API.get(`${baseUrl}/chat`, { withCredentials: true })
         .then(response => {
             if(response.data) {
                 setChats(response.data)

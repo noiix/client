@@ -32,10 +32,10 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/create`, formData, { withCredentials: true })
       .then((response) => {
-        console.log("reponse notification", response);
+        // console.log("reponse notification", response);
         if (Array.isArray(response.data)) {
           response.data.map((note) => {
-            console.log("single note", note);
+            // console.log("single note", note);
             if (checkNotification(note)) {
               addNewNotification(note);
             }
@@ -51,13 +51,13 @@ export const UserProvider = ({ children }) => {
 
   const inputHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   // console.log("form data: " + formData);
 
   const introTextHandler = (e) => {
     setIntroText(e.target.value);
-    console.log('introTextHandler check', e.target.value);
+    // console.log('introTextHandler check', e.target.value);
   }
 
 
@@ -103,8 +103,8 @@ export const UserProvider = ({ children }) => {
 
   const addContact = () => {
     const contactId = {contactId: profile._id}
-    console.log(contactId)
-    console.log('new contacts', contacts)
+    // console.log(contactId)
+    // console.log('new contacts', contacts)
     API.patch(`${baseUrl}/user/addcontact`, contactId, {withCredentials: true})
       .then(response => {
         setContacts(response.data.contacts)
@@ -112,11 +112,11 @@ export const UserProvider = ({ children }) => {
       })
   }
 
-  console.log('contacts after setting it', contacts)
+  // console.log('contacts after setting it', contacts)
 
 
   const handleCheck = (e) => {
-    console.log("e.target;", e.target);
+    // console.log("e.target;", e.target);
     setChecked(!checked);
 
     if (
@@ -162,7 +162,7 @@ export const UserProvider = ({ children }) => {
       withCredentials: true,
     })
       .then((response) => {
-        console.log('profile update', response.data)
+        // console.log('profile update', response.data)
         setCurrentUser(response.data)
         setProfile(response.data)
       })
@@ -178,14 +178,14 @@ export const UserProvider = ({ children }) => {
         withCredentials: true
       })
       .then((response) => {
-        console.log('introText update', response.data)
+        // console.log('introText update', response.data)
         setCurrentUser(response.data.result)
         setProfile(response.data.result)
         setToggleTextBtn(false);
       })
       .catch((err) => console.log(err));
     } else {
-      console.log('intro text too short.')
+      // console.log('intro text too short.')
       addNewNotification({type: 'info', title: 'Please, provide at least 50 characters.'})
     }
   }
@@ -205,7 +205,7 @@ export const UserProvider = ({ children }) => {
     API.get(`${baseUrl}/music/mysongs`, { withCredentials: true})
       .then(response => {
         if(response.data) {
-          console.log('my songs', response.data)
+          // console.log('my songs', response.data)
           setMySongs(response.data)
         }
       })
@@ -223,7 +223,7 @@ export const UserProvider = ({ children }) => {
   const getAllMyContacts = () => {
     API.get(`${baseUrl}/user/contacts`, { withCredentials: true})
     .then(response => {
-      console.log('contacts response', response)
+      // console.log('contacts response', response)
       setContacts(response.data.contacts)
     })
   }
@@ -241,7 +241,7 @@ export const UserProvider = ({ children }) => {
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
       (response) => {
-        console.log("response all users", response);
+        // console.log("response all users", response);
         if(response.data.result) {
           const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
           setUsers(filteredUsers);

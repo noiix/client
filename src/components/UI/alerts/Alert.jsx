@@ -46,7 +46,7 @@ const SuccessAlert = () => {
     return (
         (notification.length > 0 &&
             notification.map((note, i) =>
-                <div className={ `alert ${note.type} ${(blendOut && i === 0) || (blendOut && closeBtn && note[i]) && "fade-out"} ${(blendIn && i === (notification.length -1) && "fade-in")}` }>
+                <div className={ `alert ${note.type} ${(blendOut && i === 0) || (blendOut && closeBtn && note[i]) && "fade-out"} ${(blendIn && i === (notification.length -1) && "fade-in")}` } key={i}>
                     <p>{ note.title } </p>
                     <Link onClick={ e => closeNotification(i) }><IoIosCloseCircleOutline /></Link>
                 </div>)

@@ -94,22 +94,6 @@ function Favorite() {
         audioRef.current.pause();
       }
     }
-
-    // if (index === 0) {
-    //   setCurrentSong(0)
-    //   setIsPlaying(false)
-    //   audioRef1.current.pause();
-    // }
-    // else if (index === 1) {
-    //   setCurrentSong(1)
-    //   setIsPlaying(false)
-    //   audioRef2.current.pause();
-    // }
-    // else if (index === 2) {
-    //   setCurrentSong(2)
-    //   setIsPlaying(false)
-    //   audioRef3.current.pause();
-    // }
   }
 
   return (
@@ -126,7 +110,7 @@ function Favorite() {
               <>
                 <div className="favorite-track-line">
                   <div className="save-play" onClick={ e => e.preventDefault() }>
-                    <div className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }
+                    <div key={idx} className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }
                     </div>
                   </div>
                   { users.map(user => user._id === track.artist &&

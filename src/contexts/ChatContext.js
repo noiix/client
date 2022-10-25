@@ -65,8 +65,8 @@ export const ChatProvider = ({children}) => {
         })
     }, [socket.current, messages])
 
-    console.log('chat notifications', chatNotification)
-    console.log('counter', counter)
+    // console.log('chat notifications', chatNotification)
+    // console.log('counter', counter)
 
 
     const fetchChats = () => {
@@ -153,7 +153,7 @@ export const ChatProvider = ({children}) => {
             // setSelectedChat(sortedChats[0]);
             setChats(sortedChats);
         }
-    }, [currentUser, fetchAgain])
+    }, [currentUser, fetchAgain, chats])
 
     const isSenderCurrentUser = (message) => {
         return (

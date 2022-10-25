@@ -24,14 +24,14 @@ function Navbar() {
       <div className="search-bar-container">
         { displaySearch && <Search className="search-bar" /> }
       </div>
-      <nav>
-        <Link to={ "/" }>
+      <nav className={ darkMode }>
+        <Link to={ "/" } className={ darkMode }>
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
         </Link>
         { Object.keys(currentUser).length !== 0 &&
-          <Link onClick={ toggleNav } className="nav-toggle">
+          <Link onClick={ toggleNav } className={ `nav-toggle ${darkMode}` }>
             { (!isDesktop && !displayNav) &&
               <HiOutlineMenuAlt3 />
             }

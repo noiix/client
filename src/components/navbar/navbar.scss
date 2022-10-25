@@ -14,7 +14,7 @@
 nav {
     position: fixed;
     right: 0;
-    border-left: dashed $dark-gray 2px;
+    border-left: dashed $dark-gray 1.7px;
     height: 100vh;
     min-height: 600px;
     width: 4.5rem;
@@ -30,7 +30,7 @@ nav {
         font-family: $logo-font;
         font-size: 2.8rem;
         font-weight: 100;
-        color: $dark-gray;
+        // color: $dark-gray;
     }
 
     ul {
@@ -83,12 +83,21 @@ nav {
     }
 
     .mode {
-        position: static;
         font-size: 1.2rem;
         text-align: center;
         margin-bottom: 2rem;
     }
+
 }  
+
+.dark {
+    color: $light-gray;
+    background-color: $dark-gray;
+    border-left: $light-gray;
+
+    
+    
+}
 
 @media screen and (max-width: $max-screen) {
     nav {

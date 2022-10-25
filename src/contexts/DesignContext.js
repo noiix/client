@@ -29,9 +29,10 @@ export const DesignProvider = ({children}) => {
 
 
     //light and dark mode
-    const [darkMode, setDarkMode] = useState(false)
+    const [darkMode, setDarkMode] = useState('light')
     const toggleMode = () => {
-        setDarkMode(!darkMode)
+        setDarkMode(darkMode === 'light' ? 'dark' : 'light')
+        console.log('MODE: ', darkMode)
     }
 
     // nav toggle

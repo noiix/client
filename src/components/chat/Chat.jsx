@@ -10,16 +10,16 @@ function Chat() {
     const {chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification} = useContext(ChatContext);
 
 
-    console.log('chats', chats)
+    // console.log('chats', chats)
 
   return (
     <div className="chat-main">
     <div className='chat-container'>
         
      <div className='chat-list-left'>
-        {chats && chats.map(chat =>  <> {
+        {chats && chats.map((chat, i) =>  <> {
             chat.users.map(user => user._id !== currentUser._id &&
-                (<div className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id); setChatNotification(chatNotification.filter((n, i) => n.chat === chat))}}>
+                (<div key={user._id} className="chat-partner-row" onClick={() => {setSelectedChat(chat); accessChat(user._id); setChatNotification(chatNotification.filter((n, i) => n.chat === chat))}}>
                 <div className="chat-profile-img">
                     <img src={user.image}/>
                 </div>

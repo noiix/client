@@ -47,6 +47,7 @@ function Chat() {
                 <div className="chat-text-box">
                     <div className="chat-partner-name">
                         {user.username}
+                        {chatNotification.filter(n => n.chat._id === chat._id).length > 0 && <span className='dot'></span>}
                     </div>
                     <div className="chat-text-teaser">
                        <span>something</span>

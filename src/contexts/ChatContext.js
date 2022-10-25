@@ -6,6 +6,7 @@ import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
 import useLocalStorage from "use-local-storage";
 import io from 'socket.io-client';
+import { MdScanner } from "react-icons/md";
 
 // const socket = io();
 

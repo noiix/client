@@ -22,3 +22,8 @@
     align-items: center;
     padding: 2rem;
 }
+.dark {
+    .modal {
+        background-color: lighten($dark-lavender, 25%);
+    }
+}

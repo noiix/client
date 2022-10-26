@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import Authentication from "../authentication/Authentication";
 import DesignContext from "../../contexts/DesignContext";
 import UserContext from "../../contexts/UserContext";
@@ -8,27 +8,27 @@ import Button from "../UI/button/Button";
 
 
 function Home() {
-  const {isDesktop, toggleModal, toggleBtn, displayModal} = useContext(DesignContext)
-  const {currentUser} = useContext(UserContext)
+  const { isDesktop, toggleModal, toggleBtn, displayModal, darkMode } = useContext(DesignContext)
+  const { currentUser } = useContext(UserContext)
 
   return (
-    <div className="home">
+    <div className={ `home ${darkMode}` }>
       <div className="home-container">
-        {isDesktop &&
+        { isDesktop &&
           <h1>NÖIX CONNECTS MUSICIANS</h1>
         }
         <h2>explore music, find band members, chat</h2>
 
         { (Object.keys(currentUser).length > 0) && <CardList /> }
-        
-        {(Object.keys(currentUser).length === 0 && !toggleBtn) && 
-        <div className="login-btn-container">
-          <Button onClick={ toggleModal } type="submit" name="Login"/>
-        </div> 
+
+        { (Object.keys(currentUser).length === 0 && !toggleBtn) &&
+          <div className="login-btn-container">
+            <Button onClick={ toggleModal } type="submit" name="Login" />
+          </div>
         }
-        {(Object.keys(currentUser).length === 0 && displayModal) && 
+        { (Object.keys(currentUser).length === 0 && displayModal) &&
           <Modal>
-            <Authentication/>
+            <Authentication />
           </Modal>
         }
 

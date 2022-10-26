@@ -40,7 +40,22 @@
     }
 }
 
+.dark {
+    
+    .card {
+        border: 2px solid $light-gray;
+        color: $light-gray;
+        background-color: $dark-gray;
+
+        * {
+        stroke: $light-gray;
+        fill: $dark-gray;
+    }
+    }
+}
+
 @media screen and (max-width: $max-screen) {
+
     .home .home-container {
 
         width: 100%;

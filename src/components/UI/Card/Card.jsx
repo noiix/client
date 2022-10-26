@@ -4,11 +4,12 @@ import UserContext from "../../../contexts/UserContext";
 import DataContext from '../../../contexts/DataContext';
 
 
-function Card({ user, i }) {
+function Card({ user, i, playTrack }) {
 
   const {setProfile} = useContext(UserContext);
   const [playing, setPlaying] = useState(false);
   const [count, setCount] = useState(0);
+  const [clicked, setClicked] = useState(false);
 
 
 
@@ -18,6 +19,7 @@ function Card({ user, i }) {
   }
 
   let audioRef = useRef(new Audio(url));
+  
 
   const play = () => {
     if(count % 2 === 0) {

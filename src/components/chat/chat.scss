@@ -9,6 +9,7 @@
     align-items: center;
     // justify-content: center;
     padding-top: 12rem;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -214,9 +215,13 @@
 
     .current-chat-message-own {
         border-color: $lavender;
+        background-color: $dark-lavender;
+
     }
     .current-chat-message-partner {
         border-color: $lavender;
+        background-color: $dark-gray;
+
     }
 
     .current-chat-input {

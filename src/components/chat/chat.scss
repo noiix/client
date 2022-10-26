@@ -3,7 +3,7 @@
 .chat-main {
     // background-color: lighten($dark-gray, 20%);
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +70,7 @@
     }
 
     .chat-text-teaser {
-        background-color: aqua;
+        // background-color: aqua;
         margin: 0.3rem 0;
         height: 15px;
         width: 190px;
@@ -81,26 +81,37 @@
 .chat-window-right {
     background-color: white;
     width: 500px;
-    position: relative;
+
+    // position: relative;
     display: flex;
     flex-direction: column;
 
     .chat-scroll {
         overflow-y: scroll;
-        height: 80%;
+        height: 75vh;
+        overscroll-behavior-y: contain;
+        scroll-snap-type: y proximity;
+        // does not work
+        &:last-child {
+            scroll-snap-align: end;
+        }
     }
 
     .current-chat-message-own, .current-chat-message-partner {
         border: 3px solid $dark-gray;
-        margin: 1em;
+        margin: 1rem;
         padding: 0.8em;
         font-size: 0.9rem;
         line-height: 1.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .current-chat-message-own {
         border-radius: 13px 15px 0px 15px;
         margin-left: 2rem;
+        background-color: rgb(235, 235, 235);
     }
 
     .current-chat-message-partner {
@@ -111,8 +122,8 @@
     .current-chat-input {
         height: 100px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
+        // position: absolute;
+        // bottom: 0;
         padding: 1em;
         font-family: $extra-font;
         font-size: 0.9rem;
@@ -145,6 +156,7 @@
 .back-to-chat-partners-btn {
     display: none;
     border: 3px solid $dark-gray;
+    // background-color: white;
     margin: 0.3em;
     padding: 0.2em;
 }
@@ -152,27 +164,59 @@
 
 @media screen and (max-width: $max-screen) {
     .chat-main {
-        padding-top: 5rem;
+        padding-top: 0rem;
+    }
+
+    .overlay {
+        background-color: white;
+        height: 90px;
+        z-index: 4;
+        position: absolute;
+        top: 4.5rem;
+        // left: 0;
+    }
+
+    .overlay-hidden {
+        display: none;
     }
     
     .chat-container {
+        background-color: white;
+        box-shadow: none;
         width: 100%;
+        height: 100%;
+        // display: block;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         overflow: hidden;
         
-        .chat-list-left {
+        .chat-list-left, .chat-window-right {
             // display: none;
             width: 100%;
+            height: 100%;
             max-width: 500px;
             border: none;
+    
         }
 
-        .chat-window-right {
-            width: 100%;
-            max-width: 500px;
-            height: 100%;
+        .chat-list-left {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .current-chat-message-own, .current-chat-message-partner {
+            min-width: calc(320px - 2rem);
+            max-width: calc(100vw - 2rem);
+
+        }
+
+        .current-chat-message-own {
+            margin-left: 0.1rem;
+        }
+
+        .current-chat-message-partner {
+            margin-right: 0.1rem;
         }
 
         .back-to-chat-partners-btn {

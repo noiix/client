@@ -30,6 +30,15 @@ function Chat() {
                                 <div className="chat-profile-img">
                                     <img src={ user.image } />
                                 </div>
+                                <div className="chat-text-box">
+                                    <div className="chat-partner-name">
+                                        {user.username}
+                                        {chatNotification.filter(n => n.chat._id === chat._id).length > 0 && <span className='dot'></span>}
+                                    </div>
+                    <div className="chat-text-teaser">
+                       <span>something</span>
+                    </div>
+                </div>
                                 <div className="back-to-chat-partners-btn" onClick={ () => setSelectedChat("") }>
                                     Back
                                 </div>

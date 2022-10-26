@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react'
+import React, {useContext, useRef, useState, useEffect} from 'react'
 import ChatContext from '../../contexts/ChatContext'
 import UserContext from '../../contexts/UserContext'
 import Button from '../UI/button/Button'
@@ -9,6 +9,11 @@ function Chatfield() {
     const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
     const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
+    const [scrollBottom, setScrollBottom] = useState(false);
+
+    useEffect(() => {
+      setScrollBottom(true)
+  }, [messages])
     
   return (
     <div className="chat-window-right">

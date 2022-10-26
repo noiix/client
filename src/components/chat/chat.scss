@@ -88,12 +88,12 @@
 
     .chat-scroll {
         overflow-y: scroll;
-        // overscroll-behavior-y: contain;
-        // scroll-snap-type: y proximity;
-        // // does not work
-        // &:last-child {
-        //     scroll-snap-align: end;
-        // }
+        overscroll-behavior-y: contain;
+        scroll-snap-type: y proximity;
+        // does not work
+        &:last-child {
+            scroll-snap-align: end;
+        }
     }
 
     .current-chat-message-own, .current-chat-message-partner {

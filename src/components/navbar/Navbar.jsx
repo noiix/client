@@ -32,21 +32,13 @@ function Navbar() {
         { displaySearch && <Search className="search-bar" /> }
       </div>
       <nav>
-<<<<<<< HEAD
-        <Link to={ "/" } >
-=======
         <Link to={ "/" } onClick={() => setSelectedChat("")}>
->>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
         </Link>
         { Object.keys(currentUser).length !== 0 &&
-<<<<<<< HEAD
-          <Link onClick={ toggleNav } className={ `nav-toggle ${darkMode}` }>
-=======
           <Link onClick={ () => {toggleNav(); setSelectedChat("") }} className="nav-toggle">
->>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
             { (!isDesktop && !displayNav) &&
               <HiOutlineMenuAlt3 />
             }

@@ -66,17 +66,44 @@
 // ------------------DARK MODE-------------------
 
 .dark {
+
+    .updateForm {
+        input[type=text]{
+            background-color: $dark-gray;
+            border-color: $light-gray;
+            &::placeholder{
+                color: $light-gray;
+            }
+        }
+        ::-webkit-scrollbar {
+        width: 10px;
+        background: $dark-gray;
+        }
+        ::-webkit-scrollbar-track {
+            width: 2px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: $light-gray;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+        }
+        }
+
     .dropdown-menu {
-    border: 2px solid $light-gray;
+    border-color: $light-gray;
     background-color: $dark-gray;
+    }
 
-}
-.profile-info-edit-btn button  {
-    border: none;
-}
+    .profile-info-edit-btn button.submit {
+        border: none;
+    }
 
-.modal {
-    background-color: $dark-lavender;
-}
+    .modal {
+        background-color: $dark-lavender;
+        input {
+            background: $light-gray;
+        }
+    }
 
 }

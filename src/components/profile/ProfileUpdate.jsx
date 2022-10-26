@@ -69,13 +69,13 @@ const ProfileUpdate = () => {
     <div className={ darkMode }>
 
       <form className="updateForm">
-        <p>new username</p>
+        {/* <p>new username</p>
         <input
           type="text"
           name="username"
           placeholder="new username"
           onChange={ inputHandler }
-        />
+        /> */}
         <p>set your genres</p>
 
         <div className="dropdown-container">

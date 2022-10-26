@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from 'react'
 import UserContext from '../../contexts/UserContext'
 import DataContext from '../../contexts/DataContext'
+import DesignContext from '../../contexts/DesignContext';
 import { GrPlay, GrPause } from "react-icons/gr";
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { BsDash } from 'react-icons/bs';
@@ -11,6 +12,7 @@ function Favorite() {
 
   const { currentUser, profile, users, setProfile } = useContext(UserContext)
   const { dislikeSongs, duration } = useContext(DataContext);
+  const { darkMode } = useContext(DesignContext)
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
 
@@ -74,55 +76,55 @@ function Favorite() {
         </div>
 
         { currentUser.liked_songs.length > 0 &&
-        <div className="favorite-container">
-          { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
-            <div>
-              <>
-                <div className="favorite-track-line">
-                  <div className="save-play" onClick={ e => e.preventDefault() }>
-                    <div key={idx} className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }
+          <div className="favorite-container">
+            { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
+              <div className={ darkMode }>
+                <>
+                  <div className="favorite-track-line">
+                    <div className="save-play" onClick={ e => e.preventDefault() }>
+                      <div key={ idx } className="favorite-play-btn" onClick={ isPlaying ? () => pause(idx) : () => play(idx) }>{ currentSong === idx && isPlaying ? <GrPause /> : <GrPlay /> }
+                      </div>
                     </div>
-                  </div>
-                  { users.map(user => user._id === track.artist &&
-                    <>
-                      <div className="favorite-profile-pic">
-                        <img src={ user.image }></img>
-                      </div>
-                      <div className="favorite-track-line-flex-container">
-                        
-                        <Link onClick={ () => setProfile(user) } to={ "/profile" }>
-                          <div className='favorite-track-artist-name' >
-                            { user.username }
+                    { users.map(user => user._id === track.artist &&
+                      <>
+                        <div className="favorite-profile-pic">
+                          <img src={ user.image }></img>
+                        </div>
+                        <div className="favorite-track-line-flex-container">
+
+                          <Link onClick={ () => setProfile(user) } to={ "/profile" }>
+                            <div className='favorite-track-artist-name' >
+                              { user.username }
+                            </div>
+                          </Link>
+
+                          <div className="favorite-track-dash">
+                            <BsDash />
                           </div>
-                        </Link>
 
-                        <div className="favorite-track-dash">
-                          <BsDash />
+                          <div className="favorite-track-title">
+                            { track.title }
+                          </div>
+
+                          <div className="favorite-track-dash">
+                            <BsDash />
+                          </div>
+
+                          <div className="favorite-track-duration">
+                            { duration(track.duration) }
+                          </div>
+
                         </div>
 
-                        <div className="favorite-track-title">
-                          { track.title }
+                        <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
+                          { currentUser.liked_songs.includes(track) && <FaHeart /> }
                         </div>
-
-                        <div className="favorite-track-dash">
-                          <BsDash />
-                        </div>
-
-                        <div className="favorite-track-duration">
-                          { duration(track.duration) }
-                        </div>
-
-                      </div>
-                      
-                      <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
-                        { currentUser.liked_songs.includes(track) && <FaHeart /> }
-                      </div>
-                    </>
-                  ) }
-                </div>
-              </>
-            </div>) }
-        </div> }
+                      </>
+                    ) }
+                  </div>
+                </>
+              </div>) }
+          </div> }
       </div>
     </>
   )

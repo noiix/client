@@ -24,7 +24,7 @@ import { BsDash } from 'react-icons/bs';
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
-  const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact } = useContext(UserContext)
+  const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
   const { accessChat } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
@@ -108,16 +108,32 @@ function Profile() {
                   </div> }
               </div>
 
-              <h3>{ profile.username }</h3>
+              <div className="profile-header-username">
+                <h3>{ profile.username }</h3>
+                {profile._id === currentUser._id && 
+                <form>
+                  <input  onChange={ inputHandler } name="username" placeholder="new name"/>
+                  <Button type="btn-small" onClick={ profileUpdateName } name="update name"/>            
+                </form>}
+              </div>     
             </div>
 
             <div className="profile-info-container">
+
+            <div className="profile-info-edit-btn">
+              { profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>Genre & Instruments</button> }
+              { displayModalUpdate &&
+                <Modal>
+                  <ProfileUpdate />
+                </Modal>
+              }
+              </div>
               <div className="profile-info">
                 { profile._id === currentUser._id ?
                   <form className="intro-text-form">
                     <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={ currentUser.intro_text || "Write a short info text about you." } onChange={ introTextHandler }>
                     </textarea>
-                    <Button type="submit" name="SUBMIT" onClick={ introTextUpdate } />
+                    <Button type="submit" name="update" onClick={ introTextUpdate } />
                   </form> :
                   <div>{ profile.intro_text }</div> }
                 <>
@@ -125,18 +141,7 @@ function Profile() {
                 </>
 
               </div>
-
-
-              <div className="profile-info-edit-btn">
-                { profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>EDIT PROFILE</button> }
-                { displayModalUpdate &&
-                  <Modal>
-                    <ProfileUpdate />
-                  </Modal>
-                }
-              </div>
             </div>
-
 
           </div>
           <div className="profile-right-column">

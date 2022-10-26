@@ -95,6 +95,23 @@
     // }
 }
 
+.dark {
+    .favorite-track-line {
+        background-color: $dark-lavender;
+    }
+
+    .favorite-track-artist-name {
+    color: $light-gray;
+}
+
+    .favorite-play-btn {
+        * {
+        stroke: $light-gray;
+        fill: $dark-lavender;
+    }
+    }
+}
+
 @media screen and (max-width: $max-screen) {
 
     .favorite-container {

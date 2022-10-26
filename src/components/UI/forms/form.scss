@@ -5,7 +5,6 @@ form {
     input {
         border: solid 2px $dark-gray;
         padding: 0.5em;
-        margin: 0.2rem 0;
         font-size: 1rem;
         font-family: $main-font;
         font-weight: 600;
@@ -28,5 +27,13 @@ form {
     }
     .drag-and-drop {
         cursor: pointer;
+    }
+    button {
+        height: 100%;
+    }
+    .btn-small {
+        background-color: $dark-gray;
+        color: white;
+        margin: 0;
     }
 }

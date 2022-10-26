@@ -86,6 +86,7 @@ body {
   }
   .main {
     width: 100%!important;
-    height: auto;
+    height: calc(100vh - 4.5rem)!important;
+    min-height: 0!important;
   }
 }

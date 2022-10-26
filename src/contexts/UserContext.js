@@ -156,7 +156,7 @@ export const UserProvider = ({ children }) => {
 
   const profileUpdate = (e) => {
     e.preventDefault();
-    formData = { ...formData, genre: genre, instrument: instrument};
+    formData = { genre: genre, instrument: instrument};
     closeModal();
     API.patch(`${baseUrl}/user/profile/edit`, formData, {
       withCredentials: true,
@@ -168,6 +168,16 @@ export const UserProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
   };
+
+  const profileUpdateName = (e) => {
+    e.preventDefault();
+    API.patch(`${baseUrl}/user/profile/editname`, formData, { withCredentials: true })
+    .then(response => { 
+      setCurrentUser(response.data)
+      setProfile(response.data)
+    }).catch(err => console.log(err))
+   
+  }
 
 
   const introTextUpdate = (e) => {
@@ -304,7 +314,8 @@ export const UserProvider = ({ children }) => {
     toggleTextBtn,
     getNearbyUsers,
     usersForSearch,
-    addContact
+    addContact,
+    profileUpdateName 
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

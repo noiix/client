@@ -17,13 +17,27 @@
     height: 550px;
     width: 450px;
     background-color: lighten($lavender, 25%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    padding: 4rem;
+    div {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 .dark {
     .modal {
         background-color: lighten($dark-lavender, 25%);
+    }
+}
+
+@media screen and (max-width: $max-screen) {
+    .modal-background {
+        align-items: flex-end;
+        .modal {
+            height: calc(100% - 4.5rem);
+            width: 100%;
+        }
     }
 }

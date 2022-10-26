@@ -1,11 +1,13 @@
 import React from "react";
 import { useContext, useEffect } from "react";
 import UserContext from "../../contexts/UserContext";
+import DesignContext from "../../contexts/DesignContext"
 
 
 const GoogleAuth = () => {
 
   const { googleAuthentication } = useContext(UserContext);
+  const { gMode } = useContext(DesignContext)
 
   useEffect(() => {
     /* global google */
@@ -17,19 +19,20 @@ const GoogleAuth = () => {
     });
 
     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "small",
+      theme: gMode,
+      size: "medium",
+      shape: 'rectangular'
     });
 
     // google.accounts.id.prompt();
     // eslint-disable-next-line
-  }, []);
+  }, [gMode]);
 
 
 
   return (
     <div>
-      <div id="signInDiv"></div>
+      <div id='signInDiv'></div>
     </div>
   )
 }

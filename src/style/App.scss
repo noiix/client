@@ -68,6 +68,13 @@ body {
   text-decoration: none;
 }
 
+.dark {
+    .main {
+      background-color: $dark-gray;
+    }
+ 
+}
+
 @media screen and (max-width: $max-screen) {
   .App {
     width: 100vw;

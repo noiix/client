@@ -62,3 +62,21 @@
     justify-content: center;
     align-items: center;
 }
+
+// ------------------DARK MODE-------------------
+
+.dark {
+    .dropdown-menu {
+    border: 2px solid $light-gray;
+    background-color: $dark-gray;
+
+}
+.profile-info-edit-btn button  {
+    border: none;
+}
+
+.modal {
+    background-color: $dark-lavender;
+}
+
+}

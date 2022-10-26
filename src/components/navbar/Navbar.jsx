@@ -7,6 +7,7 @@ import DesignContext from "../../contexts/DesignContext";
 import DataContext from "../../contexts/DataContext";
 import { IoMdClose } from 'react-icons/io';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { BsSun } from 'react-icons/bs';
 import Search from '../../components/search/Search';
 import { ImSearch } from 'react-icons/im';
 
@@ -20,12 +21,12 @@ function Navbar() {
   }
 
   return (
-    <>
+    <div className={ darkMode }>
       <div className="search-bar-container">
         { displaySearch && <Search className="search-bar" /> }
       </div>
-      <nav className={ darkMode }>
-        <Link to={ "/" } className={ darkMode }>
+      <nav>
+        <Link to={ "/" } >
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
@@ -52,11 +53,11 @@ function Navbar() {
               </ul>
             }
             { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> }
-            <NavLink className="mode" onClick={ toggleMode }>{ darkMode ? <MdOutlineDarkMode /> : <MdDarkMode /> }</NavLink>
+            <NavLink className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</NavLink>
           </>
         }
       </nav>
-    </>
+    </div>
   );
 }
 

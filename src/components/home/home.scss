@@ -4,8 +4,8 @@
     // background-image: url('../../img/bg-light-home.png');
     background-image: url('../../img/bg-home-pink.png');
     // background-image: url('../../img/bg-light-home-lighter.png');
-    background-size: contain;
-    // background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100vw;
     height: 100%;
     display: flex;
@@ -40,7 +40,22 @@
     }
 }
 
+.dark {
+    
+    .card {
+        border: 2px solid $light-gray;
+        color: $light-gray;
+        background-color: $dark-gray;
+
+        * {
+        stroke: $light-gray;
+        fill: $dark-gray;
+    }
+    }
+}
+
 @media screen and (max-width: $max-screen) {
+
     .home .home-container {
 
         h1 {

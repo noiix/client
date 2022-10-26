@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm } = useContext(DesignContext)
+  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
   const { accessChat } = useContext(ChatContext);
@@ -83,7 +83,8 @@ function Profile() {
 
 
   return (
-    <div className="profile-container">
+    // <div className={ darkMode }>
+    <div className={ `profile-container ${darkMode}` }>
       { Object.keys(currentUser).length !== 0 && (
         <>
           <div className="profile-left-column">
@@ -179,6 +180,7 @@ function Profile() {
       ) }
 
     </div>
+    // </div>
   );
 }
 

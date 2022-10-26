@@ -12,11 +12,12 @@ import axios from "axios";
 import DesignContext from "./contexts/DesignContext";
 import Authentication from "./components/authentication/Authentication";
 import Favorite from './components/favoriteSongs/Favorite'
+import { MdDarkMode } from "react-icons/md";
 // import ProfileUpdate from "./components/profile/ProfileUpdate";
 
 function App() {
   const { currentUser } = useContext(UserContext);
-  const { notification, setNotification, isDesktop } = useContext(DesignContext);
+  const { notification, setNotification, isDesktop, darkMode } = useContext(DesignContext);
 
   useEffect(() => {
     axios
@@ -28,7 +29,7 @@ function App() {
   }, []);
 
   return (
-   <div className="App">
+   <div className={`App ${darkMode}`}>
       {!isDesktop && <Navbar/>}
     <div className="main">
       <Routes>

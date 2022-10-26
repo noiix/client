@@ -91,11 +91,21 @@ nav {
 }  
 
 .dark {
-    color: $light-gray;
-    background-color: $dark-gray;
-    border-left: $light-gray;
-
     
+        nav {
+
+            color: $light-gray;
+            background-color: $dark-gray;
+            border-left: dashed $light-gray 1.7px;
+            
+            .mode {
+                color: $light-gray;
+            }
+            a {
+                color: $light-gray;
+                border: none;
+            }
+        }
     
 }
 
@@ -175,4 +185,9 @@ nav {
         }
 
     }  
+
+    .dark {
+    border-bottom: dashed $light-gray 1.7px;
+    border-left: none;
+}
 }

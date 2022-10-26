@@ -24,3 +24,14 @@
 .file-input {
     display: none;
 }
+
+.dark {
+    border: none;
+
+    .drag-and-drop {
+        // border: 1px $light-gray solid;
+        background-color: $dark-gray;
+        
+    
+}
+}

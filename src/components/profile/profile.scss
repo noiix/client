@@ -139,6 +139,56 @@
     font-size: 1.5rem;
 }
 
+
+// ------------- dark mode --------------------
+
+.dark {
+    // &.profile-container {
+    //         background-color: $dark-gray;
+    // }
+
+.profile-left-column {
+    border-right: 2px dotted $light-gray;
+    background-color: $dark-gray;
+}
+
+.profile-picture-update-btn {
+    color: $light-gray;
+}
+
+.profile-info {
+    textarea {
+        border: $light-gray 2px solid;
+        background-color: $dark-gray;
+        color: $light-gray;
+
+        &:focus-visible {
+            outline: $dark-pink 2px solid;
+            border: $dark-pink 2px solid;
+        }
+    }
+}
+
+.profile-info-edit-btn {
+    button {
+        border: $light-gray 2px solid;
+    }
+}
+
+.profile-connect-btn {
+    border: 2px solid $light-gray;
+    background-color: $dark-pink;
+}
+
+.profile-play-btn {
+    * {
+        stroke: $light-gray;
+        fill: $dark-gray;
+    }
+}
+
+}
+
 @media screen and (max-width: $max-screen) {
     .profile-container {
         flex-direction: column;

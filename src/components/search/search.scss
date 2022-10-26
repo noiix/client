@@ -36,7 +36,24 @@
     }
 }
 
+.dark {
+    color: $light-gray;    
+    
+    .search-bar{
+    
+    background-color: rgba($dark-pink, 0.9);
 
+    input[type=text] {
+        background-color: $dark-gray;    
+        border-color: $light-gray;
+        color: $light-gray;
+
+        &::placeholder{
+            color: $light-gray;
+        }
+    }
+}
+}
 
 @keyframes slide-up {
     0% {transform: translateY(200px)}

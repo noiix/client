@@ -19,3 +19,25 @@
     }
 }
 
+
+.dark {
+    .track-upload-form{
+        background-color: lighten($dark-lavender, 25%);
+    }
+    .animation-container{
+        // background-color: transparent;
+    }
+
+    input[type=text] {
+        background-color: $dark-gray;
+        color: $light-gray;
+        border: 2px solid $light-gray;
+    }
+
+    // Button {
+    //     background-color: $dark-gray;
+    //     color: $light-gray;
+    //     // border: 3px solid $light-gray;
+
+    // }
+}

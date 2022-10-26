@@ -7,6 +7,7 @@ import DesignContext from "../../contexts/DesignContext";
 import DataContext from "../../contexts/DataContext";
 import { IoMdClose } from 'react-icons/io';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { BsSun } from 'react-icons/bs';
 import Search from '../../components/search/Search';
 import { ImSearch } from 'react-icons/im';
 import ChatContext from '../../contexts/ChatContext'
@@ -26,18 +27,26 @@ function Navbar() {
 
 
   return (
-    <>
+    <div className={ darkMode }>
       <div className="search-bar-container">
         { displaySearch && <Search className="search-bar" /> }
       </div>
       <nav>
+<<<<<<< HEAD
+        <Link to={ "/" } >
+=======
         <Link to={ "/" } onClick={() => setSelectedChat("")}>
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
         </Link>
         { Object.keys(currentUser).length !== 0 &&
+<<<<<<< HEAD
+          <Link onClick={ toggleNav } className={ `nav-toggle ${darkMode}` }>
+=======
           <Link onClick={ () => {toggleNav(); setSelectedChat("") }} className="nav-toggle">
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
             { (!isDesktop && !displayNav) &&
               <HiOutlineMenuAlt3 />
             }
@@ -64,11 +73,11 @@ function Navbar() {
               </ul>
             }
             { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> }
-            <NavLink className="mode" onClick={ toggleMode }>{ darkMode ? <MdOutlineDarkMode /> : <MdDarkMode /> }</NavLink>
+            <NavLink className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</NavLink>
           </>
         }
       </nav>
-    </>
+    </div>
   );
 }
 

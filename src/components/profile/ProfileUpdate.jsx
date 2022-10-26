@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import DesignContext from "../../contexts/DesignContext";
 import Button from "../UI/button/Button";
 
 
 const ProfileUpdate = () => {
   const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
+  const { darkMode } = useContext(DesignContext)
 
   const [genreDropdown, setGenreDropdown] = useState(false);
   const [instrumentDropdown, setInstrumentDropdown] = useState(false);
   // const [isChecked, setIsChecked] = useState(false);
 
   function toggleGenreButton(e) {
-  e.preventDefault()
-  setGenreDropdown(!genreDropdown)
+    e.preventDefault()
+    setGenreDropdown(!genreDropdown)
   }
   function toggleInstrumentsButton(e) {
     e.preventDefault()
@@ -64,7 +66,7 @@ const ProfileUpdate = () => {
   ]
 
   return (
-    <div>
+    <div className={ darkMode }>
 
       <form className="updateForm">
         <p>new username</p>
@@ -75,43 +77,43 @@ const ProfileUpdate = () => {
           onChange={ inputHandler }
         />
         <p>set your genres</p>
-        
-        <div className="dropdown-container">
-          <Button onClick={ toggleGenreButton } name="genre"/>
-          { genreDropdown && <div className="dropdown-background" onClick={closeDropdown}>
-            <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
 
-              { genres.map(genreItem => <div className={'dropdown-list-item'}>
-                    <label htmlFor={ genreItem }>{ genreItem }</label> 
-                    <div className={`styled-checkbox ${genre.includes(genreItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
-                      <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ genre.includes(genreItem) ? true : false } onClick={ handleCheck } />
-                    </div>
+        <div className="dropdown-container">
+          <Button onClick={ toggleGenreButton } name="genre" />
+          { genreDropdown && <div className="dropdown-background" onClick={ closeDropdown }>
+            <div className="dropdown-menu" onClick={ e => e.stopPropagation() }>
+
+              { genres.map(genreItem => <div className={ 'dropdown-list-item' }>
+                <label htmlFor={ genreItem }>{ genreItem }</label>
+                <div className={ `styled-checkbox ${genre.includes(genreItem) ? 'checked' : 'unchecked'}` } onClick={ handleCheck }>
+                  <input id={ genreItem } value={ genreItem } type='checkbox' name='genre' defaultChecked={ genre.includes(genreItem) ? true : false } onClick={ handleCheck } />
+                </div>
               </div>
 
-              )}
+              ) }
 
             </div>
-          </div>}
-        </div> 
+          </div> }
+        </div>
         <p>set your instruments</p>
         <div className="dropdown-container">
-        <Button onClick={ toggleInstrumentsButton } name="instruments"/>
-        { instrumentDropdown && <div className="dropdown-background" onClick={closeDropdown}>
-          <div className="dropdown-menu" onClick={e => e.stopPropagation()}>
+          <Button onClick={ toggleInstrumentsButton } name="instruments" />
+          { instrumentDropdown && <div className="dropdown-background" onClick={ closeDropdown }>
+            <div className="dropdown-menu" onClick={ e => e.stopPropagation() }>
 
-            { instruments.map(instrumentItem => <div className={'dropdown-list-item'}>
-                  <label htmlFor={ instrumentItem }>{ instrumentItem }</label> 
-                  <div className={`styled-checkbox ${instrument.includes(instrumentItem) ? 'checked' : 'unchecked'}`} onClick={ handleCheck }>
-                    <input id={ instrumentItem } value={ instrumentItem } type='checkbox' name='instruments' defaultChecked={ instrument.includes(instrumentItem) ? true : false } onClick={ handleCheck } />
-                  </div>
+              { instruments.map(instrumentItem => <div className={ 'dropdown-list-item' }>
+                <label htmlFor={ instrumentItem }>{ instrumentItem }</label>
+                <div className={ `styled-checkbox ${instrument.includes(instrumentItem) ? 'checked' : 'unchecked'}` } onClick={ handleCheck }>
+                  <input id={ instrumentItem } value={ instrumentItem } type='checkbox' name='instruments' defaultChecked={ instrument.includes(instrumentItem) ? true : false } onClick={ handleCheck } />
+                </div>
+              </div>
+
+              ) }
+
             </div>
-
-            )}
-
-          </div>
-        </div>}
-      </div> 
-        <Button type="submit" value="submit" name="submit" onClick={ profileUpdate }/>
+          </div> }
+        </div>
+        <Button type="submit" value="submit" name="submit" onClick={ profileUpdate } />
       </form>
 
     </div >

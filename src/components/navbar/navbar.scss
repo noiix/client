@@ -30,7 +30,7 @@ nav {
         font-family: $logo-font;
         font-size: 2.8rem;
         font-weight: 100;
-        color: $dark-gray;
+        // color: $dark-gray;
     }
 
     ul {
@@ -83,12 +83,36 @@ nav {
     }
 
     .mode {
+<<<<<<< HEAD
+        font-size: 1.2rem;
+=======
         position: static;
         font-size: 1.4rem;
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
         text-align: center;
         margin-bottom: 2rem;
     }
+
 }  
+
+.dark {
+    
+        nav {
+
+            color: $light-gray;
+            background-color: $dark-gray;
+            border-left: dashed $light-gray 1.7px;
+            
+            .mode {
+                color: $light-gray;
+            }
+            a {
+                color: $light-gray;
+                border: none;
+            }
+        }
+    
+}
 
 @media screen and (max-width: $max-screen) {
     nav {
@@ -174,4 +198,9 @@ nav {
         }
 
     }  
+
+    .dark {
+    border-bottom: dashed $light-gray 1.7px;
+    border-left: none;
+}
 }

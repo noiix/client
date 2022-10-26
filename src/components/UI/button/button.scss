@@ -75,3 +75,20 @@ button {
 .icon {
     cursor: pointer;
 }
+
+.dark {
+    button {
+        color: $light-gray;
+        background-color: $dark-gray;
+    }
+
+    .submit {
+    display: block;
+
+@mixin btn-border-drawing($color: $light-gray, $hover: $lavender, $width: 4px, $vertical: top, $horizontal: left, $duration: 0.2s) {
+    box-shadow: inset 0 0 0 $width $light-gray;
+}
+&{
+    @include btn-border-drawing($lavender, $lavender, 4px, bottom, right);
+}}
+}

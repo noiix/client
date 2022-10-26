@@ -54,11 +54,16 @@ export const ChatProvider = ({children}) => {
      useEffect(() => {
         socket.current.on('message received', (newMessageReceived) => {
             if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
+<<<<<<< HEAD
+                //set notification
+                console.log('not the right place')
+=======
                 if(!chatNotification.includes(newMessageReceived)) {
                     setChatNotification([...chatNotification, newMessageReceived])
                     setFetchAgain(!fetchAgain);
                 }
                
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
             }else {
                 setMessages([...messages, newMessageReceived])
             }
@@ -103,7 +108,11 @@ export const ChatProvider = ({children}) => {
             socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
+<<<<<<< HEAD
+                // setNewMessage('');
+=======
                 setNewMessage('');
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
                 console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
                 setMessages([...messages, response.data])

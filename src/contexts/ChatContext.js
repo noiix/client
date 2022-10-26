@@ -153,7 +153,7 @@ export const ChatProvider = ({children}) => {
             // setSelectedChat(sortedChats[0]);
             setChats(sortedChats);
         }
-    }, [currentUser, fetchAgain, chats])
+    }, [currentUser, fetchAgain])
 
     const isSenderCurrentUser = (message) => {
         return (

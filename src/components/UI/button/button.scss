@@ -76,6 +76,10 @@ button {
     cursor: pointer;
 }
 
+.btn-small {
+    font-size: .8rem;
+}
+
 .dark {
     button {
         color: $light-gray;

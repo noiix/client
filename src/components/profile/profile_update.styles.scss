@@ -32,14 +32,6 @@
             transform: rotate(45deg);
             width: 0.5em;
     }
-    .unchecked {
-        &::before {
-            content: '';
-            height: 1rem;
-            width: 1rem;
-            background-color: black;
-        }
-    }
     .styled-checkbox {
         width: 0.5em;
         height: 1em;
@@ -93,11 +85,26 @@
     .dropdown-menu {
     border-color: $light-gray;
     background-color: $dark-gray;
+<<<<<<< HEAD
     }
 
     .profile-info-edit-btn button.submit {
         border: none;
     }
+=======
+    .unchecked {
+        &::before {
+            content: '';
+            height: 1rem;
+            width: 1rem;
+            background-color: black;
+        }
+    }
+}
+.profile-info-edit-btn button  {
+    border: none;
+}
+>>>>>>> fab1a81a94f1fa0f081988492f54a1397d6cd5e6
 
     .modal {
         background-color: $dark-lavender;

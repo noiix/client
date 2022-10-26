@@ -9,11 +9,11 @@ function Chatfield() {
     const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
     const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
-    const [scrollBottom, setScrollBottom] = useState(false);
+  //   const [scrollBottom, setScrollBottom] = useState(false);
 
-    useEffect(() => {
-      setScrollBottom(true)
-  }, [messages])
+  //   useEffect(() => {
+  //     setScrollBottom(true)
+  // }, [messages])
     
   return (
     <div className="chat-window-right">

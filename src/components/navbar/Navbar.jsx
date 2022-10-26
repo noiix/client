@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { MdOutlineDarkMode, MdDarkMode } from 'react-icons/md'
@@ -10,15 +10,21 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { BsSun } from 'react-icons/bs';
 import Search from '../../components/search/Search';
 import { ImSearch } from 'react-icons/im';
+import ChatContext from '../../contexts/ChatContext'
 
 function Navbar() {
   const { currentUser, logout, setProfile, users } = useContext(UserContext)
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
   const { displaySearch, setDisplaySearch } = useContext(DataContext)
+  const {chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead} = useContext(ChatContext)
 
   const toggleSearch = () => {
     setDisplaySearch(!displaySearch);
   }
+
+  const newNotification = useRef(0)
+
+
 
   return (
     <div className={ darkMode }>
@@ -26,13 +32,21 @@ function Navbar() {
         { displaySearch && <Search className="search-bar" /> }
       </div>
       <nav>
+<<<<<<< HEAD
         <Link to={ "/" } >
+=======
+        <Link to={ "/" } onClick={() => setSelectedChat("")}>
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
         </Link>
         { Object.keys(currentUser).length !== 0 &&
+<<<<<<< HEAD
           <Link onClick={ toggleNav } className={ `nav-toggle ${darkMode}` }>
+=======
+          <Link onClick={ () => {toggleNav(); setSelectedChat("") }} className="nav-toggle">
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
             { (!isDesktop && !displayNav) &&
               <HiOutlineMenuAlt3 />
             }
@@ -45,10 +59,16 @@ function Navbar() {
           <>
             { Object.keys(currentUser).length !== 0 &&
               <ul>
-                <li><NavLink to={ `/profile` } onClick={ () => setProfile(currentUser) }>profile</NavLink></li>
-                <li><NavLink to={ "/chat" }>chat</NavLink></li>
-                <li><NavLink to={ "/favorite" }>favorites</NavLink></li>
-                <li><NavLink to={ "/" } onClick={ logout } >logout</NavLink></li>
+                <li><NavLink to={ `/profile` } onClick={ () => {setProfile(currentUser); setSelectedChat("")} }>profile</NavLink></li>
+                <li><NavLink to={ "/chat" } onClick={() => {
+                  chatNotification.length > 0 && 
+                  setSelectedChat(chatNotification[chatNotification.length -1].chat);
+                  setChatNotification(chatNotification.filter((n, i) => i === chatNotification.length -1))}}
+                  >chat
+                  <span>{chatNotification.length > 0 && chatNotification.length}</span>
+                </NavLink></li>
+                <li><NavLink to={ "/favorite" } onClick={() => setSelectedChat("")}>favorites</NavLink></li>
+                <li><NavLink to={ "/" } onClick={ () => {logout(); setSelectedChat("") }} >logout</NavLink></li>
 
               </ul>
             }

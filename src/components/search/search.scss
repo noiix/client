@@ -20,7 +20,7 @@
     width: 100%;
     height: 200px;
     padding: 2rem 8rem;
-    background-color: rgba($pink, 0.5);
+    background-color: rgba($pink, 0.6);
     animation: slide-up 1s ease-in-out;
     // border: 5px dashed yellow;
 
@@ -28,6 +28,7 @@
         display: block;
         margin-bottom: 1rem;
         font-size: 1.2rem;
+        text-shadow:2px 2px 3px rgb(255, 255, 255);
     }
 
     input {
@@ -57,4 +58,15 @@
 @keyframes slide-up {
     0% {transform: translateY(200px)}
     100% {transform: translateY(0)} 
+}
+
+
+@media screen and (max-width: $max-screen) {
+    .search-bar {
+        padding: 2rem 1rem 0 1rem;
+
+        input {
+            min-width: 90%;
+        }
+    }
 }

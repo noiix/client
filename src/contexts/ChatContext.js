@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
 import io from 'socket.io-client';
+import { MdScanner } from "react-icons/md";
 
 // const socket = io();
 
@@ -19,10 +20,14 @@ export const ChatProvider = ({children}) => {
     const { addNewNotification } = useContext(DesignContext);
 
     const [chats, setChats] = useState([])
-    const [selectedChat, setSelectedChat] = useState({})
+    const [selectedChat, setSelectedChat] = useState();
     const [fetchAgain, setFetchAgain] = useState(false)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState();
+    const [typing, setTyping] = useState(false);
+    const [isTyping, setIsTyping] = useState(false);
+    const [chatNotification, setChatNotification] = useState([]);
+    const [counter, setCounter] = useState(0);
 
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
@@ -34,9 +39,11 @@ export const ChatProvider = ({children}) => {
      useEffect(() => {
          socket.current = io(ENDPOINT);
          socket.current.emit('setup', currentUser)
-         socket.current.on('connection', () => {
+         socket.current.on('connected', () => {
              setSocketConnected(true)
          })
+         socket.current.on('typing', (chatId) => setIsTyping(chatId))
+         socket.current.on('stop typing', () => setIsTyping(false))
      }, [])
 
      useEffect(() => {
@@ -45,23 +52,30 @@ export const ChatProvider = ({children}) => {
     }, [selectedChat])
 
      useEffect(() => {
-        console.log('please work')
-        console.log('socket', socket.current)
         socket.current.on('message received', (newMessageReceived) => {
-            console.log(newMessageReceived)
             if(!selectedChatCompare.current || selectedChatCompare.current._id !== newMessageReceived.chat._id){
+<<<<<<< HEAD
                 //set notification
                 console.log('not the right place')
+=======
+                if(!chatNotification.includes(newMessageReceived)) {
+                    setChatNotification([...chatNotification, newMessageReceived])
+                    setFetchAgain(!fetchAgain);
+                }
+               
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
             }else {
-                console.log('this is new message')
                 setMessages([...messages, newMessageReceived])
             }
         })
     }, [socket.current, messages])
 
+    // console.log('chat notifications', chatNotification)
+    // console.log('counter', counter)
+
 
     const fetchChats = () => {
-        API.get(`${baseUrl}/chat`, { withCredentials: true})
+        API.get(`${baseUrl}/chat`, { withCredentials: true })
         .then(response => {
             if(response.data) {
                 setChats(response.data)
@@ -91,9 +105,14 @@ export const ChatProvider = ({children}) => {
     const sendMessage = (e) => {
         e.preventDefault()
         if(newMessage) {
+            socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
+<<<<<<< HEAD
                 // setNewMessage('');
+=======
+                setNewMessage('');
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
                 console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
                 setMessages([...messages, response.data])
@@ -105,6 +124,23 @@ export const ChatProvider = ({children}) => {
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value)
+
+        if(!socketConnected) return;
+
+        if(!typing) {
+            setTyping(true)
+            socket.current.emit('typing', selectedChat._id);
+        }
+        let lastTypingTime = new Date().getTime()
+        let timerLength = 3000;
+        setTimeout(() => {
+            let timeNow = new Date().getTime();
+            let timeDiff = timeNow - lastTypingTime;
+            if(timeDiff >= timerLength && typing) {
+                socket.current.emit('stop typing', selectedChat._id);
+                setTyping(false);
+            }
+        }, timerLength)
     }
 
     const fetchMessages = () => {
@@ -119,16 +155,14 @@ export const ChatProvider = ({children}) => {
         .catch(err => console.log(err)) 
     }
 
-    
-
-    console.log('selected Chat', selectedChat);
-    console.log('chats', chats)
-
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+            const sortedChats = chats.sort((a, b) => a.updatedAt - b.updatedAt);
+            // setSelectedChat(sortedChats[0]);
+            setChats(sortedChats);
         }
-    }, [currentUser])
+    }, [currentUser, fetchAgain, chats])
 
     const isSenderCurrentUser = (message) => {
         return (
@@ -136,9 +170,12 @@ export const ChatProvider = ({children}) => {
         )
     }
 
+    const getSender = (loggedUser, users) => {
+        return users[0]._id === loggedUser._id ? users[1].username : users[0].username;
+      };
    
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

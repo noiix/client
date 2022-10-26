@@ -52,12 +52,12 @@ export const DataProvider = ({ children }) => {
       formData.append("title", fileName);
       formData.append("file", selectedFile);
     } else {
-      console.log('form is empty')
+      // console.log('form is empty')
       addNewNotification({title: 'Please, fill out the form', type: 'error'})
     }
 
     // setFormData({...formData, title: fileName, file: selectedFile})
-    console.log("onsubmit", formData);
+    // console.log("onsubmit", formData);
     setWaitingAnimation(true)
     API.post(`${baseUrl}/music/upload`, formData, {
       withCredentials: true,
@@ -83,7 +83,7 @@ export const DataProvider = ({ children }) => {
     const formData = new FormData();
     formData.append("file", selectedFile);
     formData.append('title', e.target.value)
-    console.log('onsubmit',formData);
+    // console.log('onsubmit',formData);
     API.post(`${baseUrl}/user/profile/profilepicture`, formData, {
       withCredentials: true,
     }).then((response) => {
@@ -93,18 +93,18 @@ export const DataProvider = ({ children }) => {
     });
   };
 
-  console.log('new user', currentUser)
+  // console.log('new user', currentUser)
 
   const handleFileInput = (e) => {
     // console.log('file', e.target.name)
     const file = e.target.files[0];
-    console.log("file", file);
+    // console.log("file", file);
     setSelectedFile(file);
   };
 
   const deleteTrack = (index) => {
     const songToDelete = profile.music[index]
-    console.log('song to delete', songToDelete)
+    // console.log('song to delete', songToDelete)
     const updatedTracks = profile.music.filter((song, idx) => idx !== index)
     const songObj = {newSongList: updatedTracks, deleteSong: songToDelete}
     API.patch(`${baseUrl}/music/delete`, songObj, { withCredentials: true})
@@ -118,7 +118,7 @@ export const DataProvider = ({ children }) => {
   const inputSearchHandler = (e) => {
     e.preventDefault();
     let query = e.target.value.toLowerCase().toString();
-    console.log('query', query)
+    // console.log('query', query)
     if (!query) {
       const filteredUsers = usersForSearch.filter(user => user._id !== currentUser._id)
       setUsers(filteredUsers);
@@ -134,7 +134,7 @@ export const DataProvider = ({ children }) => {
       user.username.toLowerCase().match(regex))
       setUsers(newSearchResult)
       navigate('/');
-      console.log('newSearchResult', newSearchResult)
+      // console.log('newSearchResult', newSearchResult)
     }
 
   }
@@ -145,7 +145,7 @@ export const DataProvider = ({ children }) => {
     return min + ":" + (sec < 10 ? "0" : "") + sec;
   };
 
-  console.log('search', users)
+  // console.log('search', users)
  
 
   const value = {

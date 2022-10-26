@@ -51,7 +51,7 @@ nav {
         transform: rotate(90deg);
         text-transform: uppercase;
         letter-spacing: 0.7px;
-        background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);;
+        background-image: linear-gradient(90deg, rgba(255,233,39,1) 60%, rgba(255,233,39,0.3113620448179272) 96%);
         background-position: 0 1em;
         background-size: 0 50%;
         background-repeat: no-repeat;
@@ -83,7 +83,12 @@ nav {
     }
 
     .mode {
+<<<<<<< HEAD
         font-size: 1.2rem;
+=======
+        position: static;
+        font-size: 1.4rem;
+>>>>>>> e0278896b86bb7ffcf98b9fa4f72a81120b61f2a
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -122,17 +127,21 @@ nav {
         justify-content: space-between;
         align-items: center;
         // padding: 0 .5rem 0 .5rem;
-    
+
+        // this should just be there, when mobile nav is visible:
+        // margin-bottom: 40vh;
+
         #logo {
             transform: rotate(0deg);
             margin: 0 0 0 1rem;
+            font-size: 2rem;
         }
         
         .nav-toggle {
             font-size: 2rem;
             position: absolute;
-            right: 1.2rem;
-            top: 1rem;
+            right: 1.05rem;
+            top: 1.05rem;
         }
     
         ul {
@@ -156,13 +165,17 @@ nav {
             transform: rotate(0deg);
             text-transform: uppercase;
             background: none;
-           
-            &:active {
+            background-image: linear-gradient(90deg, rgba(164,121,216,1) 15%, rgba(164,121,216,0.29735644257703087) 96%);
+            background-position: 0 1em;
+            background-size: 0 50%;
+            background-repeat: no-repeat;
+            transition: background-size .5s;
+            &:hover {
                 background-size: 100% 50%;
+              }
+           
+            .active {
                 background-image: linear-gradient(90deg, rgba(164,121,216,1) 15%, rgba(164,121,216,0.29735644257703087) 96%);
-                background-position: 0 1em;
-                background-size: 0 50%;
-                background-repeat: no-repeat;
             }
             a:visited {
                 color: $dark-gray;
@@ -171,17 +184,17 @@ nav {
     
         .mode {
             position: absolute;
-            top: 1.19rem;
-            right: 10rem;
-            font-size: 1.7rem;
+            top: 1.4rem;
+            right: 6rem;
+            font-size: 1.4rem;
             z-index: 5;
         }
 
         .search-btn {
             position: absolute;
-            top: 1.45rem;
-            right: 15rem;
-            font-size: 1.5rem;
+            top: 1.55rem;
+            right: 9rem;
+            font-size: 1.2rem;
         }
 
     }  

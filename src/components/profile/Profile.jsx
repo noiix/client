@@ -52,7 +52,7 @@ function Profile() {
         audioRef.current = new Audio(url)
       }
     }
-    return() => {
+    return () => {
       audioRef.current.pause()
     }
 
@@ -104,23 +104,23 @@ function Profile() {
 
               <div className="profile-header-username">
                 <h3>{ profile.username }</h3>
-                {profile._id === currentUser._id && 
-                <form>
-                  <input  onChange={ inputHandler } name="username" placeholder="new name"/>
-                  <Button type="btn-small" onClick={ profileUpdateName } name="update name"/>            
-                </form>}
-              </div>     
+                { profile._id === currentUser._id &&
+                  <form className="nameForm">
+                    <input onChange={ inputHandler } name="username" placeholder="new name" />
+                    <Button type="btn-small" onClick={ profileUpdateName } name="update name" />
+                  </form> }
+              </div>
             </div>
 
             <div className="profile-info-container">
 
-            <div className="profile-info-edit-btn">
-              { profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>Genre & Instruments</button> }
-              { displayModalUpdate &&
-                <Modal>
-                  <ProfileUpdate />
-                </Modal>
-              }
+              <div className="profile-info-edit-btn">
+                { profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>Genre & Instruments</button> }
+                { displayModalUpdate &&
+                  <Modal>
+                    <ProfileUpdate />
+                  </Modal>
+                }
               </div>
               <div className="profile-info">
                 { profile._id === currentUser._id ?
@@ -141,9 +141,13 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
+<<<<<<< HEAD
               chats.includes(profile._id) ?
               <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/> :
               <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>  }
+=======
+                <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /> }
+>>>>>>> f11cb5a2331d4dc46847977aa45ad5774d907674
             </div>
             <div className="profile-track-list">
 
@@ -163,7 +167,7 @@ function Profile() {
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :
-                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart />}</div> }
+                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
                   <div class>

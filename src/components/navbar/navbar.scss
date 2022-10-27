@@ -99,7 +99,7 @@ nav {
 
             color: $light-gray;
             background-color: $dark-gray;
-            border-left: dashed $light-gray 1.7px;
+            border-left: dashed $light-gray 2px;
 
             ul > li {
                 background-image: linear-gradient(90deg, rgb(164, 121, 216) 15%, rgba(164, 121, 216, 0.2973564426) 96%);
@@ -131,7 +131,7 @@ nav {
     nav {
         position: relative;
         border-left: none;
-        border-bottom: dashed $dark-gray 1.7px;
+        border-bottom: dashed $dark-gray 2px;
         height: 4.5rem;
         min-height: 4rem;
         width: 100vw;
@@ -215,7 +215,7 @@ nav {
     .dark {
 
         nav {
-            border-bottom: dashed $light-gray 1.7px;
+            border-bottom: dashed $light-gray 2px;
             border-left: none;
         }
 }

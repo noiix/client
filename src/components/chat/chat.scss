@@ -1,7 +1,6 @@
 @use "../../style/variables.scss" as *;
 
 .chat-main {
-    // background-color: lighten($dark-gray, 20%);
     width: 100%;
     height: 100%;
     display: flex;
@@ -27,14 +26,12 @@
 }
 
 .chat-list-left {
-    // background-color: white;
     width: 300px;
     padding: 0 0.5em;
     border-right: dashed $dark-gray 2px;
 }
 
 .chat-partner-row {
-    // background-color: aqua;
     border-bottom: 2px dotted $dark-gray;
     width: 100%;
     height: 80px;
@@ -71,7 +68,6 @@
     }
 
     .chat-text-teaser {
-        // background-color: aqua;
         margin: 0.3rem 0;
         height: 15px;
         width: 190px;
@@ -104,12 +100,6 @@
     .chat-scroll {
         overflow-y: scroll;
         flex-grow: 2;
-        // overscroll-behavior-y: contain;
-        // scroll-snap-type: y proximity;
-        // // does not work
-        // &:last-child {
-        //     scroll-snap-align: end;
-        // }
     }
 
     .current-chat-message-own, .current-chat-message-partner {
@@ -171,18 +161,20 @@
 .back-to-chat-partners-btn {
     display: none;
     border: 3px solid $dark-gray;
-    // background-color: white;
+    background-color: white;
     margin: 0.3em;
     padding: 0.2em;
 }
+
+
 
 //-----------------------------DARK MODE---------------------------------
 
 .dark {
 
 .chat-container {
-    box-shadow: 10px 10px 55px $pink;
-    background-color: $dark-lavender;
+    box-shadow: 10px 10px 55px $lavender;
+    background-color: $dark-gray;
 }
 
 .chat-list-left {
@@ -246,14 +238,12 @@
     }
 }
 
-
-
 .back-to-chat-partners-btn {
-    border: 3px solid $dark-gray;
+    border: 3px solid $light-gray;
+    background-color: $dark-lavender;
+}
 
 }
-}
-
 
 @media screen and (max-width: $max-screen) {
     .chat-main {
@@ -262,7 +252,7 @@
 
     .overlay {
         background-color: white;
-        z-index: 4;
+        z-index: 2;
         position: absolute;
         top: 4.5rem;
     }
@@ -304,7 +294,6 @@
         .current-chat-message-own, .current-chat-message-partner {
             min-width: calc(320px - 2rem);
             max-width: calc(100vw - 2rem);
-
         }
 
         .current-chat-message-own {
@@ -320,4 +309,18 @@
         }
     }
 
+    .dark {
+        .chat-container {
+            box-shadow: none;
+            background-color: $dark-gray;
+        }
+
+        .chat-list-left, .chat-window-right {
+            background-color: $dark-gray;
+        }
+
+        .overlay {
+            background-color: $dark-gray;
+        }
+    }
 }

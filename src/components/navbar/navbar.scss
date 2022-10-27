@@ -131,7 +131,7 @@ nav {
     nav {
         position: relative;
         border-left: none;
-        border-bottom: dashed $dark-gray 1.7px;
+        border-bottom: dashed $dark-gray 2px;
         height: 4.5rem;
         min-height: 4rem;
         width: 100vw;
@@ -215,7 +215,7 @@ nav {
     .dark {
 
         nav {
-            border-bottom: dashed $light-gray 1.7px;
+            border-bottom: dashed $light-gray 2px;
             border-left: none;
         }
 }

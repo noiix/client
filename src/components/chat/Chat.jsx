@@ -26,7 +26,7 @@ function Chat() {
                 <div className='chat-list-left'>
                     { chats && chats.map((chat, i) => <> {
                         chat.users.map(user => user._id !== currentUser._id &&
-                            (<div key={ user._id } className="chat-partner-row" onClick={ () => { setSelectedChat(chat); accessChat(user._id); toggleDisplayChat(); setChatNotification(chatNotification.filter((n, i) => n.chat === chat)) } }>
+                            (<div key={ user._id } className="chat-partner-row icon" onClick={ () => { setSelectedChat(chat); accessChat(user._id); toggleDisplayChat(); setChatNotification(chatNotification.filter((n, i) => n.chat === chat)) } }>
                                 <div className="chat-profile-img">
                                     <img src={ user.image } />
                                 </div>
@@ -43,7 +43,7 @@ function Chat() {
                     }</>) }
                 </div>
                 <div className={ `${displayChat ? 'overlay' : 'overlay-hidden'}` }> { !isDesktop &&
-                    <div className='back-to-chat-partners-btn' onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
+                    <div className='back-to-chat-partners-btn icon' onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
                         Back
                     </div> }
                     <Chatfield />

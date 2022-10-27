@@ -180,10 +180,17 @@
     //         background-color: $dark-gray;
     // }
 
+<<<<<<< HEAD
     .profile-left-column {
         border-right: 2px dotted $light-gray;
         background-color: $dark-gray;
     }
+=======
+.profile-left-column {
+    // border-right: 2px dotted $light-gray;
+    background-color: $dark-gray;
+}
+>>>>>>> b646a48c54fef755b4221fff11b1b194e33652e5
 
     .profile-picture-update-btn {
         color: $light-gray;
@@ -209,7 +216,8 @@
     }
 
     .profile-connect-btn {
-        color: $dark-pink;
+        color: $pink;
+        background-color: $dark-pink;
     }
 
     .profile-play-btn {

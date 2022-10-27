@@ -94,7 +94,10 @@
     .modal {
         background-color: $dark-lavender;
         input {
-            background: $light-gray;
+            // background: $light-gray;
+            &::placeholder {
+                color: $light-gray;
+            }
         }
     }
 

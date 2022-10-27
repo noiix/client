@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import Card from '../Card/Card';
-
 import UserContext from "../../../contexts/UserContext";
 import baseUrl from '../../../config';
 
-function useMultiAudio(users, getNearbyUsers) {
+function useMultiAudio(users) {
 
     const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
-    console.log(urls)
   const [sources] = useState(
     urls.map(url => {
       return {
@@ -17,10 +15,6 @@ function useMultiAudio(users, getNearbyUsers) {
       }
     }),
   )
-
-  useEffect(() => {
-    getNearbyUsers()
-  }, [])
 
   const [players, setPlayers] = useState(
     urls.map(url => {
@@ -67,6 +61,8 @@ function useMultiAudio(users, getNearbyUsers) {
           setPlayers(newPlayers)
         })
       })
+      sources.forEach((source, i) => source.audio.pause())
+      console.log('this audio useEffect')
     }
   }, [])
 
@@ -75,9 +71,9 @@ function useMultiAudio(users, getNearbyUsers) {
 
 const CardList = () => {
 
-  const { users, setProfile, currentUser, getNearbyUsers } = useContext(UserContext);
-  const [players, toggle] = useMultiAudio(users, getNearbyUsers)
-
+  const { users } = useContext(UserContext);
+  const [players, toggle] = useMultiAudio(users);
+ 
   return (
     <div className='card-list'>
       {players.map((player, i) => (
@@ -88,23 +84,3 @@ const CardList = () => {
 }
 
 export default CardList
-
-// import React, { useContext } from 'react';
-// import {Link} from 'react-router-dom';
-// import Card from '../Card/Card';
-
-// import UserContext from "../../../contexts/UserContext";
-// import baseUrl from '../../../config';
-
-// function CardList() {
-
-//     const { users, setProfile } = useContext(UserContext);
-
-//   return (
-//     <div className='card-list'>
-//             { users && users.map((user, i) => <Link to={"/profile"}><Card key={i} index={i} user={user}/></Link>)}
-//     </div>
-//   )
-// }
-
-// export default CardList

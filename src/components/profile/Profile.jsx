@@ -30,13 +30,17 @@ function Profile() {
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
+  const [players, setPlayers] = useState()
 
   let url;
 
   let audioRef = useRef(new Audio(url))
 
+  let sources = profile && profile.music.map(track => track.path);
+
+  console.log(sources)
+
   useEffect(() => {
-    // console.log('useeffect', profile)
     const likedSongsId = currentUser.liked_songs.map(item => item._id);
     setLikedSongs(likedSongsId);
 
@@ -44,11 +48,12 @@ function Profile() {
 
       for (let i = 0; i < profile.music.length; i++) {
         url = profile.music[i].path
-        // console.log('url :', url)
 
         audioRef.current = new Audio(url)
-        // console.log('audioref', audioRef.current)
       }
+    }
+    return() => {
+      audioRef.current.pause()
     }
 
   }, [profile, currentUser])
@@ -81,14 +86,6 @@ function Profile() {
   function togglePic() {
     setTogglePicBtn(!togglePicBtn)
   }
-
-  // console.log('profile liked songs', currentUser.liked_songs)
-  // console.log('profile music', profile.music.map((item) => {
-  //   console.log(item)
-  //   console.log('check', likedSongs.includes(item._id))
-  // }))
-
-
 
   return (
     // <div className={ darkMode }>

@@ -24,17 +24,14 @@ function Favorite() {
 
 
   useEffect(() => {
-    console.log('useeffect', profile)
-
     if (currentUser) {
-
       for (let i = 0; i < currentUser.liked_songs.length; i++) {
         url = currentUser.liked_songs[i].path
-        console.log('url :', url)
-
         audioRef.current = new Audio(url)
-        console.log('audioref', audioRef.current)
       }
+    }
+    return() => {
+      audioRef.current.pause()
     }
   }, [profile, currentUser])
 
@@ -46,14 +43,9 @@ function Favorite() {
     for (let i = 0; i < currentUser.liked_songs.length; i++) {
       if (i === index) {
         setCurrentSong(index)
-
-
         url = currentUser.liked_songs[i].path
-        // console.log('url :', url)
-
         audioRef.current = new Audio(url)
         audioRef.current.play();
-        console.log('audioref', audioRef.current)
       }
     }
   }

@@ -248,6 +248,8 @@
 @media screen and (max-width: $max-screen) {
     .chat-main {
         padding-top: 0rem;
+        height: calc(100vh - 4.5rem)!important;
+
     }
 
     .overlay {

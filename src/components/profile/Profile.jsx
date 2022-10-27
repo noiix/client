@@ -83,9 +83,6 @@ function Profile() {
     }
   }
 
-  function togglePic() {
-    setTogglePicBtn(!togglePicBtn)
-  }
 
   return (
     // <div className={ darkMode }>
@@ -143,9 +140,8 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
-              { profile._id !== currentUser._id && <div className="profile-connect-btn" onClick={ () => accessChat(profile._id) }>
-                CONNECT
-              </div> }
+              { profile._id !== currentUser._id && 
+              <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) }/>  }
             </div>
             <div className="profile-track-list">
 

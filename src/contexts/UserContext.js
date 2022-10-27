@@ -66,6 +66,7 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/login`, formData, { withCredentials: true })
       .then((response) => {
+        console.log('response.data', response.data)
         if (response.data.info) {
           setCurrentUser(response.data.info);
           // setContacts(response.data.info.contacts)
@@ -95,6 +96,7 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {
       withCredentials: true,
     }).then((response) => {
+      console.log('response.data', response.data)
       // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
       setContacts(response.data.result.contacts);
@@ -240,11 +242,11 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (currentUser) {
-      checkIfChecked();
       getNearbyUsers();
+      checkIfChecked();
       getAllMyTracks();
       getAllMyFavorites();
-      getAllMyContacts();
+      // getAllMyContacts();
     }
   }, [currentUser]);
 
@@ -267,8 +269,9 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     API.get(`${baseUrl}/user/logout`)
       .then((response) => {
-        localStorage.clear();
         setCurrentUser({});
+        setUsers([]);
+        localStorage.clear();
         if(checkNotification(response.data.notification))
         {
           setDisplayNav(false);

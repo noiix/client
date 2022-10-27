@@ -11,11 +11,13 @@ import { BsSun } from 'react-icons/bs';
 import Search from '../../components/search/Search';
 import { ImSearch } from 'react-icons/im';
 import ChatContext from '../../contexts/ChatContext'
+// import MultiAudioContext from '../../contexts/MultiAudioContext'
 
 function Navbar() {
   const { currentUser, logout, setProfile, users } = useContext(UserContext)
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
   const { displaySearch, setDisplaySearch } = useContext(DataContext)
+  // const {players, setPlayers} = useContext(MultiAudioContext);
   const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead } = useContext(ChatContext)
 
   const toggleSearch = () => {

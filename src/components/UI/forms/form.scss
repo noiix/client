@@ -3,6 +3,7 @@
 form {
     outline: none;
     input {
+        // margin-bottom: .5rem;
         border: solid 2px $dark-gray;
         padding: 0.5em;
         font-size: 1rem;
@@ -25,6 +26,18 @@ form {
             letter-spacing: 2px;
         }
     }
+
+    input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active,
+        input:-internal-autofill-selected,
+        input:-internal-autofill-previewed {
+            -webkit-text-fill-color: $dark-gray;
+            -webkit-box-shadow: 0 0 0 40px $light-gray inset !important;
+            
+        }
+
     .drag-and-drop {
         cursor: pointer;
     }
@@ -35,5 +48,44 @@ form {
         background-color: $dark-gray;
         color: white;
         margin: 0;
+    }
+}
+
+.dark {
+    form{
+        input {
+            background-color: $dark-gray;
+            color: $light-gray;
+            border: 2px solid $light-gray;
+            &::placeholder {
+                color: $light-gray;
+            }
+            &:-webkit-autofill {
+            background-color: $dark-gray;
+            -webkit-box-shadow: 0 0 0 50px white inset;
+            }
+            &:focus,  &[type=fieldset] {
+            border: 2px solid $dark-pink;
+        }
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active,
+        input:-internal-autofill-selected,
+        input:-internal-autofill-previewed {
+            
+            -webkit-text-fill-color: $light-gray;
+            -webkit-box-shadow: 0 0 0 40px $dark-gray inset !important;
+        }
+        
+        .btn-small {
+        background-color: $light-gray;
+        color: $dark-gray;
+        // border: 2px solid $light-gray;
+        border-color: $light-gray;
+        margin: 0;
+    }
     }
 }

@@ -251,6 +251,7 @@
     }
 
     .overlay {
+        width: 100%;
         background-color: white;
         z-index: 2;
         position: absolute;
@@ -265,7 +266,7 @@
         background-color: white;
         box-shadow: none;
         width: 100%;
-        // height: 100%;
+        height: 100%;
         // display: block;
         flex-direction: column;
         justify-content: center;
@@ -281,9 +282,9 @@
             border: none;
         }
 
-        // .chat-window-right {
-        //     height: calc(100vh - 6rem);
-        // }
+         .chat-window-right {
+           padding: 1rem;
+         }
 
         .chat-list-left {
             display: flex;
@@ -323,4 +324,6 @@
             background-color: $dark-gray;
         }
     }
+
+    
 }

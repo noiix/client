@@ -74,6 +74,9 @@ export const ChatProvider = ({children}) => {
         .then(response => {
             if(response.data) {
                 setChats(response.data)
+                const sortedChats = response.data.sort((a, b) => a.updatedAt - b.updatedAt);
+                // setSelectedChat(sortedChats[0]);
+                setChats(sortedChats);
             }
             // addNewNotification(response.notification)
            
@@ -149,11 +152,8 @@ export const ChatProvider = ({children}) => {
     useEffect(() => {
         if(currentUser) {
             fetchChats()
-            const sortedChats = chats.sort((a, b) => a.updatedAt - b.updatedAt);
-            // setSelectedChat(sortedChats[0]);
-            setChats(sortedChats);
         }
-    }, [currentUser, fetchAgain, chats])
+    }, [currentUser, fetchAgain])
 
     const isSenderCurrentUser = (message) => {
         return (

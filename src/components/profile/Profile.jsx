@@ -54,7 +54,7 @@ function Profile() {
   }, [profile, currentUser])
 
 
-  const play = (index) => {
+  const play = (index, song) => {
     setPlaying(true)
     for (let i = 0; i < profile.music.length; i++) {
       if (i === index) {

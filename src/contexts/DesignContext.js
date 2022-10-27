@@ -30,10 +30,19 @@ export const DesignProvider = ({children}) => {
 
     //light and dark mode
     const [darkMode, setDarkMode] = useState('light')
+    const [gMode , setGMode] = useState('outline')
     const toggleMode = () => {
         setDarkMode(darkMode === 'light' ? 'dark' : 'light')
+        setGMode(gMode === 'outline' ? 'filled_black' : 'outline')
         console.log('MODE: ', darkMode)
     }
+    useEffect(() => {
+        setDarkMode(localStorage.getItem('darkMode'))
+    },[])
+    
+    useEffect(() => {
+      localStorage.setItem('darkMode', darkMode)
+    }, [darkMode])
 
     // nav toggle
     const [displayNav, setDisplayNav] = useState(false)
@@ -81,7 +90,7 @@ export const DesignProvider = ({children}) => {
       setDisplayForm(!displayForm)
     }
 
-    const value = {notification, setNotification, addNewNotification, darkMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, closeModal, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
+    const value = {notification, setNotification, addNewNotification, darkMode, gMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

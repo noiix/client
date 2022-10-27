@@ -42,7 +42,9 @@
     .search-bar{
     
     background-color: rgba($dark-pink, 0.9);
-
+    label {
+        text-shadow: none;
+    }
     input[type=text] {
         background-color: $dark-gray;    
         border-color: $light-gray;

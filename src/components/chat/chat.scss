@@ -9,6 +9,7 @@
     align-items: center;
     // justify-content: center;
     padding-top: 12rem;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -81,20 +82,19 @@
 .chat-window-right {
     background-color: white;
     width: 500px;
-
+    height: 100%;
     // position: relative;
     display: flex;
     flex-direction: column;
 
     .chat-scroll {
         overflow-y: scroll;
-        height: 75vh;
-        overscroll-behavior-y: contain;
-        scroll-snap-type: y proximity;
-        // does not work
-        &:last-child {
-            scroll-snap-align: end;
-        }
+        // overscroll-behavior-y: contain;
+        // scroll-snap-type: y proximity;
+        // // does not work
+        // &:last-child {
+        //     scroll-snap-align: end;
+        // }
     }
 
     .current-chat-message-own, .current-chat-message-partner {
@@ -161,6 +161,93 @@
     padding: 0.2em;
 }
 
+//-----------------------------DARK MODE---------------------------------
+
+.dark {
+
+.chat-container {
+    box-shadow: 10px 10px 55px $pink;
+    background-color: $dark-lavender;
+}
+
+.chat-list-left {
+    background-color: $dark-lavender;
+    
+}
+
+.chat-partner-row {
+    // background-color: aqua;
+    border-bottom: 2px dashed $light-gray;
+
+    .chat-text-teaser {
+        background-color: rgb(0, 77, 77);
+        
+    }
+}
+
+.chat-window-right {
+    background-color: $dark-lavender;
+    
+    ::-webkit-scrollbar {
+        width: 10px;
+        background: $lavender;
+    }
+    ::-webkit-scrollbar-track {
+        width: 2px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: $dark-lavender;
+
+
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    }
+
+    .chat-scroll {
+    }
+
+    .current-chat-message-own, .current-chat-message-partner {
+        border: 3px solid $dark-gray;
+        
+    }
+
+    .current-chat-message-own {
+        border-color: $lavender;
+        background-color: $dark-lavender;
+
+    }
+    .current-chat-message-partner {
+        border-color: $lavender;
+        background-color: $dark-gray;
+
+    }
+
+    .current-chat-input {
+
+        input {
+            background-color: $dark-gray;
+            color: $light-gray;
+            border: 2px $lavender solid;
+            &::placeholder {
+                color: $light-gray;
+            }
+        }
+        
+        .send {
+            background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
+        }
+    }
+}
+
+
+
+.back-to-chat-partners-btn {
+    border: 3px solid $dark-gray;
+
+}
+}
+
 
 @media screen and (max-width: $max-screen) {
     .chat-main {
@@ -169,11 +256,9 @@
 
     .overlay {
         background-color: white;
-        height: 90px;
         z-index: 4;
         position: absolute;
         top: 4.5rem;
-        // left: 0;
     }
 
     .overlay-hidden {
@@ -184,7 +269,7 @@
         background-color: white;
         box-shadow: none;
         width: 100%;
-        height: 100%;
+        // height: 100%;
         // display: block;
         flex-direction: column;
         justify-content: center;
@@ -194,14 +279,19 @@
         .chat-list-left, .chat-window-right {
             // display: none;
             width: 100%;
-            height: 100%;
+            height: 85vh;
+            // height: calc(100vh - 4.5rem);
             max-width: 500px;
             border: none;
-    
         }
+
+        // .chat-window-right {
+        //     height: calc(100vh - 6rem);
+        // }
 
         .chat-list-left {
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
         }
 

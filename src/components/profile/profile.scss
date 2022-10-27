@@ -107,9 +107,8 @@
 }
 
 .profile-connect-btn {
-    border: 3px solid $dark-gray;
-    padding: 0.2em;
-    background-color: $pink;
+    background-color: $dark-gray;
+    color: $pink;
 }
 
 .profile-track-list {
@@ -181,45 +180,44 @@
     //         background-color: $dark-gray;
     // }
 
-.profile-left-column {
-    border-right: 2px dotted $light-gray;
-    background-color: $dark-gray;
-}
-
-.profile-picture-update-btn {
-    color: $light-gray;
-}
-
-.profile-info {
-    textarea {
-        border: $light-gray 2px solid;
+    .profile-left-column {
+        border-right: 2px dotted $light-gray;
         background-color: $dark-gray;
-        color: $light-gray;
+    }
 
-        &:focus-visible {
-            outline: $dark-pink 2px solid;
-            border: $dark-pink 2px solid;
+    .profile-picture-update-btn {
+        color: $light-gray;
+    }
+
+    .profile-info {
+        textarea {
+            border: $light-gray 2px solid;
+            background-color: $dark-gray;
+            color: $light-gray;
+
+            &:focus-visible {
+                outline: $dark-pink 2px solid;
+                border: $dark-pink 2px solid;
+            }
         }
     }
-}
 
-.profile-info-edit-btn {
-    button {
-        border: $light-gray 2px solid;
+    .profile-info-edit-btn {
+        button {
+            border: $light-gray 2px solid;
+        }
     }
-}
 
-.profile-connect-btn {
-    border: 2px solid $light-gray;
-    background-color: $dark-pink;
-}
-
-.profile-play-btn {
-    * {
-        stroke: $light-gray;
-        fill: $dark-gray;
+    .profile-connect-btn {
+        color: $dark-pink;
     }
-}
+
+    .profile-play-btn {
+        * {
+            stroke: $light-gray;
+            fill: $dark-gray;
+        }
+    }
 }
 
 @media screen and (max-width: $max-screen) {
@@ -229,7 +227,7 @@
         margin: 0;
         padding: 1rem;
     }
-
+   
     .profile-left-column-header {
         display: flex;
         flex-direction: column;
@@ -316,6 +314,12 @@
         align-items: center;
         .pic-upload-form {
             position: static;
+        }
+    }
+
+    .dark {
+        .profile-left-column {
+            border: none;
         }
     }
 }       

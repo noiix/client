@@ -9,6 +9,7 @@ import {DataProvider} from './contexts/DataContext'
 import {DesignProvider} from './contexts/DesignContext';
 import {ChatProvider} from './contexts/ChatContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>

@@ -38,11 +38,13 @@ export const DesignProvider = ({children}) => {
     }
     useEffect(() => {
         setDarkMode(localStorage.getItem('darkMode'))
+        setGMode(localStorage.getItem('gMode'))
     },[])
     
     useEffect(() => {
-      localStorage.setItem('darkMode', darkMode)
-    }, [darkMode])
+        localStorage.setItem('gMode', gMode)
+        localStorage.setItem('darkMode', darkMode)
+    }, [darkMode, gMode])
 
     // nav toggle
     const [displayNav, setDisplayNav] = useState(false)

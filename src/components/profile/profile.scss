@@ -209,8 +209,11 @@
     }
 
     .profile-connect-btn {
-        color: $pink;
+        color: $light-gray;
         background-color: $dark-pink;
+        &:hover {
+            color: $lavender;
+        }
     }
 
     .profile-play-btn {

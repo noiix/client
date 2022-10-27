@@ -26,7 +26,7 @@ function Profile() {
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
-  const { accessChat } = useContext(ChatContext);
+  const { accessChat, chats } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
@@ -135,8 +135,10 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
-              { profile._id !== currentUser._id && 
-              <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) }/>  }
+              { profile._id !== currentUser._id &&
+              chats.includes(profile._id) ?
+              <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/> :
+              <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>  }
             </div>
             <div className="profile-track-list">
 

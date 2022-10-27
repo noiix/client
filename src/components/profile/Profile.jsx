@@ -141,13 +141,9 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-<<<<<<< HEAD
               chats.includes(profile._id) ?
               <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/> :
               <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>  }
-=======
-                <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /> }
->>>>>>> f11cb5a2331d4dc46847977aa45ad5774d907674
             </div>
             <div className="profile-track-list">
 

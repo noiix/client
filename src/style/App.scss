@@ -72,9 +72,13 @@ body {
 }
 
 .dark {
-    .main {
-      background-color: $dark-gray;
-    }
+  
+     .main {
+       background-color: $dark-gray;
+
+     }
+    
+
  
 }
 
@@ -86,7 +90,7 @@ body {
   }
   .main {
     width: 100vw!important;
-    height: calc(100vh - 4.5rem)!important;
+    // height: calc(100vh - 4.5rem)!important;
     min-height: 0!important;
   }
 }

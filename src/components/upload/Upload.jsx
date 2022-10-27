@@ -12,7 +12,7 @@ function Upload() {
   const { waitingAnimation, darkMode } = useContext(DesignContext)
 
   return (
-    <div className={ darkMode }>
+    <>
       <form className='track-upload-form'>
         <input type='text' value={ fileName } name={ fileName } required onChange={ (e) => { setFileName(e.target.value) } } accept="audio/*" />
         <FileUploader
@@ -29,7 +29,7 @@ function Upload() {
         </div>
         <div><Button onClick={ submitForm } name="upload" type="submit" /></div>
       </form>
-    </div>
+    </>
   )
 }
 

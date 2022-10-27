@@ -22,7 +22,8 @@
         background-color: $dark-gray;
         border: 2px solid $light-gray;
         &::placeholder{
-            color: $light-gray;
+            // color: $light-gray;
+            color: black;
         }
     }
     .toggle {

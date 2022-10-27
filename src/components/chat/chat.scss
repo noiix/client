@@ -162,7 +162,7 @@
     display: none;
     border: 3px solid $dark-gray;
     background-color: white;
-    margin: 0.3em;
+    margin: 1rem;
     padding: 0.2em;
 }
 
@@ -202,23 +202,18 @@
     ::-webkit-scrollbar-thumb:hover {
     }
 
-    .chat-scroll {
-    }
-
     .current-chat-message-own, .current-chat-message-partner {
-        border: 3px solid $dark-gray;
-        
+        border: 3px solid $dark-gray;     
     }
 
     .current-chat-message-own {
         border-color: $lavender;
         background-color: $dark-lavender;
-
     }
+    
     .current-chat-message-partner {
         border-color: $lavender;
         background-color: $dark-gray;
-
     }
 
     .current-chat-input {
@@ -249,7 +244,6 @@
     .chat-main {
         padding-top: 0rem;
         height: calc(100vh - 4.5rem)!important;
-
     }
 
     .overlay {
@@ -278,14 +272,14 @@
         .chat-list-left, .chat-window-right {
             // display: none;
             width: 100%;
-            height: 85vh;
+            height: 84vh;
             // height: calc(100vh - 4.5rem);
             max-width: 500px;
             border: none;
         }
 
          .chat-window-right {
-           padding: 1rem;
+           padding: 0.5rem;
          }
 
         .chat-list-left {
@@ -295,8 +289,8 @@
         }
 
         .current-chat-message-own, .current-chat-message-partner {
-            min-width: calc(320px - 2rem);
-            max-width: calc(100vw - 2rem);
+            min-width: calc(320px - 3rem);
+            max-width: calc(100vw - 3rem);
         }
 
         .current-chat-message-own {

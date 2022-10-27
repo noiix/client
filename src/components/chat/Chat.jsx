@@ -44,7 +44,7 @@ function Chat() {
                 </div>
                 <div className={ `${displayChat ? 'overlay' : 'overlay-hidden'}` }> { !isDesktop &&
                     <div className='back-to-chat-partners-btn icon' onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
-                        Back
+                        Back 
                     </div> }
                     <Chatfield />
                 </div>

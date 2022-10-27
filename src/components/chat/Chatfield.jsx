@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useEffect} from 'react'
+import React, {useContext, useRef, useState, useEffect} from 'react'
 import ChatContext from '../../contexts/ChatContext'
 import UserContext from '../../contexts/UserContext'
 import Button from '../UI/button/Button'

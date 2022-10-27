@@ -87,6 +87,20 @@
     display: flex;
     flex-direction: column;
 
+    ::-webkit-scrollbar {
+        width: 8px;
+        background: white;
+    }
+    ::-webkit-scrollbar-track {
+        // width: 2px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: $dark-gray;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    }
+
     .chat-scroll {
         overflow-y: scroll;
         // overscroll-behavior-y: contain;
@@ -189,17 +203,14 @@
     background-color: $dark-lavender;
     
     ::-webkit-scrollbar {
-        width: 10px;
-        background: $lavender;
+        width: 8px;
     }
     ::-webkit-scrollbar-track {
-        width: 2px;
+        background-color: $dark-lavender;
     }
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: $dark-lavender;
-
-
+        background-color: $lavender;
     }
     ::-webkit-scrollbar-thumb:hover {
     }

@@ -135,7 +135,7 @@ function Profile() {
                     </textarea>
                     <Button type="submit" name="update" onClick={ introTextUpdate } />
                   </form> :
-                  <div>{ profile.intro_text }</div> }
+                  <div><p className="details">{ profile.intro_text }</p></div> }
                 <>
                   {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */ }
                 </>

@@ -9,11 +9,16 @@ function Chatfield() {
     const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
     const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
-  //   const [scrollBottom, setScrollBottom] = useState(false);
 
-  //   useEffect(() => {
-  //     setScrollBottom(true)
-  // }, [messages])
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+      scrollToBottom()
+    }, [messages]);
     
   return (
     <div className="chat-window-right">
@@ -26,6 +31,7 @@ function Chatfield() {
             <div className={isSenderCurrentUser(msg) ? "current-chat-message-own" : "current-chat-message-partner"} key={index}>
               {msg.content}
             </div>
+            <div ref={messagesEndRef}></div>
           </>)
           }
         </div>

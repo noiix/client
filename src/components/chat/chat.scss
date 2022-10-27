@@ -103,6 +103,7 @@
 
     .chat-scroll {
         overflow-y: scroll;
+        flex-grow: 2;
         // overscroll-behavior-y: contain;
         // scroll-snap-type: y proximity;
         // // does not work

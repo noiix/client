@@ -35,12 +35,9 @@ function Chat() {
                                         {user.username}
                                         {chatNotification.filter(n => n.chat._id === chat._id).length > 0 && <span className='dot'></span>}
                                     </div>
-                    <div className="chat-text-teaser">
-                       <span>something</span>
-                    </div>
-                </div>
-                                <div className="back-to-chat-partners-btn" onClick={ () => setSelectedChat("") }>
-                                    Back
+                                    <div className="chat-text-teaser">
+                                        <span>something</span>
+                                    </div>
                                 </div>
                             </div>))
                     }</>) }

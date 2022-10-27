@@ -15,7 +15,7 @@ nav {
     position: fixed;
     right: 0;
     background-color: white;
-    border-left: dashed $dark-gray 1.7px;
+    border-left: dashed $dark-gray 2px;
     height: 100vh;
     min-height: 600px;
     width: 4.5rem;
@@ -69,9 +69,10 @@ nav {
             background-size: 100% 50%;
             background-repeat: no-repeat;
         }
-        &:last-child .active{
+        &:last-child .active, .mode .active {
             background-image: none;
         }
+      
     }
 
     .search-btn {
@@ -98,7 +99,11 @@ nav {
 
             color: $light-gray;
             background-color: $dark-gray;
-            border-left: dashed $light-gray 1.7px;
+            border-left: dashed $light-gray 2px;
+
+            ul > li {
+                background-image: linear-gradient(90deg, rgb(164, 121, 216) 15%, rgba(164, 121, 216, 0.2973564426) 96%);
+            }
             
             .mode {
                 color: $light-gray;
@@ -106,6 +111,17 @@ nav {
             a {
                 color: $light-gray;
                 border: none;
+            }
+
+            .active {
+                background-position: 0 1em;
+                background-size: 100% 50%;
+                background-repeat: no-repeat;
+                background-image: linear-gradient(90deg, rgb(164, 121, 216) 15%, rgba(164, 121, 216, 0.2973564426) 96%);
+            }
+
+            &:last-child .active, .mode .active {
+                background-image: none;
             }
         }
     

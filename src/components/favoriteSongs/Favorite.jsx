@@ -19,8 +19,6 @@ function Favorite() {
 
   let url;
 
-
-
   let audioRef = useRef(new Audio(url))
 
 
@@ -58,34 +56,6 @@ function Favorite() {
         console.log('audioref', audioRef.current)
       }
     }
-
-    // for (let i = 0; i < currentUser.liked_songs.length; i++) {
-    //   // if (index === i) {
-    //   setCurrentSong(index)
-    //   // }
-    // }
-
-    // if (index === 0) {
-    //   setIsPlaying(true);
-    //   setCurrentSong(0)
-    //   audioRef1.current.play();
-    //   audioRef2.current.pause();
-    //   audioRef3.current.pause();
-    // }
-    // else if (index === 1) {
-    //   setIsPlaying(true);
-    //   setCurrentSong(1);
-    //   audioRef2.current.play();
-    //   audioRef1.current.pause();
-    //   audioRef3.current.pause();
-    // }
-    // else if (index === 2) {
-    //   setIsPlaying(true);
-    //   setCurrentSong(2);
-    //   audioRef3.current.play();
-    //   audioRef1.current.pause();
-    //   audioRef2.current.pause();
-    // }
   }
 
   const pause = (index) => {

@@ -83,6 +83,12 @@ function Profile() {
     }
   }
 
+  const isContact = (profile) => {
+    let profileId = profile._id;
+    let contacts = chats.map(chat => chat.users.map(user => user._id !== currentUser._id))
+    return contacts.includes(profileId) ? true : false;
+  }
+
 
   return (
     // <div className={ darkMode }>
@@ -141,9 +147,14 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-              chats.includes(profile._id) ?
-              <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/> :
-              <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>  }
+              (isContact ?
+                <Link to="/chat">
+                  <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/>
+                </Link> :
+                <Link>
+                  <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>
+                </Link>
+                )}
             </div>
             <div className="profile-track-list">
 

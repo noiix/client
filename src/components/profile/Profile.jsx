@@ -26,7 +26,7 @@ function Profile() {
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
-  const { accessChat } = useContext(ChatContext);
+  const { accessChat, chats } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
@@ -81,6 +81,12 @@ function Profile() {
         audioRef.current.pause();
       }
     }
+  }
+
+  const isContact = (profile) => {
+    let profileId = profile._id;
+    let contacts = chats.map(chat => chat.users.map(user => user._id !== currentUser._id))
+    return contacts.includes(profileId) ? true : false;
   }
 
 
@@ -141,7 +147,14 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-                <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /> }
+              (isContact ?
+                <Link to="/chat">
+                  <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/>
+                </Link> :
+                <Link>
+                  <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>
+                </Link>
+                )}
             </div>
             <div className="profile-track-list">
 

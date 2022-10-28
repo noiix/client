@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
   let [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
-  const [users, setUsers] = useLocalStorage("users", []);
+  const [users, setUsers] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [profile, setProfile] = useLocalStorage("profile", {})
 
@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
   const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
 
-  const { notification, addNewNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
+  const { notification, addNewNotification, setDisplayNav, closeModal } = useContext(DesignContext);
 
   const createAccount = (e) => {
     e.preventDefault();

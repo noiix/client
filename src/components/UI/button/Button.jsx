@@ -7,9 +7,9 @@ function Button({ type = "btn", name, onClick = {} }) {
   const { darkMode } = useContext(DesignContext)
 
   return (
-    <div className={ darkMode }>
-      <button className={ `${type}` } onClick={ onClick }>{ name }</button>
-    </div>
+    // <div className={ darkMode }>
+      <button className={ `${type } ` + darkMode } onClick={ onClick }>{ name }</button>
+    // </div>
   )
 }
 

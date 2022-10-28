@@ -141,17 +141,17 @@
             width: 95%;
             overflow-y: scroll;
         }
-        .send {
-            height: 100%;
-            background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
-            background-size: 350% 300%;
-            color: white;
-            box-shadow: none;
-            transition: all 1s ease;
-            &:hover {
-                background-position: right bottom;
-            }
-        }
+        // .send {
+        //     height: 100%;
+        //     background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
+        //     background-size: 350% 300%;
+        //     color: white;
+        //     box-shadow: none;
+        //     transition: all 1s ease;
+        //     &:hover {
+        //         background-position: right bottom;
+        //     }
+        // }
 
     }
 }
@@ -228,8 +228,13 @@
         }
         
         .send {
-            background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
+            background: linear-gradient(141deg, rgba(164,121,216,1) 31%, rgba(170,51,106,1) 72%), left top;
+            background-size: 300% 350%;
+            &:hover {
+                background-position: right bottom;
+            }
         }
+    
     }
 }
 

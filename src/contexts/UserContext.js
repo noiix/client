@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [profile, setProfile] = useLocalStorage("profile", {})
-
   const [genre, setGenre] = useState([]);
   const [instrument, setInstrument] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -25,8 +24,14 @@ export const UserProvider = ({ children }) => {
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
   const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
+  const [urls, setUrls] = useState([]);
 
+<<<<<<< HEAD
   const { notification, addNewNotification, setDisplayNav, closeModal } = useContext(DesignContext);
+=======
+  const { notification, addNewNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
+    
+>>>>>>> c6ea15f9bd9566c9c28c89c7798b7688938fa198
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -66,6 +71,7 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/login`, formData, { withCredentials: true })
       .then((response) => {
+        console.log('response.data', response.data)
         if (response.data.info) {
           setCurrentUser(response.data.info);
           // setContacts(response.data.info.contacts)
@@ -95,6 +101,7 @@ export const UserProvider = ({ children }) => {
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {
       withCredentials: true,
     }).then((response) => {
+      console.log('response.data', response.data)
       // localStorage.setItem('token', jwToken)
       setCurrentUser(response.data.result);
       setContacts(response.data.result.contacts);
@@ -239,7 +246,13 @@ export const UserProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    if (currentUser) {
+    getNearbyUsers()
+    
+  }, [])
+
+  useEffect(() => {
+    if (Object.keys(currentUser).length > 0) {
+      console.log('this is from the big useeffect')
       checkIfChecked();
       getNearbyUsers();
       getAllMyTracks();
@@ -254,8 +267,11 @@ export const UserProvider = ({ children }) => {
         // console.log("response all users", response);
         if(response.data.result) {
           const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
-          setUsers(filteredUsers);
-          setUsersForSearch(filteredUsers)
+          if(filteredUsers) {
+            setUsers(filteredUsers);
+            setUsersForSearch(filteredUsers);
+            console.log('nearby users', response.data.result)
+          }
         }
         else {
           addNewNotification(response.data.notification);
@@ -267,8 +283,9 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     API.get(`${baseUrl}/user/logout`)
       .then((response) => {
-        localStorage.clear();
         setCurrentUser({});
+        setUsers([]);
+        localStorage.clear();
         if(checkNotification(response.data.notification))
         {
           setDisplayNav(false);
@@ -286,7 +303,6 @@ export const UserProvider = ({ children }) => {
       return false;
     }
   };
-
 
   
   const value = {
@@ -315,7 +331,8 @@ export const UserProvider = ({ children }) => {
     getNearbyUsers,
     usersForSearch,
     addContact,
-    profileUpdateName 
+    profileUpdateName,
+    checkIfChecked,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

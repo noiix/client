@@ -246,7 +246,7 @@ export const UserProvider = ({ children }) => {
       getAllMyFavorites();
       getAllMyContacts();
     }
-  }, [currentUser]);
+  }, [currentUser, currentUser.genre]);
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(

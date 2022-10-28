@@ -9,12 +9,12 @@ import Button from "../UI/button/Button";
 
 function Home() {
   const { isDesktop, toggleModal, toggleBtn, displayModal, darkMode } = useContext(DesignContext)
-  const { currentUser } = useContext(UserContext)
+  const { currentUser, users } = useContext(UserContext)
 
   return (
     <div className={ `home ${darkMode}` }>
       <div className="home-container">
-        { isDesktop &&
+        { (isDesktop || Object.keys(currentUser).length === 0) &&
           <h1>NÖIX CONNECTS MUSICIANS</h1>
         }
         <h2>explore music, find band members, chat</h2>

@@ -6,7 +6,6 @@
     // background-image: url('../../img/bg-light-home-lighter.png');
     background-size: cover;
     width: 100vw;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,5 +73,9 @@
         h4 {
             font-size: 1.2rem;
         }
+    }
+
+    .home-container {
+        justify-content: space-evenly;
     }
   }

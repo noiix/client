@@ -50,7 +50,7 @@ function Navbar() {
           </Link>
         }
         { (isDesktop || displayNav) &&
-          <div className="navbar-dropdown-bg">
+          <>
             { Object.keys(currentUser).length !== 0 &&
               <ul>
                 <li><NavLink to={ `/profile` } onClick={ () => { setProfile(currentUser); setSelectedChat("") } }>profile</NavLink></li>
@@ -67,9 +67,13 @@ function Navbar() {
 
               </ul>
             }
-            { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> }
-            <NavLink className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</NavLink>
-          </div>
+            { Object.keys(currentUser).length !== 0 && 
+            <>
+              <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> 
+              <NavLink className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</NavLink>
+            </>
+            }
+          </>
         }
       </nav>
     </div>

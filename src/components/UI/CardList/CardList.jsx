@@ -67,17 +67,24 @@ function useMultiAudio(users) {
   }, [])
 
   return [players, toggle]
+  
 }
+
+
 
 const CardList = () => {
 
   const { users } = useContext(UserContext);
   const [players, toggle] = useMultiAudio(users);
+
+ 
+
+  console.log('users from card list', users)
  
   return (
     <div className='card-list'>
-      {players.map((player, i) => (
-        <Link to={"/profile"}><Card key={i} player={player} toggle={toggle(i)} user={users[i]}/></Link>
+      {users.length > 0 && users.map((user, i) => (
+        <Link to={"/profile"}><Card key={i} player={players[i]} toggle={toggle(i)} user={user}/></Link>
       ))}
     </div>
   )

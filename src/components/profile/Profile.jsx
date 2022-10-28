@@ -141,7 +141,7 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-                <Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /> }
+                <Link to='/chat'><Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /></Link>}
             </div>
             <div className="profile-track-list">
 

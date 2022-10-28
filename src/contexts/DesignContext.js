@@ -37,8 +37,16 @@ export const DesignProvider = ({children}) => {
         console.log('MODE: ', darkMode)
     }
     useEffect(() => {
-        setDarkMode(localStorage.getItem('darkMode'))
-        setGMode(localStorage.getItem('gMode'))
+        if(localStorage.getItem('darkMode') === null) {
+           setDarkMode('light')
+        } else {
+            setDarkMode(localStorage.getItem('darkMode'))
+        }
+        if(localStorage.getItem('gMode') === null) {
+            setGMode('outline')
+        } else {
+            setGMode(localStorage.getItem('gMode'))
+        }
     },[])
     
     useEffect(() => {

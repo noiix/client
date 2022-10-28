@@ -26,12 +26,7 @@ export const UserProvider = ({ children }) => {
   const [usersForSearch, setUsersForSearch] = useState([]);
   const [urls, setUrls] = useState([]);
 
-<<<<<<< HEAD
   const { notification, addNewNotification, setDisplayNav, closeModal } = useContext(DesignContext);
-=======
-  const { notification, addNewNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
-    
->>>>>>> c6ea15f9bd9566c9c28c89c7798b7688938fa198
 
   const createAccount = (e) => {
     e.preventDefault();

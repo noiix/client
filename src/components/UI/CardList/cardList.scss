@@ -5,14 +5,15 @@
     // background-color: antiquewhite;
     width: 100%;
     display: flex;
-    margin: 1rem;
-    padding: 1rem;
+    justify-content: flex-start;
+    // margin: 1rem;
+    // padding: 1rem;
     flex-wrap: wrap;
 }
 
 @media screen and (max-width: $max-screen) {
     .card-list {
-        margin: 0;
-        padding: 0;
+        margin: 1rem;
+        padding: 1rem;
     }
   }

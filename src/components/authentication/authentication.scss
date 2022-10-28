@@ -13,19 +13,16 @@
 
     form {
         height: 150px;
+
+        input {
+            margin-bottom: .5rem;
+        }
     }
 }
 
 .dark {
     .authentication {
-    input {
-        background-color: $dark-gray;
-        border: 2px solid $light-gray;
-        &::placeholder{
-            // color: $light-gray;
-            color: black;
-        }
-    }
+
     .toggle {
         button{
             border: 2px solid $light-gray;

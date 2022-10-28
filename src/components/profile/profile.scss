@@ -176,13 +176,9 @@
 // ------------- dark mode --------------------
 
 .dark {
-    // &.profile-container {
-    //         background-color: $dark-gray;
-    // }
 
 .profile-left-column {
     border-right: 2px dotted $light-gray;
-    background-color: $dark-gray;
 }
 
     .profile-picture-update-btn {
@@ -219,12 +215,22 @@
             fill: $dark-gray;
         }
     }
+
+    .nameForm {
+        button {
+            background-color: $light-gray;
+            color: $dark-gray;
+            // border: 2px solid white;
+            // box-shadow: none;
+        }
+    }
 }
 
 @media screen and (max-width: $max-screen) {
     .profile-container {
         flex-direction: column;
         width: 100%;
+        // height: 120vh;
         margin: 0;
         padding: 1rem;
     }

@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useLocalStorage("users", []);
   const [contacts, setContacts] = useState([]);
   const [profile, setProfile] = useLocalStorage("profile", {})
-
   const [genre, setGenre] = useState([]);
   const [instrument, setInstrument] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -25,8 +24,10 @@ export const UserProvider = ({ children }) => {
   const [toggleTextBtn, setToggleTextBtn] = useState(false);
   const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
+  const [urls, setUrls] = useState([]);
 
   const { notification, addNewNotification, setDisplayNav, setDisplayModal, closeModal } = useContext(DesignContext);
+    
 
   const createAccount = (e) => {
     e.preventDefault();
@@ -241,12 +242,18 @@ export const UserProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    if (currentUser) {
-      getNearbyUsers();
+    getNearbyUsers()
+    
+  }, [])
+
+  useEffect(() => {
+    if (Object.keys(currentUser).length > 0) {
+      console.log('this is from the big useeffect')
       checkIfChecked();
+      getNearbyUsers();
       getAllMyTracks();
       getAllMyFavorites();
-      // getAllMyContacts();
+      getAllMyContacts();
     }
   }, [currentUser]);
 
@@ -256,8 +263,11 @@ export const UserProvider = ({ children }) => {
         // console.log("response all users", response);
         if(response.data.result) {
           const filteredUsers = response.data.result.filter(user => user._id !== currentUser._id)
-          setUsers(filteredUsers);
-          setUsersForSearch(filteredUsers)
+          if(filteredUsers) {
+            setUsers(filteredUsers);
+            setUsersForSearch(filteredUsers);
+            console.log('nearby users', response.data.result)
+          }
         }
         else {
           addNewNotification(response.data.notification);
@@ -290,7 +300,6 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-
   
   const value = {
     inputHandler,
@@ -318,7 +327,8 @@ export const UserProvider = ({ children }) => {
     getNearbyUsers,
     usersForSearch,
     addContact,
-    profileUpdateName 
+    profileUpdateName,
+    checkIfChecked,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -34,7 +34,7 @@ function Chatfield() {
             <div ref={messagesEndRef}></div>
           </>)
           }
-        </div>
+        </div> 
         }
       
       <form className="current-chat-input">

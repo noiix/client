@@ -223,14 +223,14 @@
 
     .current-chat-input {
 
-        input {
-            background-color: $dark-gray;
-            color: $light-gray;
-            border: 2px $lavender solid;
-            &::placeholder {
-                color: $light-gray;
-            }
-        }
+        // input {
+        //     background-color: $dark-gray;
+        //     color: $light-gray;
+        //     border: 2px $lavender solid;
+        //     &::placeholder {
+        //         color: $light-gray;
+        //     }
+        // }
         
         .send {
             background: linear-gradient(141deg, rgba(35,35,35,1) 31%, rgba(164,121,216,1) 72%), left top;
@@ -248,6 +248,8 @@
 @media screen and (max-width: $max-screen) {
     .chat-main {
         padding-top: 0rem;
+        height: calc(100vh - 4.5rem)!important;
+
     }
 
     .overlay {

@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import UserContext from "../../../contexts/UserContext";
 import baseUrl from '../../../config';
 
-function useMultiAudio(users, getNearbyUsers) {
+function useMultiAudio(users) {
 
     const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
   const [sources] = useState(
@@ -40,10 +40,6 @@ function useMultiAudio(users, getNearbyUsers) {
   }
 
   useEffect(() => {
-    getNearbyUsers()
-  }, [])
-
-  useEffect(() => {
     sources.forEach((source, i) => {
       players[i].playing ? source.audio.play() : source.audio.pause()
     })
@@ -71,17 +67,24 @@ function useMultiAudio(users, getNearbyUsers) {
   }, [])
 
   return [players, toggle]
+  
 }
+
+
 
 const CardList = () => {
 
-  const { users, getNearbyUsers } = useContext(UserContext);
-  const [players, toggle] = useMultiAudio(users, getNearbyUsers);
+  const { users } = useContext(UserContext);
+  const [players, toggle] = useMultiAudio(users);
+
+ 
+
+  console.log('users from card list', users)
  
   return (
     <div className='card-list'>
-      {players.map((player, i) => (
-        <Link to={"/profile"}><Card key={i} player={player} toggle={toggle(i)} user={users[i]}/></Link>
+      {users.length > 0 && users.map((user, i) => (
+        <Link to={"/profile"}><Card key={i} player={players[i]} toggle={toggle(i)} user={user}/></Link>
       ))}
     </div>
   )

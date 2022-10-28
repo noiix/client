@@ -8,6 +8,9 @@ function Card({ player, toggle, user }) {
 
   const {setProfile} = useContext(UserContext);
 
+  console.log(user)
+  console.log('users', user)
+
   const checkUserNameLength = () => {
     if(user.username.length > 14 && user.username.length < 17) {
       return 'font-size-s'
@@ -29,7 +32,7 @@ if(user) {
         <div className="card-track-pic"><img src={user.image}/></div>
         {user.music.length > 0 ? (
           <div className='card-bottom-column' onClick={e => e.preventDefault()}>
-         <div className="play-btn" onClick={toggle}> {player.playing ? <GrPause/> : <GrPlay/> } </div>
+         <div className="play-btn" onClick={toggle}> {player?.playing ? <GrPause/> : <GrPlay/> } </div>
           <div className="card-track-title">
           {user.music.length > 0 && user.music[0].title}
           </div>

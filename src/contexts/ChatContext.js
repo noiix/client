@@ -153,6 +153,8 @@ export const ChatProvider = ({children}) => {
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+            initialChatBot()
+            initialMessage()
         }
     }, [currentUser, fetchAgain])
 
@@ -165,7 +167,24 @@ export const ChatProvider = ({children}) => {
     const getSender = (loggedUser, users) => {
         return users[0]._id === loggedUser._id ? users[1].username : users[0].username;
       };
-   
+
+    const initialChatBot = () => {
+        const isChat = chats.map(chat => chat.users.map(user => user._id === currentUser._id));
+        isChat.length === 1 && API.get(`${baseUrl}/chat/chatbot`, {withCredentials: true})
+        .then(response => {
+            setSelectedChat(response.data);
+            setChats([...chats, response.data]);
+        })
+    }
+
+    const initialMessage = () => {
+        const message = {content: `Hi, ${currentUser.username}! Nice to see you here. Don't forget to set your genres and profile so that you can find other musicians in your area. Have fun!`}
+        API.post(`${baseUrl}/messages/initialmessage`, {content: message.content}, {withCredentials: true})
+        .then(response => {
+            console.log('initial message', response.data)
+            setMessages([...messages, response.data])
+        })
+    }
 
     const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
 

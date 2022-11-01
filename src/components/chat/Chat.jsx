@@ -4,6 +4,7 @@ import UserContext from '../../contexts/UserContext'
 import DesignContext from '../../contexts/DesignContext'
 import Button from '../UI/button/Button'
 import Chatfield from './Chatfield'
+import {Link} from 'react-router-dom'
 
 function Chat() {
 

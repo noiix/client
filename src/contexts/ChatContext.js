@@ -85,6 +85,7 @@ export const ChatProvider = ({children}) => {
 
     // join chat room 
     const accessChat = (userId) => {
+        console.log('access chat', userId)
         API.post(`${baseUrl}/chat`, {userId}, {withCredentials: true})
         .then(response => {
             if(!chats.find((chat) => chat._id === response.data._id)) {

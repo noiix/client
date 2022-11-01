@@ -67,12 +67,8 @@ function Navbar() {
 
               </ul>
             }
-            { Object.keys(currentUser).length !== 0 && 
-            <>
-              <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> 
-              <NavLink className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</NavLink>
-            </>
-            }
+            { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> }
+            <Link className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</Link>
           </>
         }
       </nav>

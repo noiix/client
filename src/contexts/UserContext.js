@@ -32,10 +32,10 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/create`, formData, { withCredentials: true })
       .then((response) => {
-        // console.log("reponse notification", response);
+        console.log("reponse notification", response.data.notification.status);
         if (Array.isArray(response.data)) {
           response.data.map((note) => {
-            // console.log("single note", note);
+            console.log("single note", note);
             if (checkNotification(note)) {
               addNewNotification(note);
             }
@@ -43,8 +43,10 @@ export const UserProvider = ({ children }) => {
         } else {
           if (checkNotification(response.data.notification)) {
             addNewNotification(response.data.notification);
+            console.log('else', response.data.notification)
           }
         }
+        response.data.notification.status === 'ok' && closeModal()
       })
       .catch((err) => console.log(err));
   };

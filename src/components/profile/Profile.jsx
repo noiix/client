@@ -28,7 +28,7 @@ function Profile() {
   const { deleteTrack, likeSongs, duration,
     // playing, setPlaying 
   } = useContext(DataContext)
-  const { accessChat } = useContext(ChatContext);
+  const { accessChat, chats } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
@@ -83,6 +83,12 @@ function Profile() {
         audioRef.current.pause();
       }
     }
+  }
+
+  const isContact = (profile) => {
+    let profileId = profile._id;
+    let contacts = chats.map(chat => chat.users.map(user => user._id !== currentUser._id))
+    return contacts.includes(profileId) ? true : false;
   }
 
 
@@ -143,7 +149,14 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-                <Link to='/chat'><Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /></Link> }
+                (isContact ?
+                  <Link to="/chat">
+                    <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) } />
+                  </Link> :
+                  <Link>
+                    <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) } />
+                  </Link>
+                ) }
             </div>
             <div className="profile-track-list">
 
@@ -167,7 +180,7 @@ function Profile() {
                         <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
-                  <div class>
+                  <div className="profile-no-tracks-yet-text">
                     { currentUser._id !== profile._id ?
                       <p><span>{ profile.username }</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                       :

@@ -14,10 +14,13 @@ function Home() {
   return (
     <div className={ `home ${darkMode}` }>
       <div className="home-container">
-        { isDesktop &&
-          <h1>NÖIX CONNECTS MUSICIANS</h1>
-        }
-        <h2>explore music, find band members, chat</h2>
+      <div className='headline'>
+      { isDesktop &&
+        <h1>NÖIX CONNECTS MUSICIANS</h1>
+      }
+      <h2>explore music, find band members, chat</h2>
+      </div>
+        
 
         { (Object.keys(currentUser).length > 0) && <CardList /> }
 

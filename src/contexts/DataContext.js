@@ -171,9 +171,7 @@ export const DataProvider = ({ children }) => {
     setDisplaySearch,
     duration,
     idList, 
-    setIdList,
-    // playing,
-    // setPlaying
+    setIdList
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

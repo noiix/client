@@ -33,6 +33,7 @@ button {
 }
 
 .submit {
+    height: fit-content;
     display: block;
 
 @mixin btn-border-drawing($color: $dark-gray, $hover: $lavender, $width: 4px, $vertical: top, $horizontal: left, $duration: 0.2s) {

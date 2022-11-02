@@ -50,9 +50,9 @@ function Chat() {
                     }</>) }
                 </div>
                 <div className={ `${displayChat ? 'overlay' : 'overlay-hidden'}` }> { !isDesktop &&
-                    <div className='back-to-chat-partners-btn icon' onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
+                    <Button type='back-to-chat-partners-btn icon' name="back" onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
                         Back 
-                    </div> }
+                    </Button> }
                     <Chatfield />
                 </div>
             </div>

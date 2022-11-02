@@ -18,7 +18,7 @@ export const DesignProvider = ({children}) => {
 
     useEffect(() => {
         const media = window.matchMedia('(max-width: 425px)');
-        const listener = () => setIsDesktop(media.matches);
+        const listener = () => setIsMobile(media.matches);
         listener();
         window.addEventListener('resize', listener);
 

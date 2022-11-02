@@ -25,9 +25,11 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
-  const { deleteTrack, likeSongs, duration, playing, setPlaying } = useContext(DataContext)
+  const { deleteTrack, likeSongs, duration,
+    // playing, setPlaying 
+  } = useContext(DataContext)
   const { accessChat, chats } = useContext(ChatContext);
-  // const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
   // const [players, setPlayers] = useState()
@@ -163,6 +165,7 @@ function Profile() {
                         </div>
                         <div className="profile-track-duration">
                           { duration(track.duration) }
+
                         </div>
                       </div>
                       { profile._id === currentUser._id ?

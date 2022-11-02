@@ -189,6 +189,10 @@
     }
 }
 
+.profile-no-tracks-yet-text {
+    padding-left: 2rem;
+}
+
 .profile-track-add-btn {
     padding: 0 2rem;
     margin-top: 2rem;
@@ -228,8 +232,12 @@
     }
 
     .profile-connect-btn {
-        color: $pink;
+        color: $light-gray;
         background-color: $dark-pink;
+<<<<<<< HEAD
+        &:hover {
+            color: $lavender;
+=======
         box-shadow: none;
 
         &:hover {
@@ -239,6 +247,7 @@
             color: $dark-pink;
             background-color: $pink;
 
+>>>>>>> f34c5b8d9544fb1e3c99d6241c55cf7d71de07ab
         }
     }
 
@@ -341,6 +350,10 @@
     .profile-play-btn {
         padding: 0;
         padding-right: 1rem;
+    }
+
+    .profile-no-tracks-yet-text {
+        padding-left: 0;
     }
 
     .profile-track-add-btn {

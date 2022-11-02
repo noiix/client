@@ -25,15 +25,9 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
-<<<<<<< HEAD
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
   const { accessChat, chats } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
-=======
-  const { deleteTrack, likeSongs, duration, playing, setPlaying } = useContext(DataContext)
-  const { accessChat } = useContext(ChatContext);
-  // const [playing, setPlaying] = useState(false);
->>>>>>> f34c5b8d9544fb1e3c99d6241c55cf7d71de07ab
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
   const [players, setPlayers] = useState()
@@ -153,7 +147,6 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&
-<<<<<<< HEAD
               (isContact ?
                 <Link to="/chat">
                   <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/>
@@ -162,9 +155,6 @@ function Profile() {
                   <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>
                 </Link>
                 )}
-=======
-                <Link to='/chat'><Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /></Link> }
->>>>>>> f34c5b8d9544fb1e3c99d6241c55cf7d71de07ab
             </div>
             <div className="profile-track-list">
 

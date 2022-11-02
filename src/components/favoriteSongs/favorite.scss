@@ -83,6 +83,10 @@
 .favorite-track-artist-name {
     padding-right: 1rem;
     text-align: center;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .favorite-track-duration {

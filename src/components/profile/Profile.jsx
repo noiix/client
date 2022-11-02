@@ -123,7 +123,7 @@ function Profile() {
             <div className="profile-info-container">
 
               <div className="profile-info-edit-btn">
-                { profile._id === currentUser._id && <button onClick={ toggleModalUpdate }>Genre & Instruments</button> }
+                { profile._id === currentUser._id && <Button type="submit" name="Genre & Instruments" onClick={ toggleModalUpdate } /> }
                 { displayModalUpdate &&
                   <Modal>
                     <ProfileUpdate />

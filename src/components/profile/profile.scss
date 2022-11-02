@@ -59,6 +59,15 @@
     position: relative;
     top: 120px;
     left: -5px;
+
+    svg {
+      &:hover{
+          * {
+              color: $pink;
+            }
+        }
+       
+    }
 }
 
 .profile-info-container {
@@ -183,9 +192,7 @@
     margin-top: 0.35rem;
 
     &:hover {
-        * {
-            color: red;
-        }
+        color: red;     
     }
 }
 
@@ -197,6 +204,11 @@
     padding: 0 2rem;
     margin-top: 2rem;
     font-size: 1.5rem;
+    svg {
+        &:hover {
+            color: green;
+        }
+    }
 }
 
 
@@ -210,6 +222,14 @@
 
     .profile-picture-update-btn {
         color: $light-gray;
+        svg {
+        &:hover{
+          * {
+              color: $dark-pink;
+            }
+        }
+       
+    }
     }
 
     .profile-info {

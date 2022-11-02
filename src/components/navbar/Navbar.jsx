@@ -18,7 +18,7 @@ function Navbar() {
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
   const { displaySearch, setDisplaySearch } = useContext(DataContext)
   // const {players, setPlayers} = useContext(MultiAudioContext);
-  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead } = useContext(ChatContext)
+  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead, chats } = useContext(ChatContext)
 
   const toggleSearch = () => {
     setDisplaySearch(!displaySearch);
@@ -56,7 +56,7 @@ function Navbar() {
                 <li><NavLink to={ `/profile` } onClick={ () => { setProfile(currentUser); setSelectedChat("") } }>profile</NavLink></li>
                 <li><NavLink to={ "/chat" } onClick={ () => {
                   chatNotification.length > 0 &&
-                    setSelectedChat(chatNotification[chatNotification.length - 1].chat);
+                    setSelectedChat(chats[0]);
                   setChatNotification(chatNotification.filter((n, i) => i === chatNotification.length - 1))
                 } }
                 >chat

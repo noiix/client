@@ -328,6 +328,7 @@ export const UserProvider = ({ children }) => {
     getNearbyUsers,
     usersForSearch,
     addContact,
+    contacts,
     profileUpdateName,
     checkIfChecked,
   };

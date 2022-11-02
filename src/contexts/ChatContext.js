@@ -1,11 +1,12 @@
 import React, { createContext, useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import baseUrl from "../config";
-import {useNavigate} from 'react-router-dom'
+import {useLoaderData, useNavigate} from 'react-router-dom'
 import DesignContext from "../contexts/DesignContext";
 import UserContext from "../contexts/UserContext";
 import io from 'socket.io-client';
 import { MdScanner } from "react-icons/md";
+import useLocalStorage from "use-local-storage";
 
 // const socket = io();
 
@@ -28,6 +29,7 @@ export const ChatProvider = ({children}) => {
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [firstMessage, setFirstMessage] = useLocalStorage('firstMessage', [])
 
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
@@ -153,10 +155,16 @@ export const ChatProvider = ({children}) => {
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+        }
+    }, [currentUser, fetchAgain])
+    
+    console.log('chats:', chats)
+    useEffect(() => {
+        if(Object.keys(currentUser).length > 0){
             initialChatBot()
             initialMessage()
         }
-    }, [currentUser, fetchAgain])
+    }, [currentUser])
 
     const isSenderCurrentUser = (message) => {
         return (
@@ -169,11 +177,13 @@ export const ChatProvider = ({children}) => {
       };
 
     const initialChatBot = () => {
-        const isChat = chats.map(chat => chat.users.map(user => user._id === currentUser._id));
-        isChat.length === 1 && API.get(`${baseUrl}/chat/chatbot`, {withCredentials: true})
+        // const isChat = chats.filter(chat => chat.users.map(user => user._id === currentUser._id));
+        // console.log('isChat.length:', isChat.length)
+        /*isChat.length === 0 && */ API.get(`${baseUrl}/chat/chatbot`, {withCredentials: true})
         .then(response => {
+            console.log('initial chat', response.data)
             setSelectedChat(response.data);
-            setChats([...chats, response.data]);
+            setChats([response.data]);
         })
     }
 
@@ -182,11 +192,11 @@ export const ChatProvider = ({children}) => {
         API.post(`${baseUrl}/messages/initialmessage`, {content: message.content}, {withCredentials: true})
         .then(response => {
             console.log('initial message', response.data)
-            setMessages([...messages, response.data])
+            setFirstMessage([...firstMessage, response.data])
         })
     }
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, firstMessage}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

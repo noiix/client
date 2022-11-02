@@ -109,6 +109,15 @@
 .profile-connect-btn {
     background-color: $dark-gray;
     color: $pink;
+
+    &:hover {
+    box-shadow: inset 0 0 0 2px $pink;
+    }
+    &:active {
+        background-color: $pink;
+        color: $dark-gray;
+        box-shadow: none;
+    }
 }
 
 .profile-track-list {
@@ -136,6 +145,14 @@
     font-size: 2rem;
     padding: 0 2rem;
     margin-top: 0.35rem;
+
+   
+    svg:hover {
+        * {
+            stroke: $pink;
+        }
+    }
+   
 }
 
 .profile-align-container {
@@ -164,6 +181,12 @@
 .profile-track-delete-btn {
     font-size: 1.5rem;
     margin-top: 0.35rem;
+
+    &:hover {
+        * {
+            color: red;
+        }
+    }
 }
 
 .profile-track-add-btn {
@@ -207,6 +230,16 @@
     .profile-connect-btn {
         color: $pink;
         background-color: $dark-pink;
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: inset 0 0 0 2px $pink;
+        }
+        &:active {
+            color: $dark-pink;
+            background-color: $pink;
+
+        }
     }
 
     .profile-play-btn {
@@ -214,14 +247,19 @@
             stroke: $light-gray;
             fill: $dark-gray;
         }
+        &:hover {
+            *{
+                stroke: $dark-pink;
+            }
+        }
     }
 
     .nameForm {
         button {
             background-color: $light-gray;
             color: $dark-gray;
-            // border: 2px solid white;
-            // box-shadow: none;
+            border: 2px solid white;
+            box-shadow: none;
         }
     }
 }

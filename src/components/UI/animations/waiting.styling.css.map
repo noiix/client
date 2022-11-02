@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACf,SAAS,EAAE,6BAA6B;EACxC,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,MAAM;EACb,MAAM,EAAE,MAAM;CACjB;;AAED,UAAU,CAAV,QAAU;EACN,EAAE;IACE,SAAS,EAAE,YAAY;;EAG3B,GAAG;IAAG,SAAS,EAAE,cAAc;;EAE/B,IAAI;IACA,SAAS,EAAE,cAAc",
+    "sources": [
+        "waiting.styling.scss"
+    ],
+    "names": [],
+    "file": "waiting.styling.css"
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ChatContext from '../../contexts/ChatContext'
 import UserContext from '../../contexts/UserContext'
 import DesignContext from '../../contexts/DesignContext'
@@ -16,6 +16,12 @@ function Chat() {
     const toggleDisplayChat = () => {
         setDisplayChat(!displayChat);
     }
+
+    useEffect(() => {
+        if (selectedChat === '') {
+            setDisplayChat(false)
+        }
+    }, [selectedChat])
 
 
     // console.log('chats', chats)
@@ -45,7 +51,7 @@ function Chat() {
                 </div>
                 <div className={ `${displayChat ? 'overlay' : 'overlay-hidden'}` }> { !isDesktop &&
                     <div className='back-to-chat-partners-btn icon' onClick={ () => { setSelectedChat(""); toggleDisplayChat() } }>
-                        Back
+                        Back 
                     </div> }
                     <Chatfield />
                 </div>

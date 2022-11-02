@@ -168,7 +168,7 @@ nav {
             height: 40vh;
             min-height: 40vh;
             display: flex;
-            border-bottom: dashed $dark-gray 1.7px;
+            border-bottom: dashed $dark-gray 2px;
             z-index: 3;
             background-color: lighten($lavender, 25%);
         }
@@ -223,6 +223,7 @@ nav {
 
             ul {
                 background-color: $dark-lavender;
+                border-bottom: dashed $light-gray 2px;
                 li {
                     a {
                         color: $light-gray;

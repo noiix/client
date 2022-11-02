@@ -48,9 +48,12 @@
 .favorite-play-btn {
     display: flex;
     font-size: 2rem;
-    padding: 0 1.5rem 0 2rem;
-    &:hover {
-        color: $pink;
+    padding: 0 1.5rem 0 2rem; 
+
+    svg:hover {
+        * {
+            stroke: $pink;
+        }
     }
 }
 
@@ -108,6 +111,12 @@
         * {
         stroke: $light-gray;
         fill: $dark-lavender;
+
+        &:hover {
+            *{
+                stroke: $dark-pink;
+            }
+        }
     }
     }
 }

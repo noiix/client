@@ -21,6 +21,7 @@ export const DataProvider = ({ children }) => {
   const [currentSong, setCurrentSong] = useState(0);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [idList, setIdList] = useState([]);
+  const [playing, setPlaying] = useState(false);
   
   // const [formData, setFormData] = useState({})
 
@@ -141,6 +142,8 @@ export const DataProvider = ({ children }) => {
 
   }
 
+
+
   const duration = (s) => {
     let min = Math.floor(s / 60);
     let sec = (s % 60).toFixed(0);
@@ -236,6 +239,8 @@ export const DataProvider = ({ children }) => {
     duration,
     idList, 
     setIdList,
+    playing,
+    setPlaying
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

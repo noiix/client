@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
   let [formData, setFormData] = useState({});
   const [currentUser, setCurrentUser] = useLocalStorage("currentUser", {});
-  const [users, setUsers] = useLocalStorage("users", []);
+  const [users, setUsers] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [profile, setProfile] = useLocalStorage("profile", {})
   const [genre, setGenre] = useState([]);

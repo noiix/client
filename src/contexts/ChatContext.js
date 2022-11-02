@@ -19,7 +19,9 @@ export const ChatProvider = ({children}) => {
     const {currentUser} = useContext(UserContext);
     const { addNewNotification } = useContext(DesignContext);
 
-    const [chats, setChats] = useState([])
+    const [chats, setChats] = useState([]);
+    // const [initialChat, setInitialChat] = useState([]);
+    // const [firstMessage, setFirstMessage] = useState([]);
     const [selectedChat, setSelectedChat] = useState();
     const [fetchAgain, setFetchAgain] = useState(false)
     const [messages, setMessages] = useState([]);
@@ -102,7 +104,7 @@ export const ChatProvider = ({children}) => {
     }
 
     const sendMessage = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if(newMessage) {
             socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
@@ -111,7 +113,6 @@ export const ChatProvider = ({children}) => {
                 console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
                 setMessages([...messages, response.data])
-
             })
             .catch(err => console.log(err))
         }
@@ -153,10 +154,15 @@ export const ChatProvider = ({children}) => {
     useEffect(() => {
         if(currentUser) {
             fetchChats()
-            initialChatBot()
-            initialMessage()
         }
     }, [currentUser, fetchAgain])
+
+    // useEffect(() => {
+    //     if(Object.keys(currentUser).length > 0) {
+    //         initialChatBot()
+    //         initialMessage()
+    //     }
+    // }, [currentUser])
 
     const isSenderCurrentUser = (message) => {
         return (
@@ -168,23 +174,25 @@ export const ChatProvider = ({children}) => {
         return users[0]._id === loggedUser._id ? users[1].username : users[0].username;
       };
 
-    const initialChatBot = () => {
-        const isChat = chats.map(chat => chat.users.map(user => user._id === currentUser._id));
-        isChat.length === 1 && API.get(`${baseUrl}/chat/chatbot`, {withCredentials: true})
-        .then(response => {
-            setSelectedChat(response.data);
-            setChats([...chats, response.data]);
-        })
-    }
+    // const initialChatBot = () => {
+    //     const isChat = chats.map(chat => chat.users.map(user => user._id === currentUser._id));
+    //     if(isChat.length === 0)  {
+    //         API.get(`${baseUrl}/chat/chatbot`, {withCredentials: true})
+    //     .then(response => {
+    //         setSelectedChat(response.data);
+    //         setInitialChat([response.data]);
+    //     })
+    //     }
+    // }
 
-    const initialMessage = () => {
-        const message = {content: `Hi, ${currentUser.username}! Nice to see you here. Don't forget to set your genres and profile so that you can find other musicians in your area. Have fun!`}
-        API.post(`${baseUrl}/messages/initialmessage`, {content: message.content}, {withCredentials: true})
-        .then(response => {
-            console.log('initial message', response.data)
-            setMessages([...messages, response.data])
-        })
-    }
+    // const initialMessage = () => {
+    //     const message = {content: `Hi, ${currentUser.username}! Nice to see you here. Don't forget to set your genres and profile so that you can find other musicians in your area. Have fun!`}
+    //     API.post(`${baseUrl}/messages/initialmessage`, {content: message.content}, {withCredentials: true})
+    //     .then(response => {
+    //         console.log('initial message', response.data)
+    //         setFirstMessage([response.data])
+    //     })
+    // }
 
     const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
 

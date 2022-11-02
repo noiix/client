@@ -230,6 +230,7 @@
     .profile-connect-btn {
         color: $light-gray;
         background-color: $dark-pink;
+<<<<<<< HEAD
         box-shadow: none;
 
         &:hover {
@@ -239,6 +240,10 @@
             color: $dark-pink;
             background-color: $pink;
 
+=======
+        &:hover {
+            color: $lavender;
+>>>>>>> 314814ebec628f3d48d81b740a1add16dd8be91c
         }
     }
 

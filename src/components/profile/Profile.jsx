@@ -25,9 +25,15 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
+<<<<<<< HEAD
   const { deleteTrack, likeSongs, duration, playing, setPlaying } = useContext(DataContext)
   const { accessChat } = useContext(ChatContext);
   // const [playing, setPlaying] = useState(false);
+=======
+  const { deleteTrack, likeSongs, duration } = useContext(DataContext)
+  const { accessChat, chats } = useContext(ChatContext);
+  const [playing, setPlaying] = useState(false);
+>>>>>>> 314814ebec628f3d48d81b740a1add16dd8be91c
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
   const [players, setPlayers] = useState()
@@ -139,6 +145,7 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
+<<<<<<< HEAD
               { profile._id !== currentUser._id &&    
                   currentUser.contacts.length > 0 && currentUser.contacts.includes(profile._id) ? 
                     <Link to="/chat">
@@ -148,6 +155,17 @@ function Profile() {
                       <Button type="profile-connect-btn submit" name={"connect"} onClick={ () => {accessChat(profile._id); addContact()} }/>
                     </Link> 
                }
+=======
+              { profile._id !== currentUser._id &&
+              (isContact ?
+                <Link to="/chat">
+                  <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/>
+                </Link> :
+                <Link>
+                  <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>
+                </Link>
+                )}
+>>>>>>> 314814ebec628f3d48d81b740a1add16dd8be91c
             </div>
             <div className="profile-track-list">
 

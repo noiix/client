@@ -253,10 +253,14 @@
 
     .overlay {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         background-color: white;
         z-index: 2;
         position: absolute;
         top: 4.5rem;
+
     }
 
     .overlay-hidden {
@@ -285,6 +289,9 @@
 
          .chat-window-right {
            padding: 0.5rem;
+           display: flex;
+           flex-direction: column;
+        //    align-items: flex-start;
          }
 
         .chat-list-left {

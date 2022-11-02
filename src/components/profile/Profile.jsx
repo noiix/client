@@ -25,12 +25,20 @@ function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
   const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
 <<<<<<< HEAD
+<<<<<<< HEAD
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName, contacts } = useContext(UserContext)
+=======
+  const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
+<<<<<<< HEAD
+>>>>>>> b9f09fda4d01ac6cd3d74d8335030e72d5638c33
   const { deleteTrack, likeSongs, duration } = useContext(DataContext)
   const { accessChat, chats } = useContext(ChatContext);
   const [playing, setPlaying] = useState(false);
 =======
+<<<<<<< HEAD
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
+=======
+>>>>>>> b9f09fda4d01ac6cd3d74d8335030e72d5638c33
   const { deleteTrack, likeSongs, duration, playing, setPlaying } = useContext(DataContext)
   const { accessChat } = useContext(ChatContext);
   // const [playing, setPlaying] = useState(false);
@@ -158,6 +166,19 @@ function Profile() {
                }
 =======
               { profile._id !== currentUser._id &&
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              (isContact ?
+                <Link to="/chat">
+                  <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) }/>
+                </Link> :
+                <Link>
+                  <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) }/>
+                </Link>
+                )}
+=======
+>>>>>>> b9f09fda4d01ac6cd3d74d8335030e72d5638c33
                 <Link to='/chat'><Button type="profile-connect-btn" name="connect" onClick={ () => accessChat(profile._id) } /></Link> }
 >>>>>>> f34c5b8d9544fb1e3c99d6241c55cf7d71de07ab
             </div>
@@ -182,7 +203,7 @@ function Profile() {
                         <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
-                  <div class>
+                  <div className="profile-no-tracks-yet-text">
                     { currentUser._id !== profile._id ?
                       <p><span>{ profile.username }</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                       :

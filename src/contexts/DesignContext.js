@@ -80,6 +80,7 @@ export const DesignProvider = ({children}) => {
         setDisplayModal(false)
         setDisplayModalAdd(false)
         setDisplayModalUpdate(false)
+        setDisplayNav(false)
     }
 
     const [displayModalUpdate, setDisplayModalUpdate] = useState(false)

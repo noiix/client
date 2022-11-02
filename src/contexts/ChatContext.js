@@ -34,6 +34,8 @@ export const ChatProvider = ({children}) => {
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
 
+     //........
+
      const ENDPOINT = `${baseUrl}`;
      let socket = useRef();
      let selectedChatCompare = useRef();

@@ -83,7 +83,7 @@ const CardList = () => {
  
   return (
     <div className='card-list'>
-      {users.length > 0 && users.map((user, i) => (
+      {players && users.length > 0 && users.map((user, i) => (
         <Link to={"/profile"}><Card key={i} player={players[i]} toggle={toggle(i)} user={user}/></Link>
       ))}
     </div>

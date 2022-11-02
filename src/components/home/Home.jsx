@@ -14,12 +14,6 @@ function Home() {
   return (
     <div className={ `home ${darkMode}` }>
       <div className="home-container">
-<<<<<<< HEAD
-        { (isDesktop || Object.keys(currentUser).length === 0) &&
-          <h1>NÖIX CONNECTS MUSICIANS</h1>
-        }
-        <h2>explore music, find band members, chat</h2>
-=======
       <div className='headline'>
       { isDesktop &&
         <h1>NÖIX CONNECTS MUSICIANS</h1>
@@ -27,7 +21,6 @@ function Home() {
       <h2>explore music, find band members, chat</h2>
       </div>
         
->>>>>>> 314814ebec628f3d48d81b740a1add16dd8be91c
 
         { (Object.keys(currentUser).length > 0) && <CardList /> }
 

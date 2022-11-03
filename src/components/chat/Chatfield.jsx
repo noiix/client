@@ -8,7 +8,7 @@ function Chatfield() {
 
     const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
+    const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, newMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
 
     const messagesEndRef = useRef(null);
 
@@ -19,6 +19,8 @@ function Chatfield() {
     useEffect(() => {
       scrollToBottom()
     }, [messages]);
+
+  
     
   return (
     <div className="chat-window-right">
@@ -39,7 +41,7 @@ function Chatfield() {
       
       <form className="current-chat-input">
             {selectedChat && (isTyping === selectedChat._id && <div>Typing...</div>)}
-          <input type='text' name='message' placeholder='write something' onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
+          <input type='text' name='message' placeholder='write something' value={newMessage} onChange={typingHandler} onKeyDown={sendMessageOnKeyDown}/>
           <Button type='send' name='SEND' onClick={sendMessage}/>
       </form>
     </div>

@@ -18,14 +18,13 @@ function Navbar() {
   const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
   const { displaySearch, setDisplaySearch } = useContext(DataContext)
   // const {players, setPlayers} = useContext(MultiAudioContext);
-  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead } = useContext(ChatContext)
+  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead, chats } = useContext(ChatContext)
 
   const toggleSearch = () => {
     setDisplaySearch(!displaySearch);
   }
 
   const newNotification = useRef(0)
-
 
 
   return (

@@ -105,6 +105,7 @@ export const ChatProvider = ({children}) => {
           sendMessage(e)
         }
     }
+   
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -112,14 +113,16 @@ export const ChatProvider = ({children}) => {
             socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
-                setNewMessage('');
                 console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
+                setNewMessage('');
                 setMessages([...messages, response.data])
             })
             .catch(err => console.log(err))
         }
     }
+
+    console.log('new message', newMessage)
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value)
@@ -197,7 +200,7 @@ export const ChatProvider = ({children}) => {
     //     })
     // }
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages, newMessage}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

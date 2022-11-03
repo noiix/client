@@ -12,6 +12,7 @@ function Chat() {
     const { chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification, fetchMessages } = useContext(ChatContext);
     const { isDesktop } = useContext(DesignContext);
     const [displayChat, setDisplayChat] = useState(false);
+    const [msgTeaster, setMsgTeaser] = useState();
 
     const toggleDisplayChat = () => {
         setDisplayChat(!displayChat);
@@ -26,17 +27,9 @@ function Chat() {
 
     const msgTeaser = (chat, user) => {
         const allMessages = messages && messages.map(msg => msg.chat._id === chat._id ? msg : null);
-        console.log(allMessages)
         const lastMessages = allMessages[allMessages.length-1];
         return lastMessages?.content.slice(0, 30);
-        // const AllMessages = chatNotification.filter(n => n.chat._id === chat._id);
-        // console.log(AllMessages)
-        // const lastMessage = AllMessages[AllMessages.length -1];
-        // return lastMessage?.content.slice(0, 30);
     }
-
-
-    // console.log('chats', chats)
 
     return (
         <div className="chat-main">

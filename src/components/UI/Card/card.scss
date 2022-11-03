@@ -64,11 +64,26 @@
 .play-btn {
     // background-color: cornflowerblue;
     font-size: 2rem;
-
+   
+    svg:hover {
+        * {
+            stroke: $pink;
+        }
+    }
 }
 
 .card-track-title {
     // background-color: chartreuse;
+}
+
+.dark {
+    .play-btn {
+        svg:hover {
+        * {
+            stroke: $dark-pink;
+        }
+    }
+    }
 }
 
 @media screen and (max-width: $max-screen) {

@@ -30,6 +30,8 @@ export const ChatProvider = ({children}) => {
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [teaser, setTeaser] = useState();
+    const [allMessages, setAllMessages] = useState();
    
 
      // socket.io
@@ -117,12 +119,14 @@ export const ChatProvider = ({children}) => {
                 socket.current.emit('new message', response.data)
                 setNewMessage('');
                 setMessages([...messages, response.data])
+                setTeaser(response.data)
+                // fetchAllMessages()
+                setAllMessages([...allMessages, response.data])
             })
             .catch(err => console.log(err))
         }
     }
 
-    console.log('new message', newMessage)
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value)
@@ -157,9 +161,18 @@ export const ChatProvider = ({children}) => {
         .catch(err => console.log(err)) 
     }
 
+    const fetchAllMessages = () => {
+        API.get(`${baseUrl}/messages/all`, {withCredentials: true})
+        .then(response => {
+            setAllMessages(response.data)
+            console.log(response.data)
+        })
+    }
+
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+            fetchAllMessages()
         }
     }, [currentUser, fetchAgain])
 
@@ -200,7 +213,7 @@ export const ChatProvider = ({children}) => {
     //     })
     // }
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages, newMessage}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages, newMessage, teaser, allMessages}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

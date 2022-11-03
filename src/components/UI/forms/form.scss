@@ -34,7 +34,7 @@ form {
         input:-internal-autofill-selected,
         input:-internal-autofill-previewed {
             -webkit-text-fill-color: $dark-gray;
-            -webkit-box-shadow: 0 0 0 40px $light-gray inset !important;
+            -webkit-box-shadow: 0 0 0 40px white inset !important;
             
         }
 
@@ -48,6 +48,16 @@ form {
         background-color: $dark-gray;
         color: white;
         margin: 0;
+        &:hover{
+            color: $dark-gray;
+            background-color: white;
+            
+            
+            &:active{
+               background-color: $dark-gray;
+                color: $light-gray; 
+            }
+        }
     }
 }
 
@@ -55,17 +65,19 @@ form {
     form{
         input {
             background-color: $dark-gray;
-            color: $light-gray;
+            color: $light-gray!important;
             border: 2px solid $light-gray;
             &::placeholder {
                 color: $light-gray;
             }
             &:-webkit-autofill {
+            
             background-color: $dark-gray;
             -webkit-box-shadow: 0 0 0 50px white inset;
             }
             &:focus,  &[type=fieldset] {
             border: 2px solid $dark-pink;
+            color: $light-gray;
         }
         }
 
@@ -75,7 +87,7 @@ form {
         input:-webkit-autofill:active,
         input:-internal-autofill-selected,
         input:-internal-autofill-previewed {
-            
+           
             -webkit-text-fill-color: $light-gray;
             -webkit-box-shadow: 0 0 0 40px $dark-gray inset !important;
         }
@@ -86,6 +98,15 @@ form {
         // border: 2px solid $light-gray;
         border-color: $light-gray;
         margin: 0;
+        &:hover{
+            border-left: none;
+            color: $light-gray;
+            background-color: $dark-gray;
+            &:active{
+               background-color: $light-gray;
+                color: $dark-gray; 
+            }
+        }
     }
     }
 }

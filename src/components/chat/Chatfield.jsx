@@ -8,7 +8,7 @@ function Chatfield() {
 
     const scrollViewRef = useRef();
     const {currentUser} = useContext(UserContext);
-    const {chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
+    const {chats, setSelectedChat, firstMessage, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping} = useContext(ChatContext);
 
     const messagesEndRef = useRef(null);
 
@@ -27,14 +27,22 @@ function Chatfield() {
       <>
         <div className='chat-scroll'  ref={scrollViewRef}
         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
-        {messages &&
+        {messages ?
           messages.map((msg, index) => 
             <>
             <div className={isSenderCurrentUser(msg) ? "current-chat-message-own" : "current-chat-message-partner"} key={index}>
               {msg.content}
             </div>
             <div ref={messagesEndRef}></div>
-          </>)
+          </>) :
+          firstMessage.map((msg,index) => 
+            <>
+              <div className={isSenderCurrentUser(msg) ? "current-chat-message-own" : "current-chat-message-partner"} key={index}>
+                {msg.content}
+              </div>
+              <div ref={messagesEndRef}></div>
+            </>
+          )
           }
         </div> 
         

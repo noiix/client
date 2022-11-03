@@ -51,7 +51,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    // filter: opacity(0.5) drop-shadow(0 0 0 $pink);
+    filter: opacity(0.5) drop-shadow(0 0 0 $pink);
     // background: url("face-04.jpg")
     // background-color: $lavender;
     // background-blend-mode:multiply;
@@ -126,9 +126,9 @@
     background-color: $dark-gray;
     color: $pink;
 
-    &:hover {
-    box-shadow: inset 0 0 0 2px $pink;
-    }
+    // &:hover {
+    // box-shadow: inset 0 0 0 2px $pink;
+    // }
     &:active {
         background-color: $pink;
         color: $dark-gray;
@@ -203,10 +203,6 @@
     }
 }
 
-.profile-no-tracks-yet-text {
-    padding-left: 2rem;
-}
-
 .profile-track-add-btn {
     padding: 0 2rem;
     margin-top: 2rem;
@@ -261,8 +257,15 @@
     .profile-connect-btn {
         color: $light-gray;
         background-color: $dark-pink;
-        &:hover {
-            color: $lavender;
+        box-shadow: none;
+
+        // &:hover {
+        //     box-shadow: inset 0 0 0 2px $pink;
+        // }
+        &:active {
+            color: $dark-pink;
+            background-color: $pink;
+
         }
     }
 
@@ -365,10 +368,6 @@
     .profile-play-btn {
         padding: 0;
         padding-right: 1rem;
-    }
-
-    .profile-no-tracks-yet-text {
-        padding-left: 0;
     }
 
     .profile-track-add-btn {

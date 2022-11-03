@@ -5,6 +5,7 @@ const DesignContext = createContext();
 export const DesignProvider = ({children}) => {
       // media query
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     
     useEffect(() => {
         const media = window.matchMedia('(min-width: 960px)');
@@ -14,6 +15,15 @@ export const DesignProvider = ({children}) => {
 
         return () => window.removeEventListener('resize', listener);
     }, [isDesktop]);
+
+    useEffect(() => {
+        const media = window.matchMedia('(max-width: 425px)');
+        const listener = () => setIsMobile(media.matches);
+        listener();
+        window.addEventListener('resize', listener);
+
+        return () => window.removeEventListener('resize', listener);
+    }, [isMobile])
 
 
     //alert notifications
@@ -70,6 +80,7 @@ export const DesignProvider = ({children}) => {
         setDisplayModal(false)
         setDisplayModalAdd(false)
         setDisplayModalUpdate(false)
+        setDisplayNav(false)
     }
 
     const [displayModalUpdate, setDisplayModalUpdate] = useState(false)

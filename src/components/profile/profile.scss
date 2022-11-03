@@ -51,6 +51,13 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
+    // filter: opacity(0.5) drop-shadow(0 0 0 $pink);
+    // background: url("face-04.jpg")
+    // background-color: $lavender;
+    // background-blend-mode:multiply;
+    // background-blend-mode: revert-layer, multiply;
+
+    // imageInnerStyle={{opacity: 0.35, backgroundColor: 'red', backgroundBlendMode: 'multiply' }} 
 }
 
 .profile-picture-update-btn {

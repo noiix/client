@@ -100,7 +100,7 @@ function Profile() {
           <div className="profile-left-column">
             <div className="profile-left-column-header">
               <div className="profile-picture-container">
-                <img src={ profile?.image } alt="img" className="profile-img" />
+                <img imageInnerStyle={{opacity: 0.35, backgroundColor: 'red', backgroundBlendMode: 'multiply' }} src={ profile?.image } alt="img" className="profile-img" />
                 { profile._id === currentUser._id &&
                   <div className="pic-upload-form-container">
                     <div className="profile-picture-update-btn icon" onClick={ toggleForm }><TbEdit /></div>

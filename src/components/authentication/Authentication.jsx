@@ -22,7 +22,7 @@ const Authentication = () => {
                     <Register />
                 }
                 <div className='toggle'>
-                    <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'or sign up' : 'back to log in' } />
+                    <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'sign up' : 'back to log in' } />
                 </div>
                 <p>or keep it simple and:</p>
                 <GoogleAuth />

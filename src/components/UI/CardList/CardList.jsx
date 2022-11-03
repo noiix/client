@@ -6,9 +6,9 @@ import baseUrl from '../../../config';
 
 function useMultiAudio(users, currentUser) {
 
-  const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
-  const [sources, setSources] = useState(
-    () => urls.map(url => {
+    const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
+    const [sources] = useState(
+    urls.map(url => {
       return {
         url,
         audio: new Audio(url),
@@ -64,11 +64,11 @@ function useMultiAudio(users, currentUser) {
   // }, [urls])
   
 
-  console.log('sources...', sources)
+  // console.log('sources...', sources)
 
   
 
-  console.log('players', players)
+  // console.log('players', players)
 
   const toggle = targetIndex => () => {
     const newPlayers = [...players]
@@ -92,7 +92,6 @@ function useMultiAudio(users, currentUser) {
   }, [sources, players])
 
   useEffect(() => {
-    console.log('this audio useEffect!!!!')
       sources.forEach((source, i) => {
         source.audio.addEventListener('ended', () => {
           const newPlayers = [...players]
@@ -111,9 +110,7 @@ function useMultiAudio(users, currentUser) {
           })
         })
         sources.forEach((source, i) => source.audio.pause())
-        console.log('this audio useEffect')
       }
-    
   }, [])
 
   return [players, toggle]
@@ -127,7 +124,7 @@ const CardList = () => {
   const { users, currentUser } = useContext(UserContext);
   const [players, toggle] = useMultiAudio(users, currentUser);
 
-  console.log('cardlist players', players)
+  // console.log('cardlist players', players)
 
  
 

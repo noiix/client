@@ -5,8 +5,7 @@
     background-image: url('../../img/bg-home-pink.png');
     // background-image: url('../../img/bg-light-home-lighter.png');
     background-size: cover;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +17,10 @@
         justify-content: center;
         // align-items: center;
         flex-direction: column;
+    }
+
+    .headline {
+        margin-top: 6rem;
     }
 
     h1 {
@@ -63,8 +66,7 @@
         padding: 1rem;
 
         .headline {
-            // width: 95%;
-            // margin: 0 auto;
+            margin-top: 1rem;
             h1 {
                 font-size: 3rem;
                 line-height: 4rem;
@@ -73,12 +75,16 @@
             h2 {
                 font-size: 2rem;
                 line-height: 2.5rem;
-                padding-top: 1.5rem;
+                padding: 1.5rem;
             }
         }
 
         h4 {
             font-size: 1.2rem;
         }
+    }
+
+    .home-container {
+        justify-content: space-evenly;
     }
   }

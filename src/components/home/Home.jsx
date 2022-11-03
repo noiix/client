@@ -10,19 +10,7 @@ import useLocalStorage from 'use-local-storage'
 
 function Home() {
   const { isDesktop, toggleModal, toggleBtn, displayModal, darkMode } = useContext(DesignContext)
-  const { currentUser, users } = useContext(UserContext);
-  // const [urls, setUrls] = useLocalStorage('urls', [])
-
-  // const getUrls = () => {
-  //   const newUrls = users && users.map(user => user.music.length > 0 && user.music[0].path);
-  //   setUrls(newUrls)
-  // }
-
-  // useEffect(() => {
-  //   if(Object.keys(currentUser).length > 0) {
-  //     getUrls()
-  //   }
-  // }, [currentUser])
+  const { currentUser, users } = useContext(UserContext)
 
   return (
     <div className={ `home ${darkMode}` }>

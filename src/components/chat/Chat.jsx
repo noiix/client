@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 function Chat() {
 
     const { currentUser } = useContext(UserContext);
-    const { chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification } = useContext(ChatContext);
+    const { chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification, fetchMessages } = useContext(ChatContext);
     const { isDesktop } = useContext(DesignContext);
     const [displayChat, setDisplayChat] = useState(false);
 
@@ -24,12 +24,23 @@ function Chat() {
     }, [selectedChat])
 
 
+    const msgTeaser = (chat, user) => {
+        const allMessages = messages && messages.map(msg => msg.chat._id === chat._id ? msg : null);
+        console.log(allMessages)
+        const lastMessages = allMessages[allMessages.length-1];
+        return lastMessages?.content.slice(0, 30);
+        // const AllMessages = chatNotification.filter(n => n.chat._id === chat._id);
+        // console.log(AllMessages)
+        // const lastMessage = AllMessages[AllMessages.length -1];
+        // return lastMessage?.content.slice(0, 30);
+    }
+
+
     // console.log('chats', chats)
 
     return (
         <div className="chat-main">
             <div className='chat-container'>
-
                 <div className='chat-list-left'>
                     { chats && chats.map((chat, i) => <> {
                         chat.users.map(user => user._id !== currentUser._id &&
@@ -43,7 +54,7 @@ function Chat() {
                                         {chatNotification.filter(n => n.chat._id === chat._id).length > 0 && <span className='dot'></span>}
                                     </div>
                                     <div className="chat-text-teaser">
-                                        <span>something</span>
+                                    <span>{msgTeaser(chat, user)}</span>
                                     </div>
                                 </div>
                             </div>))

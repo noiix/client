@@ -30,6 +30,7 @@ export const ChatProvider = ({children}) => {
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
     const [counter, setCounter] = useState(0);
+   
 
      // socket.io
      const [socketConnected, setSocketConnected] = useState(false)
@@ -196,7 +197,7 @@ export const ChatProvider = ({children}) => {
     //     })
     // }
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

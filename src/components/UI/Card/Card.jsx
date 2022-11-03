@@ -8,8 +8,8 @@ function Card({ player, toggle, user }) {
 
   const {setProfile} = useContext(UserContext);
 
-  console.log(user)
-  console.log('users', user)
+  // console.log(user)
+  // console.log('users', user)
 
   const checkUserNameLength = () => {
     if(user.username.length > 14 && user.username.length < 17) {

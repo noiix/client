@@ -6,9 +6,15 @@ import baseUrl from '../../../config';
 
 function useMultiAudio(users, currentUser) {
 
+<<<<<<< HEAD
   const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
   const [sources, setSources] = useState(
     () => urls.map(url => {
+=======
+    const urls = users && users.map(user => user.music.length > 0 && user.music[0].path);
+    const [sources] = useState(
+    urls.map(url => {
+>>>>>>> e7a18bae95494d2130ec71cdd1537d18acf0b121
       return {
         url,
         audio: new Audio(url),

@@ -5,8 +5,7 @@
     background-image: url('../../img/bg-home-pink.png');
     // background-image: url('../../img/bg-light-home-lighter.png');
     background-size: cover;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,5 +79,9 @@
         h4 {
             font-size: 1.2rem;
         }
+    }
+
+    .home-container {
+        justify-content: space-evenly;
     }
   }

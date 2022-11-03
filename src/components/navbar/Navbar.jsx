@@ -15,10 +15,10 @@ import ChatContext from '../../contexts/ChatContext'
 
 function Navbar() {
   const { currentUser, logout, setProfile, users } = useContext(UserContext)
-  const { darkMode, toggleMode, displayNav, toggleNav, isDesktop } = useContext(DesignContext)
+  const { darkMode, toggleMode, displayNav, toggleNav, isDesktop, closeModal } = useContext(DesignContext)
   const { displaySearch, setDisplaySearch } = useContext(DataContext)
   // const {players, setPlayers} = useContext(MultiAudioContext);
-  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead } = useContext(ChatContext)
+  const { chatNotification, setChatNotification, getSender, setSelectedChat, unreadCounter, setMessageToRead, chats } = useContext(ChatContext)
 
   const toggleSearch = () => {
     setDisplaySearch(!displaySearch);
@@ -34,7 +34,7 @@ function Navbar() {
         { displaySearch && <Search className="search-bar" /> }
       </div>
       <nav>
-        <Link to={ "/" } onClick={ () => setSelectedChat("") }>
+        <Link to={ "/" } onClick={ () => {setSelectedChat(""); closeModal() }}>
           <div>
             <h1 id="logo">nöiX</h1>
           </div>
@@ -53,21 +53,21 @@ function Navbar() {
           <>
             { Object.keys(currentUser).length !== 0 &&
               <ul>
-                <li><NavLink to={ `/profile` } onClick={ () => { setProfile(currentUser); setSelectedChat("") } }>profile</NavLink></li>
+                <li><NavLink to={ `/profile` } onClick={ () => { setProfile(currentUser); setSelectedChat(""); closeModal() } }>profile</NavLink></li>
                 <li><NavLink to={ "/chat" } onClick={ () => {
                   chatNotification.length > 0 &&
-                    setSelectedChat(chatNotification[chatNotification.length - 1].chat);
+                    setSelectedChat(chats[0]); closeModal();
                   setChatNotification(chatNotification.filter((n, i) => i === chatNotification.length - 1))
                 } }
                 >chat
                   <span>{ chatNotification.length > 0 && chatNotification.length }</span>
                 </NavLink></li>
-                <li><NavLink to={ "/favorite" } onClick={ () => setSelectedChat("") }>favorites</NavLink></li>
-                <li><NavLink to={ "/" } onClick={ () => { logout(); setSelectedChat("") } } >logout</NavLink></li>
+                <li><NavLink to={ "/favorite" } onClick={ () => {setSelectedChat(""); closeModal()} }>favorites</NavLink></li>
+                <li><NavLink to={ "/" } onClick={ () => { logout(); setSelectedChat(""); closeModal() } } >logout</NavLink></li>
 
               </ul>
             }
-            { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ toggleSearch }><ImSearch /></span> }
+            { Object.keys(currentUser).length !== 0 && <span className="search-btn icon-btn" onClick={ () => {toggleSearch(); toggleNav()} }><ImSearch /></span> }
             <Link className="mode" onClick={ toggleMode }>{ darkMode === 'light' ? <MdOutlineDarkMode /> : <BsSun /> }</Link>
           </>
         }

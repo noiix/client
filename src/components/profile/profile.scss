@@ -196,10 +196,6 @@
     }
 }
 
-.profile-no-tracks-yet-text {
-    padding-left: 2rem;
-}
-
 .profile-track-add-btn {
     padding: 0 2rem;
     margin-top: 2rem;
@@ -254,8 +250,15 @@
     .profile-connect-btn {
         color: $light-gray;
         background-color: $dark-pink;
+        box-shadow: none;
+
         &:hover {
-            color: $lavender;
+            box-shadow: inset 0 0 0 2px $pink;
+        }
+        &:active {
+            color: $dark-pink;
+            background-color: $pink;
+
         }
     }
 
@@ -358,10 +361,6 @@
     .profile-play-btn {
         padding: 0;
         padding-right: 1rem;
-    }
-
-    .profile-no-tracks-yet-text {
-        padding-left: 0;
     }
 
     .profile-track-add-btn {

@@ -13,6 +13,22 @@
 
 @media screen and (max-width: $max-screen) {
     .card-list {
+<<<<<<< HEAD
         justify-content: center;
     }
   }
+=======
+        margin: 1rem;
+        padding: 1rem;
+    }
+  }
+
+@media screen and (max-width: $max-screen-mobile) {
+    .card-list {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+}   
+>>>>>>> e7a18bae95494d2130ec71cdd1537d18acf0b121

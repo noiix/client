@@ -1,5 +1,8 @@
 @use "../../../style/variables.scss" as *;
 
+.btn-container {
+    height: 100%;
+}
 
 button {
     cursor: pointer;

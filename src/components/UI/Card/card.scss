@@ -88,7 +88,8 @@
 
 @media screen and (max-width: $max-screen) {
     .card {
-        // margin: 1rem;
+        width: 240px;
+        height: 240px;
         margin-bottom: 1rem;
     }
   }

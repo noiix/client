@@ -57,10 +57,10 @@ function Navbar() {
                 <li><NavLink to={ "/chat" } onClick={ () => {
                   chatNotification.length > 0 &&
                     setSelectedChat(chats[0]); closeModal();
-                  setChatNotification(chatNotification.filter((n, i) => i === chatNotification.length - 1))
+                    setChatNotification(chatNotification.filter((n, i) => i === chatNotification.length - 1))
                 } }
                 >chat
-                  <span>{ chatNotification.length > 0 && chatNotification.length }</span>
+                  { chatNotification.length > 0 &&<span className="nav-chat-notification"> {chatNotification.length} </span>}
                 </NavLink></li>
                 <li><NavLink to={ "/favorite" } onClick={ () => {setSelectedChat(""); closeModal()} }>favorites</NavLink></li>
                 <li><NavLink to={ "/" } onClick={ () => { logout(); setSelectedChat(""); closeModal() } } >logout</NavLink></li>

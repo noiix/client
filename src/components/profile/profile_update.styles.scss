@@ -9,9 +9,8 @@
     width: 200px!important;
     overflow: scroll;
     border: 2px solid $dark-gray;
-    // position: absolute;
-    // top: 25rem;
-    // right: 25rem;
+    position: absolute;
+    top: 5rem;
     background-color: $light-gray;
     z-index: 4;
     padding: 0.5rem;
@@ -32,8 +31,8 @@
             border-style: solid;
             border-width: 0 0.3em 0.25em 0;
             height: 1em;
-            top: 1.3em;
-            left: 0.6em;
+            top: .2em;
+            left: 0;
             margin-top: -1em;
             transform: rotate(45deg);
             width: 0.5em;

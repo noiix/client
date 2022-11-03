@@ -174,7 +174,7 @@ function Profile() {
                         <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
-                  <div class>
+                  <div>
                     { currentUser._id !== profile._id ?
                       <p><span>{ profile.username }</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                       :

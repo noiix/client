@@ -142,13 +142,14 @@ function Profile() {
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
               { profile._id !== currentUser._id &&    
-                  currentUser.contacts.length > 0 && currentUser.contacts.includes(profile._id) ? 
+                  // currentUser.contacts.length > 0 && currentUser.contacts.includes(profile._id) ? 
                     <Link to="/chat">
                       <Button type="profile-connect-btn submit" name={"chat"} onClick={ () => accessChat(profile._id) }/>
-                    </Link>  :
-                    <Link to="/chat">
-                      <Button type="profile-connect-btn submit" name={"connect"} onClick={ () => {accessChat(profile._id); addContact()} }/>
-                    </Link> 
+                    </Link>  
+                    // :
+                    // <Link to="/chat">
+                    //   <Button type="profile-connect-btn submit" name={"connect"} onClick={ () => {accessChat(profile._id); addContact()} }/>
+                    // </Link> 
                }
             </div>
             <div className="profile-track-list">

@@ -27,7 +27,6 @@ function Navbar() {
   const newNotification = useRef(0)
 
 
-
   return (
     <div className={ darkMode }>
       <div className="search-bar-container">
@@ -62,7 +61,7 @@ function Navbar() {
                 >chat
                   { chatNotification.length > 0 &&<span className="nav-chat-notification"> <p>{chatNotification.length}</p> </span>}
                 </NavLink></li>
-                <li><NavLink to={ "/favorite" } onClick={ () => {setSelectedChat(""); closeModal()} }>favorites</NavLink></li>
+                <li><NavLink to={ "/favorite" } onClick={ () => {setSelectedChat(""); closeModal()} }>favs</NavLink></li>
                 <li><NavLink to={ "/" } onClick={ () => { logout(); setSelectedChat(""); closeModal() } } >logout</NavLink></li>
 
               </ul>

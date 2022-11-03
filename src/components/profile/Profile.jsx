@@ -141,14 +141,10 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
-              { profile._id !== currentUser._id &&    
-                  currentUser.contacts.length > 0 && currentUser.contacts.includes(profile._id) ? 
+              { profile._id !== currentUser._id &&     
                     <Link to="/chat">
                       <Button type="profile-connect-btn submit" name={"chat"} onClick={ () => accessChat(profile._id) }/>
-                    </Link>  :
-                    <Link to="/chat">
-                      <Button type="profile-connect-btn submit" name={"connect"} onClick={ () => {accessChat(profile._id); addContact()} }/>
-                    </Link> 
+                    </Link>
                }
             </div>
             <div className="profile-track-list">
@@ -173,7 +169,7 @@ function Profile() {
                         <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
-                  <div class>
+                  <div className='profile-no-tracks-yet-text'>
                     { currentUser._id !== profile._id ?
                       <p><span>{ profile.username }</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                       :

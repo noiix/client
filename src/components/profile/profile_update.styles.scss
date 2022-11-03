@@ -1,18 +1,24 @@
 @use '../../style/variables.scss' as *;
 
+// .dropdown-container {
+    // position: relative;
+// }
+
 .dropdown-menu {
-    height: 200px;
-    width: 200px;
+    height: 400px!important;
+    width: 200px!important;
     overflow: scroll;
     border: 2px solid $dark-gray;
-    position: relative;
-    top: 5.7rem;
+    // position: absolute;
+    // top: 25rem;
+    // right: 25rem;
     background-color: $light-gray;
     z-index: 4;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     input {
         display: none;
     }
@@ -41,7 +47,9 @@
         width: 90%;
         justify-content: space-between;
     }
+
 }
+
 .dropdown-background {
     height: 100vh;
     width: 100%;
@@ -100,5 +108,9 @@
             }
         }
     }
+
+}
+
+@media screen and (max-width: $max-screen-mobile) {
 
 }

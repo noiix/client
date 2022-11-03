@@ -32,7 +32,7 @@ function Profile() {
   const [playing, setPlaying] = useState(false);
   const [currentItem, setCurrentItem] = useState(0);
   const [likedSongs, setLikedSongs] = useState([]);
-  const [players, setPlayers] = useState()
+  // const [players, setPlayers] = useState()
 
   let url;
 
@@ -84,13 +84,6 @@ function Profile() {
       }
     }
   }
-
-  const isContact = (profile) => {
-    let profileId = profile._id;
-    let contacts = chats.map(chat => chat.users.map(user => user._id !== currentUser._id))
-    return contacts.includes(profileId) ? true : false;
-  }
-
 
   return (
     // <div className={ darkMode }>
@@ -148,15 +141,15 @@ function Profile() {
           </div>
           <div className="profile-right-column">
             <div className="profile-connect-btn-container">
-              { profile._id !== currentUser._id &&
-                (isContact ?
-                  <Link to="/chat">
-                    <Button type="profile-connect-btn submit" name="chat" onClick={ () => accessChat(profile._id) } />
-                  </Link> :
-                  <Link>
-                    <Button type="profile-connect-btn submit" name="connect" onClick={ () => accessChat(profile._id) } />
-                  </Link>
-                ) }
+              { profile._id !== currentUser._id &&    
+                  currentUser.contacts.length > 0 && currentUser.contacts.includes(profile._id) ? 
+                    <Link to="/chat">
+                      <Button type="profile-connect-btn submit" name={"chat"} onClick={ () => accessChat(profile._id) }/>
+                    </Link>  :
+                    <Link to="/chat">
+                      <Button type="profile-connect-btn submit" name={"connect"} onClick={ () => {accessChat(profile._id); addContact()} }/>
+                    </Link> 
+               }
             </div>
             <div className="profile-track-list">
 
@@ -180,7 +173,7 @@ function Profile() {
                         <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
-                  <div className="profile-no-tracks-yet-text">
+                  <div class>
                     { currentUser._id !== profile._id ?
                       <p><span>{ profile.username }</span> hasn't uploaded any tracks yet. Do you want to ask them why?</p>
                       :

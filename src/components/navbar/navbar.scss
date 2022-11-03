@@ -78,6 +78,22 @@ nav {
       
     }
 
+    .nav-chat-notification {
+        // font-family: $extra-font;
+        font-weight: 700;
+        position: absolute;
+        top: 0;
+        right: -1rem;
+        display: inline-block;
+        font-size: .7rem;
+        height: 15px;
+        width: 15px;
+        background-color: $yellow;
+        border-radius: 50%;
+        text-align: center;
+        background-image: none;
+    }
+
     .search-btn {
         font-size: 1.2rem;
         text-align: center;
@@ -117,6 +133,12 @@ nav {
                 // background-repeat: no-repeat;
 
             }
+
+            .nav-chat-notification {
+                color: $light-gray;
+                background-color: $lavender;
+            }
+
              .mode  {
                 background-image: none;
             }
@@ -199,6 +221,13 @@ nav {
             a:visited {
                 color: $dark-gray;
             }
+        }
+
+        .nav-chat-notification {
+            top: 0;
+            right: -1rem;
+            background-color: $lavender;
+            color: $light-gray;
         }
     
         .mode {

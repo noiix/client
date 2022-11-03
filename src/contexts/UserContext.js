@@ -262,7 +262,7 @@ export const UserProvider = ({ children }) => {
       getAllMyContacts();
       // getUrls();
     }
-  }, [currentUser]);
+  }, [currentUser, currentUser.genre]);
 
   const getNearbyUsers = () => {
     API.get(`${baseUrl}/user/all`, { withCredentials: true }).then(
@@ -334,6 +334,7 @@ export const UserProvider = ({ children }) => {
     getNearbyUsers,
     usersForSearch,
     addContact,
+    contacts,
     profileUpdateName,
     checkIfChecked,
     // urls

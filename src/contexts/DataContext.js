@@ -8,7 +8,7 @@ import UserContext from "../contexts/UserContext";
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const { notification, addNewNotification, closeModal, setWaitingAnimation  } = useContext(DesignContext);
+  const { notification, addNewNotification, closeModal, setWaitingAnimation, setDisplayForm  } = useContext(DesignContext);
   const { currentUser, setCurrentUser, setProfile, profile, mySongs, setMySongs, usersForSearch, users, setUsers, getNearbyUsers} = useContext(UserContext)
 
   const API = axios.create({ baseUrl: baseUrl });
@@ -95,6 +95,7 @@ export const DataProvider = ({ children }) => {
       addNewNotification(response.data.notification);
       setProfile(response.data.result);
       setCurrentUser(response.data.result);
+      setDisplayForm(false)
     });
   };
 

@@ -242,10 +242,15 @@ export const UserProvider = ({ children }) => {
     })
   }
 
-  useEffect(() => {
-    getNearbyUsers()
+  // useEffect(() => {
+  //   getNearbyUsers()
     
-  }, [])
+  // }, [])
+
+  // const getUrls = () => {
+  //   const newUrls = users && users.map(user => user.music.length > 0 && user.music[0].path);
+  //   setUrls(newUrls)
+  // }
 
   useEffect(() => {
     if (Object.keys(currentUser).length > 0) {
@@ -255,6 +260,7 @@ export const UserProvider = ({ children }) => {
       getAllMyTracks();
       getAllMyFavorites();
       getAllMyContacts();
+      // getUrls();
     }
   }, [currentUser]);
 
@@ -330,6 +336,7 @@ export const UserProvider = ({ children }) => {
     addContact,
     profileUpdateName,
     checkIfChecked,
+    // urls
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -19,14 +19,14 @@ function App() {
   const { currentUser } = useContext(UserContext);
   const { notification, setNotification, isDesktop, darkMode } = useContext(DesignContext);
 
-  useEffect(() => {
-    axios
-      .get("https://noix-server.onrender.com")
-      .then((response) =>
-        setNotification([...notification, response.data.notification])
-      );
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://noix-server.onrender.com")
+  //     .then((response) =>
+  //       setNotification([...notification, response.data.notification])
+  //     );
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
    <div className={`App ${darkMode}`}>

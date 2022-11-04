@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 function Chat() {
 
     const { currentUser } = useContext(UserContext);
-    const { chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification, fetchMessages } = useContext(ChatContext);
+    const { chats, setSelectedChat, selectedChat, messages, accessChat, isSenderCurrentUser, chatNotification, setChatNotification, fetchMessages, allMessages } = useContext(ChatContext);
     const { isDesktop } = useContext(DesignContext);
     const [displayChat, setDisplayChat] = useState(false);
 
@@ -25,14 +25,9 @@ function Chat() {
 
 
     const msgTeaser = (chat, user) => {
-        const allMessages = messages && messages.map(msg => msg.chat._id === chat._id ? msg : null);
-        console.log(allMessages)
-        const lastMessages = allMessages[allMessages.length-1];
+        const getAllMessages = allMessages && allMessages.map(msg => msg.chat._id === chat._id ? msg : null);
+        const lastMessages = getAllMessages[getAllMessages.length-1];
         return lastMessages?.content.slice(0, 30);
-        // const AllMessages = chatNotification.filter(n => n.chat._id === chat._id);
-        // console.log(AllMessages)
-        // const lastMessage = AllMessages[AllMessages.length -1];
-        // return lastMessage?.content.slice(0, 30);
     }
 
 

@@ -53,7 +53,6 @@
 }
 
 .card-bottom-column {
-    // background-color: bisque;
     width: 100%;
     height: 28%;
     display: flex;
@@ -62,7 +61,6 @@
 }
 
 .play-btn {
-    // background-color: cornflowerblue;
     font-size: 2rem;
    
     svg:hover {
@@ -71,6 +69,20 @@
         }
     }
 }
+
+// .play-btn {
+//     * {
+//         stroke: $light-gray;
+//         fill: $dark-gray;
+//     }
+//     &:hover {
+//         *{
+//             stroke: $dark-pink;
+//         }
+//     }
+// }
+
+
 
 .card-track-title {
     // background-color: chartreuse;

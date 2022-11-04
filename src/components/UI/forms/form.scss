@@ -49,13 +49,9 @@ form {
         color: white;
         margin: 0;
         &:hover{
-            color: $dark-gray;
-            background-color: white;
-            
-            
+            color: $lavender;
             &:active{
-               background-color: $dark-gray;
-                color: $light-gray; 
+                color: $pink;
             }
         }
     }
@@ -99,12 +95,9 @@ form {
         border-color: $light-gray;
         margin: 0;
         &:hover{
-            border-left: none;
-            color: $light-gray;
-            background-color: $dark-gray;
+            color: $pink;
             &:active{
-               background-color: $light-gray;
-                color: $dark-gray; 
+                color: $lavender; 
             }
         }
     }

@@ -32,19 +32,16 @@ export const UserProvider = ({ children }) => {
     e.preventDefault();
     API.post(`${baseUrl}/user/create`, formData, { withCredentials: true })
       .then((response) => {
-        console.log("reponse notification", response.data.notification.status);
+        console.log(typeof response.data)
+        // console.log("reponse notification", response.data.notification.status);
         if (Array.isArray(response.data)) {
           response.data.map((note) => {
             console.log("single note", note);
-            if (checkNotification(note)) {
               addNewNotification(note);
-            }
           });
         } else {
-          if (checkNotification(response.data.notification)) {
             addNewNotification(response.data.notification);
             console.log('else', response.data.notification)
-          }
         }
         response.data.notification.status === 'ok' && closeModal()
       })
@@ -73,10 +70,7 @@ export const UserProvider = ({ children }) => {
           setCurrentUser(response.data.info);
           // setContacts(response.data.info.contacts)
         }
-
-        if (checkNotification(response.data.notification)) {
           addNewNotification(response.data.notification);
-        }
       })
       .catch((err) => console.log(err));
   };
@@ -289,23 +283,21 @@ export const UserProvider = ({ children }) => {
         setCurrentUser({});
         setUsers([]);
         localStorage.clear();
-        if(checkNotification(response.data.notification))
-        {
           setDisplayNav(false);
           closeModal();
           addNewNotification(response.data.notification)
-        };
+       
       })
       .catch((err) => console.log(err));
   };
 
-  const checkNotification = (note) => {
-    if (notification.filter((n) => n !== note).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  // const checkNotification = (note) => {
+  //   if (notification.filter((n) => n !== note).length > 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
   
   const value = {

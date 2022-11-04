@@ -29,6 +29,9 @@ export const ChatProvider = ({children}) => {
     const [isTyping, setIsTyping] = useState(false);
     const [chatNotification, setChatNotification] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [teaser, setTeaser] = useState();
+    const [allMessages, setAllMessages] = useState();
+   
     const [firstMessage, setFirstMessage] = useLocalStorage('firstMessage', [])
 
      // socket.io
@@ -104,6 +107,7 @@ export const ChatProvider = ({children}) => {
           sendMessage(e)
         }
     }
+   
 
     const sendMessage = (e) => {
         e.preventDefault()
@@ -111,15 +115,18 @@ export const ChatProvider = ({children}) => {
             socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
-                setNewMessage('');
                 console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
+                setNewMessage('');
                 setMessages([...messages, response.data])
-
+                setTeaser(response.data)
+                // fetchAllMessages()
+                setAllMessages([...allMessages, response.data])
             })
             .catch(err => console.log(err))
         }
     }
+
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value)
@@ -154,9 +161,18 @@ export const ChatProvider = ({children}) => {
         .catch(err => console.log(err)) 
     }
 
+    const fetchAllMessages = () => {
+        API.get(`${baseUrl}/messages/all`, {withCredentials: true})
+        .then(response => {
+            setAllMessages(response.data)
+            console.log(response.data)
+        })
+    }
+
     useEffect(() => {
         if(currentUser) {
             fetchChats()
+            fetchAllMessages()
         }
     }, [currentUser, fetchAgain])
     
@@ -198,7 +214,7 @@ export const ChatProvider = ({children}) => {
     //     })
     // }
 
-    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, firstMessage}
+    const value = { accessChat, chats, setSelectedChat, selectedChat, messages, typingHandler, sendMessage, sendMessageOnKeyDown, isSenderCurrentUser, isTyping, chatNotification, setChatNotification, getSender, setCounter, counter, fetchMessages, newMessage, teaser, allMessages}
 
     return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
 }

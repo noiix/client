@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/")
+      .get("https://noix-server.onrender.com/")
       .then((response) =>
         setNotification([...notification, response.data.notification])
       );

@@ -14,6 +14,7 @@
 }
 
 .modal {
+    position: relative;
     height: 550px;
     width: 450px;
     background-color: lighten($lavender, 25%);
@@ -25,6 +26,26 @@
         justify-content: flex-start;
         align-items: center;
     }
+    // .dropdown-menu {
+        // height: 400px!important;
+        // width: 200px!important;
+        // overflow: scroll;
+        // border: 2px solid $dark-gray;
+        // position: absolute;
+        // top: 5rem;
+        // right: 25rem;
+        // background-color: $light-gray;
+        // z-index: 4;
+        // padding: 0.5rem;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: flex-start;
+        // justify-content: flex-start;
+        // .dropdown-list-item {
+        //     display: flex;
+        //     flex-direction: row;
+        // }
+    // }
 }
 .dark {
     .modal {
@@ -32,12 +53,27 @@
     }
 }
 
-@media screen and (max-width: $max-screen) {
+.close {
+    display: none;
+}
+
+
+
+
+@media screen and (max-width: $max-screen-mobile) {
     .modal-background {
         align-items: flex-end;
         .modal {
             height: calc(100% - 4.5rem);
             width: 100%;
         }
+    }
+    .close {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 2rem;
+        padding: 1rem;
     }
 }

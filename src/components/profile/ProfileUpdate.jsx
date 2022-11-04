@@ -5,6 +5,7 @@ import DesignContext from "../../contexts/DesignContext";
 import Button from "../UI/button/Button";
 
 
+
 const ProfileUpdate = () => {
   const { profileUpdate, inputHandler, genre, instrument, handleCheck } = useContext(UserContext);
   const { darkMode } = useContext(DesignContext)

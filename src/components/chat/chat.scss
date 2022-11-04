@@ -29,6 +29,11 @@
     width: 300px;
     padding: 0 0.5em;
     border-right: dashed $dark-gray 2px;
+    
+    // new
+    overflow-y: auto;
+    height: auto;
+    max-height: calc(100vh - 4.5rem);
 }
 
 .chat-partner-row {
@@ -108,9 +113,11 @@
         padding: 0.8em;
         font-size: 0.9rem;
         line-height: 1.2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
+        // new
+        overflow-y: auto;
+        height: auto;
+        word-wrap: break-word;
     }
 
     .current-chat-message-own {

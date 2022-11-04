@@ -3,7 +3,7 @@ import UserContext from '../../contexts/UserContext'
 import DataContext from '../../contexts/DataContext'
 import DesignContext from '../../contexts/DesignContext';
 import { GrPlay, GrPause } from "react-icons/gr";
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaHeartBroken, FaRegHeart } from 'react-icons/fa';
 import { BsDash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ function Favorite() {
   const { darkMode } = useContext(DesignContext)
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(0);
-
+  const [over, setOver] = useState(false);
 
   let url;
 
@@ -30,7 +30,7 @@ function Favorite() {
         audioRef.current = new Audio(url)
       }
     }
-    return() => {
+    return () => {
       audioRef.current.pause()
     }
   }, [profile, currentUser])
@@ -59,6 +59,8 @@ function Favorite() {
       }
     }
   }
+
+
 
   return (
     <>
@@ -108,8 +110,9 @@ function Favorite() {
 
                         </div>
 
-                        <div className="favorite-track-like-btn" onClick={ () => dislikeSongs(idx) }>
-                          { currentUser.liked_songs.includes(track) && <FaHeart /> }
+                        <div key={ idx } className="favorite-track-like-btn" title='Remove Track' onMouseOver={ () => setOver({ idx: idx, state: true }) }
+                          onMouseOut={ () => setOver({ idx: idx, state: false }) } onClick={ () => dislikeSongs(idx) }>
+                          { currentUser.liked_songs.includes(track) && idx === over.idx && over.state ? <FaHeartBroken /> : <FaHeart /> }
                         </div>
                       </>
                     ) }

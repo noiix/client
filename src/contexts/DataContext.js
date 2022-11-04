@@ -21,10 +21,12 @@ export const DataProvider = ({ children }) => {
   const [currentSong, setCurrentSong] = useState(0);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [idList, setIdList] = useState([]);
+ 
   // const [playing, setPlaying] = useState(false);
   
   // const [formData, setFormData] = useState({})
 
+  
 
   const likeSongs = (index) => {
     const songToLike = profile.music[index]
@@ -171,7 +173,8 @@ export const DataProvider = ({ children }) => {
     setDisplaySearch,
     duration,
     idList, 
-    setIdList
+    setIdList,
+
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

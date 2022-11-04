@@ -170,7 +170,7 @@ export const ChatProvider = ({children}) => {
     }
 
     useEffect(() => {
-        if(currentUser) {
+        if(Object.keys(currentUser).length > 0) {
             fetchChats()
             fetchAllMessages()
         }

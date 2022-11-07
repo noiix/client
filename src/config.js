@@ -2,8 +2,8 @@
 
 // const baseUrl = 'https://noix-server.onrender.com'
 
-const baseUrl = 'https://server.noix.space'
+// const baseUrl = 'https://server.noix.space'
 
-// const baseUrl = ''
+const baseUrl = ''
 
 export default baseUrl

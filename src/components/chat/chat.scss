@@ -47,7 +47,7 @@
 
     .chat-profile-img {
         img {
-            background-color: $blue;
+            // background-color: $blue;
             height: 60px;
             width: 60px;
             border-radius: 50%;
@@ -136,7 +136,7 @@
         width: 100%;
         // position: absolute;
         // bottom: 0;
-        padding: 1em;
+        padding: 0.7rem;
         font-family: $extra-font;
         font-size: 0.9rem;
         line-height: 0.9rem;
@@ -232,14 +232,14 @@
 
     .current-chat-input {
 
-        // input {
+        input {
             // background-color: $dark-gray;
             // color: $light-gray;
             // border: 2px $lavender solid;
             // &::placeholder {
             //     color: $light-gray;
             // }
-        // }
+        }
         
         .send {
             background: linear-gradient(141deg, rgba(164,121,216,1) 31%, rgba(170,51,106,1) 72%), left top;

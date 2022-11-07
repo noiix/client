@@ -22,7 +22,6 @@ const SuccessAlert = () => {
 
             const timer = setTimeout(() => {
                 let updatedNoteArr = notification.filter((note, index) => index !== 0)
-                console.log('updated Array', updatedNoteArr)
                 setBlendOut(false)
                 setNotification(updatedNoteArr)
             }, 9000)
@@ -40,8 +39,6 @@ const SuccessAlert = () => {
         }, 2000)
         return () => { clearTimeout(timerCloseNote) }
     }
-
-    // console.log('notifications', notification)
     
     return (
         (notification.length > 0 &&

@@ -72,9 +72,6 @@ export const ChatProvider = ({children}) => {
         })
     }, [socket.current, messages])
 
-    // console.log('chat notifications', chatNotification)
-    // console.log('counter', counter)
-
 
     const fetchChats = () => {
         API.post(`${baseUrl}/chat/getallchats`, { withCredentials: true })
@@ -115,12 +112,10 @@ export const ChatProvider = ({children}) => {
             socket.current.emit('stop typing', selectedChat._id)
             API.post(`${baseUrl}/messages`, {content: newMessage, chatId: selectedChat._id}, {withCredentials: true})
             .then(response => {
-                console.log('sendMessage', response.data)
                 socket.current.emit('new message', response.data)
                 setNewMessage('');
                 setMessages([...messages, response.data])
                 setTeaser(response.data)
-                // fetchAllMessages()
                 setAllMessages([...allMessages, response.data])
             })
             .catch(err => console.log(err))
@@ -154,7 +149,6 @@ export const ChatProvider = ({children}) => {
 
         API.get(`${baseUrl}/messages/${selectedChat._id}`, {withCredentials: true})
         .then(response => {
-            console.log('my messages', messages)
             setMessages(response.data);
             socket.current.emit('join chat', selectedChat._id);
         })
@@ -165,7 +159,6 @@ export const ChatProvider = ({children}) => {
         API.get(`${baseUrl}/messages/all`, {withCredentials: true})
         .then(response => {
             setAllMessages(response.data)
-            console.log(response.data)
         })
     }
 

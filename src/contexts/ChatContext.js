@@ -77,7 +77,7 @@ export const ChatProvider = ({children}) => {
 
 
     const fetchChats = () => {
-        API.get(`${baseUrl}/chat`, { withCredentials: true })
+        API.post(`${baseUrl}/chat/getallchats`, { withCredentials: true })
         .then(response => {
             if(response.data) {
                 setChats(response.data)

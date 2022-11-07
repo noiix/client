@@ -210,7 +210,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const getAllMyTracks = () => {
-    API.get(`${baseUrl}/music/mysongs`, { withCredentials: true})
+    API.get(`${baseUrl}/music/mysongs`, { withCredentials: true })
       .then(response => {
         if(response.data) {
           // console.log('my songs', response.data)

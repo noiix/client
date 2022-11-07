@@ -136,7 +136,7 @@
         width: 100%;
         // position: absolute;
         // bottom: 0;
-        padding: 1em;
+        // padding: 1em;
         font-family: $extra-font;
         font-size: 0.9rem;
         line-height: 0.9rem;
@@ -147,6 +147,7 @@
             height: 100%;
             width: 95%;
             overflow-y: scroll;
+            border-radius: 0;
         }
         button {
             padding: 1em;

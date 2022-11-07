@@ -57,11 +57,16 @@
     height: 28%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    //justify-content: space-around;
+    //new
+    justify-content: space-between;
+    padding: 0 1.7em 0 1.5em;
 }
 
 .play-btn {
     font-size: 2rem;
+    //new
+    padding-right: 0.5em;
    
     svg:hover {
         * {
@@ -86,6 +91,7 @@
 
 .card-track-title {
     // background-color: chartreuse;
+    font-size: 0.85rem;
 }
 
 .dark {

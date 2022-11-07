@@ -40,7 +40,6 @@ function Profile() {
 
   let sources = profile && profile.music.map(track => track.path);
 
-  console.log(sources)
 
   useEffect(() => {
     const likedSongsId = currentUser.liked_songs.map(item => item._id);

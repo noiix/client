@@ -25,6 +25,7 @@ export const UserProvider = ({ children }) => {
   const [myFavorites, setMyFavorites] = useState([])
   const [usersForSearch, setUsersForSearch] = useState([]);
   const [urls, setUrls] = useState([]);
+  const [location, setLocation] = useState({})
 
   const { notification, addNewNotification, setDisplayNav, closeModal } = useContext(DesignContext);
 
@@ -50,10 +51,29 @@ export const UserProvider = ({ children }) => {
     setIntroText(e.target.value);
   }
 
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      url: 'https://ip-geo-location.p.rapidapi.com/ip/check',
+      params: {format: 'json'},
+      headers: {
+        'X-RapidAPI-Key': 'e470fe30c8mshec14cb43e486919p1ab1afjsna76d56764b44',
+        'X-RapidAPI-Host': 'ip-geo-location.p.rapidapi.com'
+      }
+    };
+    
+    axios.request(options).then(function (response) {
+      setLocation(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+  })
+
 
 
   const login = (e) => {
     e.preventDefault();
+    formData = {...formData, location}
     API.post(`${baseUrl}/user/login`, formData, { withCredentials: true })
       .then((response) => {
         if (response.data.info) {
@@ -76,6 +96,7 @@ export const UserProvider = ({ children }) => {
       password: userObject.sub,
       verified: userObject.email_verified,
       createdAt: Date(),
+      location: location
     };
 
     API.post(`${baseUrl}/user/googleauth`, userObjectMod, {

@@ -5,7 +5,7 @@ import DataContext from '../../../contexts/DataContext';
 import DesignContext from '../../../contexts/DesignContext';
 
 
-function Card({ player, toggle, user }) {
+function Card({ player, toggle, user}) {
 
   const { setProfile } = useContext(UserContext);
   const { darkMode } = useContext(DesignContext)

@@ -4,4 +4,6 @@
 
 const baseUrl = 'https://server.noix.space'
 
+// const baseUrl = ''
+
 export default baseUrl

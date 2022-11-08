@@ -67,7 +67,7 @@ export const UserProvider = ({ children }) => {
     }).catch(function (error) {
       console.error(error);
     });
-  })
+  }, []);
 
 
 

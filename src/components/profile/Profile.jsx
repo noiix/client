@@ -108,14 +108,14 @@ function Profile() {
                 { profile._id === currentUser._id &&
                   <form className="nameForm">
                     <input onChange={ inputHandler } name="username" placeholder="new name" />
-                    <Button type="btn-small" onClick={ profileUpdateName } name="update name" />
+                    <Button type="btn-small update-name-btn" className="" onClick={ profileUpdateName } name="update name" />
                   </form> }
               </div>
             </div>
 
             <div className="profile-info-container">
               
-              <div className="profile-info-edit-btn">
+              <div className="profile-genre-edit-btn">
                 { profile._id === currentUser._id && <Button type="submit" name="Genre & Instruments" onClick={ toggleModalUpdate } /> }
                 { displayModalUpdate &&
                   <Modal>

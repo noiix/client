@@ -36,6 +36,11 @@
             color: $dark-gray;
             font-weight: 200;
         }
+        .update-name-btn {
+            &:hover {
+                color: $light-gray;
+            }
+        }
     }
 }
 
@@ -70,6 +75,7 @@
     }
 }
 
+
 .profile-info-container {
     padding: 2rem;
     display: flex;
@@ -97,7 +103,7 @@
     }
 }
 
-.profile-info-edit-btn {
+.profile-genre-edit-btn {
     margin-top: 1.5rem;
 }
 
@@ -247,6 +253,7 @@
     }
     }
 
+
     .profile-info {
         textarea {
             border: $light-gray 2px solid;
@@ -260,7 +267,7 @@
         }
     }
 
-    .profile-info-edit-btn {
+    .profile-genres-edit-btn {
 
         button {
             border: $light-gray 2px solid;
@@ -311,15 +318,6 @@
             &:hover {
                 color: $yellow;
             }
-        }
-    }
-
-    .nameForm {
-        button {
-            background-color: $light-gray;
-            color: $dark-gray;
-            border: 2px solid white;
-            box-shadow: none;
         }
     }
 }
@@ -400,7 +398,6 @@
     }
 
     .profile-instrument-labels {
-        // not sure how to decrease margin without this
         margin-top: 0;
     }
 

@@ -114,7 +114,7 @@ function Profile() {
             </div>
 
             <div className="profile-info-container">
-
+              
               <div className="profile-info-edit-btn">
                 { profile._id === currentUser._id && <Button type="submit" name="Genre & Instruments" onClick={ toggleModalUpdate } /> }
                 { displayModalUpdate &&
@@ -124,13 +124,31 @@ function Profile() {
                 }
               </div>
               <div className="profile-info">
+
                 { profile._id === currentUser._id ?
+                  <>
                   <form className="intro-text-form">
                     <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={ currentUser.intro_text || "Write a short info text about you." } onChange={ introTextHandler }>
                     </textarea>
                     <Button type="submit" name="update" onClick={ introTextUpdate } />
-                  </form> :
-                  <div><p className="details">{ profile.intro_text }</p></div> }
+                  </form> 
+                  </> :
+                  <>
+                  <div className="profile-instrument-labels">
+                       { profile.instrument.length > 0 && profile.instrument.map((instr, idx) => 
+                        
+                          // currentItem === idx && 
+                          <div key={idx} className="instr-label">
+                            { instr }
+                          </div> 
+                        
+                       )}
+                  </div>
+                  
+                  <div>
+                    <p className="details">{ profile.intro_text }</p>
+                  </div> 
+                  </>}
                 <>
                   {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */ }
                 </>

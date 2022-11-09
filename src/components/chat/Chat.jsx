@@ -26,12 +26,9 @@ function Chat() {
 
     const msgTeaser = (chat, user) => {
         const getAllMessages = allMessages && allMessages.map(msg => msg.chat._id === chat._id ? msg : null);
-        const lastMessages = getAllMessages[getAllMessages.length-1];
+        const lastMessages = getAllMessages && getAllMessages[getAllMessages.length-1];
         return lastMessages?.content.slice(0, 30);
     }
-
-
-    // console.log('chats', chats)
 
     return (
         <div className="chat-main">

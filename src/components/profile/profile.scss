@@ -51,13 +51,6 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    // filter: opacity(0.5) drop-shadow(0 0 0 $pink);
-    // background: url("face-04.jpg")
-    // background-color: $lavender;
-    // background-blend-mode:multiply;
-    // background-blend-mode: revert-layer, multiply;
-
-    // imageInnerStyle={{opacity: 0.35, backgroundColor: 'red', backgroundBlendMode: 'multiply' }} 
 }
 
 .profile-picture-update-btn {
@@ -107,6 +100,22 @@
 .profile-info-edit-btn {
     margin-top: 1.5rem;
 }
+
+.profile-instrument-labels {
+    margin-top: -2.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    .instr-label {
+        border: 2px solid $pink;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.3em 0.6em;
+        border-radius: 16px;
+        line-height: 1.05rem;
+    }
+}
+
 
 .profile-right-column {
     width: 60%;
@@ -252,10 +261,17 @@
     }
 
     .profile-info-edit-btn {
+
         button {
             border: $light-gray 2px solid;
+            margin-top: 1.5rem;
         }
+
     }
+    
+    .instr-label {
+        border: 2px solid $dark-pink;
+        }
 
     .profile-connect-btn {
         color: $light-gray;
@@ -338,6 +354,7 @@
         margin-bottom: 1rem;
         max-width: 500px;
     }
+
     .profile-left-column, .profile-right-column {
         width: 100%;
         margin: 0;
@@ -380,6 +397,11 @@
         button {
             display: inline-block;
         }
+    }
+
+    .profile-instrument-labels {
+        // not sure how to decrease margin without this
+        margin-top: 0;
     }
 
     .profile-play-btn {

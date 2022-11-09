@@ -48,8 +48,11 @@ body {
       justify-content: center;
       overflow: auto;
       &::-webkit-scrollbar {
-        display: none;
+        // display: none;
+        width: 0 !important;
       }
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
       // dark-mode-test
       // background-color: $dark-gray;
     }

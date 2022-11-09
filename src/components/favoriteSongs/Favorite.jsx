@@ -69,7 +69,7 @@ function Favorite() {
           Favorite Songs
         </div>
 
-        { currentUser.liked_songs.length > 0 &&
+        { currentUser.liked_songs.length > 0 ?
           <div className="favorite-container">
             { currentUser.liked_songs.length > 0 && currentUser.liked_songs.map((track, idx) =>
               <div className={ darkMode }>
@@ -121,7 +121,10 @@ function Favorite() {
                   </div>
                 </>
               </div>) }
-          </div> }
+          </div> : 
+          <div className='favorite-container'>
+          <p>Don't have any songs yet in your favorites? Check out the tracks of nearby musicians and give them a heart if you like them.</p>
+          </div>}
       </div>
     </>
   )

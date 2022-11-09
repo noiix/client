@@ -43,7 +43,10 @@
 .favorite-track-line-flex-container {
     display: flex;
     align-items: center;
-    padding-left: 1.5rem;
+    // padding-left: 1.5rem;
+    width: 375px;
+    justify-content: space-between;
+    font-family: $main-font;
 }
 
 .favorite-play-btn {
@@ -162,7 +165,10 @@
     .favorite-track-line-flex-container {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        font-size: 0.85rem;
     }
 
     .favorite-track-dash {
@@ -175,7 +181,7 @@
     }
 
     .favorite-track-artist-name, .favorite-track-title {
-        text-align: right;
+        text-align: center;
     }
 }
 

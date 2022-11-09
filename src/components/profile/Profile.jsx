@@ -165,7 +165,7 @@ function Profile() {
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :
-                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
+                        <div className="profile-like-track-btn icon-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
                   <div className='profile-no-tracks-yet-text'>

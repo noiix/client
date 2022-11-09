@@ -81,36 +81,38 @@ function Favorite() {
                     </div>
                     { users.map(user => user._id === track.artist &&
                       <>
-                        <div className="favorite-profile-pic">
-                          <img src={ user.image }></img>
-                        </div>
-                        <div className="favorite-track-line-flex-container">
+                        <div className='favorite-track-info'>
+                          <div className="favorite-profile-pic">
+                            <img src={ user.image }></img>
+                          </div>
+                          <div className="favorite-track-line-flex-container">
 
-                          <Link onClick={ () => setProfile(user) } to={ "/profile" }>
-                            <div className='favorite-track-artist-name' >
-                              { user.username }
+                            <Link onClick={ () => setProfile(user) } to={ "/profile" }>
+                              <div className='favorite-track-artist-name' >
+                                { user.username }
+                              </div>
+                            </Link>
+
+                            <div className="favorite-track-dash">
+                              <BsDash />
                             </div>
-                          </Link>
 
-                          <div className="favorite-track-dash">
-                            <BsDash />
+                            <div className="favorite-track-title">
+                              { track.title }
+                            </div>
+
+                            <div className="favorite-track-dash">
+                              <BsDash />
+                            </div>
+
+                            <div className="favorite-track-duration">
+                              { duration(track.duration) }
+                            </div>
+
                           </div>
-
-                          <div className="favorite-track-title">
-                            { track.title }
-                          </div>
-
-                          <div className="favorite-track-dash">
-                            <BsDash />
-                          </div>
-
-                          <div className="favorite-track-duration">
-                            { duration(track.duration) }
-                          </div>
-
                         </div>
 
-                        <div key={ idx } className="favorite-track-like-btn" title='Remove Track' onMouseOver={ () => setOver({ idx: idx, state: true }) }
+                        <div key={ idx } className="favorite-track-like-btn icon-btn" title='Remove Track' onMouseOver={ () => setOver({ idx: idx, state: true }) }
                           onMouseOut={ () => setOver({ idx: idx, state: false }) } onClick={ () => dislikeSongs(idx) }>
                           { currentUser.liked_songs.includes(track) && idx === over.idx && over.state ? <FaHeartBroken /> : <FaHeart /> }
                         </div>

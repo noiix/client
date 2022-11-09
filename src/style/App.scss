@@ -46,6 +46,10 @@ body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
       // dark-mode-test
       // background-color: $dark-gray;
     }

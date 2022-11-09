@@ -58,6 +58,14 @@
     }
 }
 
+.favorite-track-info {
+    display: flex;
+    width: 470px;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+}
+
 .favorite-profile-pic {
     width: 60px;
     height: 60px;
@@ -146,11 +154,15 @@
         max-width: calc(100vw - 1rem);
         // min-width: 320px;
         // max-width: 100vw;
+        .favorite-track-info {
+            width: 300px;
+        }
     }
 
     .favorite-track-line-flex-container {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
     }
 
     .favorite-track-dash {
@@ -161,10 +173,16 @@
     .favorite-track-like-btn {
         padding-right: 2rem;
     }
+
+    .favorite-track-artist-name, .favorite-track-title {
+        text-align: right;
+    }
 }
 
 @media screen and (max-width: 380px) {
     .favorite-profile-pic {
         display: none;
     }
+
+
 }

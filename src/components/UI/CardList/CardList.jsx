@@ -16,9 +16,6 @@ function useMultiAudio(users, currentUser) {
     },
     ))
 
-  // const sources = useRef()
-  // const players = useRef()
-
   const [players, setPlayers] = useState(() =>
     urls.map(url => {
       return {
@@ -27,48 +24,6 @@ function useMultiAudio(users, currentUser) {
       }
     }),
   )
-
-  // const populateArr = () => {
-  //   sources.current = urls.map(url => {
-  //     return {
-  //       url,
-  //       audio: new Audio(url)
-  //     }
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   if(Object.keys(currentUser).length > 0) {
-  //     populateArr()
-  //   }
-   
-  // }, [currentUser, urls])
-
-  // console.log('sources....', sources.current)
-
-  // const [sources, setSources] = useState()
-
-  // const getUrls = async() => {
-  //   const promises = await Promise.all(urls.map(url => {
-  //     setSources({url, audio: new Audio(url)});
-  //     return promises;
-  //   }))
-
-  // }
-
-  // useEffect(() => {
-  // if(urls.length > 0) {
-  //   setSources(urls)
-  //   setPlayers(urls)
-  // }
-  // }, [urls])
-  
-
-  // console.log('sources...', sources)
-
-  
-
-  // console.log('players', players)
 
   const toggle = targetIndex => () => {
     const newPlayers = [...players]
@@ -82,7 +37,6 @@ function useMultiAudio(users, currentUser) {
       newPlayers[targetIndex].playing = true
     }
     setPlayers(newPlayers)
-    // players.current = newPlayers
   }
 
   useEffect(() => {
@@ -97,7 +51,6 @@ function useMultiAudio(users, currentUser) {
           const newPlayers = [...players]
           newPlayers[i].playing = false
           setPlayers(newPlayers)
-          // players.current = newPlayers
         })
       })
       return () => {
@@ -124,16 +77,10 @@ const CardList = () => {
   const { users, currentUser } = useContext(UserContext);
   const [players, toggle] = useMultiAudio(users, currentUser);
 
-  // console.log('cardlist players', players)
-
- 
-
-  // console.log('users from card list', users)
- 
   return (
     <div className='card-list'>
       { users.length > 0 && users.map((user, i) => (
-        <Link to={"/profile"}><Card key={i} player={players[i]} toggle={toggle(i)} user={user}/></Link>
+        <Link to={"/profile"} key={i}><Card key={i} player={players[i]} toggle={toggle(i)} user={user}/></Link>
       ))}
     </div>
   )

@@ -1,13 +1,23 @@
 @use '../../style/variables.scss' as *;
 
-// .dropdown-container {
-    // position: relative;
-// }
+
+::-webkit-scrollbar {
+            width: 6px;
+            background-color: $light-gray;
+        }
+        ::-webkit-scrollbar-track {
+            width: 2px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: $dark-gray;
+            border-radius: 10px;
+        }
+    
 
 .dropdown-menu {
     height: 400px!important;
     width: 200px!important;
-    overflow: scroll;
+    overflow: auto;
     border: 2px solid $dark-gray;
     position: absolute;
     top: 5rem;
@@ -47,6 +57,7 @@
         justify-content: space-between;
     }
 
+        
 }
 
 .dropdown-background {
@@ -75,17 +86,10 @@
             }
         }
         ::-webkit-scrollbar {
-        width: 10px;
         background: $dark-gray;
-        }
-        ::-webkit-scrollbar-track {
-            width: 2px;
         }
         ::-webkit-scrollbar-thumb {
             background: $light-gray;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
         }
         }
 

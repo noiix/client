@@ -44,7 +44,6 @@ export const DesignProvider = ({children}) => {
     const toggleMode = () => {
         setDarkMode(darkMode === 'light' ? 'dark' : 'light')
         setGMode(gMode === 'outline' ? 'filled_black' : 'outline')
-        console.log('MODE: ', darkMode)
     }
     useEffect(() => {
         if(localStorage.getItem('darkMode') === null) {
@@ -69,7 +68,6 @@ export const DesignProvider = ({children}) => {
     const toggleNav = () => {
         setDisplayNav(!displayNav)
     }
-    // console.log('notifications', notification)
 
     //Modals
     const [displayModal, setDisplayModal] = useState(false)
@@ -111,7 +109,7 @@ export const DesignProvider = ({children}) => {
       setDisplayForm(!displayForm)
     }
 
-    const value = {notification, setNotification, addNewNotification, darkMode, gMode, toggleMode, displayNav, toggleNav, isDesktop, toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
+    const value = {notification, setNotification, addNewNotification, darkMode, gMode, toggleMode, displayNav, toggleNav, isDesktop, isMobile,  toggleModal, closeModal, displayModal, toggleLogin, toggleLoginOrRegister, logReg, toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, setDisplayForm, toggleForm, waitingAnimation, setWaitingAnimation}
 
     return <DesignContext.Provider value={value}>{children}</DesignContext.Provider>
 }

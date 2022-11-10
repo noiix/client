@@ -26,6 +26,14 @@ form {
             letter-spacing: 2px;
         }
     }
+    textarea {
+        border: solid 2px $dark-gray;
+    }
+
+    textarea:focus-visible {
+        border: 2px solid $pink;
+        outline: none;
+    }
 
     input:-webkit-autofill,
         input:-webkit-autofill:hover, 
@@ -74,8 +82,14 @@ form {
             &:focus,  &[type=fieldset] {
             border: 2px solid $dark-pink;
             color: $light-gray;
+            }
         }
+        textarea:focus-visible {
+            border: 2px solid $dark-pink;
+            outline: none;
         }
+        
+
 
         input:-webkit-autofill,
         input:-webkit-autofill:hover, 

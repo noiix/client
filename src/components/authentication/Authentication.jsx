@@ -9,7 +9,7 @@ import Button from '../UI/button/Button';
 
 const Authentication = () => {
     const { currentUser } = useContext(UserContext)
-    const { toggleLoginOrRegister, toggleBtn, toggleLogin, logReg, darkMode } = useContext(DesignContext)
+    const { toggleLoginOrRegister, toggleBtn, toggleLogin, logReg, darkMode, isMobile } = useContext(DesignContext)
 
 
     return (
@@ -24,7 +24,7 @@ const Authentication = () => {
                 <div className='toggle'>
                     <Button onClick={ toggleLoginOrRegister } name={ logReg ? 'sign up' : 'back to log in' } />
                 </div>
-                <p>or keep it simple and:</p>
+                {!isMobile && <p>or keep it simple and:</p>}
                 <GoogleAuth />
 
 

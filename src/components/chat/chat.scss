@@ -47,7 +47,7 @@
 
     .chat-profile-img {
         img {
-            background-color: $blue;
+            // background-color: $blue;
             height: 60px;
             width: 60px;
             border-radius: 50%;
@@ -132,9 +132,10 @@
     }
 
     .current-chat-input {
-        height: 100px;
+        // height: 100px;
         width: 100%;
-        height: 200px;
+        // height: 200px;
+        max-height: 150px;
         padding: .75rem;
         font-size: 0.9rem;
         line-height: 0.9rem;
@@ -142,6 +143,7 @@
         display: flex;
         align-items: center;
         textarea {
+            -webkit-appearance: none;
             resize: none;
             padding: .5rem;
             line-height: 1.2rem;

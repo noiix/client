@@ -40,7 +40,6 @@ function Profile() {
 
   let sources = profile && profile.music.map(track => track.path);
 
-  console.log(sources)
 
   useEffect(() => {
     const likedSongsId = currentUser.liked_songs.map(item => item._id);
@@ -59,6 +58,14 @@ function Profile() {
     }
 
   }, [profile, currentUser])
+
+  const checkUserNameLength = () => {
+    if (currentUser.username.length > 17 && currentUser.username.length < 23) {
+      return 'font-size-s'
+    } else if (currentUser.username.length > 23) {
+      return 'font-size-xs'
+    }
+  }
 
 
   const play = (index, song) => {
@@ -104,18 +111,18 @@ function Profile() {
               </div>
 
               <div className="profile-header-username">
-                <h3>{ profile.username }</h3>
+                <h3 className={`${checkUserNameLength()}`}>{ profile.username }</h3>
                 { profile._id === currentUser._id &&
                   <form className="nameForm">
                     <input onChange={ inputHandler } name="username" placeholder="new name" />
-                    <Button type="btn-small" onClick={ profileUpdateName } name="update name" />
+                    <Button type="btn-small update-name-btn" className="" onClick={ profileUpdateName } name="update name" />
                   </form> }
               </div>
             </div>
 
             <div className="profile-info-container">
-
-              <div className="profile-info-edit-btn">
+              
+              <div className="profile-genre-edit-btn">
                 { profile._id === currentUser._id && <Button type="submit" name="Genre & Instruments" onClick={ toggleModalUpdate } /> }
                 { displayModalUpdate &&
                   <Modal>
@@ -124,13 +131,31 @@ function Profile() {
                 }
               </div>
               <div className="profile-info">
+
                 { profile._id === currentUser._id ?
+                  <>
                   <form className="intro-text-form">
                     <textarea className="intro-text-field" type="text" name="intro_text" defaultValue={ currentUser.intro_text || "Write a short info text about you." } onChange={ introTextHandler }>
                     </textarea>
                     <Button type="submit" name="update" onClick={ introTextUpdate } />
-                  </form> :
-                  <div><p className="details">{ profile.intro_text }</p></div> }
+                  </form> 
+                  </> :
+                  <>
+                  <div className="profile-instrument-labels">
+                       { profile.instrument.length > 0 && profile.instrument.map((instr, idx) => 
+                        
+                          // currentItem === idx && 
+                          <div key={idx} className="instr-label">
+                            { instr }
+                          </div> 
+                        
+                       )}
+                  </div>
+                  
+                  <div>
+                    <p className="details">{ profile.intro_text }</p>
+                  </div> 
+                  </>}
                 <>
                   {/* {profile._id === currentUser._id && <TbEdit onClick={ () => setToggleTextBtn(true) }/>} */ }
                 </>
@@ -166,7 +191,7 @@ function Profile() {
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :
-                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
+                        <div className="profile-like-track-btn icon-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
                   <div className='profile-no-tracks-yet-text'>

@@ -38,7 +38,16 @@ body {
       font-family: $extra-font;
     }
   
-    .App {display: flex;}
+    .App {display: flex;
+      &::-webkit-scrollbar {
+        // display: none;
+        width: 0 !important;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
+      // dark-mode-test
+      // background-color: $dark-gray;
+    }
 
     .main {
       width: calc(100vw - 4.5rem);
@@ -46,6 +55,13 @@ body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        // display: none;
+        width: 0 !important;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
       // dark-mode-test
       // background-color: $dark-gray;
     }

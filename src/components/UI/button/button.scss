@@ -99,6 +99,16 @@ button {
     font-size: .8rem;
 }
 
+.update-name-btn {
+    font-size: .8rem;
+    letter-spacing: 0.6px;
+    border: none;
+    box-shadow: none;
+    &:hover {
+        background-color: $lavender;
+    }
+}
+
 .dark {
     button {
         color: $light-gray;
@@ -113,6 +123,17 @@ button {
         }
         &{
             @include btn-border-drawing($lavender, $lavender, 4px, bottom, right);
+        }
+    }
+
+    .update-name-btn {
+        font-size: .8rem;
+        letter-spacing: 0.6px;
+        border: none;
+        box-shadow: none;
+        &:hover {
+            background-color: $lavender;
+            color: $light-gray!important;
         }
     }
 

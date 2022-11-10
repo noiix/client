@@ -60,6 +60,14 @@ function Profile() {
 
   }, [profile, currentUser])
 
+  const checkUserNameLength = () => {
+    if (currentUser.username.length > 17 && currentUser.username.length < 23) {
+      return 'font-size-s'
+    } else if (currentUser.username.length > 23) {
+      return 'font-size-xs'
+    }
+  }
+
 
   const play = (index, song) => {
     setPlaying(true)
@@ -104,7 +112,7 @@ function Profile() {
               </div>
 
               <div className="profile-header-username">
-                <h3>{ profile.username }</h3>
+                <h3 className={`${checkUserNameLength()}`}>{ profile.username }</h3>
                 { profile._id === currentUser._id &&
                   <form className="nameForm">
                     <input onChange={ inputHandler } name="username" placeholder="new name" />

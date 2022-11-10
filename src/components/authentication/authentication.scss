@@ -18,6 +18,18 @@
             margin-bottom: .5rem;
         }
     }
+
+    #signInDiv {
+        width: fit-content;
+    }
+
+    .toggle {
+        display: flex;
+        justify-content: center;
+        .btn-container {
+            width: fit-content;
+        }
+    }
 }
 
 .dark {

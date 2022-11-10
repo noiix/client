@@ -60,7 +60,7 @@ function Profile() {
   }, [profile, currentUser])
 
   const checkUserNameLength = () => {
-    if (currentUser.username.length > 17 && currentUser.username.length < 23) {
+    if (currentUser.username.length > 15 && currentUser.username.length < 23) {
       return 'font-size-s'
     } else if (currentUser.username.length > 23) {
       return 'font-size-xs'

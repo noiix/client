@@ -43,7 +43,10 @@
 .favorite-track-line-flex-container {
     display: flex;
     align-items: center;
-    padding-left: 1.5rem;
+    // padding-left: 1.5rem;
+    width: 375px;
+    justify-content: space-between;
+    font-family: $main-font;
 }
 
 .favorite-play-btn {
@@ -56,6 +59,14 @@
             stroke: $pink;
         }
     }
+}
+
+.favorite-track-info {
+    display: flex;
+    width: 470px;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
 }
 
 .favorite-profile-pic {
@@ -146,11 +157,18 @@
         max-width: calc(100vw - 1rem);
         // min-width: 320px;
         // max-width: 100vw;
+        .favorite-track-info {
+            width: 300px;
+        }
     }
 
     .favorite-track-line-flex-container {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        font-size: 0.85rem;
     }
 
     .favorite-track-dash {
@@ -161,10 +179,16 @@
     .favorite-track-like-btn {
         padding-right: 2rem;
     }
+
+    .favorite-track-artist-name, .favorite-track-title {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 380px) {
     .favorite-profile-pic {
         display: none;
     }
+
+
 }

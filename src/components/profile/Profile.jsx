@@ -40,7 +40,6 @@ function Profile() {
 
   let sources = profile && profile.music.map(track => track.path);
 
-  console.log(sources)
 
   useEffect(() => {
     const likedSongsId = currentUser.liked_songs.map(item => item._id);
@@ -171,7 +170,7 @@ function Profile() {
                       </div>
                       { profile._id === currentUser._id ?
                         <div className="profile-track-delete-btn" onClick={ () => deleteTrack(idx) }><AiOutlineDelete /></div> :
-                        <div className="profile-like-track-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
+                        <div className="profile-like-track-btn icon-btn" onClick={ () => likeSongs(idx) }>{ likedSongs.includes(track._id) ? <FaHeart /> : <FaRegHeart /> }</div> }
                     </div>
                   </>)) : (
                   <div>

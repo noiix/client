@@ -31,6 +31,7 @@
     }
     form {
         input {
+            -webkit-appearance: none;
             font-family: $extra-font;
             letter-spacing: normal;
             color: $dark-gray;
@@ -90,6 +91,7 @@
         width: 100%;
     }
     textarea {
+        -webkit-appearance: none;
         border: $dark-gray 2px solid;
         width: 100%;
         height: 6rem;

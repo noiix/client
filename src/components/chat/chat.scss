@@ -142,6 +142,7 @@
         display: flex;
         align-items: center;
         textarea {
+            -webkit-appearance: none;
             resize: none;
             padding: .5rem;
             line-height: 1.2rem;

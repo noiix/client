@@ -26,9 +26,9 @@ function Home() {
       </div>
         
 
-        {/* { (Object.keys(currentUser).length > 0 && users.length > 0) ? <CardList/> : 
+        { (Object.keys(currentUser).length > 0 && users.length > 0) ? <CardList/> : 
           <>
-            <div className="introduction">
+            {/* <div className="introduction">
               <h3>Welcome to Nöix</h3>
               <p>to find other musicians nearby you need to set your genres in your profile.</p>
             </div>        
@@ -36,9 +36,9 @@ function Home() {
               <Ukulele className="ukulele-svg"/>
               <Flute className="flute-svg"/>
               <DrumSet className="drum-set-svg"/>
-            </div>
+            </div> */}
           </>
-        } */}
+        }
 
         { (Object.keys(currentUser).length === 0 && !toggleBtn) &&
           <div className="login-btn-container">

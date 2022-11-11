@@ -26,7 +26,7 @@ function Home() {
       </div>
         
 
-        { (Object.keys(currentUser).length > 0 && users.length > 0) ? <CardList/> : 
+        {/* { (Object.keys(currentUser).length > 0 && users.length > 0) ? <CardList/> : 
           <>
             <div className="introduction">
               <h3>Welcome to Nöix</h3>
@@ -38,7 +38,7 @@ function Home() {
               <DrumSet className="drum-set-svg"/>
             </div>
           </>
-        }
+        } */}
 
         { (Object.keys(currentUser).length === 0 && !toggleBtn) &&
           <div className="login-btn-container">

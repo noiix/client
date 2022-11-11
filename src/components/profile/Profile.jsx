@@ -23,7 +23,7 @@ import { BsDash } from 'react-icons/bs';
 
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode, isDesktop } = useContext(DesignContext)
+  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode, isDesktop, isMobile } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration,
     // playing, setPlaying 

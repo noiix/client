@@ -23,7 +23,7 @@ import { BsDash } from 'react-icons/bs';
 
 function Profile() {
   const [togglePicBtn, setTogglePicBtn] = useState(false)
-  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode } = useContext(DesignContext)
+  const { toggleModalUpdate, displayModalUpdate, toggleModalAdd, displayModalAdd, displayForm, toggleForm, darkMode, isDesktop } = useContext(DesignContext)
   const { profile, currentUser, introTextUpdate, setToggleTextBtn, introTextHandler, addContact, inputHandler, profileUpdateName } = useContext(UserContext)
   const { deleteTrack, likeSongs, duration,
     // playing, setPlaying 
@@ -111,7 +111,7 @@ function Profile() {
               </div>
 
               <div className="profile-header-username">
-                <h3 className={`${checkUserNameLength()}`}>{ profile.username }</h3>
+                <h3 className={!isDesktop && `${checkUserNameLength()}`}>{ profile.username }</h3>
                 { profile._id === currentUser._id &&
                   <form className="nameForm">
                     <input onChange={ inputHandler } name="username" placeholder="new name" />

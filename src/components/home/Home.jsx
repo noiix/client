@@ -6,9 +6,7 @@ import CardList from "../UI/CardList/CardList";
 import Modal from "../UI/modal/Modal";
 import Button from "../UI/button/Button";
 import './animation/home-animation.styling.scss'
-import {ReactComponent as DrumSet} from './animation/drum_set.svg';
-import {ReactComponent as Ukulele} from './animation/ukulele.svg';
-import {ReactComponent as Flute} from './animation/flute.svg';
+import {ReactComponent as HomeAnimation} from './animation/home_animation.svg'
 
 
 function Home() {
@@ -33,9 +31,7 @@ function Home() {
               <p>to find other musicians nearby you need to set your genres in your profile.</p>
             </div>        
             <div className="home-animation">  
-              <Ukulele className="ukulele-svg"/>
-              <Flute className="flute-svg"/>
-              <DrumSet className="drum-set-svg"/>
+              <HomeAnimation className="home-animation-svg"/>
             </div>
           </>
         }

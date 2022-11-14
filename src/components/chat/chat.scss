@@ -36,6 +36,36 @@
     max-height: calc(100vh - 4.5rem);
 }
 
+.chats-none {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem;
+
+    .mock-message {
+        border: 3px solid $dark-gray;
+        margin: 1rem;
+        padding: 0.8em;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        border-radius: 13px 15px 15px 0px;
+        margin-right: 2rem;
+        width: fit-content;
+    }
+
+    #heart {
+        stroke: $pink;
+        stroke-dasharray: 450;
+        stroke-dashoffset: 450;
+        animation: draw 5s linear infinite;
+    }
+    
+    @keyframes draw {
+        to {stroke-dashoffset: 0}
+    }
+}
+
 .chat-partner-row {
     border-bottom: 2px dotted $dark-gray;
     width: 100%;
@@ -47,7 +77,7 @@
 
     .chat-profile-img {
         img {
-            background-color: $blue;
+            // background-color: $blue;
             height: 60px;
             width: 60px;
             border-radius: 50%;
@@ -132,9 +162,10 @@
     }
 
     .current-chat-input {
-        height: 100px;
+        // height: 100px;
         width: 100%;
-        height: 200px;
+        // height: 200px;
+        max-height: 150px;
         padding: .75rem;
         font-size: 0.9rem;
         line-height: 0.9rem;
@@ -142,6 +173,7 @@
         display: flex;
         align-items: center;
         textarea {
+            -webkit-appearance: none;
             resize: none;
             padding: .5rem;
             line-height: 1.2rem;

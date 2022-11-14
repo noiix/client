@@ -7,13 +7,8 @@ import Button from '../UI/button/Button';
 const Register = () => {
   const {
     inputHandler,
-    createAccount,
-    currentUser,
-    // googleAuthentication,
-    // handleSignOut,
+    createAccount
   } = useContext(UserContext);
-
-  console.log(currentUser);
 
   return (
     <>

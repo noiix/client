@@ -14,7 +14,7 @@ function Upload() {
   return (
     <>
       <form className='track-upload-form'>
-        <input type='text' value={ fileName } name={ fileName } required onChange={ (e) => { setFileName(e.target.value) } } accept="audio/*" />
+        <input type='text' value={ fileName } name={ fileName } placeholder='title' required onChange={ (e) => { setFileName(e.target.value) } } accept="audio/*" />
         <FileUploader
         // onFileSelectSuccess={(file) => setSelectedFile(file)}
         // onFileSelectError={({error}) => alert(error)}

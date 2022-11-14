@@ -31,10 +31,16 @@
     }
     form {
         input {
+            -webkit-appearance: none;
             font-family: $extra-font;
             letter-spacing: normal;
             color: $dark-gray;
             font-weight: 200;
+        }
+        .update-name-btn {
+            &:hover {
+                color: $light-gray;
+            }
         }
     }
 }
@@ -70,6 +76,7 @@
     }
 }
 
+
 .profile-info-container {
     padding: 2rem;
     display: flex;
@@ -84,6 +91,7 @@
         width: 100%;
     }
     textarea {
+        -webkit-appearance: none;
         border: $dark-gray 2px solid;
         width: 100%;
         height: 6rem;
@@ -97,9 +105,25 @@
     }
 }
 
-.profile-info-edit-btn {
+.profile-genre-edit-btn {
     margin-top: 1.5rem;
 }
+
+.profile-instrument-labels {
+    margin-top: -2.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    .instr-label {
+        border: 2px solid $pink;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.3em 0.6em;
+        border-radius: 16px;
+        line-height: 1.05rem;
+    }
+}
+
 
 .profile-right-column {
     width: 60%;
@@ -231,6 +255,7 @@
     }
     }
 
+
     .profile-info {
         textarea {
             border: $light-gray 2px solid;
@@ -244,11 +269,18 @@
         }
     }
 
-    .profile-info-edit-btn {
+    .profile-genres-edit-btn {
+
         button {
             border: $light-gray 2px solid;
+            margin-top: 1.5rem;
         }
+
     }
+    
+    .instr-label {
+        border: 2px solid $dark-pink;
+        }
 
     .profile-connect-btn {
         color: $light-gray;
@@ -290,15 +322,6 @@
             }
         }
     }
-
-    .nameForm {
-        button {
-            background-color: $light-gray;
-            color: $dark-gray;
-            border: 2px solid white;
-            box-shadow: none;
-        }
-    }
 }
 
 @media screen and (max-width: $max-screen) {
@@ -331,6 +354,7 @@
         margin-bottom: 1rem;
         max-width: 500px;
     }
+
     .profile-left-column, .profile-right-column {
         width: 100%;
         margin: 0;
@@ -373,6 +397,10 @@
         button {
             display: inline-block;
         }
+    }
+
+    .profile-instrument-labels {
+        margin-top: 0;
     }
 
     .profile-play-btn {

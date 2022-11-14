@@ -18,6 +18,7 @@
             margin-bottom: .5rem;
         }
     }
+   
 
     #signInDiv {
         width: fit-content;
@@ -27,7 +28,7 @@
     .toggle {
         height: fit-content;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         .btn-container {
             width: fit-content;
         }
@@ -44,4 +45,12 @@
     }
 }
 
+}
+
+
+
+@media screen and (max-height: 340px) {
+    .authentication {
+        height: 350px;
+    }
 }

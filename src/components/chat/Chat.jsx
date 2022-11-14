@@ -4,7 +4,8 @@ import UserContext from '../../contexts/UserContext'
 import DesignContext from '../../contexts/DesignContext'
 import Button from '../UI/button/Button'
 import Chatfield from './Chatfield'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {ReactComponent as Heart} from './heart.svg'
 
 function Chat() {
 
@@ -26,16 +27,15 @@ function Chat() {
 
     const msgTeaser = (chat, user) => {
         const getAllMessages = allMessages && allMessages.map(msg => msg.chat._id === chat._id ? msg : null);
-        const lastMessages = getAllMessages[getAllMessages.length-1];
+        const lastMessages = getAllMessages && getAllMessages[getAllMessages.length-1];
         return lastMessages?.content.slice(0, 30);
     }
-
-
-    // console.log('chats', chats)
 
     return (
         <div className="chat-main">
             <div className='chat-container'>
+                {chats.length > 0 ?
+                <>
                 <div className='chat-list-left'>
                     { chats && chats.map((chat, i) => <> {
                         chat.users.map(user => user._id !== currentUser._id &&
@@ -60,7 +60,18 @@ function Chat() {
                         Back 
                     </Button> }
                     <Chatfield />
+                </div> 
+                </> :
+                <div className='chats-none'> 
+                    <div className="mock-message">
+                        Hi there!
+                    </div>
+                    <div className="mock-message">Check out some musicians and start a conversation</div>
+                    <div className="mock-message">
+                        <Heart/>
+                    </div>
                 </div>
+                }
             </div>
         </div>
     )

@@ -9,6 +9,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &::-webkit-scrollbar {
+        // display: none;
+        width: 0 !important;
+      }
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
+      // dark-mode-test
+      // background-color: $dark-gray;
 
     .home-container {
         width: 85%;
@@ -40,6 +48,11 @@
     h4 {
         font-weight: 200;
         font-size: 1.5rem;
+    }
+
+    .introduction {
+        width: 100%;
+        display: flex;
     }
 }
 
@@ -90,5 +103,18 @@
 
     .home-container {
         justify-content: space-evenly;
+    }
+
+    .introduction {
+       flex-direction: column-reverse;
+       margin-top: 4rem;
+       align-items: center;
+       
+       div {
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+       }
     }
   }

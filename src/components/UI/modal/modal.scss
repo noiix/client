@@ -19,7 +19,7 @@
     width: 450px;
     background-color: lighten($lavender, 25%);
     padding: 4rem;
-    div {
+    & > div {
         // height: 100%;
         width: 100%;
         display: flex;
@@ -61,11 +61,16 @@
 
 
 @media screen and (max-width: $max-screen-mobile) {
+
     .modal-background {
         align-items: flex-end;
         .modal {
             height: calc(100% - 4.5rem);
             width: 100%;
+            padding: 4rem 2rem;
+            .toggle {
+                justify-content: flex-start;
+            }
         }
     }
     .close {

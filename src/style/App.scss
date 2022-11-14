@@ -38,13 +38,15 @@ body {
       font-family: $extra-font;
     }
   
-    .App {
-      display: flex;
+    .App {display: flex;
       &::-webkit-scrollbar {
-        width: 0!important;
+        // display: none;
+        width: 0 !important;
       }
-      scrollbar-width: none;
       -ms-overflow-style: none;
+      scrollbar-width: none; 
+      // dark-mode-test
+      // background-color: $dark-gray;
     }
 
     .main {
@@ -53,11 +55,15 @@ body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
+      overflow: auto;
       &::-webkit-scrollbar {
-        width: 0!important;
+        // display: none;
+        width: 0 !important;
       }
-      scrollbar-width: none;
-      -ms-overflow-style: none;;
+      -ms-overflow-style: none;
+      scrollbar-width: none; 
+      // dark-mode-test
+      // background-color: $dark-gray;
     }
     .font-size-s {
       font-size: 1rem;

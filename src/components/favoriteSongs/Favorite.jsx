@@ -2,11 +2,13 @@ import React, { useContext, useRef, useEffect, useState } from 'react'
 import UserContext from '../../contexts/UserContext'
 import DataContext from '../../contexts/DataContext'
 import DesignContext from '../../contexts/DesignContext';
+import './sound_wave/sound_wave.styling.scss'
 import { GrPlay, GrPause } from "react-icons/gr";
 import { FaHeart, FaHeartBroken, FaRegHeart } from 'react-icons/fa';
 import { BsDash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Button from '../UI/button/Button';
+import {ReactComponent as SoundWave} from "./sound_wave/sound_wave.svg"
 
 
 function Favorite() {
@@ -124,10 +126,11 @@ function Favorite() {
               </div>) }
           </div> : 
           <div className='favorite-container'>
-          <p>Don't have any songs yet in your favorites? Check out the tracks of nearby musicians and give them a heart if you like them.</p>
-          <Link to="/"><Button name="home"/></Link>
+            <div className="favorite-none">
+              <p>Don't have any songs yet in your favorites? Check out the tracks of nearby musicians and give them a heart if you like them.</p>
+              <SoundWave/>
+            </div>
           </div>}
-      
       </div>
     </>
   )

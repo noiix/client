@@ -296,14 +296,21 @@
     }
 }
 
-.back-to-chat-partners-btn {
-    border: 3px solid $light-gray;
-    background-color: $dark-lavender;
-    &:hover {
-        border: 3px solid $lavender;
-        color: $lavender;
+    .back-to-chat-partners-btn {
+        border: 3px solid $light-gray;
+        background-color: $dark-lavender;
+        &:hover {
+            border: 3px solid $lavender;
+            color: $lavender;
+        }
     }
-}
+
+    .chats-none {
+    
+        .mock-message {
+            border: 3px solid $light-gray;   
+        }
+    }
 
 }
 
